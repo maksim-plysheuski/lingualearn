@@ -8,7 +8,7 @@ export const store = configureStore({
     counter: counterReducer,
     app: appReducer,
     auth: authReducer
-  }
+  },
 });
 
 export type AppDispatch = typeof store.dispatch;
