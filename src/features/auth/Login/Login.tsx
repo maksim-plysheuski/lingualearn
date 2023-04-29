@@ -16,7 +16,7 @@ export const Login = () => {
   };
   return (
     <div className={s.container}>
-      <h1>Loginыыыы</h1>
+      <h1>Login</h1>
       <button onClick={loginHandler}>login</button>
     </div>
   );
