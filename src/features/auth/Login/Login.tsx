@@ -8,8 +8,8 @@ export const Login = () => {
 
   const loginHandler = () => {
     const payload = {
-      email: "safrondev2@gmail.com",
-      password: "12345678",
+      email: "plysheuski.maksim@gmail.com",
+      password: "1234qwerty",
       rememberMe: false
     };
     dispatch(authThunks.login(payload));
