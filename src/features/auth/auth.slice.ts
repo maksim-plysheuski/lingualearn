@@ -31,4 +31,3 @@ const register = createAppAsyncThunk<void, ArgRegisterType>
 
 export const authReducer = slice.reducer;
 export const authThunks = {register, login};
-

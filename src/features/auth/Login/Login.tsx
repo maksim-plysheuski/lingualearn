@@ -14,10 +14,9 @@ export const Login = () => {
     };
     dispatch(authThunks.login(payload));
   };
-
   return (
     <div className={s.container}>
-      <h1>Login</h1>
+      <h1>Loginыыыы</h1>
       <button onClick={loginHandler}>login</button>
     </div>
   );
