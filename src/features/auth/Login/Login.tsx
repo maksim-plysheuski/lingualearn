@@ -1,23 +1,27 @@
-import { useAppDispatch } from "app/hooks";
-import { authThunks } from "features/auth/auth.slice";
-import s from "features/auth/Register/styles.module.css";
+import { useForm, SubmitHandler } from "react-hook-form";
+import { FormControl, TextField } from "@mui/material";
+
+type InputsType = {
+  email: string,
+  password: string,
+};
 
 export const Login = () => {
-
-  const dispatch = useAppDispatch();
-
-  const loginHandler = () => {
-    const payload = {
-      email: "plysheuski.maksim@gmail.com",
-      password: "1234qwerty",
-      rememberMe: false
-    };
-    dispatch(authThunks.login(payload));
+  const { register, handleSubmit, watch, formState: { errors } } = useForm<InputsType>();
+  const onSubmit: SubmitHandler<InputsType> = (data: InputsType) => {
+    console.log(data);
   };
+  console.log(errors);
+
+
   return (
-    <div className={s.container}>
-      <h1>Login</h1>
-      <button onClick={loginHandler}>login</button>
-    </div>
+    <form onSubmit={handleSubmit(onSubmit)}>
+      <FormControl>
+        <TextField {...register("email")} />
+
+        <TextField {...register("password")} />
+        <input type="submit" />
+      </FormControl>
+    </form>
   );
 };
