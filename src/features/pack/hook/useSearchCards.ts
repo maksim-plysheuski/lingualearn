@@ -1,6 +1,6 @@
 import { useAppDispatch, useAppSelector } from 'common/hooks'
 import { useSearchParams } from 'react-router-dom'
-import { useEffect, useState } from 'react'
+import { useCallback, useEffect, useState } from 'react'
 import { PackArgs } from 'features/pack/packApi'
 import { packAction, packsThunks } from 'features/pack/packs.slice'
 
@@ -9,6 +9,8 @@ export const useSearchCards = () => {
   const [interval, setInterval] = useState<number | undefined>(undefined)
   const packParams = useAppSelector(state => state.packs.packParams)
   const packName = useAppSelector(state => state.packs.packParams.packName)
+  const paramsCardId = useAppSelector(state => state.packs.packParams.user_id)
+  const userId = useAppSelector(state => state.auth.profile._id)
   const [searchParams, setSearchParams] = useSearchParams()
   const params = Object.fromEntries(searchParams)
 
@@ -32,8 +34,15 @@ export const useSearchCards = () => {
     setInterval(+idInterval)
   }
 
+  const setMyAllCards = useCallback((user_id: string) => {
+    dispatch(packAction.setPackParams({ user_id }))
+    dispatch(packsThunks.getPacks({ user_id }))
+  }, [])
 
   return {
+    userId,
+    paramsCardId,
+    setMyAllCards,
     params,
     setPackName,
     packName,
