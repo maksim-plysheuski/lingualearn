@@ -6,13 +6,15 @@ import {createAppAsyncThunk} from "common/utils/createAppAsyncThunk";
 const slice = createSlice({
     name: "auth",
     initialState: {
-        profile: null as ProfileType | null
+        profile: null as ProfileType | null,
+        isLoggedIn: false as boolean
     },
     reducers: {},
     extraReducers: builder => {
         builder
             .addCase(login.fulfilled, (state, action) => {
                 state.profile = action.payload.profile;
+                state.isLoggedIn = true
             });
     }
 });

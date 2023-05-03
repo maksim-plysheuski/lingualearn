@@ -9,8 +9,10 @@ import {
 } from "@mui/material";
 import { useState } from "react";
 import { Visibility, VisibilityOff } from "@mui/icons-material";
-import s from 'features/auth/Login/styles.module.css'
-import { NavLink } from "react-router-dom";
+import s from "features/auth/Login/styles.module.css";
+import { NavLink, useNavigate } from "react-router-dom";
+import { useAppDispatch, useAppSelector } from "app/hooks";
+import { authThunks } from "features/auth/auth.slice";
 
 
 type InputsType = {
@@ -20,15 +22,22 @@ type InputsType = {
 };
 
 export const Login = () => {
+  const navigate = useNavigate();
+  const dispatch = useAppDispatch();
 
   const [showPassword, setShowPassword] = useState<boolean>(false);
   const showPasswordHandler = () => setShowPassword(!showPassword);
   const { register, handleSubmit, formState: { errors } } = useForm<InputsType>();
+
   const onSubmit: SubmitHandler<InputsType> = (data: InputsType) => {
-    console.log(data);
+    dispatch(authThunks.login(data));
   };
 
+  const isLoggedIn = useAppSelector(state => state.auth.isLoggedIn);
 
+  if (isLoggedIn) {
+    navigate("/profile");
+  }
 
   return (
     <div className={s.loginPage}>
@@ -45,7 +54,7 @@ export const Login = () => {
                        {...register("email", {
                          required: "Field is required",
                          pattern: { value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i, message: "Invalid Email" },
-                         maxLength: { value: 30, message: "Length must be less then 20 symbols" }
+                         maxLength: { value: 30, message: "Length must be less then 30 symbols" }
                        })} />
             <TextField className={s.inputField}
                        type={showPassword ? "text" : "password"}
@@ -71,19 +80,19 @@ export const Login = () => {
               <Checkbox id="rememberMe" {...register("rememberMe")} />
               <span>Remember me</span>
             </div>
-            <NavLink className={s.forgotPasswordLink} to={'/'}>Forgot Password?</NavLink>
+            <NavLink className={s.forgotPasswordLink} to={"/"}>Forgot Password?</NavLink>
             <Button
               className={s.submitButton}
-              style={{borderRadius: "30px"}}
+              style={{ borderRadius: "30px" }}
               type={"submit"}
               variant={"contained"}
               color={"primary"}>
-              Sign Up
+              Sign In
             </Button>
           </FormControl>
         </form>
         <p>Don't have an account?</p>
-        <NavLink className={s.registrationLink} to={'/registration'}>Sign Up</NavLink>
+        <NavLink className={s.registrationLink} to={"/registration"}>Sign Up</NavLink>
       </div>
     </div>
   );

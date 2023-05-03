@@ -22,8 +22,8 @@ const router = createBrowserRouter([
     element: <Register/> ,
   },
   {
-    path: "/packs",
-    element: <h1>Packs</h1>,
+    path: "/profile",
+    element: <h1>profile page</h1>,
   },
 ]);
 
@@ -36,7 +36,5 @@ root.render(
   </Provider>
 );
 
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
+
 reportWebVitals();
