@@ -7,6 +7,7 @@ import "./index.css";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import { Register } from "features/auth/Register/Register";
 import { Login } from "features/auth/Login/Login";
+import { Header } from "common/components/header/Header";
 
 const router = createBrowserRouter([
   {
@@ -32,6 +33,7 @@ const root = createRoot(container);
 
 root.render(
   <Provider store={store}>
+    <Header />
     <RouterProvider router={router} />
   </Provider>
 );

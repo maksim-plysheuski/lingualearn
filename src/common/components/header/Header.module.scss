@@ -1,0 +1,39 @@
+.header {
+  height: 60px;
+  background-color: white;
+  display: flex;
+  justify-content: center;
+
+  .headerContainer {
+    width: 80%;
+    border: black;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    .logoBlock {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      transition: 250ms ease-in-out;
+      text-decoration: none;
+      img {
+        height: 35px;
+        transition: 250ms ease-in-out;
+        color: greenyellow;
+      }
+      span {
+        color: black;
+        margin-left: 10px;
+        font-family: Cambria, sans-serif;
+        font-size: 20px;
+        font-weight: 800;
+        &:hover {
+          color: #366EFF;
+          transition: 250ms ease-in-out;
+          transform: scale(1.05);
+        }
+      }
+    }
+  }
+}
