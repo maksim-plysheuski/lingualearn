@@ -48,8 +48,8 @@ export const Register = () => {
           />
           <button disabled={!isValid} className={s.button}>Sign Up</button>
         </form>
-        <span>Already have an account?</span>
-        <NavLink to={'/login'}>Sign In</NavLink>
+        <span className={s.helpText}>Already have an account?</span>
+        <NavLink className={s.link} to={'/login'}>Sign In</NavLink>
       </div>
     </div>
   )
