@@ -1,6 +1,9 @@
 import {instance} from "common/api/common.api";
 
 export const authApi = {
+    authMe: () => {
+        return instance.post<ProfileType>('auth/me').then(res => res.data)
+    },
     register: (arg: ArgRegisterType) => {
         return instance.post<RegisterResponseType>("auth/register", arg);
     },
@@ -42,8 +45,8 @@ export type TUpdatedUser = {
     "tokenDeathTime": number
 }
 export type TChangeUser = {
-    name: string
-    avatar: string
+    name?: string
+    avatar?: string
 }
 
 export type ArgLoginType = {
@@ -71,5 +74,7 @@ export type ProfileType = {
     __v: number;
     token: string;
     tokenDeathTime: number;
+    avatar: string
+    error?: string
 }
 
