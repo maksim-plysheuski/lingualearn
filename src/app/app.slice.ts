@@ -1,4 +1,4 @@
-import { createSlice, current, PayloadAction } from "@reduxjs/toolkit";
+import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 
 
 const appInitialState = {
@@ -6,19 +6,19 @@ const appInitialState = {
   isLoading: true,
   isAppInitialized: false,
   users: []
-};
+}
 
-type InitialStateType = typeof appInitialState
+// type InitialStateType = typeof appInitialState
 
 const slice = createSlice({
-  name: "app",
+  name: 'app',
   initialState: appInitialState,
   reducers: {
-    setIsLoading: (state, action: PayloadAction<{isLoading: boolean}>) => {
-      state.isLoading = action.payload.isLoading;
-    },
+    setIsLoading: (state, action: PayloadAction<{ isLoading: boolean }>) => {
+      state.isLoading = action.payload.isLoading
+    }
   }
-});
+})
 
-export const appReducer = slice.reducer;
+export const appReducer = slice.reducer
 export const appActions = slice.actions
