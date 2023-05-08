@@ -3,9 +3,10 @@
   width: 100%;
   border: green 2px solid;
   .backLinkContainer {
-    border: red 2px solid;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     position: absolute;
-    width: 126px;
     height: 24px;
     left: 168px;
     top: 84px;
@@ -14,9 +15,14 @@
       font-style: normal;
       font-weight: 400;
       font-size: 14px;
+      margin: 5px;
       line-height: 24px;
       color: #000000;
       text-decoration: none;
+      &:hover {
+        color: #366EFF;
+        transition: 250ms ease-in-out;
+      }
     }
   }
   .personalInfoBlockContainer {

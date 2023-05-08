@@ -22,7 +22,10 @@ const slice = createSlice({
       })
       .addCase(changeUserData.fulfilled, (state, action) => {
         state.profile = action.payload.profile;
-      });
+      })
+      .addCase(logout.fulfilled, (state, action) => {
+        state.isLoggedIn = action.payload.isLoggedIn
+      })
   }
 });
 
@@ -48,6 +51,12 @@ const changeUserData = createAppAsyncThunk<{ profile: ProfileType }, TChangeUser
   return { profile: res.updatedUser };
 });
 
+const logout = createAppAsyncThunk<{isLoggedIn: boolean}, void >
+("auth/logout", async () => {
+  await authApi.logout();
+  return {isLoggedIn: false}
+});
+
 
 export const authReducer = slice.reducer;
-export const authThunks = { authMe, register, login, changeUserData };
+export const authThunks = { authMe, register, login, changeUserData, logout };

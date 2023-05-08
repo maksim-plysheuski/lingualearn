@@ -36,7 +36,7 @@ export const Login = () => {
   const isLoggedIn = useAppSelector(state => state.auth.isLoggedIn);
 
   if (isLoggedIn) {
-    navigate("/Profile");
+    navigate("/profile");
   }
 
   return (
