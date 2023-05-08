@@ -20,12 +20,7 @@ const slice = createSlice({
         state.profile = action.payload.profile;
         state.isLoggedIn = true;
       })
-      .addCase(changeUserData.fulfilled, (state, action) => {
-        state.profile = action.payload.profile;
-      })
-      .addCase(logout.fulfilled, (state, action) => {
-        state.isLoggedIn = action.payload.isLoggedIn
-      })
+
   }
 });
 
@@ -40,6 +35,11 @@ const login = createAppAsyncThunk<{ profile: ProfileType }, ArgLoginType>
   return { profile: res.data };
 });
 
+const logout = createAppAsyncThunk<{isLoggedIn: boolean}, void >
+("auth/logout", async () => {
+  await authApi.logout();
+  return {isLoggedIn: false}
+});
 
 const register = createAppAsyncThunk<boolean, ArgRegisterType>
 ('auth/register', async (arg, { rejectWithValue }) => {
@@ -49,6 +49,7 @@ const register = createAppAsyncThunk<boolean, ArgRegisterType>
   } catch (e) {
     return rejectWithValue(null)
   }
+})
 
 const changeUserData = createAppAsyncThunk<{ profile: ProfileType }, TChangeUser>
 ("auth/changeUser", async (arg) => {
@@ -56,13 +57,9 @@ const changeUserData = createAppAsyncThunk<{ profile: ProfileType }, TChangeUser
   return { profile: res.updatedUser };
 });
 
-const logout = createAppAsyncThunk<{isLoggedIn: boolean}, void >
-("auth/logout", async () => {
-  await authApi.logout();
-  return {isLoggedIn: false}
-});
-
-})
 
 export const authReducer = slice.reducer;
-export const authThunks = { authMe, register, login, changeUserData, logout };
+export const authThunks = { authMe, register, login, changeUserData, logout};
+
+
+
