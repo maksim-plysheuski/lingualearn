@@ -1,35 +1,41 @@
-import {createSlice} from "@reduxjs/toolkit";
-import {ArgLoginType, ArgRegisterType, authApi, ProfileType} from "features/auth/auth.api";
-import {createAppAsyncThunk} from "common/utils/createAppAsyncThunk";
+import { createSlice } from '@reduxjs/toolkit'
+import { ArgLoginType, ArgRegisterType, authApi, ProfileType } from 'features/auth/auth.api'
+import { createAppAsyncThunk } from 'common/utils/createAppAsyncThunk'
 
 
 const slice = createSlice({
-    name: "auth",
-    initialState: {
-        profile: null as ProfileType | null,
-        isLoggedIn: false as boolean
-    },
-    reducers: {},
-    extraReducers: builder => {
-        builder
-            .addCase(login.fulfilled, (state, action) => {
-                state.profile = action.payload.profile;
-                state.isLoggedIn = true
-            });
-    }
-});
+  name: 'auth',
+  initialState: {
+    profile: null as ProfileType | null,
+    isLoggedIn: false as boolean
+  },
+  reducers: {},
+  extraReducers: builder => {
+    builder
+      .addCase(login.fulfilled, (state, action) => {
+        state.profile = action.payload.profile
+        state.isLoggedIn = true
+      })
+  }
+})
 
 const login = createAppAsyncThunk<{ profile: ProfileType }, ArgLoginType>
-("auth/login", async (arg) => {
-    const res = await authApi.login(arg);
-    return {profile: res.data};
-});
+('auth/login', async (arg) => {
+  const res = await authApi.login(arg)
+  return { profile: res.data }
+})
 
-const register = createAppAsyncThunk<void, ArgRegisterType>
-("auth/register", async (arg) => {
-    await authApi.register(arg);
-});
+const register = createAppAsyncThunk<boolean, ArgRegisterType>
+('auth/register', async (arg, { rejectWithValue }) => {
+  try {
+    await authApi.register(arg)
+    return true
+  } catch (e) {
+    return rejectWithValue(null)
+  }
+
+})
 
 
-export const authReducer = slice.reducer;
-export const authThunks = {register, login};
+export const authReducer = slice.reducer
+export const authThunks = { register, login }

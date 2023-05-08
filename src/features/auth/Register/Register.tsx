@@ -1,15 +1,19 @@
 import s from 'features/auth/Register/style.module.scss'
 import { InputEmail } from 'common/components/inputs/InputEmail'
 import { InputPassword } from 'common/components/inputs/InputPassword'
-import { useForm } from 'react-hook-form'
+import { SubmitHandler, useForm } from 'react-hook-form'
 import { registrationSchema } from 'features/auth/Register/ShemaRegister'
 import * as yup from 'yup'
 import { yupResolver } from '@hookform/resolvers/yup'
-import { NavLink } from 'react-router-dom'
+import { NavLink, useNavigate } from 'react-router-dom'
+import { useAppDispatch } from 'app/hooks'
+import { authThunks } from 'features/auth/auth.slice'
 
 
 type LoginType = yup.InferType<typeof registrationSchema>
 export const Register = () => {
+  const dispatch = useAppDispatch()
+  const navigate = useNavigate()
   const {
     register,
     handleSubmit,
@@ -18,12 +22,19 @@ export const Register = () => {
     mode: 'onBlur',
     resolver: yupResolver(registrationSchema)
   })
+  const onSubmit: SubmitHandler<LoginType> = ({ email, password }) => {
+    dispatch(authThunks.register({ email, password })).then((res) => {
+      if (res.payload) {
+        navigate('/login')
+      }
+    })
+  }
+
   return (
     <div className={s.register}>
       <div className={s.container}>
         <span>Sign Up</span>
-        <form className={s.form} onSubmit={handleSubmit(() => {
-        })}>
+        <form className={s.form} onSubmit={handleSubmit(onSubmit)}>
           <InputEmail className={s.inputEmail}
                       errorMessage={errors.email?.message}
                       register={register('email')}
