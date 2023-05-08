@@ -1,15 +1,13 @@
 import { useEffect } from "react";
 import { useAppDispatch} from "app/hooks";
-import { appActions } from "app/app.slice";
+import { authThunks } from "features/auth/auth.slice";
 
 function App() {
   const dispatch = useAppDispatch();
 
   useEffect(() => {
-    setTimeout(() => {
-      dispatch(appActions.setIsLoading({ isLoading: false }));
-    }, 3000);
-  }, []);
+    dispatch(authThunks.authMe())
+  }, [dispatch])
 
   return (
     <div className="App">

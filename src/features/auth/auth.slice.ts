@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { ArgLoginType, ArgRegisterType, authApi, ProfileType, TChangeUser, TUpdatedUser } from "features/auth/auth.api";
+import { ArgLoginType, ArgRegisterType, authApi, ProfileType, TChangeUser } from "features/auth/auth.api";
 import { createAppAsyncThunk } from "common/utils/createAppAsyncThunk";
 
 
@@ -22,14 +22,14 @@ const slice = createSlice({
       })
       .addCase(changeUserData.fulfilled, (state, action) => {
         state.profile = action.payload.profile;
-      })
+      });
   }
 });
 
 const authMe = createAppAsyncThunk<{ profile: ProfileType }, void>("auth/me", async () => {
-  const res = await authApi.authMe()
-  return {profile: res}
-})
+  const res = await authApi.authMe();
+  return { profile: res };
+});
 
 const login = createAppAsyncThunk<{ profile: ProfileType }, ArgLoginType>
 ("auth/login", async (arg) => {
@@ -37,18 +37,16 @@ const login = createAppAsyncThunk<{ profile: ProfileType }, ArgLoginType>
   return { profile: res.data };
 });
 
-const register = createAppAsyncThunk<void, ArgRegisterType>
+const register = createAppAsyncThunk<any, ArgRegisterType>
 ("auth/register", async (arg) => {
   await authApi.register(arg);
 });
 
-const changeUserData = createAppAsyncThunk<any, any>
+const changeUserData = createAppAsyncThunk<{ profile: ProfileType }, TChangeUser>
 ("auth/changeUser", async (arg) => {
-    const res = await authApi.changeUser(arg);
-    return {profile: res.updatedUser}
+  const res = await authApi.changeUser(arg);
+  return { profile: res.updatedUser };
 });
-
-
 
 
 export const authReducer = slice.reducer;

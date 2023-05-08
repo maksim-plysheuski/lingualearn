@@ -45,7 +45,7 @@ export type TUpdatedUser = {
     "tokenDeathTime": number
 }
 export type TChangeUser = {
-    name: string
+    name?: string
     avatar?: string
 }
 
