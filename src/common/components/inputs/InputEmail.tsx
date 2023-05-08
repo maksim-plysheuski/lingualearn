@@ -8,15 +8,16 @@ type Props = TextFieldProps & {
   register: UseFormRegisterReturn
 }
 
-export const InputEmail: FC<Props> = ({ errorMessage, register, className, ...resProps }) => {
+export const InputEmail: FC<Props> = ({ errorMessage, register, ...resProps }) => {
   return (
-    <TextField type={'text'}
-               label={'Email'}
-               variant='standard'
-               error={!!errorMessage}
-               helperText={errorMessage}
-               {...register}
-               {...resProps}
+    <TextField
+      type={'text'}
+      label={'Email'}
+      variant='standard'
+      error={!!errorMessage}
+      helperText={errorMessage}
+      {...register}
+      {...resProps}
     />
   )
 }

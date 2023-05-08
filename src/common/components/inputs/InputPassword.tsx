@@ -9,28 +9,29 @@ type Props = TextFieldProps & {
   register: any
 }
 
-export const InputPassword: FC<Props> = ({ errorMessage, register, className, ...restProps }) => {
+export const InputPassword: FC<Props> = ({ errorMessage, register, ...restProps }) => {
   const [showPassword, setShowPassword] = useState<boolean>(false)
   return (
-    <TextField type={showPassword ? 'text' : 'password'}
-               label={'Password'}
-               variant='standard'
-               error={!!errorMessage}
-               helperText={errorMessage}
-               InputProps={{
-                 endAdornment: (
-                   <InputAdornment position='end'>
-                     <IconButton
-                       aria-label='toggle password visibility'
-                       onClick={() => setShowPassword(state => !state)}
-                     >
-                       {showPassword ? <Visibility /> : <VisibilityOff />}
-                     </IconButton>
-                   </InputAdornment>
-                 )
-               }}
-               {...register}
-               {...restProps}
+    <TextField
+      type={showPassword ? 'text' : 'password'}
+      label={'Password'}
+      variant='standard'
+      error={!!errorMessage}
+      helperText={errorMessage}
+      InputProps={{
+        endAdornment: (
+          <InputAdornment position='end'>
+            <IconButton
+              aria-label='toggle password visibility'
+              onClick={() => setShowPassword(state => !state)}
+            >
+              {showPassword ? <Visibility /> : <VisibilityOff />}
+            </IconButton>
+          </InputAdornment>
+        )
+      }}
+      {...register}
+      {...restProps}
     />
   )
 }
