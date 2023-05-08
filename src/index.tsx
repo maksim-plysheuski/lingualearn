@@ -8,6 +8,7 @@ import { createBrowserRouter,RouterProvider } from "react-router-dom";
 import { Register } from "features/auth/Register/Register";
 import { Login } from "features/auth/Login/Login";
 import { Header } from "common/components/Header/Header";
+import { ProfilePage } from "features/auth/Profile/ProfilePage";
 
 
 const router = createBrowserRouter([{
@@ -15,7 +16,7 @@ const router = createBrowserRouter([{
   children: [
     {
       path: "/",
-      element: <h1>profile page</h1> /*<Header />*/
+      element: <h1>Hello</h1>
     },
     {
       path: "/login",
@@ -26,8 +27,8 @@ const router = createBrowserRouter([{
       element: <Register />
     },
     {
-      path: "/profile",
-      element: <h1>profile page</h1>
+      path: "/Profile",
+      element: <ProfilePage />
     }]
 }
 ]);

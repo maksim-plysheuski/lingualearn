@@ -1,0 +1,69 @@
+.profilePage {
+  height: 100vh;
+  width: 100%;
+  border: green 2px solid;
+  .backLinkContainer {
+    border: red 2px solid;
+    position: absolute;
+    width: 126px;
+    height: 24px;
+    left: 168px;
+    top: 84px;
+    .backLink {
+      font-family: 'Montserrat', sans-serif;
+      font-style: normal;
+      font-weight: 400;
+      font-size: 14px;
+      line-height: 24px;
+      color: #000000;
+      text-decoration: none;
+    }
+  }
+  .personalInfoBlockContainer {
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    .personalInfoBlock {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-around;
+      align-items: center;
+      width: 413px;
+      height: 408px;
+      box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1), -1px -1px 2px rgba(0, 0, 0, 0.1);
+      border-radius: 2px;
+
+      h1 {
+        font-family: 'Montserrat', sans-serif;
+        font-style: normal;
+        font-weight: 600;
+        font-size: 22px;
+        line-height: 27px;
+        text-align: right;
+        color: #000000;
+      }
+      .userPhotoContainer {
+        .userPhoto {
+          width: 96px;
+          height: 96px;
+          border-radius: 50%;
+        }
+        .changePhotoButton {}
+      }
+      .inputField {}
+      .saveButton {}
+      .emailSpan {
+        font-family: 'Montserrat', sans-serif;
+        font-style: normal;
+        font-weight: 400;
+        font-size: 14px;
+        line-height: 24px;
+        color: #000000;
+        opacity: 0.5;
+      }
+    }
+  }
+
+}

@@ -1,11 +1,8 @@
 import { useEffect } from "react";
-import { useAppDispatch, useAppSelector } from "app/hooks";
+import { useAppDispatch} from "app/hooks";
 import { appActions } from "app/app.slice";
-import { Header } from "common/components/Header/Header";
 
 function App() {
-  const isLoading = useAppSelector((state) => state.app.isLoading);
-
   const dispatch = useAppDispatch();
 
   useEffect(() => {
@@ -16,7 +13,6 @@ function App() {
 
   return (
     <div className="App">
-       <Header/>
       <h1>app</h1>
     </div>
   );
