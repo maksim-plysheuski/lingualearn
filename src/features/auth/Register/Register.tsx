@@ -50,7 +50,7 @@ export const Register = () => {
           <button className={s.button} type='submit' disabled={!isValid}>Sign In</button>
         </form>
         <span className={s.helpText}>Already have an account?</span>
-        <NavLink to={s.link}>Sign Up</NavLink>
+        <NavLink className={s.link} to={'/login'}>Sign Up</NavLink>
       </div>
     </div>
   )
