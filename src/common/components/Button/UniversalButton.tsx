@@ -3,15 +3,14 @@ import React, { ReactNode } from "react";
 
 type PropsType = {
   title: string
-  onClickCallback: () => void
+  onClickCallback?: () => void
   textColor?: "white" | "black"
-  color?: "primary" | "secondary"
   width?: string
   height?: string
   fontSize?: string
   rounded?: boolean
   margin?: string
-  type?: "button"
+  type?: "button" | "submit"
   icon?: ReactNode
 }
 
@@ -20,7 +19,6 @@ export const UniversalButton: React.FC<PropsType> = (
     title,
     rounded,
     textColor,
-    color,
     onClickCallback,
     width,
     height,
@@ -52,7 +50,6 @@ export const UniversalButton: React.FC<PropsType> = (
         onClick={onClickCallback}
         variant={textColor === "white" ? "contained" : "text"}
         type={type ? "button" : "submit"}
-        color={"primary"}
         startIcon={icon}
       >
         {title}
