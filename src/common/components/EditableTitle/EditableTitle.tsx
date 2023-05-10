@@ -29,7 +29,6 @@ export const EditableTitle = (props: EditableTitlePropsType) => {
   };
 
   const onBlurHandler = () => {
-    console.log('hi2');
     setEditMode(false);
     dispatch(authThunks.changeUserData({ name: newUserName }))
   };
