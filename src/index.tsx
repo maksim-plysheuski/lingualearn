@@ -1,47 +1,46 @@
-import React from "react";
-import { createRoot } from "react-dom/client";
-import { Provider } from "react-redux";
-import { store } from "app/store";
-import reportWebVitals from "./reportWebVitals";
-import "./index.css";
-import { createBrowserRouter,RouterProvider } from "react-router-dom";
-import { Register } from "features/auth/Register/Register";
-import { Login } from "features/auth/Login/Login";
-import { Header } from "common/components/Header/Header";
-import { ProfilePage } from "features/Profile/ProfilePage";
-import App from "app/App";
+import React from 'react'
+import { createRoot } from 'react-dom/client'
+import { Provider } from 'react-redux'
+import { store } from 'app/store'
+import reportWebVitals from './reportWebVitals'
+import './index.css'
+import { createBrowserRouter, RouterProvider } from 'react-router-dom'
+import { Register } from 'features/auth/Register/Register'
+import { Login } from 'features/auth/Login/Login'
+import { ProfilePage } from 'features/Profile/ProfilePage'
+import App from 'app/App'
 
 
 const router = createBrowserRouter([{
-  element: <App/>,
+  element: <App />,
   children: [
     {
-      path: "/",
+      path: '/',
       element: <h1>Hello</h1>
     },
     {
-      path: "/login",
+      path: '/login',
       element: <Login />
     },
     {
-      path: "/registration",
+      path: '/registration',
       element: <Register />
     },
     {
-      path: "/profile",
+      path: '/profile',
       element: <ProfilePage />
     }]
 }
-]);
+])
 
-const container = document.getElementById("root")!;
-const root = createRoot(container);
+const container = document.getElementById('root')!
+const root = createRoot(container)
 
 root.render(
   <Provider store={store}>
     <RouterProvider router={router} />
   </Provider>
-);
+)
 
 
-reportWebVitals();
+reportWebVitals()
