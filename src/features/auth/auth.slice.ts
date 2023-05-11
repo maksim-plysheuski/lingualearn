@@ -29,7 +29,7 @@ const authMe = createAppAsyncThunk<{ profile: ProfileType, isLoggedIn: boolean }
 const login = createAppAsyncThunk<{isLoggedIn: boolean}, ArgLoginType>
 ('auth/login', async (arg, thunkAPI) => {
   await authApi.login(arg)
-  await thunkAPI.dispatch(authMe)
+  await thunkAPI.dispatch(authMe())
   return {isLoggedIn: true}
 })
 

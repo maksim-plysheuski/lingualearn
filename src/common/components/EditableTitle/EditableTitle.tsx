@@ -48,7 +48,7 @@ export const EditableTitle = (props: EditableTitlePropsType) => {
           }}
           onDoubleClick={onEditMode}
         >
-          {newUserName}
+          {props.userName}
           <IconButton onClick={onEditMode}>
             <BorderColorIcon sx={{ color: '#000', fontSize: '20px' }} />
           </IconButton>
@@ -59,7 +59,7 @@ export const EditableTitle = (props: EditableTitlePropsType) => {
                    label={'text'}
                    variant={'standard'}
                    helperText={'Nickname'}
-                   defaultValue={newUserName}
+                   defaultValue={props.userName}
                    onChange={onChangeInputHandler}
                    onBlur={onBlurHandler}
                    autoFocus
