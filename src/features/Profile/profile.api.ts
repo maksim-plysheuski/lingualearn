@@ -9,11 +9,11 @@ export const profileApi = {
 
 // Types
 export type TUpdatedUser = {
-  'updatedUser': ProfileType & {
+  updatedUser: ProfileType & {
     avatar: string | null
   },
-  'token': string,
-  'tokenDeathTime': number
+  token: string,
+  tokenDeathTime: number
 }
 export type TChangeUser = {
   name?: string

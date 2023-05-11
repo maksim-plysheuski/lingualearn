@@ -12,6 +12,8 @@ import { authThunks } from 'features/auth/auth.slice'
 
 
 export const ProfilePage = () => {
+
+
   const dispatch = useAppDispatch()
   const navigate = useNavigate()
   const profile = useAppSelector(state => state.profile.profile)

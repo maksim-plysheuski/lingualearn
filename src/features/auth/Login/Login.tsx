@@ -6,16 +6,14 @@ import { useAppDispatch, useAppSelector } from 'app/hooks'
 import { authThunks } from 'features/auth/auth.slice'
 import { InputEmail } from 'common/components/inputs/InputEmail'
 import { yupResolver } from '@hookform/resolvers/yup'
-import { loginSchema } from 'features/auth/Login/SchemaLogin'
+import { loginSchema } from 'common/utils/schemas'
 import { InputPassword } from 'common/components/inputs/InputPassword'
 import { UniversalButton } from 'common/components/Button/UniversalButton'
+import * as yup from 'yup'
 
 
-type InputsType = {
-  email: string,
-  password: string,
-  rememberMe: boolean
-};
+
+type InputsType = yup.InferType<typeof loginSchema>
 
 export const Login = () => {
   const navigate = useNavigate()

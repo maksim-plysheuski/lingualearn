@@ -9,6 +9,7 @@ import { Register } from 'features/auth/Register/Register'
 import { Login } from 'features/auth/Login/Login'
 import { ProfilePage } from 'features/Profile/ProfilePage'
 import App from 'app/App'
+import { PasswordRecoveryPage } from 'features/auth/PasswordRecovery/PasswordRecoveryPage'
 
 
 const router = createBrowserRouter([{
@@ -29,7 +30,12 @@ const router = createBrowserRouter([{
     {
       path: '/profile',
       element: <ProfilePage />
-    }]
+    },
+    {
+      path: '/forgot-password',
+      element: <PasswordRecoveryPage />
+    },
+  ]
 }
 ])
 
