@@ -12,24 +12,25 @@ const slice = createSlice({
   extraReducers: builder => {
     builder
       .addCase(authMe.fulfilled, (state, action) => {
-        state.isLoggedIn = true
+        state.isLoggedIn = action.payload.isLoggedIn
       })
       .addCase(login.fulfilled, (state, action) => {
-        state.isLoggedIn = true
+        state.isLoggedIn = action.payload.isLoggedIn
       })
 
   }
 })
 
-const authMe = createAppAsyncThunk<{ profile: ProfileType }, void>('auth/me', async () => {
+const authMe = createAppAsyncThunk<{ profile: ProfileType, isLoggedIn: boolean }>('auth/me', async () => {
   const res = await authApi.authMe()
-  return { profile: res }
+  return { profile: res, isLoggedIn: true }
 })
 
-const login = createAppAsyncThunk<void, ArgLoginType>
+const login = createAppAsyncThunk<{isLoggedIn: boolean}, ArgLoginType>
 ('auth/login', async (arg, thunkAPI) => {
   await authApi.login(arg)
   await thunkAPI.dispatch(authMe)
+  return {isLoggedIn: true}
 })
 
 const logout = createAppAsyncThunk<{ isLoggedIn: boolean }, void>
