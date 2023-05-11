@@ -1,6 +1,6 @@
-import s from 'features/auth/PasswordRecovery/PasswordRecoveryPage.module.scss'
+import s from 'features/auth/PasswordRecovery/style.module.scss'
 import { FormControl } from '@mui/material'
-import { InputEmail } from 'common/components/inputs/InputEmail'
+import { InputEmail } from 'common/components/Inputs/InputEmail'
 import { NavLink } from 'react-router-dom'
 import { UniversalButton } from 'common/components/Button/UniversalButton'
 import { SubmitHandler, useForm } from 'react-hook-form'
@@ -11,7 +11,7 @@ import { yupResolver } from '@hookform/resolvers/yup'
 type InputType = yup.InferType<typeof emailSchema>
 
 export const PasswordRecoveryPage = () => {
-  const { register, handleSubmit, formState: { errors, isValid } } = useForm<InputType>(
+  const { register, handleSubmit, formState: { errors } } = useForm<InputType>(
     {
       mode: 'onBlur',
       resolver: yupResolver(emailSchema)

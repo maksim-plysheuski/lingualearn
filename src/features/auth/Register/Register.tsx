@@ -1,6 +1,6 @@
 import s from 'features/auth/Register/style.module.scss'
-import { InputEmail } from 'common/components/inputs/InputEmail'
-import { InputPassword } from 'common/components/inputs/InputPassword'
+import { InputEmail } from 'common/components/Inputs/InputEmail'
+import { InputPassword } from 'common/components/Inputs/InputPassword'
 import { SubmitHandler, useForm } from 'react-hook-form'
 import * as yup from 'yup'
 import { yupResolver } from '@hookform/resolvers/yup'

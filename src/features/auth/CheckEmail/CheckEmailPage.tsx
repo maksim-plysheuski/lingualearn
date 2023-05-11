@@ -1,4 +1,4 @@
-import s from 'features/auth/CheckEmail/CheckEmailPage.module.scss'
+import s from 'features/auth/CheckEmail/style.module.scss'
 import { UniversalButton } from 'common/components/Button/UniversalButton'
 import ForwardToInboxIcon from '@mui/icons-material/ForwardToInbox'
 
