@@ -8,11 +8,12 @@ import { createBrowserRouter,RouterProvider } from "react-router-dom";
 import { Register } from "features/auth/Register/Register";
 import { Login } from "features/auth/Login/Login";
 import { Header } from "common/components/Header/Header";
-import { ProfilePage } from "features/auth/Profile/ProfilePage";
+import { ProfilePage } from "features/Profile/ProfilePage";
+import App from "app/App";
 
 
 const router = createBrowserRouter([{
-  element: <Header />,
+  element: <App/>,
   children: [
     {
       path: "/",

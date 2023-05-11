@@ -1,6 +1,7 @@
 import { useEffect } from "react";
 import { useAppDispatch} from "app/hooks";
 import { authThunks } from "features/auth/auth.slice";
+import { Header } from "common/components/Header/Header";
 
 function App() {
   const dispatch = useAppDispatch();
@@ -11,7 +12,7 @@ function App() {
 
   return (
     <div className="App">
-      <h1>app</h1>
+      <Header />
     </div>
   );
 }

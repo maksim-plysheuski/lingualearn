@@ -10,9 +10,6 @@ export const authApi = {
     login: (arg: ArgLoginType) => {
         return instance.post<ProfileType>("auth/login", arg);
     },
-    changeUser: (arg: TChangeUser) => {
-        return instance.put<TUpdatedUser>('auth/me', arg).then(res => res.data)
-    },
     logout: () => {
         return instance.delete('auth/me')
     },
@@ -35,18 +32,6 @@ export type TForgot = {
     email: string
     from?: string
     message: string
-}
-
-export type TUpdatedUser = {
-    "updatedUser": ProfileType & {
-        avatar: string | null
-    },
-    "token": string,
-    "tokenDeathTime": number
-}
-export type TChangeUser = {
-    name?: string
-    avatar?: string
 }
 
 export type ArgLoginType = {

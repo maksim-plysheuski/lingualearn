@@ -1,7 +1,7 @@
 import { NavLink, useNavigate } from "react-router-dom";
 import LogoutIcon from "@mui/icons-material/Logout";
 import { useAppDispatch, useAppSelector } from "app/hooks";
-import s from "features/auth/Profile/ProfilePage.module.scss";
+import s from "features/Profile/ProfilePage.module.scss";
 import { EditableTitle } from "common/components/EditableTitle/EditableTitle";
 import { UniversalButton } from "common/components/Button/UniversalButton";
 import { Avatar, Badge, IconButton } from "@mui/material";
@@ -14,7 +14,7 @@ import { authThunks } from "features/auth/auth.slice";
 export const ProfilePage = () => {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
-  const profile = useAppSelector(state => state.auth.profile);
+  const profile = useAppSelector(state => state.profile.profile);
   const isLoggedIn = useAppSelector(state => state.auth.isLoggedIn);
 
 

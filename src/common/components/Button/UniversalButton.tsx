@@ -10,7 +10,7 @@ type PropsType = {
   fontSize?: string
   rounded?: boolean
   margin?: string
-  type?: "button" | "submit"
+  type?: "button"
   icon?: ReactNode
 }
 

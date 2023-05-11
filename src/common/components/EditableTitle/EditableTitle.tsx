@@ -1,10 +1,10 @@
-import s from "features/auth/Profile/ProfilePage.module.scss";
+import s from "features/Profile/ProfilePage.module.scss";
 import { IconButton, TextField, Typography } from "@mui/material";
 import { ChangeEvent, useState } from "react";
 import { UniversalButton } from "common/components/Button/UniversalButton";
-import { authThunks } from "features/auth/auth.slice";
 import { useAppDispatch } from "app/hooks";
 import BorderColorIcon from "@mui/icons-material/BorderColor";
+import { profileThunks } from "features/Profile/profile.slice";
 
 type EditableTitlePropsType = {
   userName: string
@@ -24,20 +24,20 @@ export const EditableTitle = (props: EditableTitlePropsType) => {
   const onEditMode = () => setEditMode(true);
 
   const onSaveClickHandler = () => {
-    dispatch(authThunks.changeUserData({ name: newUserName }))
+    dispatch(profileThunks.changeUserData({ name: newUserName }));
     setEditMode(false);
   };
 
   const onBlurHandler = () => {
     setEditMode(false);
-    dispatch(authThunks.changeUserData({ name: newUserName }))
+    dispatch(profileThunks.changeUserData({ name: newUserName }));
   };
 
   return (
     <>
       {!editMode ? (
         <Typography
-          component={'span'}
+          component={"span"}
           sx={{
             fontSize: "20px",
             fontWeight: "500",

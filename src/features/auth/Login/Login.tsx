@@ -56,7 +56,7 @@ export const Login = () => {
               <span>Remember me</span>
             </div>
             <NavLink className={s.forgotPasswordLink} to={"/"}>Forgot Password?</NavLink>
-            <UniversalButton title={"Sign In"} rounded={true} textColor={"white"} type={"submit"} height={"36"} />
+            <UniversalButton title={"Sign In"} rounded={true} textColor={"white"} height={"36"} />
           </FormControl>
         </form>
         <p>Don't have an account?</p>
