@@ -1,6 +1,5 @@
 import { NavLink, useNavigate } from 'react-router-dom'
 import LogoutIcon from '@mui/icons-material/Logout'
-import { useAppDispatch, useAppSelector } from 'app/hooks'
 import s from 'features/Profile/ProfilePage.module.scss'
 import { EditableTitle } from 'common/components/EditableTitle/EditableTitle'
 import { UniversalButton } from 'common/components/Button/UniversalButton'
@@ -9,6 +8,7 @@ import LocalSeeOutlinedIcon from '@mui/icons-material/LocalSeeOutlined'
 import { ChangeEvent } from 'react'
 import ArrowBackIcon from '@mui/icons-material/ArrowBack'
 import { authThunks } from 'features/auth/auth.slice'
+import { useAppDispatch, useAppSelector } from 'common/hooks'
 
 
 export const ProfilePage = () => {

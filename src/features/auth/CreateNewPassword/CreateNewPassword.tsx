@@ -4,10 +4,11 @@ import * as yup from 'yup'
 import { SubmitHandler, useForm } from 'react-hook-form'
 import { yupResolver } from '@hookform/resolvers/yup'
 import { useParams } from 'react-router-dom'
-import { useAppDispatch } from 'app/hooks'
+
 import { authThunks } from 'features/auth/auth.slice'
 import { InputPassword } from 'common/components'
 import { passwordSchema } from 'features/auth/CreateNewPassword/passwordSchema'
+import { useAppDispatch } from 'common/hooks'
 
 
 type Type = yup.InferType<typeof passwordSchema>

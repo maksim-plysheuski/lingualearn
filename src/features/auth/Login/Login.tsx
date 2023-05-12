@@ -2,13 +2,13 @@ import { useForm, SubmitHandler } from 'react-hook-form'
 import { Checkbox, FormControl } from '@mui/material'
 import s from 'features/auth/Login/styles.module.scss'
 import { NavLink, useNavigate } from 'react-router-dom'
-import { useAppDispatch, useAppSelector } from 'app/hooks'
 import { authThunks } from 'features/auth/auth.slice'
 import { yupResolver } from '@hookform/resolvers/yup'
 import { UniversalButton } from 'common/components/Button/UniversalButton'
 import * as yup from 'yup'
 import { InputEmail, InputPassword } from 'common/components'
 import { loginSchema } from 'features/auth/Login/loginSchema'
+import { useAppDispatch, useAppSelector } from 'common/hooks'
 
 
 type InputsType = yup.InferType<typeof loginSchema>

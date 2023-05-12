@@ -3,10 +3,10 @@ import { SubmitHandler, useForm } from 'react-hook-form'
 import * as yup from 'yup'
 import { yupResolver } from '@hookform/resolvers/yup'
 import { NavLink, useNavigate } from 'react-router-dom'
-import { useAppDispatch } from 'app/hooks'
 import { authThunks } from 'features/auth/auth.slice'
 import { InputEmail, InputPassword } from 'common/components'
 import { registerSchema } from 'features/auth/Register/registerSchema'
+import { useAppDispatch } from 'common/hooks'
 
 
 type Type = yup.InferType<typeof registerSchema>
