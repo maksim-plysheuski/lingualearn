@@ -1,13 +1,13 @@
 import React from 'react'
 import s from './style.module.scss'
 import * as yup from 'yup'
-import { passwordSchema } from 'common/utils/schemas'
 import { SubmitHandler, useForm } from 'react-hook-form'
 import { yupResolver } from '@hookform/resolvers/yup'
 import { useParams } from 'react-router-dom'
 import { useAppDispatch } from 'app/hooks'
 import { authThunks } from 'features/auth/auth.slice'
 import { InputPassword } from 'common/components'
+import { passwordSchema } from 'features/auth/CreateNewPassword/passwordSchema'
 
 
 type Type = yup.InferType<typeof passwordSchema>

@@ -5,9 +5,9 @@ import { NavLink } from 'react-router-dom'
 import { UniversalButton } from 'common/components/Button/UniversalButton'
 import { SubmitHandler, useForm } from 'react-hook-form'
 import * as yup from 'yup'
-import { emailSchema } from 'common/utils/schemas'
 import { yupResolver } from '@hookform/resolvers/yup'
 import { forgotPasswordApi } from 'features/auth/PasswordRecovery/passwordRecovery.api'
+import { emailSchema } from 'features/auth/PasswordRecovery/emailSchema'
 
 type InputType = yup.InferType<typeof emailSchema>
 

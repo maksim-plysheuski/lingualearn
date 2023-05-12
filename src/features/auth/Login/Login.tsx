@@ -5,11 +5,10 @@ import { NavLink, useNavigate } from 'react-router-dom'
 import { useAppDispatch, useAppSelector } from 'app/hooks'
 import { authThunks } from 'features/auth/auth.slice'
 import { yupResolver } from '@hookform/resolvers/yup'
-import { loginSchema } from 'common/utils/schemas'
 import { UniversalButton } from 'common/components/Button/UniversalButton'
 import * as yup from 'yup'
 import { InputEmail, InputPassword } from 'common/components'
-
+import { loginSchema } from 'features/auth/Login/loginSchema'
 
 
 type InputsType = yup.InferType<typeof loginSchema>
@@ -28,7 +27,6 @@ export const Login = () => {
   const onSubmit: SubmitHandler<InputsType> = (data: InputsType) => {
     dispatch(authThunks.login(data))
   }
-
 
   if (isLoggedIn) {
     navigate('/profile')

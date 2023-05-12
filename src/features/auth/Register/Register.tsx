@@ -5,11 +5,11 @@ import { yupResolver } from '@hookform/resolvers/yup'
 import { NavLink, useNavigate } from 'react-router-dom'
 import { useAppDispatch } from 'app/hooks'
 import { authThunks } from 'features/auth/auth.slice'
-import { registrationSchema } from 'common/utils/schemas'
 import { InputEmail, InputPassword } from 'common/components'
+import { registerSchema } from 'features/auth/Register/registerSchema'
 
 
-type LoginType = yup.InferType<typeof registrationSchema>
+type LoginType = yup.InferType<typeof registerSchema>
 
 
 export const Register = () => {
@@ -21,10 +21,13 @@ export const Register = () => {
     formState: { errors, isValid }
   } = useForm<LoginType>({
     mode: 'onBlur',
-    resolver: yupResolver(registrationSchema)
+    resolver: yupResolver(registerSchema)
   })
+
   const onSubmit: SubmitHandler<LoginType> = ({ email, password }) => {
+    console.log('hi')
     dispatch(authThunks.register({ email, password })).then((res) => {
+
       if (res.payload) {
         navigate('/login')
       }
