@@ -10,6 +10,7 @@ import { Login } from 'features/auth/Login/Login'
 import { ProfilePage } from 'features/Profile/ProfilePage'
 import App from 'app/App'
 import { PasswordRecoveryPage } from 'features/auth/PasswordRecovery/PasswordRecoveryPage'
+import { CreateNewPassword } from 'features/auth/CreateNewPassword/CreateNewPassword'
 
 
 const router = createBrowserRouter([{
@@ -35,6 +36,10 @@ const router = createBrowserRouter([{
       path: '/forgot-password',
       element: <PasswordRecoveryPage />
     },
+    {
+      path: '/NewPassword',
+      element: <CreateNewPassword />
+    }
   ]
 }
 ])
