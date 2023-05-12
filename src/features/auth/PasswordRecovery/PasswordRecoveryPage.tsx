@@ -7,6 +7,7 @@ import { SubmitHandler, useForm } from 'react-hook-form'
 import * as yup from 'yup'
 import { emailSchema } from 'common/utils/schemas'
 import { yupResolver } from '@hookform/resolvers/yup'
+import { forgotPasswordApi } from 'features/auth/PasswordRecovery/passwordRecovery.api'
 
 type InputType = yup.InferType<typeof emailSchema>
 
@@ -19,7 +20,17 @@ export const PasswordRecoveryPage = () => {
   )
 
   const onFormSubmit: SubmitHandler<InputType> = (data: InputType) => {
-      //need to fix
+    const payload = {
+      email: data.email,
+      message: `<div style='background-color: lime; padding: 15px'>
+password recovery link: 
+<a href='http://localhost:3000/#/set-new-password/$token$'>
+link</a>
+</div>`
+    }
+
+    forgotPasswordApi.sendEmail(payload)
+
   }
 
   return (
