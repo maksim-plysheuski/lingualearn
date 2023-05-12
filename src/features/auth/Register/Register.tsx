@@ -1,16 +1,18 @@
 import s from 'features/auth/Register/style.module.scss'
-import { InputEmail } from 'common/components/inputs/InputEmail'
-import { InputPassword } from 'common/components/inputs/InputPassword'
+import { InputEmail } from 'common/components/Inputs/InputEmail'
+import { InputPassword } from 'common/components/Inputs/InputPassword'
 import { SubmitHandler, useForm } from 'react-hook-form'
-import { registrationSchema } from 'features/auth/Register/ShemaRegister'
 import * as yup from 'yup'
 import { yupResolver } from '@hookform/resolvers/yup'
 import { NavLink, useNavigate } from 'react-router-dom'
 import { useAppDispatch } from 'app/hooks'
 import { authThunks } from 'features/auth/auth.slice'
+import { registrationSchema } from 'common/utils/schemas'
 
 
 type LoginType = yup.InferType<typeof registrationSchema>
+
+
 export const Register = () => {
   const dispatch = useAppDispatch()
   const navigate = useNavigate()
