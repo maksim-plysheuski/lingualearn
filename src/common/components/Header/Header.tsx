@@ -1,7 +1,7 @@
 import s from 'common/components/Header/Header.module.scss'
 import logo from 'common/components/Header/projectLogo.svg'
 import { UniversalButton } from 'common/components/Button/UniversalButton'
-import { Outlet, useNavigate } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 import React from 'react'
 
 export const Header = () => {
@@ -20,7 +20,6 @@ export const Header = () => {
           <UniversalButton title='Sign Up' onClickCallback={singUpCallback} />
         </div>
       </header>
-      <Outlet />
     </>
 
   )

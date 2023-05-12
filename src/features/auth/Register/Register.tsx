@@ -9,7 +9,7 @@ import { InputEmail, InputPassword } from 'common/components'
 import { registerSchema } from 'features/auth/Register/registerSchema'
 
 
-type LoginType = yup.InferType<typeof registerSchema>
+type Type = yup.InferType<typeof registerSchema>
 
 
 export const Register = () => {
@@ -19,12 +19,12 @@ export const Register = () => {
     register,
     handleSubmit,
     formState: { errors, isValid }
-  } = useForm<LoginType>({
+  } = useForm<Type>({
     mode: 'onBlur',
     resolver: yupResolver(registerSchema)
   })
 
-  const onSubmit: SubmitHandler<LoginType> = ({ email, password }) => {
+  const onSubmit: SubmitHandler<Type> = ({ email, password }) => {
     console.log('hi')
     dispatch(authThunks.register({ email, password })).then((res) => {
 

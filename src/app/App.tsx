@@ -2,6 +2,7 @@ import { useEffect } from 'react'
 import { useAppDispatch } from 'app/hooks'
 import { authThunks } from 'features/auth/auth.slice'
 import { Header } from 'common/components/Header/Header'
+import { Outlet } from 'react-router-dom'
 
 function App() {
   const dispatch = useAppDispatch()
@@ -13,6 +14,7 @@ function App() {
   return (
     <div className='App'>
       <Header />
+      <Outlet />
     </div>
   )
 }
