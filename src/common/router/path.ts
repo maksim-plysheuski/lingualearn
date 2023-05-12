@@ -7,4 +7,5 @@ export const paths = {
   PROFILE: '/profile',
   PACKS: '/packs',
   CARDS: '/cards',
+  PACKS_LIST: '/packs-list'
 } as const

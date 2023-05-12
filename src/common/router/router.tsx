@@ -7,6 +7,7 @@ import { PasswordRecoveryPage } from 'features/auth/PasswordRecovery/PasswordRec
 import { CreateNewPassword } from 'features/auth/CreateNewPassword/CreateNewPassword'
 import React from 'react'
 import { paths } from 'common/router/path'
+import { PacksList } from 'features/pack/PacksList/PacksList'
 
 export const router = createHashRouter([
   {
@@ -32,6 +33,10 @@ export const router = createHashRouter([
       {
         path: paths.SET_NEW_PASSWORD,
         element: <CreateNewPassword />
+      },
+      {
+        path: paths.PACKS_LIST,
+        element: <PacksList/>
       }
     ]
   }
