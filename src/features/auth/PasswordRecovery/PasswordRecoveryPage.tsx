@@ -1,12 +1,12 @@
 import s from 'features/auth/PasswordRecovery/style.module.scss'
 import { FormControl } from '@mui/material'
-import { InputEmail } from 'common/components/Inputs/InputEmail'
 import { NavLink } from 'react-router-dom'
 import { UniversalButton } from 'common/components/Button/UniversalButton'
 import { SubmitHandler, useForm } from 'react-hook-form'
 import * as yup from 'yup'
 import { emailSchema } from 'common/utils/schemas'
 import { yupResolver } from '@hookform/resolvers/yup'
+import { InputEmail } from 'common/components'
 
 type InputType = yup.InferType<typeof emailSchema>
 
@@ -18,8 +18,8 @@ export const PasswordRecoveryPage = () => {
     }
   )
 
-  const onFormSubmit: SubmitHandler<InputType> = (data: InputType) => {
-      //need to fix
+  const onFormSubmit: SubmitHandler<InputType> = ({}) => {
+    //need to fix
   }
 
   return (
