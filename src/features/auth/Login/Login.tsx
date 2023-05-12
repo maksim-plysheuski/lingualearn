@@ -9,6 +9,7 @@ import * as yup from 'yup'
 import { InputEmail, InputPassword } from 'common/components'
 import { loginSchema } from 'features/auth/Login/loginSchema'
 import { useAppDispatch, useAppSelector } from 'common/hooks'
+import { paths } from 'common/router/path'
 
 
 type InputsType = yup.InferType<typeof loginSchema>
@@ -29,7 +30,7 @@ export const Login = () => {
   }
 
   if (isLoggedIn) {
-    navigate('/profile')
+    navigate(paths.PROFILE)
   }
 
   return (
