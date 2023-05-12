@@ -7,13 +7,23 @@ import { PasswordRecoveryPage } from 'features/auth/PasswordRecovery/PasswordRec
 import { CreateNewPassword } from 'features/auth/CreateNewPassword/CreateNewPassword'
 import React from 'react'
 import { paths } from 'common/router/path'
-import { PacksList } from 'features/pack/PacksList/PacksList'
+import { PrivateRoutes } from 'common/router/PrivateRoute'
 
 export const router = createHashRouter([
   {
     path: paths.MAIN,
     element: <App />,
     children: [
+      {
+        path: paths.MAIN,
+        element: <PrivateRoutes />,
+        children: [
+          {
+            path: paths.PROFILE,
+            element: <ProfilePage />
+          }
+        ]
+      },
       {
         path: paths.LOGIN,
         element: <Login />
