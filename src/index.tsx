@@ -12,8 +12,8 @@ import App from 'app/App'
 import { PasswordRecoveryPage } from 'features/auth/PasswordRecovery/PasswordRecoveryPage'
 import { CreateNewPassword } from 'features/auth/CreateNewPassword/CreateNewPassword'
 
-
 const router = createBrowserRouter([{
+  path:'/',
   element: <App />,
   children: [
     {
@@ -37,7 +37,7 @@ const router = createBrowserRouter([{
       element: <PasswordRecoveryPage />
     },
     {
-      path: '/NewPassword',
+      path: '/set-new-password/:token',
       element: <CreateNewPassword />
     }
   ]
