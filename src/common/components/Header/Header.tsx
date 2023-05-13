@@ -3,7 +3,6 @@ import logo from 'common/components/Header/projectLogo.svg'
 import { UniversalButton } from 'common/components/Button/UniversalButton'
 import { useNavigate } from 'react-router-dom'
 import React from 'react'
-import { SearchBar } from 'features/pack/SearchBar'
 
 export const Header = () => {
   const navigate = useNavigate()
@@ -11,7 +10,6 @@ export const Header = () => {
   const singUpCallback = () => navigate('/registration')
 
   return (
-    <div>
       <header className={s.header}>
         <div className={s.headerContainer}>
           <a href='/' className={s.logoBlock}>
@@ -21,8 +19,5 @@ export const Header = () => {
           <UniversalButton title='Sign Up' onClickCallback={singUpCallback} />
         </div>
       </header>
-      <SearchBar/>
-    </div>
-
   )
 }
