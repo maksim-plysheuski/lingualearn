@@ -20,7 +20,11 @@ export const InputSearch: FC<Props> = ({  ...restProps }) => {
                      height:'36px',
                      backgroundColor:'#fff',
                      opacity:'0.5',
-                     borderColor:'#D9D9D9',
+                     color:'#D9D9D9',
+                     border: '1px solid #D9D9D9',
+                     '& .MuiOutlinedInput-notchedOutline':{
+                       border:"none"
+                     },
                      borderRadius:'2px',
                      fontSize:'14px',
                    }}

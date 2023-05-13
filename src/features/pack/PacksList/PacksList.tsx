@@ -26,7 +26,7 @@ export const PacksList = () => {
   return (
     <div>
       <SearchBar/>
-      <Box sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100vh' }}>
+      <Box sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center'}}>
         <TableContainer sx={{ width: 1008, height: 432 }} component={Paper}>
           <Table aria-label='simple table'>
             <TableHead sx={{ backgroundColor: '#EFEFEF' }}>

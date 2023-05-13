@@ -4,7 +4,7 @@ import { InputSearch } from 'common/components/Inputs/InputSearch'
 export const SearchBar = () => {
   return (
     <div>
-      <InputSearch/>
+      <InputSearch />
     </div>
   )
 }
