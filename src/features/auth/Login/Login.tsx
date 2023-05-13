@@ -51,7 +51,7 @@ export const Login = () => {
               <Checkbox id='rememberMe' {...register('rememberMe')} />
               <span>Remember me</span>
             </div>
-            <NavLink className={s.forgotPasswordLink} to={'/forgot-password'}>Forgot Password?</NavLink>
+            <NavLink className={s.forgotPasswordLink} to={paths.FORGOT_PASSWORD}>Forgot Password?</NavLink>
             <UniversalButton title={'Sign In'} rounded={true} textColor={'white'} height={'36'} />
           </FormControl>
         </form>
