@@ -1,5 +1,5 @@
 import { Box, Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow } from '@mui/material'
-import { SearchBar } from 'features/pack/SearchBar'
+import { SearchBar } from 'features/pack/searchBar/SearchBar'
 
 function createData(
   name: any,
