@@ -8,6 +8,7 @@ import * as yup from 'yup'
 import { yupResolver } from '@hookform/resolvers/yup'
 import { forgotPasswordApi } from 'features/auth/PasswordRecovery/passwordRecovery.api'
 import { emailSchema } from 'features/auth/PasswordRecovery/emailSchema'
+import { paths } from 'common/router/path'
 
 type InputType = yup.InferType<typeof emailSchema>
 
@@ -24,7 +25,7 @@ export const PasswordRecoveryPage = () => {
       email: data.email,
       message: `<div style='background-color: lime; padding: 15px'>
 password recovery link: 
-<a href='http://localhost:3000/#/set-new-password/$token$'>
+<a href='http://localhost:3000/#/auth/set-new-password/$token$'>
 link</a>
 </div>`
     }
@@ -54,7 +55,7 @@ link</a>
           </FormControl>
         </form>
         <p>Did you remember your password?</p>
-        <NavLink className={s.link} to={'/login'}>Try logging in</NavLink>
+        <NavLink className={s.link} to={paths.LOGIN}>Try logging in</NavLink>
       </div>
     </div>
   )
