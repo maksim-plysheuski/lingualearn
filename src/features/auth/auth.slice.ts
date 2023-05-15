@@ -53,6 +53,9 @@ const slice = createSlice({
       .addCase(login.fulfilled, (state, action) => {
         state.isLoggedIn = action.payload.isLoggedIn
       })
+      .addCase(logout.fulfilled, (state, action) => {
+        state.isLoggedIn = action.payload.isLoggedIn
+      })
   }
 })
 
