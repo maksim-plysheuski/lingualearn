@@ -19,7 +19,7 @@ export const InputSearch: FC<Props> = ({ width, ...restProps }) => {
         marginBottom: '8px',
         fontWeight: 500
       }} shrink htmlFor='bootstrap-input'>
-        Bootstrap
+        Search
       </InputLabel>
       <TextField
         id='bootstrap-input'
