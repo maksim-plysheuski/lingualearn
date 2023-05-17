@@ -30,7 +30,7 @@ export const Login = () => {
   }
 
   if (isLoggedIn) {
-    navigate(paths.PROFILE)
+    navigate(paths.PACKS)
   }
 
   return (
@@ -56,7 +56,7 @@ export const Login = () => {
           </FormControl>
         </form>
         <p>Don't have an account?</p>
-        <NavLink className={s.registrationLink} to={'/registration'}>Sign Up</NavLink>
+        <NavLink className={s.registrationLink} to={paths.REGISTER}>Sign Up</NavLink>
       </div>
     </div>
   )

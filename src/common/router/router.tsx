@@ -9,6 +9,7 @@ import React from 'react'
 import { paths } from 'common/router/path'
 import { PrivateRoutes } from 'common/router/PrivateRoute'
 import { PacksList } from 'features/pack/PacksList/PacksList'
+import { CheckEmailPage } from 'features/auth/CheckEmail/CheckEmailPage'
 
 export const router = createHashRouter([
   {
@@ -19,6 +20,10 @@ export const router = createHashRouter([
         path: paths.MAIN,
         element: <PrivateRoutes />,
         children: [
+          {
+            path: paths.PACKS,
+            element: <PacksList />
+          },
           {
             path: paths.PROFILE,
             element: <ProfilePage />
@@ -34,20 +39,16 @@ export const router = createHashRouter([
         element: <Register />
       },
       {
-        path: paths.PROFILE,
-        element: <ProfilePage />
-      },
-      {
         path: paths.FORGOT_PASSWORD,
         element: <PasswordRecoveryPage />
       },
       {
-        path: paths.SET_NEW_PASSWORD,
-        element: <CreateNewPassword />
+        path: paths.CHECK_EMAIL,
+        element: <CheckEmailPage />
       },
       {
-        path: paths.PACKS_LIST,
-        element: <PacksList/>
+        path: paths.SET_NEW_PASSWORD,
+        element: <CreateNewPassword />
       }
     ]
   }

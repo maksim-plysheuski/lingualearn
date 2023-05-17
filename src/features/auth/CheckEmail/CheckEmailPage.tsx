@@ -1,6 +1,8 @@
 import s from 'features/auth/CheckEmail/style.module.scss'
 import { UniversalButton } from 'common/components/Button/UniversalButton'
 import ForwardToInboxIcon from '@mui/icons-material/ForwardToInbox'
+import { useNavigate } from 'react-router-dom'
+import { paths } from 'common/router/path'
 
 type Props = {
   email?: string
@@ -8,6 +10,8 @@ type Props = {
 
 
 export const CheckEmailPage = (props: Props) => {
+  const navigate = useNavigate()
+
   return (
     <div className={s.checkEmailPage}>
       <div className={s.checkEmailCard}>
@@ -15,8 +19,9 @@ export const CheckEmailPage = (props: Props) => {
         <div className={s.iconContainer}>
           <ForwardToInboxIcon color={'primary'} sx={{ fontSize: '52px' }} />
         </div>
-        <span>We’ve sent an Email with instructions to example@mail.com</span>
+        <span>{`We’ve sent an Email with instructions to ${props.email}`}</span>
         <UniversalButton title={'Back to login'}
+                         onClickCallback={() => navigate(paths.LOGIN)}
                          rounded={true}
                          textColor={'white'}
                          height={'36'}

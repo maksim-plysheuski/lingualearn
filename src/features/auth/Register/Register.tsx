@@ -7,6 +7,7 @@ import { authThunks } from 'features/auth/auth.slice'
 import { InputEmail, InputPassword } from 'common/components'
 import { registerSchema } from 'features/auth/Register/registerSchema'
 import { useAppDispatch } from 'common/hooks'
+import { paths } from 'common/router/path'
 
 
 type Type = yup.InferType<typeof registerSchema>
@@ -29,7 +30,7 @@ export const Register = () => {
     dispatch(authThunks.register({ email, password })).then((res) => {
 
       if (res.payload) {
-        navigate('/login')
+        navigate(paths.LOGIN)
       }
     })
   }
@@ -54,7 +55,7 @@ export const Register = () => {
           <button className={s.button} type='submit' disabled={!isValid}>Sign In</button>
         </form>
         <span className={s.helpText}>Already have an account?</span>
-        <NavLink className={s.link} to={'/login'}>Sign Up</NavLink>
+        <NavLink className={s.link} to={paths.LOGIN}>Sign Up</NavLink>
       </div>
     </div>
   )

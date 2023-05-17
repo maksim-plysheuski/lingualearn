@@ -9,7 +9,7 @@ import { ChangeEvent } from 'react'
 import ArrowBackIcon from '@mui/icons-material/ArrowBack'
 import { authThunks } from 'features/auth/auth.slice'
 import { useAppDispatch, useAppSelector } from 'common/hooks'
-
+import { paths } from 'common/router/path'
 
 
 export const ProfilePage = () => {
@@ -23,7 +23,6 @@ export const ProfilePage = () => {
 
   const onChangeAvatarHandler = (event: ChangeEvent<HTMLInputElement>) => {
     //need to fix
-    console.log(event)
   }
 
   const logoutHandler = () => {
@@ -32,7 +31,7 @@ export const ProfilePage = () => {
 
 
   if (!isLoggedIn) {
-    navigate('/login')
+    navigate(paths.LOGIN)
   }
 
   return (
@@ -40,7 +39,7 @@ export const ProfilePage = () => {
       <div className={s.personalInfoBlockContainer}>
         <div className={s.backLinkContainer}>
           <ArrowBackIcon fontSize={'small'} />
-          <NavLink className={s.backLink} to={'/packs'}>Back to Packs List</NavLink>
+          <NavLink className={s.backLink} to={paths.PACKS}>Back to Packs List</NavLink>
         </div>
         <div className={s.personalInfoBlock}>
           <h1>Personal Information</h1>
