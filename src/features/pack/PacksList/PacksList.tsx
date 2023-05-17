@@ -1,5 +1,3 @@
-import { Box, Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow } from '@mui/material'
-import { SearchBar } from 'features/pack/searchBar/SearchBar'
 import {
   Box, FormControl, Pagination,
   Paper, Select, SelectChangeEvent,
@@ -10,13 +8,13 @@ import {
   TableHead,
   TableRow
 } from '@mui/material'
-import { SearchBar } from 'features/pack/SearchBar'
 import { useEffect } from 'react'
 import { useAppDispatch, useAppSelector } from 'common/hooks'
 import { packsThunks } from 'features/pack/packs.slice'
 import { useNavigate } from 'react-router-dom'
 import { paths } from 'common/router/path'
 import MenuItem from '@mui/material/MenuItem'
+import { SearchBar } from '../searchBar/SearchBar'
 
 
 export const PacksList = () => {
