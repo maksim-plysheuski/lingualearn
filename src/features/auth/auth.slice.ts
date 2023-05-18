@@ -1,6 +1,7 @@
-import { createSlice } from '@reduxjs/toolkit'
+import { createSlice, isFulfilled, isPending } from '@reduxjs/toolkit'
 import { ArgLoginType, ArgRegisterType, authApi, ProfileType, TNewPassword } from 'features/auth/auth.api'
 import { createAppAsyncThunk } from 'common/utils/createAppAsyncThunk'
+import { appActions } from 'app/app.slice'
 
 
 const slice = createSlice({
@@ -21,10 +22,17 @@ const slice = createSlice({
   }
 })
 
-const authMe = createAppAsyncThunk<{ profile: ProfileType, isLoggedIn: boolean }>('auth/me', async () => {
-  const res = await authApi.authMe()
-  return { profile: res, isLoggedIn: true }
+const authMe = createAppAsyncThunk<{ profile: ProfileType, isLoggedIn: boolean }>('auth/me', async (arg, thunkAPI) => {
+  try {
+    const res = await authApi.authMe()
+    return { profile: res, isLoggedIn: true }
+  } catch (e) {
+    return thunkAPI.rejectWithValue(e)
+  } finally {
+    thunkAPI.dispatch(appActions.setAppInitialized())
+  }
 })
+
 
 const login = createAppAsyncThunk<{ isLoggedIn: boolean }, ArgLoginType>
 ('auth/login', async (arg, thunkAPI) => {
@@ -60,7 +68,11 @@ const newPassword = createAppAsyncThunk<void, TNewPassword>('auth/newPassword', 
 
 
 export const authReducer = slice.reducer
-export const authThunks = { authMe, register, login, logout,newPassword }
+export const authThunks = { authMe, register, login, logout, newPassword }
+
+
+export const authPending = isPending(authThunks.authMe)
+export const authFulfilled = isFulfilled(authThunks.authMe)
 
 
 

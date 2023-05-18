@@ -7,6 +7,7 @@ import { authThunks } from 'features/auth/auth.slice'
 import { InputEmail, InputPassword } from 'common/components'
 import { registerSchema } from 'features/auth/Register/registerSchema'
 import { useAppDispatch } from 'common/hooks'
+import { paths } from 'common/router/path'
 
 
 type Type = yup.InferType<typeof registerSchema>
@@ -29,7 +30,7 @@ export const Register = () => {
     dispatch(authThunks.register({ email, password })).then((res) => {
 
       if (res.payload) {
-        navigate('/login')
+        navigate(paths.REGISTER)
       }
     })
   }

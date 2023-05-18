@@ -1,9 +1,10 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
+import { authFulfilled, authPending } from 'features/auth/auth.slice'
 
 
 const appInitialState = {
   error: null as string | null,
-  isLoading: true,
+  isLoading: false,
   isAppInitialized: false,
   users: []
 }
@@ -16,7 +17,19 @@ const slice = createSlice({
   reducers: {
     setIsLoading: (state, action: PayloadAction<{ isLoading: boolean }>) => {
       state.isLoading = action.payload.isLoading
+    },
+    setAppInitialized: (state) => {
+      state.isAppInitialized = false
     }
+  },
+  extraReducers: builder => {
+    builder
+      .addMatcher(authPending, (state) => {
+        state.isAppInitialized = true
+      })
+      .addMatcher(authFulfilled, (state) => {
+        state.isAppInitialized = false
+      })
   }
 })
 

@@ -6,13 +6,18 @@ import { createAppAsyncThunk } from 'common/utils/createAppAsyncThunk'
 const slice = createSlice({
   name: 'packs',
   initialState: {
-    packs: {} as TPacksResponse
+    packs: {} as TPacksResponse,
+    isLoading: false as boolean
   },
   reducers: {},
   extraReducers: builder => {
     builder
+      .addCase(getPacks.pending, (state) => {
+        state.isLoading = true
+      })
       .addCase(getPacks.fulfilled, (state, action) => {
         state.packs = action.payload.packs
+        state.isLoading = false
       })
   }
 })

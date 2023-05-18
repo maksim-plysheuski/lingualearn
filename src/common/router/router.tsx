@@ -20,6 +20,10 @@ export const router = createHashRouter([
         element: <PrivateRoutes />,
         children: [
           {
+            path: paths.PACKS,
+            element: <PacksList />
+          },
+          {
             path: paths.PROFILE,
             element: <ProfilePage />
           }
@@ -34,20 +38,12 @@ export const router = createHashRouter([
         element: <Register />
       },
       {
-        path: paths.PROFILE,
-        element: <ProfilePage />
-      },
-      {
         path: paths.FORGOT_PASSWORD,
         element: <PasswordRecoveryPage />
       },
       {
         path: paths.SET_NEW_PASSWORD,
         element: <CreateNewPassword />
-      },
-      {
-        path: paths.PACKS,
-        element: <PacksList/>
       }
     ]
   }
