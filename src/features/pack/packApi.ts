@@ -1,8 +1,8 @@
 import {instance} from "common/api/common.api";
 
 export const packApi = {
-    fetchPack: (args: TFetchPackArgs) => {
-        return instance.get<TResponseFetchPack>('cards/pack', {params: {...args}}).then(res => res.data)
+    getPacks: (args: TGetPacksArg = {}) => {
+        return instance.get<TPacksResponse>('cards/pack', {params: {...args}})
     },
     createPack: (arg: TCreatePackArg) => {
         return instance.post<TCreateResponse>('cards/pack ', arg).then(res => res.data)
@@ -37,7 +37,7 @@ export type TCreatePackArg = {
         private?: boolean
     }
 }
-export type TResponseFetchPack = {
+export type TPacksResponse = {
     cardPacks: TTack[]
     cardPacksTotalCount: number
     maxCardsCount: number
@@ -53,7 +53,7 @@ export type TTack = {
     created: string
     updated: string
 }
-export type TFetchPackArgs = {
+export type TGetPacksArg = {
     packName?: string
     min?: number
     max?: number

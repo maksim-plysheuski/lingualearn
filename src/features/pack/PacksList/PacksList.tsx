@@ -1,5 +1,8 @@
 import { Box, Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow } from '@mui/material'
 import { SearchBar } from 'features/pack/SearchBar'
+import { useEffect } from 'react'
+import { useAppDispatch, useAppSelector } from 'common/hooks'
+import { packsThunks } from 'features/pack/packs.slice'
 
 function createData(
   name: any,
@@ -23,11 +26,24 @@ const rows = [
 ]
 
 export const PacksList = () => {
+  const dispatch = useAppDispatch()
+  const packs = useAppSelector(state => state.packs.packs)
+
+  useEffect(() => {
+    dispatch(packsThunks.getPacks({}))
+  }, [])
+
+
+
+
+
+
+
   return (
     <div>
       <SearchBar/>
       <Box sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100vh' }}>
-        <TableContainer sx={{ width: 1008, height: 432 }} component={Paper}>
+        <TableContainer sx={{ width: 1008}} component={Paper}>
           <Table aria-label='simple table'>
             <TableHead sx={{ backgroundColor: '#EFEFEF' }}>
               <TableRow>

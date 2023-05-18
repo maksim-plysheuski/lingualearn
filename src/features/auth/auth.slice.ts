@@ -2,6 +2,25 @@ import { createSlice } from '@reduxjs/toolkit'
 import { ArgLoginType, ArgRegisterType, authApi, ProfileType, TNewPassword } from 'features/auth/auth.api'
 import { createAppAsyncThunk } from 'common/utils/createAppAsyncThunk'
 
+
+const slice = createSlice({
+  name: 'auth',
+  initialState: {
+    isLoggedIn: false as boolean
+  },
+  reducers: {},
+  extraReducers: builder => {
+    builder
+      .addCase(authMe.fulfilled, (state, action) => {
+        state.isLoggedIn = action.payload.isLoggedIn
+      })
+      .addCase(login.fulfilled, (state, action) => {
+        state.isLoggedIn = action.payload.isLoggedIn
+      })
+
+  }
+})
+
 const authMe = createAppAsyncThunk<{ profile: ProfileType, isLoggedIn: boolean }>('auth/me', async () => {
   const res = await authApi.authMe()
   return { profile: res, isLoggedIn: true }
@@ -36,24 +55,6 @@ const newPassword = createAppAsyncThunk<void, TNewPassword>('auth/newPassword', 
     await authApi.newPassword({ password: arg.password, resetPasswordToken: arg.resetPasswordToken })
   } catch (e) {
     return rejectWithValue(null)
-  }
-})
-
-const slice = createSlice({
-  name: 'auth',
-  initialState: {
-    isLoggedIn: false as boolean
-  },
-  reducers: {},
-  extraReducers: builder => {
-    builder
-      .addCase(authMe.fulfilled, (state, action) => {
-        state.isLoggedIn = action.payload.isLoggedIn
-      })
-      .addCase(login.fulfilled, (state, action) => {
-        state.isLoggedIn = action.payload.isLoggedIn
-      })
-
   }
 })
 

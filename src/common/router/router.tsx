@@ -46,7 +46,7 @@ export const router = createHashRouter([
         element: <CreateNewPassword />
       },
       {
-        path: paths.PACKS_LIST,
+        path: paths.PACKS,
         element: <PacksList/>
       }
     ]
