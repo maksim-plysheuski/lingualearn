@@ -2,11 +2,12 @@ import { useEffect } from 'react'
 import { authThunks } from 'features/auth/auth.slice'
 import { Header } from 'common/components/Header/Header'
 import { Outlet } from 'react-router-dom'
-import { useAppDispatch } from 'common/hooks'
+import { useAppDispatch, useAppSelector } from 'common/hooks'
 import s from './App.module.scss'
 
 function App() {
   const dispatch = useAppDispatch()
+  const isAppInitialized = useAppSelector(state => state.app.isAppInitialized)
 
   useEffect(() => {
     dispatch(authThunks.authMe())
@@ -16,7 +17,7 @@ function App() {
     <div className={s.App}>
       <Header />
       <div className={s.Content}>
-        <Outlet />
+        {isAppInitialized ? <h1>LOADING... - PRELOADER</h1> : <Outlet />}
       </div>
     </div>
   )

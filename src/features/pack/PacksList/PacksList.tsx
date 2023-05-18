@@ -1,61 +1,78 @@
-import { Box, Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow } from '@mui/material'
+import {
+  Box,
+  Pagination,
+  Paper,
+  Stack,
+  Table,
+  TableBody,
+  TableCell,
+  TableContainer,
+  TableHead,
+  TableRow
+} from '@mui/material'
 import { SearchBar } from 'features/pack/SearchBar'
+import { useEffect } from 'react'
+import { useAppDispatch, useAppSelector } from 'common/hooks'
+import { packsThunks } from 'features/pack/packs.slice'
+import { useNavigate } from 'react-router-dom'
+import { paths } from 'common/router/path'
 
-function createData(
-  name: any,
-  cards: any,
-  lastUpdated: any,
-  createdBy: any,
-  actions: any
-) {
-  return { name, cards, lastUpdated, createdBy, actions }
-}
-
-const rows = [
-  createData('Shkutnik Volodia', 159, 6.0, 24, 4.0),
-  createData('Chernousik Big boss', 237, 9.0, 37, 4.3),
-  createData('Lepeshko Shtabist', 262, 16.0, 24, 6.0),
-  createData('Migai Boss', 305, 3.7, 67, 4.3),
-  createData('Name 2', 356, 16.0, 49, 3.9),
-  createData('name 3', 356, 16.0, 49, 3.9),
-  createData('Plysheuski Maksim', 356, 16.0, 49, 3.9),
-  createData('Leskevich Artem', 356, 16.0, 49, 3.9)
-]
 
 export const PacksList = () => {
+  const dispatch = useAppDispatch()
+  const navigate = useNavigate()
+  const isLoggedIn = useAppSelector(state => state.auth.isLoggedIn)
+  const isLoading = useAppSelector(state => state.packs.isLoading)
+  const packs = useAppSelector(state => state.packs.packs)
+  const cellNames: string[] = ['Name', 'Cards', 'Last Updated', 'Created by', 'Actions']
+
+
+  useEffect(() => {
+    dispatch(packsThunks.getPacks({}))
+  }, [dispatch])
+
+  if (!isLoggedIn) {
+    navigate(paths.LOGIN)
+  }
+
   return (
     <div>
-      <SearchBar/>
-      <Box sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100vh' }}>
-        <TableContainer sx={{ width: 1008, height: 432 }} component={Paper}>
+      <SearchBar />
+      <Box sx={{
+        display: 'flex',
+        flexDirection: 'column',
+        justifyContent: 'center',
+        alignItems: 'center',
+        height: '100vh'
+      }}>
+        <TableContainer sx={{ width: 1008 }} component={Paper}>
           <Table aria-label='simple table'>
             <TableHead sx={{ backgroundColor: '#EFEFEF' }}>
               <TableRow>
-                <TableCell>Name</TableCell>
-                <TableCell align='right'>Cards</TableCell>
-                <TableCell align='right'>Last Updated</TableCell>
-                <TableCell align='right'>Created by</TableCell>
-                <TableCell align='right'>Actions</TableCell>
+                {cellNames.map((name, index) => <TableCell key={index} align='left'>{name}</TableCell>)}
               </TableRow>
             </TableHead>
             <TableBody>
-              {rows.map((row) => (
+              {packs.cardPacks?.map((card) => (
                 <TableRow
-                  key={row.name}
+                  key={card.name}
                   sx={{ '&:last-child td, &:last-child th': { border: 0 }, height: 48 }}
                 >
                   <TableCell component='th' scope='row'>
-                    {row.name}
+                    {card.name}
                   </TableCell>
-                  <TableCell align='right'>{row.cards}</TableCell>
-                  <TableCell align='right'>{row.lastUpdated}</TableCell>
-                  <TableCell align='right'>{row.createdBy}</TableCell>
-                  <TableCell align='right'>{row.actions}</TableCell>
+                  <TableCell align='right'>{card.cardsCount}</TableCell>
+                  <TableCell align='right'>{card.updated}</TableCell>
+                  <TableCell align='right'>{card.user_name}</TableCell>
+                  <TableCell align='right'>"need to fix"</TableCell>
                 </TableRow>
               ))}
             </TableBody>
           </Table>
         </TableContainer>
+        <Stack spacing={2}>
+          <Pagination count={10} shape='rounded' />
+        </Stack>
       </Box>
     </div>
   )

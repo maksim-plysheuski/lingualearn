@@ -4,12 +4,6 @@ import { createAppAsyncThunk } from 'common/utils/createAppAsyncThunk'
 import { profileApi, TChangeUser } from 'features/Profile/profile.api'
 import { authThunks } from 'features/auth/auth.slice'
 
-const changeUserData = createAppAsyncThunk<{ profile: ProfileType }, TChangeUser>
-('profile/changeUser', async (arg) => {
-  const res = await profileApi.changeUserData(arg)
-  return { profile: res.updatedUser }
-})
-
 
 const slice = createSlice({
   name: 'profile',
@@ -26,6 +20,13 @@ const slice = createSlice({
         state.profile = action.payload.profile
       })
   }
+})
+
+
+const changeUserData = createAppAsyncThunk<{ profile: ProfileType }, TChangeUser>
+('profile/changeUser', async (arg) => {
+  const res = await profileApi.changeUserData(arg)
+  return { profile: res.updatedUser }
 })
 
 

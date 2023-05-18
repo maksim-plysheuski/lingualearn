@@ -1,10 +1,36 @@
-import { createSlice } from '@reduxjs/toolkit'
+import { createSlice, isFulfilled, isPending } from '@reduxjs/toolkit'
 import { ArgLoginType, ArgRegisterType, authApi, ProfileType, TNewPassword } from 'features/auth/auth.api'
 import { createAppAsyncThunk } from 'common/utils/createAppAsyncThunk'
+import { appActions } from 'app/app.slice'
 
-const authMe = createAppAsyncThunk<{ profile: ProfileType, isLoggedIn: boolean }>('auth/me', async () => {
-  const res = await authApi.authMe()
-  return { profile: res, isLoggedIn: true }
+
+const slice = createSlice({
+  name: 'auth',
+  initialState: {
+    isLoggedIn: false as boolean
+  },
+  reducers: {},
+  extraReducers: builder => {
+    builder
+      .addCase(authMe.fulfilled, (state, action) => {
+        state.isLoggedIn = action.payload.isLoggedIn
+      })
+      .addCase(login.fulfilled, (state, action) => {
+        state.isLoggedIn = action.payload.isLoggedIn
+      })
+
+  }
+})
+
+const authMe = createAppAsyncThunk<{ profile: ProfileType, isLoggedIn: boolean }>('auth/me', async (arg, thunkAPI) => {
+  try {
+    const res = await authApi.authMe()
+    return { profile: res, isLoggedIn: true }
+  } catch (e) {
+    return thunkAPI.rejectWithValue(e)
+  } finally {
+    thunkAPI.dispatch(appActions.setAppInitialized())
+  }
 })
 
 const login = createAppAsyncThunk<{ isLoggedIn: boolean }, ArgLoginType>
@@ -53,9 +79,7 @@ const slice = createSlice({
       .addCase(login.fulfilled, (state, action) => {
         state.isLoggedIn = action.payload.isLoggedIn
       })
-      .addCase(logout.fulfilled, (state, action) => {
-        state.isLoggedIn = action.payload.isLoggedIn
-      })
+
   }
 })
 

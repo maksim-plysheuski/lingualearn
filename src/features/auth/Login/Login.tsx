@@ -30,7 +30,7 @@ export const Login = () => {
   }
 
   if (isLoggedIn) {
-    navigate(paths.PROFILE)
+    navigate(paths.PACKS)
   }
 
   return (
