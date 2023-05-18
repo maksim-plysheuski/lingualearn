@@ -4,24 +4,6 @@ import { createAppAsyncThunk } from 'common/utils/createAppAsyncThunk'
 import { appActions } from 'app/app.slice'
 
 
-const slice = createSlice({
-  name: 'auth',
-  initialState: {
-    isLoggedIn: false as boolean
-  },
-  reducers: {},
-  extraReducers: builder => {
-    builder
-      .addCase(authMe.fulfilled, (state, action) => {
-        state.isLoggedIn = action.payload.isLoggedIn
-      })
-      .addCase(login.fulfilled, (state, action) => {
-        state.isLoggedIn = action.payload.isLoggedIn
-      })
-
-  }
-})
-
 const authMe = createAppAsyncThunk<{ profile: ProfileType, isLoggedIn: boolean }>('auth/me', async (arg, thunkAPI) => {
   try {
     const res = await authApi.authMe()
@@ -79,13 +61,20 @@ const slice = createSlice({
       .addCase(login.fulfilled, (state, action) => {
         state.isLoggedIn = action.payload.isLoggedIn
       })
+      .addCase(logout.fulfilled, (state, action) => {
+        state.isLoggedIn = action.payload.isLoggedIn
+      })
 
   }
 })
 
 
 export const authReducer = slice.reducer
-export const authThunks = { authMe, register, login, logout,newPassword }
+export const authThunks = { authMe, register, login, logout, newPassword }
+
+export const authPending = isPending(authThunks.authMe)
+export const authFulfilled = isFulfilled(authThunks.authMe)
+
 
 
 
