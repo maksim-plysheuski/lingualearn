@@ -9,7 +9,7 @@ import {
   TableRow
 } from '@mui/material'
 import { SearchBar } from 'features/pack/SearchBar'
-import { useEffect} from 'react'
+import { useEffect } from 'react'
 import { useAppDispatch, useAppSelector } from 'common/hooks'
 import { packsThunks } from 'features/pack/packs.slice'
 import { useNavigate } from 'react-router-dom'
@@ -26,34 +26,32 @@ export const PacksList = () => {
   const isLoggedIn = useAppSelector(state => state.auth.isLoggedIn)
   const packs = useAppSelector(state => state.packs.packs)
 
+
   useEffect(() => {
     dispatch(packsThunks.getPacks({ page: 1, pageCount: 8 }))
   }, [dispatch])
 
-
-  const handleRowsChange = (event: SelectChangeEvent) => {
-    console.log(event.target.value)
-    dispatch(packsThunks.getPacks({ page: currentPage, pageCount: Number(event.target.value) }))
-  }
-
   const pagesTotalCount = Math.ceil(packsTotalCount / rowsInTable)
   const columnTitles: string[] = ['Name', 'Cards', 'Last Updated', 'Created by', 'Actions']
 
-
-  if (!isLoggedIn) {
-    navigate(paths.LOGIN)
+  const handleRowsChange = (event: SelectChangeEvent) => {
+    dispatch(packsThunks.getPacks({ page: currentPage, pageCount: Number(event.target.value) }))
   }
 
   const handlePagesChange = (event: any) => {
     dispatch(packsThunks.getPacks({ page: event.target.textContent, pageCount: rowsInTable }))
   }
 
+  if (!isLoggedIn) {
+    navigate(paths.LOGIN)
+  }
+
   return (
     <div>
       <Box sx={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center' }}>
-        <Box sx={{ width: 1008, display: 'flex', flexDirection: 'column',  }}>
+        <Box sx={{ width: 1008, display: 'flex', flexDirection: 'column' }}>
           <SearchBar />
-          <TableContainer style={{marginTop: '24px'}} component={Paper}>
+          <TableContainer style={{ marginTop: '24px' }} component={Paper}>
             <Table aria-label='simple table'>
               <TableHead sx={{ backgroundColor: '#EFEFEF' }}>
                 <TableRow>
@@ -61,9 +59,9 @@ export const PacksList = () => {
                 </TableRow>
               </TableHead>
               <TableBody>
-                {packs.cardPacks?.map((card) => (
+                {packs.cardPacks?.map((card, index) => (
                   <TableRow
-                    key={card.name}
+                    key={index}
                     sx={{ '&:last-child td, &:last-child th': { border: 0 }, height: 48 }}
                   >
                     <TableCell component='th' scope='row'>
@@ -91,8 +89,6 @@ export const PacksList = () => {
                 defaultValue={'8'}
                 value={rowsInTable ? String(rowsInTable) : '8'}
                 onChange={handleRowsChange}
-                displayEmpty
-                inputProps={{ 'aria-label': 'Without label' }}
               >
                 <MenuItem value={'8'}>8</MenuItem>
                 <MenuItem value={'15'}>15</MenuItem>
