@@ -8,7 +8,7 @@ import { CreateNewPassword } from 'features/auth/CreateNewPassword/CreateNewPass
 import React from 'react'
 import { paths } from 'common/router/path'
 import { PrivateRoutes } from 'common/router/PrivateRoute'
-import { PacksList } from 'features/pack/PacksList/PacksList'
+import { PacksList } from 'features/pack/packsList/PacksList'
 import { CheckEmailPage } from 'features/auth/CheckEmail/CheckEmailPage'
 
 export const router = createHashRouter([
