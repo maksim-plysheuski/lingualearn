@@ -7,6 +7,7 @@ const slice = createSlice({
   name: 'packs',
   initialState: {
     packs: {} as TPacksResponse,
+
     isLoading: false as boolean
   },
   reducers: {},

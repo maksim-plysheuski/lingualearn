@@ -1,15 +1,26 @@
-import React, { FC } from 'react'
+import React, { FC, useEffect, useState } from 'react'
 import InputAdornment from '@mui/material/InputAdornment/InputAdornment'
 import Search from '@mui/icons-material/Search'
 import TextField from '@mui/material/TextField/TextField'
 import s from './style.module.scss'
+import useDebounce from 'common/hooks/useDebounce'
 
 
 type  Props = {
   width?: string
+  callback?: (value: string) => void
+  value?: string
 }
 
-export const InputSearch: FC<Props> = ({ width, ...restProps }) => {
+export const InputSearch: FC<Props> = ({ width, callback, value, ...restProps }) => {
+
+  const [searchValue, setSearchValue] = useState<string>('')
+  const debounce = useDebounce<string>(searchValue)
+
+  useEffect(() => {
+    callback!(searchValue)
+  }, [debounce])
+
   return (
     <div className={s.container}>
       <span>Search</span>
@@ -18,6 +29,8 @@ export const InputSearch: FC<Props> = ({ width, ...restProps }) => {
         size={'small'}
         focused
         fullWidth
+        onChange={(e) => setSearchValue(e.currentTarget.value)}
+        value={searchValue}
         {...restProps}
         sx={{
           position: 'relative',
