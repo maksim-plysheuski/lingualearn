@@ -15,7 +15,6 @@ export const PacksList = () => {
     dispatch(packsThunks.getPacks({ page: 1, pageCount: 8 }))
   }, [dispatch])
 
-
   return (
     <Box sx={packsListStyle}>
       <SearchBar />

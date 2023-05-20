@@ -19,16 +19,16 @@ const slice = createSlice({
       state.isLoading = action.payload.isLoading
     },
     setAppInitialized: (state) => {
-      state.isAppInitialized = false
+      state.isAppInitialized = true
     }
   },
   extraReducers: builder => {
     builder
       .addMatcher(authPending, (state) => {
-        state.isAppInitialized = true
+        state.isAppInitialized = false
       })
       .addMatcher(authFulfilled, (state) => {
-        state.isAppInitialized = false
+        state.isAppInitialized = true
       })
   }
 })

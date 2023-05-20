@@ -17,7 +17,7 @@ function App() {
     <div className={s.App}>
       <Header />
       <div className={s.Content}>
-        {isAppInitialized ? <h1>LOADING... - PRELOADER</h1> : <Outlet />}
+        {isAppInitialized ? <Outlet /> : <h1>LOADING... - PRELOADER</h1>  }
       </div>
     </div>
   )

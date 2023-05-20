@@ -4,6 +4,27 @@ import { createAppAsyncThunk } from 'common/utils/createAppAsyncThunk'
 import { appActions } from 'app/app.slice'
 
 
+const slice = createSlice({
+  name: 'auth',
+  initialState: {
+    isLoggedIn: false as boolean
+  },
+  reducers: {},
+  extraReducers: builder => {
+    builder
+      .addCase(authMe.fulfilled, (state, action) => {
+        state.isLoggedIn = action.payload.isLoggedIn
+      })
+      .addCase(login.fulfilled, (state, action) => {
+        state.isLoggedIn = action.payload.isLoggedIn
+      })
+      .addCase(logout.fulfilled, (state, action) => {
+        state.isLoggedIn = action.payload.isLoggedIn
+      })
+
+  }
+})
+
 const authMe = createAppAsyncThunk<{ profile: ProfileType, isLoggedIn: boolean }>('auth/me', async (arg, thunkAPI) => {
   try {
     const res = await authApi.authMe()
@@ -44,27 +65,6 @@ const newPassword = createAppAsyncThunk<void, TNewPassword>('auth/newPassword', 
     await authApi.newPassword({ password: arg.password, resetPasswordToken: arg.resetPasswordToken })
   } catch (e) {
     return rejectWithValue(null)
-  }
-})
-
-const slice = createSlice({
-  name: 'auth',
-  initialState: {
-    isLoggedIn: false as boolean
-  },
-  reducers: {},
-  extraReducers: builder => {
-    builder
-      .addCase(authMe.fulfilled, (state, action) => {
-        state.isLoggedIn = action.payload.isLoggedIn
-      })
-      .addCase(login.fulfilled, (state, action) => {
-        state.isLoggedIn = action.payload.isLoggedIn
-      })
-      .addCase(logout.fulfilled, (state, action) => {
-        state.isLoggedIn = action.payload.isLoggedIn
-      })
-
   }
 })
 
