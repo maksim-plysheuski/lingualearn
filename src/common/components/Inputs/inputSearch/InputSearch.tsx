@@ -18,7 +18,7 @@ export const InputSearch: FC<Props> = ({ width, callback, value, ...restProps })
   const debounce = useDebounce<string>(searchValue)
 
   useEffect(() => {
-    callback!(searchValue)
+    // callback!(searchValue)
   }, [debounce])
 
   return (
