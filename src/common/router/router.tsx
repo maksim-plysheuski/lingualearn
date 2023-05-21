@@ -7,10 +7,10 @@ import { PasswordRecoveryPage } from 'features/auth/PasswordRecovery/PasswordRec
 import { CreateNewPassword } from 'features/auth/CreateNewPassword/CreateNewPassword'
 import React from 'react'
 import { paths } from 'common/router/path'
-import { PrivateRoutes } from 'common/router/PrivateRoute'
+import { PrivateLayout } from 'common/router/PrivateRoute'
 import { PacksList } from 'features/pack/packsList/PacksList'
 import { CheckEmailPage } from 'features/auth/CheckEmail/CheckEmailPage'
-import { NotPrivateRoutes } from 'common/router/NotPrivateRoute'
+import { NotPrivateLayout } from 'common/router/NotPrivateRoute'
 
 export const router = createHashRouter([
   {
@@ -18,8 +18,22 @@ export const router = createHashRouter([
     element: <App />,
     children: [
       {
+        path: paths.MAIN,
+        element: <PrivateLayout />,
+        children: [
+          {
+            path: paths.PACKS,
+            element: <PacksList />
+          },
+          {
+            path: paths.PROFILE,
+            element: <ProfilePage />
+          }
+        ]
+      },
+      {
         path: paths.AUTH,
-        element: <NotPrivateRoutes />,
+        element: <NotPrivateLayout />,
         children: [
           {
             path: paths.LOGIN,
@@ -41,20 +55,6 @@ export const router = createHashRouter([
           {
             path: paths.SET_NEW_PASSWORD,
             element: <CreateNewPassword />
-          }
-        ]
-      },
-      {
-        path: paths.MAIN,
-        element: <PrivateRoutes />,
-        children: [
-          {
-            path: paths.PACKS,
-            element: <PacksList />
-          },
-          {
-            path: paths.PROFILE,
-            element: <ProfilePage />
           }
         ]
       }

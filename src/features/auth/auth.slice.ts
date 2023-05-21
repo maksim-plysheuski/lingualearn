@@ -1,7 +1,6 @@
 import { createSlice, isFulfilled, isPending } from '@reduxjs/toolkit'
 import { ArgLoginType, ArgRegisterType, authApi, ProfileType, TNewPassword } from 'features/auth/auth.api'
 import { createAppAsyncThunk } from 'common/utils/createAppAsyncThunk'
-import { appActions } from 'app/app.slice'
 
 
 const slice = createSlice({
@@ -31,8 +30,6 @@ const authMe = createAppAsyncThunk<{ profile: ProfileType, isLoggedIn: boolean }
     return { profile: res, isLoggedIn: true }
   } catch (e) {
     return thunkAPI.rejectWithValue(e)
-  } finally {
-    thunkAPI.dispatch(appActions.setAppInitialized())
   }
 })
 
