@@ -12,12 +12,14 @@ function App() {
   useEffect(() => {
     dispatch(authThunks.authMe())
   }, [dispatch])
+  console.log('isAppInitialized: ', isAppInitialized)
+  if (!isAppInitialized) return <h1>LOADING... - PRELOADER</h1>
 
   return (
     <div className={s.App}>
       <Header />
       <div className={s.Content}>
-        {isAppInitialized ? <h1>LOADING... - PRELOADER</h1> : <Outlet />}
+          <Outlet />
       </div>
     </div>
   )

@@ -1,7 +1,7 @@
-import { useForm, SubmitHandler } from 'react-hook-form'
+import { SubmitHandler, useForm } from 'react-hook-form'
 import { Checkbox, FormControl } from '@mui/material'
 import s from 'features/auth/Login/styles.module.scss'
-import { NavLink, useNavigate } from 'react-router-dom'
+import { Navigate, NavLink } from 'react-router-dom'
 import { authThunks } from 'features/auth/auth.slice'
 import { yupResolver } from '@hookform/resolvers/yup'
 import { UniversalButton } from 'common/components/Button/UniversalButton'
@@ -15,10 +15,8 @@ import { paths } from 'common/router/path'
 type InputsType = yup.InferType<typeof loginSchema>
 
 export const Login = () => {
-  const navigate = useNavigate()
   const dispatch = useAppDispatch()
   const isLoggedIn = useAppSelector(state => state.auth.isLoggedIn)
-
 
   const { register, handleSubmit, formState: { errors } } = useForm<InputsType>({
     mode: 'onBlur',
@@ -28,11 +26,8 @@ export const Login = () => {
   const onSubmit: SubmitHandler<InputsType> = (data: InputsType) => {
     dispatch(authThunks.login(data))
   }
-
-  if (isLoggedIn) {
-    navigate(paths.PACKS)
-  }
-
+  console.log(isLoggedIn)
+  if (isLoggedIn) return <Navigate to={paths.PROFILE} />
   return (
     <div className={s.loginPage}>
       <div className={s.formContainer}>

@@ -1,6 +1,5 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
-import { authFulfilled, authPending } from 'features/auth/auth.slice'
-
+import {authThunks} from 'features/auth/auth.slice'
 
 const appInitialState = {
   error: null as string | null,
@@ -9,7 +8,6 @@ const appInitialState = {
   users: []
 }
 
-// type InitialStateType = typeof appInitialState
 
 const slice = createSlice({
   name: 'app',
@@ -19,17 +17,16 @@ const slice = createSlice({
       state.isLoading = action.payload.isLoading
     },
     setAppInitialized: (state) => {
-      state.isAppInitialized = false
+      state.isAppInitialized = true
     }
   },
   extraReducers: builder => {
-    builder
-      .addMatcher(authPending, (state) => {
-        state.isAppInitialized = true
-      })
-      .addMatcher(authFulfilled, (state) => {
-        state.isAppInitialized = false
-      })
+    builder.addCase(authThunks.authMe.fulfilled, (state) => {
+      state.isAppInitialized = true
+    })
+    builder.addCase(authThunks.authMe.rejected, (state) => {
+      state.isAppInitialized = true
+    })
   }
 })
 
