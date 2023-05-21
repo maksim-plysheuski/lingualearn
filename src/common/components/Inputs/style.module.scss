@@ -1,0 +1,15 @@
+.container {
+  display: flex;
+  align-items: center;
+  background: #FFFFFF;
+  border: 1px solid #D9D9D9;
+  border-radius: 2px;
+  height: 36px;
+
+  .input {
+    height: 100%;
+    width: 100%;
+    border: none;
+  }
+}
+

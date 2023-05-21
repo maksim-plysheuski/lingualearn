@@ -9,10 +9,14 @@ import { yupResolver } from '@hookform/resolvers/yup'
 import { forgotPasswordApi } from 'features/auth/PasswordRecovery/passwordRecovery.api'
 import { emailSchema } from 'features/auth/PasswordRecovery/emailSchema'
 import { paths } from 'common/router/path'
+import { useState } from 'react'
+import { CheckEmailPage } from 'features/auth/CheckEmail/CheckEmailPage'
 
 type InputType = yup.InferType<typeof emailSchema>
 
 export const PasswordRecoveryPage = () => {
+  const [showCheckEmail, setShowCheckEmail] = useState<boolean>(false)
+
   const { register, handleSubmit, formState: { errors } } = useForm<InputType>(
     {
       mode: 'onBlur',
@@ -29,9 +33,15 @@ password recovery link:
 link</a>
 </div>`
     }
+    forgotPasswordApi.sendEmail(payload).then((res) => {
+      if (res.status === 200) {
+        setShowCheckEmail(true)
+      }
+    })
+  }
 
-    forgotPasswordApi.sendEmail(payload)
-
+  if (showCheckEmail) {
+    return <CheckEmailPage email={'need to fix'} />
   }
 
   return (

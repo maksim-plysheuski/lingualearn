@@ -1,0 +1,15 @@
+.container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 36px;
+  background: #FFFFFF;
+  border: 1px solid #E8E8E8;
+  border-radius: 2px;
+  margin-left: 36px;
+
+  .icon {
+    width: 20px;
+  }
+}

@@ -1,4 +1,4 @@
-import { NavLink, useNavigate } from 'react-router-dom'
+import { NavLink } from 'react-router-dom'
 import LogoutIcon from '@mui/icons-material/Logout'
 import s from 'features/Profile/ProfilePage.module.scss'
 import { EditableTitle } from 'common/components/EditableTitle/EditableTitle'
@@ -13,13 +13,8 @@ import { paths } from 'common/router/path'
 
 
 export const ProfilePage = () => {
-
-
   const dispatch = useAppDispatch()
-  const navigate = useNavigate()
   const profile = useAppSelector(state => state.profile.profile)
-  const isLoggedIn = useAppSelector(state => state.auth.isLoggedIn)
-
 
   const onChangeAvatarHandler = (event: ChangeEvent<HTMLInputElement>) => {
     //need to fix
@@ -27,11 +22,6 @@ export const ProfilePage = () => {
 
   const logoutHandler = () => {
     dispatch(authThunks.logout())
-  }
-
-
-  if (!isLoggedIn) {
-    navigate(paths.LOGIN)
   }
 
   return (
