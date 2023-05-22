@@ -8,8 +8,10 @@ import { packAction } from 'features/pack/packs.slice'
 
 
 export const CountSearch = () => {
+
   const minCountPacks = useAppSelector(state => state.packs.packs.minCardsCount)
   const maxCountPacks = useAppSelector(state => state.packs.packs.maxCardsCount)
+
   const dispatch = useAppDispatch()
 
   const [value, setValue] = React.useState<number[]>([minCountPacks, maxCountPacks])
@@ -23,7 +25,6 @@ export const CountSearch = () => {
     if (value[0] === minCountPacks && value[1] === maxCountPacks) return
     dispatch(packAction.setPackParams({ min: value[0], max: value[1] }))
   }, [debounce])
-
 
   const handleChange = (event: Event, newValue: number | number[]) => {
     setValue(newValue as number[])

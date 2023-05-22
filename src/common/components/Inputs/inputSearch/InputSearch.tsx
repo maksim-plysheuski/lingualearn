@@ -4,6 +4,7 @@ import Search from '@mui/icons-material/Search'
 import TextField from '@mui/material/TextField/TextField'
 import s from './style.module.scss'
 import useDebounce from 'common/hooks/useDebounce'
+import { useAppSelector } from 'common/hooks'
 
 type  Props = {
   width?: string
@@ -11,9 +12,13 @@ type  Props = {
 }
 
 export const InputSearch: FC<Props> = ({ width, callback, ...restProps }) => {
-
-  const [searchValue, setSearchValue] = useState<string>('')
+  const nameSearch = useAppSelector(state => state.packs.packParams.packName || '')
+  const [searchValue, setSearchValue] = useState<string>(nameSearch)
   const debounce = useDebounce<string>(searchValue)
+
+  useEffect(() => {
+    setSearchValue(nameSearch)
+  }, [nameSearch])
 
   useEffect(() => {
     if (searchValue === '') return
