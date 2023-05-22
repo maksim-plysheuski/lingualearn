@@ -16,7 +16,7 @@ export const SearchBar = () => {
 
   return (
     <div className={s.container}>
-      <InputSearch callback={setPackParamName} width={'412px'} />
+      <InputSearch searchCallback={setPackParamName} width={'412px'} />
       <ButtonsShowPacks />
       <CountSearch />
       <ResetButton />

@@ -8,21 +8,22 @@ import { useAppSelector } from 'common/hooks'
 
 type  Props = {
   width?: string
-  callback: (value: string) => void
+  searchCallback: (value: string) => void
 }
 
-export const InputSearch: FC<Props> = ({ width, callback, ...restProps }) => {
+export const InputSearch: FC<Props> = ({ width, searchCallback, ...restProps }) => {
   const nameSearch = useAppSelector(state => state.packs.packParams.packName || '')
   const [searchValue, setSearchValue] = useState<string>(nameSearch)
   const debounce = useDebounce<string>(searchValue)
 
   useEffect(() => {
+
     setSearchValue(nameSearch)
   }, [nameSearch])
 
   useEffect(() => {
-    if (searchValue === '') return
-    callback(searchValue)
+    // if (searchValue === '') return
+    searchCallback(searchValue)
   }, [debounce])
 
   return (
