@@ -1,6 +1,6 @@
 import { Box } from '@mui/material'
 import { useEffect } from 'react'
-import { useAppDispatch } from 'common/hooks'
+import { useAppDispatch, useAppSelector } from 'common/hooks'
 import { packsThunks } from 'features/pack/packs.slice'
 import { SearchBar } from '../searchBar/SearchBar'
 import { Paginator } from 'features/pack/packsList/paginator/Paginator'
@@ -10,10 +10,11 @@ import { packsListStyle } from 'features/pack/packsList/style'
 
 export const PacksList = () => {
   const dispatch = useAppDispatch()
+  const packParams = useAppSelector(state => state.packs.packParams)
 
   useEffect(() => {
-    dispatch(packsThunks.getPacks({ page: 1, pageCount: 8 }))
-  }, [dispatch])
+    dispatch(packsThunks.getPacks(packParams))
+  }, [packParams])
 
   return (
     <Box sx={packsListStyle}>

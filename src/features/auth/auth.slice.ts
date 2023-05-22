@@ -1,18 +1,21 @@
 import { createSlice, isFulfilled, isPending } from '@reduxjs/toolkit'
 import { ArgLoginType, ArgRegisterType, authApi, ProfileType, TNewPassword } from 'features/auth/auth.api'
 import { createAppAsyncThunk } from 'common/utils/createAppAsyncThunk'
+import { packAction } from 'features/pack/packs.slice'
 
 
 const slice = createSlice({
   name: 'auth',
   initialState: {
-    isLoggedIn: false as boolean
+    isLoggedIn: false as boolean,
+    profile: {} as ProfileType
   },
   reducers: {},
   extraReducers: builder => {
     builder
       .addCase(authMe.fulfilled, (state, action) => {
         state.isLoggedIn = action.payload.isLoggedIn
+        state.profile = action.payload.profile
       })
       .addCase(login.fulfilled, (state, action) => {
         state.isLoggedIn = action.payload.isLoggedIn
@@ -27,6 +30,7 @@ const slice = createSlice({
 const authMe = createAppAsyncThunk<{ profile: ProfileType, isLoggedIn: boolean }>('auth/me', async (arg, thunkAPI) => {
   try {
     const res = await authApi.authMe()
+    thunkAPI.dispatch(packAction.setPackParams({ user_id: res._id }))
     return { profile: res, isLoggedIn: true }
   } catch (e) {
     return thunkAPI.rejectWithValue(e)
