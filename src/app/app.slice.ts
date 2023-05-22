@@ -1,5 +1,5 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
-import { authFulfilled, authPending } from 'features/auth/auth.slice'
+import { authThunks } from 'features/auth/auth.slice'
 
 
 const appInitialState = {
@@ -24,10 +24,10 @@ const slice = createSlice({
   },
   extraReducers: builder => {
     builder
-      .addMatcher(authPending, (state) => {
-        state.isAppInitialized = false
+      .addCase(authThunks.authMe.fulfilled, (state) => {
+        state.isAppInitialized = true
       })
-      .addMatcher(authFulfilled, (state) => {
+      .addCase(authThunks.authMe.rejected, (state) => {
         state.isAppInitialized = true
       })
   }

@@ -4,13 +4,22 @@ import { ButtonsShowPacks } from 'features/pack/searchBar/buttonsShowPack/Button
 import { CountSearch } from 'features/pack/searchBar/countSearch/CountSearch'
 import { ResetButton } from 'features/pack/searchBar/resetButton/resetButton'
 import s from './style.module.scss'
+import { useAppDispatch, useAppSelector } from 'common/hooks'
+import { packAction } from 'features/pack/packs.slice'
 
 export const SearchBar = () => {
+
+  const nameSearch = useAppSelector(state => state.packs.packParams.packName || ' ')
+  const dispatch = useAppDispatch()
+  const setPackParamName = (packName: string) => {
+    dispatch(packAction.setPackParams({ packName }))
+  }
+
   return (
     <div className={s.container}>
-      <InputSearch width={'412px'} />
+      <InputSearch nameSearch={nameSearch} searchCallback={setPackParamName} width={'412px'} />
       <ButtonsShowPacks />
-      <CountSearch />
+      {/*<CountSearch />*/}
       <ResetButton />
     </div>
   )
