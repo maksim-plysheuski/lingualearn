@@ -23,7 +23,7 @@ export const PacksTableBody = () => {
             {card.name}
           </TableCell>
           <TableCell sx={{ tableCellStyle }}>{card.cardsCount}</TableCell>
-          <TableCell sx={{ tableCellStyle }}>{card.updated}</TableCell>
+          <TableCell sx={{ tableCellStyle }}>{card.updated.slice(0, 10).replaceAll('-', '.')}</TableCell>
           <TableCell sx={{ tableCellStyle }}>{card.user_name}</TableCell>
           <TableCell sx={{ tableCellStyle }}>"need to fix"</TableCell>
         </TableRow>
