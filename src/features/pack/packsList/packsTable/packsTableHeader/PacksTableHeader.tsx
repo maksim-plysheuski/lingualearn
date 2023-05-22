@@ -29,6 +29,7 @@ export const PacksTableHeader = () => {
     }
     setSortOrder(sortOrder === 'desc' ? 'asc' : 'desc')
     setLastSortedCell(title)
+
     dispatch(packAction.setPackParams(payload))
   }
 
