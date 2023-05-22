@@ -8,7 +8,6 @@ import { packsThunks } from 'features/pack/packs.slice'
 
 
 export const PacksTable = () => {
-
   const dispatch = useAppDispatch()
   const packParams = useAppSelector(state => state.packs.packParams)
 
@@ -16,7 +15,6 @@ export const PacksTable = () => {
     dispatch(packsThunks.getPacks(packParams))
   }, [packParams])
 
-  const columnTitles: string[] = ['Name', 'Cards', 'Last Updated', 'Created by', 'Actions']
   return (
     <TableContainer style={{ marginTop: '24px', maxWidth: 1008 }} component={Paper}>
       <Table>
