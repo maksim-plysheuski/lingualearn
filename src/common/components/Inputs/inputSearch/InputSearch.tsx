@@ -5,20 +5,19 @@ import TextField from '@mui/material/TextField/TextField'
 import s from './style.module.scss'
 import useDebounce from 'common/hooks/useDebounce'
 
-
 type  Props = {
   width?: string
-  callback?: (value: string) => void
-  value?: string
+  callback: (value: string) => void
 }
 
-export const InputSearch: FC<Props> = ({ width, callback, value, ...restProps }) => {
+export const InputSearch: FC<Props> = ({ width, callback, ...restProps }) => {
 
   const [searchValue, setSearchValue] = useState<string>('')
   const debounce = useDebounce<string>(searchValue)
 
   useEffect(() => {
-    // callback!(searchValue)
+    if (searchValue === '') return
+    callback(searchValue)
   }, [debounce])
 
   return (
@@ -37,8 +36,7 @@ export const InputSearch: FC<Props> = ({ width, callback, value, ...restProps })
           width,
           height: '36px',
           backgroundColor: 'white',
-          opacity: '0.5',
-          color: '#D9D9D9',
+          color: 'black',
           border: '1px solid #D9D9D9',
           '& .MuiOutlinedInput-notchedOutline': {
             border: 'none'
