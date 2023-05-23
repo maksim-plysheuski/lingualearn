@@ -1,25 +1,24 @@
-import { Box } from '@mui/material'
-import { useEffect } from 'react'
-import { useAppDispatch } from 'common/hooks'
-import { packsThunks } from 'features/pack/packs.slice'
 import { SearchBar } from '../searchBar/SearchBar'
 import { Paginator } from 'features/pack/packsList/paginator/Paginator'
 import { PacksTable } from 'features/pack/packsList/packsTable/PacksTable'
-import { packsListStyle } from 'features/pack/packsList/style'
+import s from './style.module.scss'
+import { PageTitleBlock } from 'common/components/PageTitleBlock/PageTitleBlock'
 
 
 export const PacksList = () => {
-  const dispatch = useAppDispatch()
-
-  useEffect(() => {
-    dispatch(packsThunks.getPacks({ page: 1, pageCount: 8 }))
-  }, [dispatch])
+  const addPack = () => {
+    //need to fix
+  }
 
   return (
-    <Box sx={packsListStyle}>
+    <div className={s.packsList}>
+      <PageTitleBlock pageTitle={'Packs List'}
+                      showButton={true}
+                      buttonTitle={'Add New Pack'}
+                      buttonCallback={addPack}/>
       <SearchBar />
       <PacksTable />
       <Paginator />
-    </Box>
+    </div>
   )
 }

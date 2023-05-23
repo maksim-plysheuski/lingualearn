@@ -5,20 +5,20 @@ import TextField from '@mui/material/TextField/TextField'
 import s from './style.module.scss'
 import useDebounce from 'common/hooks/useDebounce'
 
-
 type  Props = {
   width?: string
-  callback?: (value: string) => void
-  value?: string
+  searchCallback: (value: string) => void
+  nameSearch: string
 }
 
-export const InputSearch: FC<Props> = ({ width, callback, value, ...restProps }) => {
+export const InputSearch: FC<Props> = ({ width, searchCallback, nameSearch, ...restProps }) => {
+  const [searchValue, setSearchValue] = useState<string>(nameSearch)
 
-  const [searchValue, setSearchValue] = useState<string>('')
   const debounce = useDebounce<string>(searchValue)
 
   useEffect(() => {
-    // callback!(searchValue)
+    if (searchValue === undefined) return
+    searchCallback(searchValue)
   }, [debounce])
 
   return (
@@ -30,15 +30,14 @@ export const InputSearch: FC<Props> = ({ width, callback, value, ...restProps })
         focused
         fullWidth
         onChange={(e) => setSearchValue(e.currentTarget.value)}
-        value={searchValue}
+        value={searchValue || ''}
         {...restProps}
         sx={{
           position: 'relative',
           width,
           height: '36px',
           backgroundColor: 'white',
-          opacity: '0.5',
-          color: '#D9D9D9',
+          color: 'black',
           border: '1px solid #D9D9D9',
           '& .MuiOutlinedInput-notchedOutline': {
             border: 'none'

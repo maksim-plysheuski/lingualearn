@@ -27,10 +27,10 @@ export const Paginator = () => {
       <span>Show</span>
       <Select
         sx={{ height: '34px', margin: '0 7px 0 7px' }}
-        value={rowsInTable ? String(rowsInTable) : '8'}
+        value={rowsInTable ? String(rowsInTable) : '4'}
         onChange={handleRowsChange}
       >
-        <MenuItem value={'8'}>8</MenuItem>
+        <MenuItem value={'4'}>4</MenuItem>
         <MenuItem value={'15'}>15</MenuItem>
         <MenuItem value={'25'}>25</MenuItem>
         <MenuItem value={'50'}>50</MenuItem>
