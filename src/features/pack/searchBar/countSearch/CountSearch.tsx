@@ -24,7 +24,6 @@ export const CountSearch = () => {
   useEffect(() => {
 
     if (minCountPacks === undefined || maxCountPacks === undefined) return
-    debugger
     dispatch(packAction.setPackParams({ min: value[0], max: value[1] }))
   }, [debounce])
 
