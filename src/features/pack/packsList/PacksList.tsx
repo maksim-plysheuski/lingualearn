@@ -1,17 +1,21 @@
 import { SearchBar } from '../searchBar/SearchBar'
 import { Paginator } from 'features/pack/packsList/paginator/Paginator'
 import { PacksTable } from 'features/pack/packsList/packsTable/PacksTable'
-import { UniversalButton } from 'common/components/Button/UniversalButton'
 import s from './style.module.scss'
+import { PageTitleBlock } from 'common/components/PageTitleBlock/PageTitleBlock'
 
 
 export const PacksList = () => {
+  const addPack = () => {
+    //need to fix
+  }
+
   return (
     <div className={s.packsList}>
-      <div className={s.addPackBlock}>
-        <h2>Packs List</h2>
-        <UniversalButton title={"Add new pack"} rounded={true} width={'175'} height={'36'} textColor={'white'}/>
-      </div>
+      <PageTitleBlock pageTitle={'Packs List'}
+                      showButton={true}
+                      buttonTitle={'Add New Pack'}
+                      buttonCallback={addPack}/>
       <SearchBar />
       <PacksTable />
       <Paginator />
