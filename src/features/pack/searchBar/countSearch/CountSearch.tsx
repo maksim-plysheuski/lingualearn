@@ -22,7 +22,7 @@ export const CountSearch = () => {
   }, [minCountPacks, maxCountPacks])
 
   useEffect(() => {
-    if (value[0] === minCountPacks && value[1] === maxCountPacks) return
+    if (minCountPacks || maxCountPacks === undefined) return
     dispatch(packAction.setPackParams({ min: value[0], max: value[1] }))
   }, [debounce])
 
