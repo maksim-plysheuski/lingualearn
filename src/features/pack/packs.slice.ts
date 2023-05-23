@@ -18,11 +18,10 @@ const slice = createSlice({
     builder
       .addCase(getPacks.fulfilled, (state, action) => {
         state.packs = action.payload.packs
-        state.packParams.min= action.payload.packs.minCardsCount
-        state.packParams.max= action.payload.packs.maxCardsCount
       })
   }
 })
+
 
 const getPacks = createAppAsyncThunk<{
   packs: TPacksResponse
