@@ -1,5 +1,5 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
-import { packApi, TGetPacksArg, TPacksResponse, TDeletePackArg } from 'features/pack/packApi'
+import { packApi, TDeletePackArg, TGetPacksArg, TPacksResponse } from 'features/pack/packApi'
 import { createAppAsyncThunk } from 'common/utils/createAppAsyncThunk'
 
 
@@ -7,9 +7,7 @@ const slice = createSlice({
   name: 'packs',
   initialState: {
     packs: {} as TPacksResponse,
-    packParams: {
-      pageCount: 8
-    } as TGetPacksArg
+    packParams: {} as TGetPacksArg
   },
   reducers: {
     setPackParams: (state, action: PayloadAction<TGetPacksArg>) => {
@@ -24,7 +22,9 @@ const slice = createSlice({
   }
 })
 
-const getPacks = createAppAsyncThunk<{ packs: TPacksResponse }, TGetPacksArg>('packs/getPacks', async (arg, { getState }) => {
+const getPacks = createAppAsyncThunk<{
+  packs: TPacksResponse
+}, TGetPacksArg>('packs/getPacks', async (arg, { getState }) => {
   const params = getState().packs.packParams
   const res = await packApi.getPacks({ ...params, ...arg })
   return { packs: res.data }

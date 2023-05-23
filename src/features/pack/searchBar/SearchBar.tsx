@@ -9,7 +9,7 @@ import { packAction } from 'features/pack/packs.slice'
 
 export const SearchBar = () => {
 
-  const nameSearch = useAppSelector(state => state.packs.packParams.packName || ' ')
+  const nameSearch = useAppSelector(state => state.packs.packParams.packName)
   const dispatch = useAppDispatch()
   const setPackParamName = (packName: string) => {
     dispatch(packAction.setPackParams({ packName }))
@@ -17,9 +17,9 @@ export const SearchBar = () => {
 
   return (
     <div className={s.container}>
-      <InputSearch nameSearch={nameSearch} searchCallback={setPackParamName} width={'412px'} />
+      <InputSearch nameSearch={nameSearch!} searchCallback={setPackParamName} width={'412px'} />
       <ButtonsShowPacks />
-      {/*<CountSearch />*/}
+      <CountSearch />
       <ResetButton />
     </div>
   )

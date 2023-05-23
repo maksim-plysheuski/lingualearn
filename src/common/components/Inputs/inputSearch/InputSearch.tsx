@@ -16,7 +16,7 @@ export const InputSearch: FC<Props> = ({ width, searchCallback, nameSearch, ...r
   const debounce = useDebounce<string>(searchValue)
 
   useEffect(() => {
-    if (searchValue === ' ') return
+    if (searchValue === undefined) return
     searchCallback(searchValue)
   }, [debounce])
 

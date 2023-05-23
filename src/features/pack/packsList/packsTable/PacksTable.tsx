@@ -12,7 +12,7 @@ export const PacksTable = () => {
   const packParams = useAppSelector(state => state.packs.packParams)
 
   useEffect(() => {
-    dispatch(packsThunks.getPacks(packParams))
+    dispatch(packsThunks.getPacks({}))
   }, [packParams])
 
   return (
