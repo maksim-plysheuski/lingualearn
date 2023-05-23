@@ -13,6 +13,7 @@ type  Props = {
 
 export const InputSearch: FC<Props> = ({ width, searchCallback, nameSearch, ...restProps }) => {
   const [searchValue, setSearchValue] = useState<string>(nameSearch)
+
   const debounce = useDebounce<string>(searchValue)
 
   useEffect(() => {
@@ -29,7 +30,7 @@ export const InputSearch: FC<Props> = ({ width, searchCallback, nameSearch, ...r
         focused
         fullWidth
         onChange={(e) => setSearchValue(e.currentTarget.value)}
-        value={searchValue}
+        value={searchValue || ''}
         {...restProps}
         sx={{
           position: 'relative',
