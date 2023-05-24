@@ -1,13 +1,13 @@
 import { Paginator } from 'common/components/paginator/Paginator'
-import s from 'features/cards/friendsCard/style.module.scss'
+import s from 'features/cards/cardsPage/style.module.scss'
 import { PageTitleBlock } from 'common/components/PageTitleBlock/PageTitleBlock'
-import { CardTable } from 'features/cards/friendsCard/cardTable/CardTable'
+import { CardTable } from 'features/cards/cardsPage/cardsTable/CardTable'
 import { InputSearch } from 'common/components/Inputs/inputSearch/InputSearch'
 import { useAppDispatch, useAppSelector } from 'common/hooks'
 import { packAction } from 'features/pack/packs.slice'
 
 
-export const FriendsCard = () => {
+export const CardsPage = () => {
   const nameSearch = useAppSelector(state => state.packs.packParams.packName)
   const dispatch = useAppDispatch()
   const setPackParamName = (packName: string) => {

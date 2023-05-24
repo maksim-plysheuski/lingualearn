@@ -3,8 +3,8 @@ import * as React from 'react'
 import { useAppDispatch, useAppSelector } from 'common/hooks'
 import { useEffect } from 'react'
 import { packsThunks } from 'features/pack/packs.slice'
-import { CardTableHeader } from 'features/cards/friendsCard/cardTable/cardTableHeader/CardTableHeader'
-import { CardTableBody } from 'features/cards/friendsCard/cardTable/cardTableBody/CardTableBody'
+import { CardTableHeader } from 'features/cards/cardsPage/cardsTable/cardsTableHeader/CardTableHeader'
+import { CardTableBody } from 'features/cards/cardsPage/cardsTable/cardsTableBody/CardTableBody'
 
 
 export const CardTable = () => {

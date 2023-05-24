@@ -23,6 +23,7 @@ export const CardTableBody = () => {
           </TableCell>
           <TableCell sx={{ tableCellStyle }}>{pack.cardsCount}</TableCell>
           <TableCell sx={{ tableCellStyle }}>{pack.updated.slice(0, 10).replaceAll('-', '.')}</TableCell>
+          <TableCell sx={{ tableCellStyle }}>Rating Need To fix</TableCell>
           <ActionsButtons packId={pack._id} />
         </TableRow>
       ))}

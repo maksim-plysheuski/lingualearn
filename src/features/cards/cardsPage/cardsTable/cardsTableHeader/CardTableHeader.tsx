@@ -9,7 +9,7 @@ export const CardTableHeader = () => {
   const currentRowsCount = useAppSelector(state => state.packs.packs.pageCount)
   const [sortOrder, setSortOrder] = useState<'asc' | 'desc'>('asc')
   const [lastSortedCell, setLastSortedCell] = useState<string>('Last Updated')
-  const columnTitles: string[] = ['Question', 'Answer', 'Last Updated', 'Grade']
+  const columnTitles: string[] = ['Question', 'Answer', 'Last Updated', 'Grade', 'Actions']
 
   const handleSortButton = (title: string) => () => {
     let sortArgTitle
