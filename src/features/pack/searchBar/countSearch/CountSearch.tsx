@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { memo, useEffect } from 'react'
 import Box from '@mui/material/Box'
 import Slider from '@mui/material/Slider'
 import s from './style.module.scss'
@@ -7,11 +7,11 @@ import useDebounce from 'common/hooks/useDebounce'
 import { packAction } from 'features/pack/packs.slice'
 
 
-export const CountSearch = () => {
+export const CountSearch = memo(() => {
   const dispatch = useAppDispatch()
-
   const minCountPacks = useAppSelector(state => state.packs.packs.minCardsCount)
   const maxCountPacks = useAppSelector(state => state.packs.packs.maxCardsCount)
+  const max = useAppSelector(state => state.packs.packParams.max)
 
   const [value, setValue] = React.useState<number[]>([minCountPacks, maxCountPacks])
   const [isFirst, setIsFirst] = React.useState(false)
@@ -22,6 +22,7 @@ export const CountSearch = () => {
   }, [minCountPacks, maxCountPacks])
 
   useEffect(() => {
+
     if (minCountPacks !== undefined && maxCountPacks !== undefined && isFirst) {
       dispatch(packAction.setPackParams({ min: value[0], max: value[1] }))
     }
@@ -52,11 +53,11 @@ export const CountSearch = () => {
             onChange={handleChange}
           />
         </Box>
-        <span className={s.count}>{value[1]}</span>
+        <span className={s.count}>{max??maxCountPacks}</span>
       </div>
 
     </div>
 
   )
-}
+})
 

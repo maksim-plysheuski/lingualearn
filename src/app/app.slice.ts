@@ -17,9 +17,6 @@ const slice = createSlice({
   reducers: {
     setIsLoading: (state, action: PayloadAction<{ isLoading: boolean }>) => {
       state.isLoading = action.payload.isLoading
-    },
-    setAppInitialized: (state) => {
-      state.isAppInitialized = true
     }
   },
   extraReducers: builder => {
@@ -30,6 +27,18 @@ const slice = createSlice({
       .addCase(authThunks.authMe.rejected, (state) => {
         state.isAppInitialized = true
       })
+      .addMatcher((action) => {
+          return action.type.endsWith('/pending')
+        },
+        (state) => {
+          state.isLoading = true
+        })
+      .addMatcher((action) => {
+          return action.type.endsWith('/fulfilled')
+        },
+        (state) => {
+          state.isLoading = false
+        })
   }
 })
 

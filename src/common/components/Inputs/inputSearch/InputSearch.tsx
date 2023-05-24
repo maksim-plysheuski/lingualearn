@@ -1,4 +1,4 @@
-import React, { FC, useEffect, useState } from 'react'
+import React, { FC, memo, useEffect, useState } from 'react'
 import InputAdornment from '@mui/material/InputAdornment/InputAdornment'
 import Search from '@mui/icons-material/Search'
 import TextField from '@mui/material/TextField/TextField'
@@ -11,7 +11,7 @@ type  Props = {
   nameSearch: string
 }
 
-export const InputSearch: FC<Props> = ({ width, searchCallback, nameSearch, ...restProps }) => {
+export const InputSearch: FC<Props> = memo(({ width, searchCallback, nameSearch, ...restProps }) => {
   const [searchValue, setSearchValue] = useState<string>(nameSearch)
 
   const debounce = useDebounce<string>(searchValue)
@@ -56,4 +56,4 @@ export const InputSearch: FC<Props> = ({ width, searchCallback, nameSearch, ...r
       />
     </div>
   )
-}
+})

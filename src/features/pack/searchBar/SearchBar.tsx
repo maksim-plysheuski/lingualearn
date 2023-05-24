@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useCallback } from 'react'
 import { InputSearch } from 'common/components/Inputs/inputSearch/InputSearch'
 import { ButtonsShowPacks } from 'features/pack/searchBar/buttonsShowPack/ButtonsShowPacks'
 import { CountSearch } from 'features/pack/searchBar/countSearch/CountSearch'
@@ -11,9 +11,9 @@ export const SearchBar = () => {
 
   const nameSearch = useAppSelector(state => state.packs.packParams.packName)
   const dispatch = useAppDispatch()
-  const setPackParamName = (packName: string) => {
+  const setPackParamName = useCallback((packName: string) => {
     dispatch(packAction.setPackParams({ packName }))
-  }
+  }, [])
 
   return (
     <div className={s.container}>
