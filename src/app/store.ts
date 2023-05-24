@@ -3,6 +3,7 @@ import { appReducer } from "app/app.slice";
 import { authReducer } from "features/auth/auth.slice";
 import { profileReducer } from "features/Profile/profile.slice";
 import { packsReducer } from 'features/pack/packs.slice'
+import { cardsReducer } from 'features/cards/cards.slice'
 
 export const store = configureStore({
   reducer: {
@@ -10,6 +11,7 @@ export const store = configureStore({
     auth: authReducer,
     profile: profileReducer,
     packs: packsReducer,
+    cards: cardsReducer,
   },
 });
 

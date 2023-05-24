@@ -1,18 +1,24 @@
 import { Paginator } from 'common/components/paginator/Paginator'
 import s from 'features/cards/cardsPage/style.module.scss'
 import { PageTitleBlock } from 'common/components/PageTitleBlock/PageTitleBlock'
-import { CardTable } from 'features/cards/cardsPage/cardsTable/CardTable'
+import { CardsTable } from 'features/cards/cardsPage/cardsTable/CardsTable'
 import { InputSearch } from 'common/components/Inputs/inputSearch/InputSearch'
 import { useAppDispatch, useAppSelector } from 'common/hooks'
-import { packAction } from 'features/pack/packs.slice'
+import { useEffect } from 'react'
+import { cardsAction, cardsThunks } from 'features/cards/cards.slice'
 
 
 export const CardsPage = () => {
-  const nameSearch = useAppSelector(state => state.packs.packParams.packName)
+  const cardQuestion = useAppSelector(state => state.cards.packParams.cardQuestion)
   const dispatch = useAppDispatch()
-  const setPackParamName = (packName: string) => {
-    dispatch(packAction.setPackParams({ packName }))
+
+  const setPackParamQuestion= (cardQuestion: string) => {
+    dispatch(cardsAction.setCardsParams({cardQuestion, cardsPack_id: ''}))
   }
+
+  useEffect(() => {
+    dispatch(cardsThunks.getCards({cardsPack_id: "646cb610ca456fa52fb76e53"}))
+  }, [])
 
   const learnPack = () => {
     //need to fix
@@ -20,12 +26,12 @@ export const CardsPage = () => {
 
   return (
     <div className={s.packsList}>
-      <PageTitleBlock pageTitle={'Friend\'s Card'}
+      <PageTitleBlock pageTitle={'Friend\'s Pack'}
                       showButton={true}
                       buttonTitle={'Learn card'}
                       buttonCallback={learnPack}/>
-      <InputSearch nameSearch={nameSearch!} searchCallback={setPackParamName} width={'1008px'}/>
-      <CardTable />
+      <InputSearch nameSearch={cardQuestion!} searchCallback={setPackParamQuestion} width={'1008px'}/>
+      <CardsTable />
       <Paginator />
     </div>
   )

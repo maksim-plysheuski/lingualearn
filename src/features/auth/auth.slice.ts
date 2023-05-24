@@ -2,6 +2,7 @@ import { createSlice, isFulfilled, isPending } from '@reduxjs/toolkit'
 import { ArgLoginType, ArgRegisterType, authApi, ProfileType, TNewPassword } from 'features/auth/auth.api'
 import { createAppAsyncThunk } from 'common/utils/createAppAsyncThunk'
 import { packAction } from 'features/pack/packs.slice'
+import { cardsAction } from 'features/cards/cards.slice'
 
 
 const slice = createSlice({

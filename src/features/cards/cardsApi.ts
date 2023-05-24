@@ -2,8 +2,8 @@ import { instance } from 'common/api/common.api'
 
 
 export const cardsApi = {
-  getCards: (arg: TGetArgs) => {
-    return instance.get<TGetResponse>('/cards/card', { params: { ...arg } }).then(res => res.data)
+  getCards: (arg: TGetCardsArgs) => {
+    return instance.get<TGetCardsResponse>('/cards/card', { params: { ...arg } }).then(res => res.data)
   },
   createCard: (arg: TCreateArg) => {
     return instance.post<TCreateResponse>('/cards/card', arg).then(res => res.data)
@@ -19,7 +19,7 @@ export const cardsApi = {
   }
 }
 
-export type TGetArgs = {
+export type TGetCardsArgs = {
   cardsPack_id: string
   cardAnswer?: string
   cardQuestion?: string
@@ -30,7 +30,7 @@ export type TGetArgs = {
   sortCards?: string
 }
 
-export type TGetResponse = {
+export type TGetCardsResponse = {
   cards: TCard[]
   cardsTotalCount: number
   maxGrade: number

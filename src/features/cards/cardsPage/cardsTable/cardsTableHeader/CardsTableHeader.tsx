@@ -4,7 +4,7 @@ import { useState } from 'react'
 import { useAppDispatch, useAppSelector } from 'common/hooks'
 import { packAction } from 'features/pack/packs.slice'
 
-export const CardTableHeader = () => {
+export const CardsTableHeader = () => {
   const dispatch = useAppDispatch()
   const currentRowsCount = useAppSelector(state => state.packs.packs.pageCount)
   const [sortOrder, setSortOrder] = useState<'asc' | 'desc'>('asc')

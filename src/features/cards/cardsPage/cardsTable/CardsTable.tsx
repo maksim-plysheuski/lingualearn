@@ -3,11 +3,11 @@ import * as React from 'react'
 import { useAppDispatch, useAppSelector } from 'common/hooks'
 import { useEffect } from 'react'
 import { packsThunks } from 'features/pack/packs.slice'
-import { CardTableHeader } from 'features/cards/cardsPage/cardsTable/cardsTableHeader/CardTableHeader'
-import { CardTableBody } from 'features/cards/cardsPage/cardsTable/cardsTableBody/CardTableBody'
+import { CardsTableHeader } from 'features/cards/cardsPage/cardsTable/cardsTableHeader/CardsTableHeader'
+import { CardsTableBody } from 'features/cards/cardsPage/cardsTable/cardsTableBody/CardsTableBody'
 
 
-export const CardTable = () => {
+export const CardsTable = () => {
   const dispatch = useAppDispatch()
   const packParams = useAppSelector(state => state.packs.packParams)
 
@@ -18,8 +18,8 @@ export const CardTable = () => {
   return (
     <TableContainer style={{ marginTop: '24px', maxWidth: 1008 }} component={Paper}>
       <Table>
-        <CardTableHeader/>
-        <CardTableBody/>
+        <CardsTableHeader/>
+        <CardsTableBody/>
       </Table>
     </TableContainer>
   )

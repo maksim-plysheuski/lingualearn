@@ -2,7 +2,7 @@ import { TableBody, TableCell, TableRow } from '@mui/material'
 import { useAppSelector } from 'common/hooks'
 import { ActionsButtons } from 'features/pack/packsList/packsTable/packsTableBody/actionsButtons/ActionsButtons'
 
-export const CardTableBody = () => {
+export const CardsTableBody = () => {
   const packs = useAppSelector(state => state.packs.packs)
   const tableCellStyle = {
     wordWrap: 'break-word',
