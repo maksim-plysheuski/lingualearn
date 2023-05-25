@@ -12,7 +12,6 @@ export const GlobalError = () => {
   if (error !== null) {
     toast.error(error);
   }
-  console.log(error)
 
   useEffect(() => {
     if (error !== null) {

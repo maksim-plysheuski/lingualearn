@@ -1,38 +1,36 @@
-import React, { memo, useEffect } from 'react'
+import { memo, useEffect, useState } from 'react'
 import Box from '@mui/material/Box'
 import Slider from '@mui/material/Slider'
 import s from './style.module.scss'
 import { useAppDispatch, useAppSelector } from 'common/hooks'
-import useDebounce from 'common/hooks/useDebounce'
 import { packAction } from 'features/pack/packs.slice'
-
 
 export const CountSearch = memo(() => {
   const dispatch = useAppDispatch()
-  const minCountPacks = useAppSelector(state => state.packs.packs.minCardsCount)
-  const maxCountPacks = useAppSelector(state => state.packs.packs.maxCardsCount)
+  const minValue = useAppSelector(state => state.packs.packs.minCardsCount)
+  const maxValue = useAppSelector(state => state.packs.packs.maxCardsCount)
+  const min = useAppSelector(state => state.packs.packParams.min)
   const max = useAppSelector(state => state.packs.packParams.max)
 
-  const [value, setValue] = React.useState<number[]>([minCountPacks, maxCountPacks])
-  const [isFirst, setIsFirst] = React.useState(false)
-  const debounce = useDebounce<number[]>(value)
+  const [value, setValue] = useState<number[]>([minValue, maxValue])
 
   useEffect(() => {
-    setValue([minCountPacks, maxCountPacks])
-  }, [minCountPacks, maxCountPacks])
+    if (!min && !max) {
+      setValue([minValue, maxValue])
+    } else {
+      setValue([min!, max!])
+    }
+  }, [min, max])
 
   useEffect(() => {
-
-    if (minCountPacks !== undefined && maxCountPacks !== undefined && isFirst) {
-      dispatch(packAction.setPackParams({ min: value[0], max: value[1] }))
-    }
-    if (minCountPacks !== undefined && maxCountPacks !== undefined) {
-      setIsFirst(true)
-    }
-  }, [debounce])
+    if (minValue !== min || maxValue !== max) setValue([minValue, maxValue])
+  }, [maxValue, minValue])
 
   const handleChange = (event: Event, newValue: number | number[]) => {
     setValue(newValue as number[])
+  }
+  const onChangeCommittedHandler = () => {
+    dispatch(packAction.setPackParams({ min: value[0], max: value[1] }))
   }
 
   return (
@@ -46,14 +44,15 @@ export const CountSearch = memo(() => {
           marginRight: '12px'
         }}>
           <Slider
-            max={maxCountPacks}
-            min={minCountPacks}
+            max={maxValue}
+            min={minValue}
             getAriaLabel={() => 'Temperature range'}
             value={value}
             onChange={handleChange}
+            onChangeCommitted={onChangeCommittedHandler}
           />
         </Box>
-        <span className={s.count}>{max??maxCountPacks}</span>
+        <span className={s.count}>{value[1]}</span>
       </div>
 
     </div>
