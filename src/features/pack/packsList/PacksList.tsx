@@ -9,7 +9,7 @@ import { useAppSelector } from 'common/hooks'
 export const PacksList = () => {
   const currentPage = useAppSelector(state => state.packs.packs.page)
   const packsTotalCount = useAppSelector(state => state.packs.packs.cardPacksTotalCount)
-  const itemsPerPage = useAppSelector(state => state.packs.packs.pageCount)
+  const packsPerPage = useAppSelector(state => state.packs.packs.pageCount)
 
   const addPack = () => {
     //need to fix
@@ -25,7 +25,7 @@ export const PacksList = () => {
       <PacksTable />
       <Paginator currentPage={currentPage}
                  itemsTotalCount={packsTotalCount}
-                 itemsPerPage={itemsPerPage}
+                 itemsPerPage={packsPerPage}
                  itemsTitle={'packs'} />
     </div>
   )

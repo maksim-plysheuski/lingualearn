@@ -22,7 +22,7 @@ export const Paginator: FC<Props> = ({
                                      }) => {
 
   const dispatch = useAppDispatch()
-  const selectedPackId = useAppSelector(state => state.cards?.selectedPackId)
+  const selectedPackId = useAppSelector(state => state.cards.cardsParams.cardsPack_id)
   const pagesTotalCount = Math.ceil(itemsTotalCount / itemsPerPage) || 0
   let payload
 

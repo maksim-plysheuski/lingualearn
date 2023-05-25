@@ -7,16 +7,11 @@ const slice = createSlice({
   name: 'cards',
   initialState: {
     cards: {} as TGetCardsResponse,
-    cardsParams: {
-    } as TGetCardsArgs,
-    selectedPackId: '' as string
+    cardsParams: {} as TGetCardsArgs
   },
   reducers: {
     setCardsParams: (state, action: PayloadAction<TGetCardsArgs>) => {
       state.cardsParams = { ...state.cardsParams, ...action.payload }
-    },
-    setSelectedPackId: (state, action: PayloadAction<string>) => {
-      state.selectedPackId = action.payload
     }
   },
   extraReducers: builder => {
@@ -28,13 +23,11 @@ const slice = createSlice({
 })
 
 
-const getCards = createAppAsyncThunk<any, TGetCardsArgs>('cards/getCards', async (arg, { getState }) => {
-  const params = getState().cards.cardsParams
-  const res = await cardsApi.getCards({ ...params, ...arg })
-  return {cards: res}
-
+const getCards = createAppAsyncThunk<{ cards: TGetCardsResponse }>('cards/getCards', async (arg, { getState }) => {
+  const params = { ...getState().cards.cardsParams }
+  const res = await cardsApi.getCards(params)
+  return { cards: res }
 })
-
 
 
 export const cardsReducer = slice.reducer

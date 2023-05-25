@@ -4,11 +4,13 @@ import { PageTitleBlock } from 'common/components/PageTitleBlock/PageTitleBlock'
 import { CardsTable } from 'features/cards/cardsPage/cardsTable/CardsTable'
 import { InputSearch } from 'common/components/Inputs/inputSearch/InputSearch'
 import { useAppDispatch, useAppSelector } from 'common/hooks'
-import { useEffect } from 'react'
-import { cardsAction, cardsThunks } from 'features/cards/cards.slice'
 
 
 export const CardsPage = () => {
+  const currentPage = useAppSelector(state => state.cards.cards.page)
+  const cardsTotalCount = useAppSelector(state => state.cards.cards.cardsTotalCount)
+  const cardsPerPage = useAppSelector(state => state.cards.cards.pageCount)
+
   /*const cardQuestion = useAppSelector(state => state.cards.packParams.cardQuestion)
   const dispatch = useAppDispatch()
 
@@ -26,11 +28,14 @@ export const CardsPage = () => {
     <div className={s.packsList}>
       <PageTitleBlock pageTitle={'Friend\'s Pack'}
                       showButton={true}
-                      buttonTitle={'Learn card'}
+                      buttonTitle={'Learn cards'}
                       buttonCallback={learnPack}/>
       {/*<InputSearch nameSearch={cardQuestion!} searchCallback={setPackParamQuestion} width={'1008px'}/>*/}
       <CardsTable />
-      {/*<Paginator />*/}
+      <Paginator currentPage={currentPage}
+                 itemsPerPage={cardsPerPage}
+                 itemsTotalCount={cardsTotalCount}
+                 itemsTitle={'cards'} />
     </div>
   )
 }

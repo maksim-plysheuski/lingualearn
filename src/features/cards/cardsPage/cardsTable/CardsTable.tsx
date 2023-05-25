@@ -10,17 +10,16 @@ import { cardsThunks } from 'features/cards/cards.slice'
 export const CardsTable = () => {
   const dispatch = useAppDispatch()
   const cardsParams = useAppSelector(state => state.cards.cardsParams)
-  const selectedPackId = useAppSelector(state => state.cards.selectedPackId)
 
   useEffect(() => {
-    dispatch(cardsThunks.getCards({cardsPack_id: selectedPackId}))
+    dispatch(cardsThunks.getCards())
   }, [cardsParams])
 
   return (
     <TableContainer style={{ marginTop: '24px', maxWidth: 1008 }} component={Paper}>
       <Table>
-        <CardsTableHeader/>
-        <CardsTableBody/>
+        <CardsTableHeader />
+        <CardsTableBody />
       </Table>
     </TableContainer>
   )

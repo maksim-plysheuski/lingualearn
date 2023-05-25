@@ -10,8 +10,6 @@ export const CardsTableBody = () => {
     maxWidth: '200px'
   }
 
-
-  console.log(cards)
   return (
     <TableBody>
       {cards.cards?.map((card) => (

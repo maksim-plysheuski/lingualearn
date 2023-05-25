@@ -2,13 +2,12 @@ import { TableCell, TableHead, TableRow, TableSortLabel } from '@mui/material'
 import * as React from 'react'
 import { useState } from 'react'
 import { useAppDispatch, useAppSelector } from 'common/hooks'
-import { packAction } from 'features/pack/packs.slice'
 import { cardsAction } from 'features/cards/cards.slice'
 
 export const CardsTableHeader = () => {
   const dispatch = useAppDispatch()
   const currentRowsCount = useAppSelector(state => state.cards.cards.pageCount)
-  const selectedPackId = useAppSelector(state => state.cards.selectedPackId)
+  const selectedPackId = useAppSelector(state => state.cards.cardsParams.cardsPack_id)
   const [sortOrder, setSortOrder] = useState<'asc' | 'desc'>('asc')
   const [lastSortedCell, setLastSortedCell] = useState<string>('Last Updated')
   const columnTitles: string[] = ['Question', 'Answer', 'Last Updated', 'Grade', 'Actions']
@@ -33,8 +32,7 @@ export const CardsTableHeader = () => {
     }
     setSortOrder(sortOrder === 'desc' ? 'asc' : 'desc')
     setLastSortedCell(title)
-
-    dispatch(cardsAction.setCardsParams({...payload, cardsPack_id: selectedPackId}))
+    dispatch(cardsAction.setCardsParams({ ...payload, cardsPack_id: selectedPackId }))
   }
 
   return (

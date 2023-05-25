@@ -1,7 +1,7 @@
 import { TableBody, TableCell, TableRow } from '@mui/material'
 import { useAppDispatch, useAppSelector } from 'common/hooks'
 import { ActionsButtons } from 'features/pack/packsList/packsTable/packsTableBody/actionsButtons/ActionsButtons'
-import { cardsAction, cardsThunks } from 'features/cards/cards.slice'
+import { cardsAction } from 'features/cards/cards.slice'
 import { useNavigate } from 'react-router-dom'
 import { paths } from 'common/router/path'
 
@@ -16,15 +16,12 @@ export const PacksTableBody = () => {
   }
 
   const openSelectedPack = (packId: string) => {
-    dispatch(cardsAction.setSelectedPackId(packId))
-    dispatch(cardsThunks.getCards({cardsPack_id: packId}))
-   /* dispatch(cardsAction.setSelectedPackId(packId))*/
+    dispatch(cardsAction.setCardsParams({ cardsPack_id: packId }))
     navigate(paths.CARDS)
   }
 
   return (
     <TableBody>
-
       {packs.cardPacks?.map((pack) => (
         <TableRow key={pack._id}>
           <TableCell sx={{
@@ -33,7 +30,7 @@ export const PacksTableBody = () => {
             cursor: 'pointer',
             ':hover': { backgroundColor: 'rgb(245, 245, 245)' }
           }}
-          onClick={() => openSelectedPack(pack._id)}
+                     onClick={() => openSelectedPack(pack._id)}
           >
             {pack.name}
           </TableCell>
