@@ -3,7 +3,6 @@ import Box from '@mui/material/Box'
 import Rating from '@mui/material/Rating'
 import { SyntheticEvent } from 'react'
 import { useAppDispatch } from 'common/hooks'
-import { cardsThunks } from 'features/cards/cards.slice'
 
 type Props = {
   grade: number
@@ -14,7 +13,7 @@ export const CardRating = (props: Props) => {
   const dispatch = useAppDispatch()
 
   const changeRatingHandler = (event: SyntheticEvent, newValue: number | null) => {
-    dispatch(cardsThunks.changeGrade({ card_id: props.cardId, grade: newValue }))
+    /*dispatch(cardsThunks.changeGrade({ card_id: props.cardId, grade: newValue }))*/
   }
 
   //need to fix
