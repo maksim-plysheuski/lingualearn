@@ -3,19 +3,19 @@ import { instance } from 'common/api/common.api'
 
 export const cardsApi = {
   getCards: (arg: TGetCardsArgs) => {
-    return instance.get<TGetCardsResponse>('/cards/card', { params: { ...arg } }).then(res => res.data)
+    return instance.get<TGetCardsResponse>('cards/card', { params: { ...arg } }).then(res => res.data)
   },
   createCard: (arg: TCreateArg) => {
-    return instance.post<TCreateResponse>('/cards/card', arg).then(res => res.data)
+    return instance.post<TCreateResponse>('cards/card', arg).then(res => res.data)
   },
   deleteCard: (arg: TDeleteArg) => {
-    return instance.delete('/cards/card', { params: { ...arg } })
+    return instance.delete('cards/card', { params: { ...arg } })
   },
   updateCard: (arg: TUpdateArg) => {
-    return instance.put<TUpdateResponse>('/cards/card', arg).then(res => res.data)
+    return instance.put<TUpdateResponse>('cards/card', arg).then(res => res.data)
   },
   changeGrade: (arg: TChangeGradeArg) => {
-    return instance.put<TChangeGradeResponse>('/cards/card', arg).then(res => res.data)
+    return instance.put<TChangeGradeResponse>('cards/card', arg).then(res => res.data)
   }
 }
 

@@ -2,18 +2,19 @@ import { Paper, Table, TableContainer } from '@mui/material'
 import * as React from 'react'
 import { useAppDispatch, useAppSelector } from 'common/hooks'
 import { useEffect } from 'react'
-import { packsThunks } from 'features/pack/packs.slice'
 import { CardsTableHeader } from 'features/cards/cardsPage/cardsTable/cardsTableHeader/CardsTableHeader'
 import { CardsTableBody } from 'features/cards/cardsPage/cardsTable/cardsTableBody/CardsTableBody'
+import { cardsThunks } from 'features/cards/cards.slice'
 
 
 export const CardsTable = () => {
   const dispatch = useAppDispatch()
-  const packParams = useAppSelector(state => state.packs.packParams)
+  const cardsParams = useAppSelector(state => state.cards.cardsParams)
+  const selectedPackId = useAppSelector(state => state.cards.selectedPackId)
 
   useEffect(() => {
-    dispatch(packsThunks.getPacks({}))
-  }, [packParams])
+    dispatch(cardsThunks.getCards({cardsPack_id: selectedPackId}))
+  }, [cardsParams])
 
   return (
     <TableContainer style={{ marginTop: '24px', maxWidth: 1008 }} component={Paper}>

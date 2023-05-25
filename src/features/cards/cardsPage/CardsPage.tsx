@@ -9,16 +9,14 @@ import { cardsAction, cardsThunks } from 'features/cards/cards.slice'
 
 
 export const CardsPage = () => {
-  const cardQuestion = useAppSelector(state => state.cards.packParams.cardQuestion)
+  /*const cardQuestion = useAppSelector(state => state.cards.packParams.cardQuestion)
   const dispatch = useAppDispatch()
 
   const setPackParamQuestion= (cardQuestion: string) => {
     dispatch(cardsAction.setCardsParams({cardQuestion, cardsPack_id: ''}))
-  }
+  }*/
 
-  useEffect(() => {
-    dispatch(cardsThunks.getCards({cardsPack_id: "646cb610ca456fa52fb76e53"}))
-  }, [])
+
 
   const learnPack = () => {
     //need to fix
@@ -30,7 +28,7 @@ export const CardsPage = () => {
                       showButton={true}
                       buttonTitle={'Learn card'}
                       buttonCallback={learnPack}/>
-      <InputSearch nameSearch={cardQuestion!} searchCallback={setPackParamQuestion} width={'1008px'}/>
+      {/*<InputSearch nameSearch={cardQuestion!} searchCallback={setPackParamQuestion} width={'1008px'}/>*/}
       <CardsTable />
       <Paginator />
     </div>

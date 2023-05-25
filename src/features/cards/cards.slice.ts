@@ -1,18 +1,22 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
-import { packApi, TDeletePackArg, TGetPacksArg, TPacksResponse } from 'features/pack/packApi'
 import { createAppAsyncThunk } from 'common/utils/createAppAsyncThunk'
-import { TGetCardsArgs, TGetCardsResponse } from 'features/cards/cardsApi'
+import { cardsApi, TGetCardsArgs, TGetCardsResponse } from 'features/cards/cardsApi'
 
 
 const slice = createSlice({
   name: 'cards',
   initialState: {
     cards: {} as TGetCardsResponse,
-    packParams: {} as TGetCardsArgs
+    cardsParams: {
+    } as TGetCardsArgs,
+    selectedPackId: '' as string
   },
   reducers: {
     setCardsParams: (state, action: PayloadAction<TGetCardsArgs>) => {
-      state.packParams = { ...state.packParams, ...action.payload }
+      state.cardsParams = { ...state.cardsParams, ...action.payload }
+    },
+    setSelectedPackId: (state, action: PayloadAction<string>) => {
+      state.selectedPackId = action.payload
     }
   },
   extraReducers: builder => {
@@ -25,9 +29,10 @@ const slice = createSlice({
 
 
 const getCards = createAppAsyncThunk<any, TGetCardsArgs>('cards/getCards', async (arg, { getState }) => {
-  const params = getState().cards.packParams
-  const res = await packApi.getPacks({ ...params, ...arg })
-  return { cards: res.data}
+  const params = getState().cards.cardsParams
+  const res = await cardsApi.getCards({ ...params, ...arg })
+  return {cards: res}
+
 })
 
 

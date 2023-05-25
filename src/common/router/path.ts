@@ -9,5 +9,4 @@ export const paths = {
   PROFILE: '/profile',
   PACKS: '/packs',
   CARDS: '/cards',
-  FRIENDS_CARD: '/friends-card',
 } as const

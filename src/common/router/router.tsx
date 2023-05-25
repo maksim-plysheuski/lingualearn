@@ -27,7 +27,7 @@ export const router = createHashRouter([
             element: <PacksList />
           },
           {
-            path: paths.FRIENDS_CARD,
+            path: paths.CARDS,
             element: <CardsPage />
           },
           {

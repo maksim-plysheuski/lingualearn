@@ -4,6 +4,7 @@ import { Header } from 'common/components/Header/Header'
 import { Outlet } from 'react-router-dom'
 import { useAppDispatch, useAppSelector } from 'common/hooks'
 import s from './App.module.scss'
+import  LinearProgress  from '@mui/material/LinearProgress'
 
 function App() {
   const dispatch = useAppDispatch()

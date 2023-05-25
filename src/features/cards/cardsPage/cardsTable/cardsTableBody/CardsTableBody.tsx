@@ -3,28 +3,31 @@ import { useAppSelector } from 'common/hooks'
 import { ActionsButtons } from 'features/pack/packsList/packsTable/packsTableBody/actionsButtons/ActionsButtons'
 
 export const CardsTableBody = () => {
-  const packs = useAppSelector(state => state.packs.packs)
+  const cards = useAppSelector(state => state.cards.cards)
   const tableCellStyle = {
     wordWrap: 'break-word',
     minWidth: '150px',
     maxWidth: '200px'
   }
+
+
+  console.log(cards)
   return (
     <TableBody>
-      {packs.cardPacks?.map((pack) => (
-        <TableRow key={pack._id}>
+      {cards.cards?.map((card) => (
+        <TableRow key={card._id}>
           <TableCell sx={{
             ...tableCellStyle,
             paddingLeft: '40px',
             cursor: 'pointer',
             ':hover': { backgroundColor: 'rgb(245, 245, 245)' }
           }}>
-            {pack.name}
+            {card.question}
           </TableCell>
-          <TableCell sx={{ tableCellStyle }}>{pack.cardsCount}</TableCell>
-          <TableCell sx={{ tableCellStyle }}>{pack.updated.slice(0, 10).replaceAll('-', '.')}</TableCell>
+          <TableCell sx={{ tableCellStyle }}>{card.answer}</TableCell>
+          <TableCell sx={{ tableCellStyle }}>{card.updated.slice(0, 10).replaceAll('-', '.')}</TableCell>
           <TableCell sx={{ tableCellStyle }}>Rating Need To fix</TableCell>
-          <ActionsButtons packId={pack._id} />
+          <ActionsButtons packId={card.user_id} />
         </TableRow>
       ))}
     </TableBody>
