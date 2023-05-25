@@ -1,6 +1,7 @@
 import { TableBody, TableCell, TableRow } from '@mui/material'
 import { useAppSelector } from 'common/hooks'
 import { ActionsButtons } from 'features/pack/packsList/packsTable/packsTableBody/actionsButtons/ActionsButtons'
+import { CardRating } from 'common/components/cardRating/cardRating'
 
 export const CardsTableBody = () => {
   const cards = useAppSelector(state => state.cards.cards)
@@ -24,7 +25,9 @@ export const CardsTableBody = () => {
           </TableCell>
           <TableCell sx={{ tableCellStyle }}>{card.answer}</TableCell>
           <TableCell sx={{ tableCellStyle }}>{card.updated.slice(0, 10).replaceAll('-', '.')}</TableCell>
-          <TableCell sx={{ tableCellStyle }}>Rating Need To fix</TableCell>
+          <TableCell sx={{ tableCellStyle }}>
+            <CardRating grade={card.grade} />
+          </TableCell>
           <ActionsButtons packId={card.user_id} />
         </TableRow>
       ))}

@@ -4,6 +4,9 @@ import { PageTitleBlock } from 'common/components/PageTitleBlock/PageTitleBlock'
 import { CardsTable } from 'features/cards/cardsPage/cardsTable/CardsTable'
 import { InputSearch } from 'common/components/Inputs/inputSearch/InputSearch'
 import { useAppDispatch, useAppSelector } from 'common/hooks'
+import ArrowBackIcon from '@mui/icons-material/ArrowBack'
+import { NavLink } from 'react-router-dom'
+import { paths } from 'common/router/path'
 
 
 export const CardsPage = () => {
@@ -26,6 +29,10 @@ export const CardsPage = () => {
 
   return (
     <div className={s.packsList}>
+      <div>
+        <ArrowBackIcon fontSize={'small'} />
+        <NavLink className={s.backLink} to={paths.PACKS}>Back to Packs List</NavLink>
+      </div>
       <PageTitleBlock pageTitle={'Friend\'s Pack'}
                       showButton={true}
                       buttonTitle={'Learn cards'}
