@@ -23,7 +23,7 @@ export const CountSearch = memo(() => {
   }, [min, max])
 
   useEffect(() => {
-    if (minValue !== min || maxValue !== max) setValue([minValue, maxValue])
+     setValue([minValue, maxValue])
   }, [maxValue, minValue])
 
   const handleChange = (event: Event, newValue: number | number[]) => {
