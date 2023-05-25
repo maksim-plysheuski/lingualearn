@@ -15,7 +15,7 @@ export const cardsApi = {
     return instance.put<TUpdateResponse>('cards/card', arg).then(res => res.data)
   },
   changeGrade: (arg: TChangeGradeArg) => {
-    return instance.put<TChangeGradeResponse>('cards/card', arg).then(res => res.data)
+    return instance.put<TChangeGradeResponse>('cards/grade', arg).then(res => res.data)
   }
 }
 
@@ -79,7 +79,7 @@ export type TUpdateArg = {
     _id: string
     question?: string
     answer?: string
-    grade?: 1 | 2 | 3 | 4 | 5
+    grade?: number | null
     shots?: number
     answerImg?: string
     questionImg?: string
@@ -91,7 +91,7 @@ export type TUpdateResponse = {
 }
 
 export type TChangeGradeArg = {
-  grade: 1 | 2 | 3 | 4 | 5
+  grade: number | null
   card_id: string
 }
 

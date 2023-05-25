@@ -1,14 +1,10 @@
 import { Paginator } from 'common/components/paginator/Paginator'
 import s from 'features/cards/cardsPage/style.module.scss'
-import { PageTitleBlock } from 'common/components/PageTitleBlock/PageTitleBlock'
+import { PageTitleBlock } from 'common/components/pageTitleBlock/PageTitleBlock'
 import { CardsTable } from 'features/cards/cardsPage/cardsTable/CardsTable'
-import { InputSearch } from 'common/components/Inputs/inputSearch/InputSearch'
-import { useAppDispatch, useAppSelector } from 'common/hooks'
-import ArrowBackIcon from '@mui/icons-material/ArrowBack'
-import { NavLink } from 'react-router-dom'
-import { paths } from 'common/router/path'
-import { BackLink } from 'common/components/backLink/BackLink'
+import { useAppSelector } from 'common/hooks'
 
+import { BackLink } from 'common/components/backLink/BackLink'
 
 export const CardsPage = () => {
   const currentPage = useAppSelector(state => state.cards.cards.page)
@@ -22,8 +18,6 @@ export const CardsPage = () => {
     dispatch(cardsAction.setCardsParams({cardQuestion, cardsPack_id: ''}))
   }*/
 
-
-
   const learnPack = () => {
     //need to fix
   }
@@ -31,10 +25,9 @@ export const CardsPage = () => {
   return (
     <div className={s.packsList}>
       <BackLink />
-      <PageTitleBlock pageTitle={'Friend\'s Pack'}
-                      showButton={true}
+      <PageTitleBlock showButton={true}
                       buttonTitle={'Learn cards'}
-                      buttonCallback={learnPack}/>
+                      buttonCallback={learnPack} />
       {/*<InputSearch nameSearch={cardQuestion!} searchCallback={setPackParamQuestion} width={'1008px'}/>*/}
       <CardsTable />
       <Paginator currentPage={currentPage}

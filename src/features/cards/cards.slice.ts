@@ -1,6 +1,6 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 import { createAppAsyncThunk } from 'common/utils/createAppAsyncThunk'
-import { cardsApi, TGetCardsArgs, TGetCardsResponse } from 'features/cards/cardsApi'
+import { cardsApi, TChangeGradeArg, TGetCardsArgs, TGetCardsResponse } from 'features/cards/cardsApi'
 
 
 const slice = createSlice({
@@ -19,6 +19,9 @@ const slice = createSlice({
       .addCase(getCards.fulfilled, (state, action) => {
         state.cards = action.payload.cards
       })
+      .addCase(changeGrade.fulfilled, () => {
+        //need to fix
+      })
   }
 })
 
@@ -29,10 +32,16 @@ const getCards = createAppAsyncThunk<{ cards: TGetCardsResponse }>('cards/getCar
   return { cards: res }
 })
 
+const changeGrade = createAppAsyncThunk<any, TChangeGradeArg>('cards/changeGrade', (arg) => {
+  //need to fix
+  const res = cardsApi.changeGrade(arg)
+  return { grade: res }
+})
+
 
 export const cardsReducer = slice.reducer
 export const cardsAction = slice.actions
-export const cardsThunks = { getCards }
+export const cardsThunks = { getCards, changeGrade }
 
 
 

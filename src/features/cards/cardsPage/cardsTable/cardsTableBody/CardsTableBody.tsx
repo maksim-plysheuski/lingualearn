@@ -26,7 +26,7 @@ export const CardsTableBody = () => {
           <TableCell sx={{ tableCellStyle }}>{card.answer}</TableCell>
           <TableCell sx={{ tableCellStyle }}>{card.updated.slice(0, 10).replaceAll('-', '.')}</TableCell>
           <TableCell sx={{ tableCellStyle }}>
-            <CardRating grade={card.grade} />
+            <CardRating grade={card.grade} cardId={card._id} />
           </TableCell>
           <ActionsButtons packId={card.user_id} />
         </TableRow>

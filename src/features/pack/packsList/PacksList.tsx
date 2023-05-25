@@ -2,7 +2,7 @@ import { SearchBar } from '../searchBar/SearchBar'
 import { Paginator } from 'common/components/paginator/Paginator'
 import { PacksTable } from 'features/pack/packsList/packsTable/PacksTable'
 import s from './style.module.scss'
-import { PageTitleBlock } from 'common/components/PageTitleBlock/PageTitleBlock'
+import { PageTitleBlock } from 'common/components/pageTitleBlock/PageTitleBlock'
 import { useAppSelector } from 'common/hooks'
 
 
