@@ -1,4 +1,3 @@
-import { NavLink } from 'react-router-dom'
 import LogoutIcon from '@mui/icons-material/Logout'
 import s from 'features/Profile/ProfilePage.module.scss'
 import { EditableTitle } from 'common/components/EditableTitle/EditableTitle'
@@ -6,10 +5,9 @@ import { UniversalButton } from 'common/components/Button/UniversalButton'
 import { Avatar, Badge, IconButton } from '@mui/material'
 import LocalSeeOutlinedIcon from '@mui/icons-material/LocalSeeOutlined'
 import { ChangeEvent } from 'react'
-import ArrowBackIcon from '@mui/icons-material/ArrowBack'
 import { authThunks } from 'features/auth/auth.slice'
 import { useAppDispatch, useAppSelector } from 'common/hooks'
-import { paths } from 'common/router/path'
+import { BackLink } from 'common/components/backLink/BackLink'
 
 
 export const ProfilePage = () => {
@@ -26,10 +24,7 @@ export const ProfilePage = () => {
 
   return (
     <div className={s.profilePage}>
-      <div className={s.backLinkContainer}>
-        <ArrowBackIcon fontSize={'medium'} />
-        <NavLink className={s.backLink} to={paths.PACKS}>Back to Packs List</NavLink>
-      </div>
+      <BackLink />
       <div className={s.personalInfoBlock}>
         <h1>Personal Information</h1>
         <div className={s.userPhotoContainer}>
