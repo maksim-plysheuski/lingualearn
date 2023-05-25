@@ -5,6 +5,8 @@ import { Outlet } from 'react-router-dom'
 import { useAppDispatch, useAppSelector } from 'common/hooks'
 import s from './App.module.scss'
 import { LinearProgress } from '@mui/material'
+import 'react-toastify/dist/ReactToastify.css'
+import { GlobalError } from 'common/components/globalError/GlobalError'
 
 
 function App() {
@@ -19,7 +21,9 @@ function App() {
   return (
     <div className={s.App}>
       <Header />
+
       <div className={s.Content}>
+        <GlobalError />
         {isLoading && <LinearProgress />}
         {isAppInitialized ? <Outlet /> : <h1>LOADING... - PRELOADER</h1>}
       </div>

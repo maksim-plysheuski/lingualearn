@@ -23,15 +23,15 @@ const slice = createSlice({
 })
 
 
-const getPacks = createAppAsyncThunk<{
-  packs: TPacksResponse
-}, TGetPacksArg>('packs/getPacks', async (arg, { getState }) => {
+const getPacks = createAppAsyncThunk<{ packs: TPacksResponse }, TGetPacksArg>
+('packs/getPacks', async (arg, { getState }) => {
   const params = getState().packs.packParams
   const res = await packApi.getPacks({ ...params, ...arg })
   return { packs: res.data }
 })
 
-const deletePack = createAppAsyncThunk<void, TDeletePackArg>('packs/deletePack', async (arg, thunkAPI) => {
+const deletePack = createAppAsyncThunk<void, TDeletePackArg>
+('packs/deletePack', async (arg, thunkAPI) => {
   const { dispatch, rejectWithValue } = thunkAPI
   try {
     await packApi.deletePack(arg)

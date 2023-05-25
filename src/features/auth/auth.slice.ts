@@ -2,6 +2,7 @@ import { createSlice, isFulfilled, isPending } from '@reduxjs/toolkit'
 import { ArgLoginType, ArgRegisterType, authApi, ProfileType, TNewPassword } from 'features/auth/auth.api'
 import { createAppAsyncThunk } from 'common/utils/createAppAsyncThunk'
 import { packAction } from 'features/pack/packs.slice'
+import { thunkTryCatch } from 'common/utils/thunk-try-catch'
 
 
 const slice = createSlice({
@@ -28,20 +29,20 @@ const slice = createSlice({
 })
 
 const authMe = createAppAsyncThunk<{ profile: ProfileType, isLoggedIn: boolean }>('auth/me', async (arg, thunkAPI) => {
-  try {
+  return await thunkTryCatch(thunkAPI, async () => {
     const res = await authApi.authMe()
     thunkAPI.dispatch(packAction.setPackParams({ user_id: res._id }))
     return { profile: res, isLoggedIn: true }
-  } catch (e) {
-    return thunkAPI.rejectWithValue(e)
-  }
+  })
 })
 
 const login = createAppAsyncThunk<{ isLoggedIn: boolean }, ArgLoginType>
-('auth/login', async (arg, thunkAPI) => {
-  await authApi.login(arg)
-  await thunkAPI.dispatch(authMe())
-  return { isLoggedIn: true }
+('auth/login', (arg, thunkAPI) => {
+  return thunkTryCatch(thunkAPI, async () => {
+    await authApi.login(arg)
+    await thunkAPI.dispatch(authMe())
+    return { isLoggedIn: true }
+  })
 })
 
 const logout = createAppAsyncThunk<{ isLoggedIn: boolean }>
@@ -51,13 +52,11 @@ const logout = createAppAsyncThunk<{ isLoggedIn: boolean }>
 })
 
 const register = createAppAsyncThunk<boolean, ArgRegisterType>
-('auth/register', async (arg, { rejectWithValue }) => {
-  try {
+('auth/register', (arg, thunkAPI) => {
+  return thunkTryCatch(thunkAPI, async () => {
     await authApi.register(arg)
     return true
-  } catch (e) {
-    return rejectWithValue(null)
-  }
+  })
 })
 
 const newPassword = createAppAsyncThunk<void, TNewPassword>('auth/newPassword', async (arg, thunkAPI) => {

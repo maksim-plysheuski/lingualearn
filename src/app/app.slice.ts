@@ -17,6 +17,11 @@ const slice = createSlice({
   reducers: {
     setIsLoading: (state, action: PayloadAction<{ isLoading: boolean }>) => {
       state.isLoading = action.payload.isLoading
+    },
+    setError: (state, action: PayloadAction<{ error: string | null }>) => {
+      debugger
+      state.error = action.payload.error
+
     }
   },
   extraReducers: builder => {
@@ -37,6 +42,13 @@ const slice = createSlice({
           return action.type.endsWith('/fulfilled')
         },
         (state) => {
+          state.isLoading = false
+        })
+      .addMatcher((action) => {
+          return action.type.endsWith('/rejected')
+        },
+        (state, action) => {
+          state.error = action.payload.response ? action.payload.response.data.error : action.message
           state.isLoading = false
         })
   }
