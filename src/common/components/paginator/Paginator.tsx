@@ -1,33 +1,53 @@
 import { Pagination, Select, SelectChangeEvent } from '@mui/material'
 import MenuItem from '@mui/material/MenuItem'
-import { packsThunks } from 'features/pack/packs.slice'
+import { packAction } from 'features/pack/packs.slice'
 import { useAppDispatch, useAppSelector } from 'common/hooks'
 import s from 'common/components/paginator/style.module.scss'
+import { ChangeEvent, FC } from 'react'
+import { cardsAction } from 'features/cards/cards.slice'
 
 
-export const Paginator = () => {
+type Props = {
+  currentPage: number
+  itemsPerPage: number
+  itemsTotalCount: number
+  itemsTitle: 'cards' | 'packs'
+}
+
+export const Paginator: FC<Props> = ({
+                                       currentPage,
+                                       itemsPerPage,
+                                       itemsTotalCount,
+                                       itemsTitle
+                                     }) => {
+
   const dispatch = useAppDispatch()
-  const currentPage = useAppSelector(state => state.packs.packs.page)
-  const packsTotalCount = useAppSelector(state => state.packs.packs.cardPacksTotalCount)
-  const rowsInTable = useAppSelector(state => state.packs.packs.pageCount)
-  const pagesTotalCount = Math.ceil(packsTotalCount / rowsInTable) || 0
-
+  const selectedPackId = useAppSelector(state => state.cards?.selectedPackId)
+  const pagesTotalCount = Math.ceil(itemsTotalCount / itemsPerPage) || 0
+  let payload
 
   const handleRowsChange = (event: SelectChangeEvent) => {
-    dispatch(packsThunks.getPacks({ page: currentPage, pageCount: Number(event.target.value) }))
+    payload = { page: currentPage, pageCount: Number(event.target.value) }
+    itemsTitle === 'packs'
+      ? dispatch(packAction.setPackParams(payload))
+      : dispatch(cardsAction.setCardsParams({ cardsPack_id: selectedPackId, ...payload }))
+
   }
 
-  const handlePagesChange = (event: any) => {
-    dispatch(packsThunks.getPacks({ page: event.target.textContent, pageCount: rowsInTable }))
+  const handlePagesChange = (event: ChangeEvent<unknown>, selectedPage: number) => {
+    payload = { page: selectedPage, pageCount: itemsPerPage }
+    itemsTitle === 'packs'
+      ? dispatch(packAction.setPackParams(payload))
+      : dispatch(cardsAction.setCardsParams({ cardsPack_id: selectedPackId, ...payload }))
   }
 
   return (
     <div className={s.container}>
-      <Pagination shape='rounded' color='primary' count={pagesTotalCount} onClick={handlePagesChange} />
+      <Pagination shape='rounded' color='primary' count={pagesTotalCount} onChange={handlePagesChange} />
       <span>Show</span>
       <Select
         sx={{ height: '34px', margin: '0 7px 0 7px' }}
-        value={rowsInTable ? String(rowsInTable) : '4'}
+        value={itemsPerPage ? String(itemsPerPage) : '4'}
         onChange={handleRowsChange}
       >
         <MenuItem value={'4'}>4</MenuItem>
@@ -35,7 +55,7 @@ export const Paginator = () => {
         <MenuItem value={'25'}>25</MenuItem>
         <MenuItem value={'50'}>50</MenuItem>
       </Select>
-      <span>Cards per page</span>
+      <span>{`${itemsTitle} per page`}</span>
     </div>
   )
 }
