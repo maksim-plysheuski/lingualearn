@@ -3,6 +3,7 @@ import { ArgLoginType, ArgRegisterType, authApi, ProfileType, TNewPassword } fro
 import { createAppAsyncThunk } from 'common/utils/createAppAsyncThunk'
 import { packAction } from 'features/pack/packs.slice'
 import { thunkTryCatch } from 'common/utils/thunk-try-catch'
+import { cardsAction } from 'features/cards/cards.slice'
 
 
 const slice = createSlice({

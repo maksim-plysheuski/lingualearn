@@ -1,4 +1,3 @@
-import s from 'features/Profile/ProfilePage.module.scss'
 import { IconButton, TextField, Typography } from '@mui/material'
 import { ChangeEvent, useState } from 'react'
 import { UniversalButton } from 'common/components/Button/UniversalButton'
@@ -54,11 +53,10 @@ export const EditableTitle = (props: EditableTitlePropsType) => {
           </IconButton>
         </Typography>
       ) : (
-        <TextField className={s.inputField}
-                   type={'text'}
-                   label={'text'}
+        <TextField type={'text'}
+                   label={'Nickname'}
                    variant={'standard'}
-                   helperText={'Nickname'}
+                   helperText={'enter your name'}
                    defaultValue={props.userName}
                    onChange={onChangeInputHandler}
                    onBlur={onBlurHandler}

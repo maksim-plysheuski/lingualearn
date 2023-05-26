@@ -21,7 +21,6 @@ function App() {
   return (
     <div className={s.App}>
       <Header />
-
       <div className={s.Content}>
         <GlobalError />
         {isLoading && <LinearProgress />}

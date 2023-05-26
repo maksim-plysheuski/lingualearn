@@ -1,0 +1,23 @@
+.backLinkContainer {
+  margin-left: 10%;
+  margin-top: 24px;
+  align-self: flex-start;
+  display: flex;
+  align-items: center;
+
+  .backLink {
+    font-family: 'Montserrat', sans-serif;
+    margin-left: 10px;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 15px;
+    line-height: 24px;
+    color: #000000;
+    text-decoration: none;
+
+    &:hover {
+      color: #366EFF;
+      transition: 250ms ease-in-out;
+    }
+  }
+}
