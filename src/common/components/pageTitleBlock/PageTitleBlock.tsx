@@ -1,12 +1,13 @@
 import s from './style.module.scss'
 import { UniversalButton } from 'common/components/Button/UniversalButton'
 import { FC } from 'react'
+import { useAppSelector } from 'common/hooks'
 
 
 type Props = {
-  pageTitle: string
+  pageTitle?: string
   showButton: boolean
-  buttonTitle?: string
+  buttonTitle: string
   buttonCallback?: () => void
 }
 
@@ -17,10 +18,15 @@ export const PageTitleBlock: FC<Props> = (
     buttonTitle,
     buttonCallback
   }) => {
+  const packOwnerId = useAppSelector(state => state.cards.cards.packUserId)
+  const userId = useAppSelector(state => state.profile.profile?._id)
 
   return (
     <div className={s.addPackBlock}>
-      <h2>{pageTitle}</h2>
+      <h2>{pageTitle ? pageTitle
+        : packOwnerId === userId ? 'My Pack'
+          : 'Friends Pack'}
+      </h2>
       {showButton &&
         <UniversalButton title={buttonTitle ? buttonTitle : ''}
                          onClickCallback={buttonCallback}

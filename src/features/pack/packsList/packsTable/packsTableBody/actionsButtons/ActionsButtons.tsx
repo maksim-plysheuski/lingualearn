@@ -25,7 +25,7 @@ export const ActionsButtons = (props: { packId: string }) => {
 
   return (
     <TableCell>
-      <Tooltip title={'Learn Pack'}
+      <Tooltip title={'Learn'}
                arrow placement='top'
                TransitionComponent={Zoom}
                TransitionProps={{ timeout: 400 }}>
@@ -33,7 +33,7 @@ export const ActionsButtons = (props: { packId: string }) => {
           <SchoolIcon />
         </IconButton>
       </Tooltip>
-      <Tooltip title={userId ? 'Edit Pack' : false}
+      <Tooltip title={userId ? 'Edit' : false}
                arrow placement='top'
                TransitionComponent={Zoom}
                TransitionProps={{ timeout: 400 }}>
@@ -44,7 +44,7 @@ export const ActionsButtons = (props: { packId: string }) => {
         </IconButton>
         </span>
       </Tooltip>
-      <Tooltip title={userId ? 'Delete Pack' : false}
+      <Tooltip title={userId ? 'Delete' : false}
                arrow placement='top'
                TransitionComponent={Zoom}
                TransitionProps={{ timeout: 400 }}>

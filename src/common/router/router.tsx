@@ -11,6 +11,7 @@ import { PrivateLayout } from 'common/router/PrivateRoute'
 import { PacksList } from 'features/pack/packsList/PacksList'
 import { CheckEmailPage } from 'features/auth/CheckEmail/CheckEmailPage'
 import { NotPrivateLayout } from 'common/router/NotPrivateRoute'
+import { CardsPage } from 'features/cards/cardsPage/CardsPage'
 
 export const router = createHashRouter([
   {
@@ -24,6 +25,10 @@ export const router = createHashRouter([
           {
             path: paths.PACKS,
             element: <PacksList />
+          },
+          {
+            path: paths.CARDS,
+            element: <CardsPage />
           },
           {
             path: paths.PROFILE,

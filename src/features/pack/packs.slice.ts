@@ -7,31 +7,32 @@ const slice = createSlice({
   name: 'packs',
   initialState: {
     packs: {} as TPacksResponse,
-    packParams: {} as TGetPacksArg
+    packParams: {} as TGetPacksArg,
   },
   reducers: {
     setPackParams: (state, action: PayloadAction<TGetPacksArg>) => {
       state.packParams = { ...state.packParams, ...action.payload }
-    }
+    },
   },
   extraReducers: builder => {
     builder
       .addCase(getPacks.fulfilled, (state, action) => {
         state.packs = action.payload.packs
+
       })
   }
 })
 
 
-const getPacks = createAppAsyncThunk<{
-  packs: TPacksResponse
-}, TGetPacksArg>('packs/getPacks', async (arg, { getState }) => {
+const getPacks = createAppAsyncThunk<{ packs: TPacksResponse }, TGetPacksArg>
+('packs/getPacks', async (arg, { getState }) => {
   const params = getState().packs.packParams
   const res = await packApi.getPacks({ ...params, ...arg })
   return { packs: res.data }
 })
 
-const deletePack = createAppAsyncThunk<void, TDeletePackArg>('packs/deletePack', async (arg, thunkAPI) => {
+const deletePack = createAppAsyncThunk<void, TDeletePackArg>
+('packs/deletePack', async (arg, thunkAPI) => {
   const { dispatch, rejectWithValue } = thunkAPI
   try {
     await packApi.deletePack(arg)
