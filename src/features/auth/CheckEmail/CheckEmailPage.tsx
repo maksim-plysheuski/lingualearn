@@ -14,7 +14,7 @@ export const CheckEmailPage = (props: Props) => {
 
   return (
     <div className={s.checkEmailPage}>
-      <div className={s.checkEmailCard}>
+      <div className={s.container}>
         <h1>Check Email</h1>
         <div className={s.iconContainer}>
           <ForwardToInboxIcon color={'primary'} sx={{ fontSize: '52px' }} />
@@ -26,7 +26,7 @@ export const CheckEmailPage = (props: Props) => {
                          textColor={'white'}
                          height={'36'}
                          width={'347'}
-                         margin={'0 0 31px 0'} />
+                         margin={'50px 0 0 0'} />
       </div>
     </div>
   )

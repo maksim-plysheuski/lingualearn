@@ -1,7 +1,7 @@
 import s from 'features/auth/PasswordRecovery/style.module.scss'
 import { FormControl } from '@mui/material'
 import { InputEmail } from 'common/components/Inputs/InputEmail'
-import { NavLink } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import { UniversalButton } from 'common/components/Button/UniversalButton'
 import { SubmitHandler, useForm } from 'react-hook-form'
 import * as yup from 'yup'
@@ -61,11 +61,11 @@ link</a>
                              rounded={true}
                              textColor={'white'}
                              height={'36'}
-                             margin={'0 0 31px 0'} />
+                             margin={'60px 0 0 0'} />
           </FormControl>
         </form>
-        <p>Did you remember your password?</p>
-        <NavLink className={s.link} to={paths.LOGIN}>Try logging in</NavLink>
+        <p className={s.descriptionText}>Did you remember your password?</p>
+        <Link className={s.link} to={paths.LOGIN}>Try logging in</Link>
       </div>
     </div>
   )
