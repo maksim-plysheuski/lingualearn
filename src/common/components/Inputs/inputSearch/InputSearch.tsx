@@ -1,25 +1,26 @@
-import React, { FC, memo, useEffect, useState } from 'react'
+import React, { ChangeEvent, memo } from 'react'
 import InputAdornment from '@mui/material/InputAdornment/InputAdornment'
 import Search from '@mui/icons-material/Search'
 import TextField from '@mui/material/TextField/TextField'
 import s from './style.module.scss'
-import useDebounce from 'common/hooks/useDebounce'
 
 type  Props = {
   width?: string
-  searchCallback: (value: string) => void
+  callback: (value: string) => void
   nameSearch: string
+
 }
 
-export const InputSearch: FC<Props> = memo(({ width, searchCallback, nameSearch, ...restProps }) => {
-  const [searchValue, setSearchValue] = useState<string>(nameSearch)
+export const InputSearch = memo((props: Props, restProps) => {
+  const {
+    callback,
+    width,
+    nameSearch
+  } = props
 
-  const debounce = useDebounce<string>(searchValue)
-
-  useEffect(() => {
-    if (searchValue === undefined) return
-    searchCallback(searchValue)
-  }, [debounce])
+  const onChangeHandler = (e: ChangeEvent<HTMLInputElement>) => {
+    callback(e.currentTarget.value)
+  }
 
   return (
     <div className={s.container}>
@@ -29,8 +30,8 @@ export const InputSearch: FC<Props> = memo(({ width, searchCallback, nameSearch,
         size={'small'}
         focused
         fullWidth
-        onChange={(e) => setSearchValue(e.currentTarget.value)}
-        value={searchValue || ''}
+        onChange={onChangeHandler}
+        value={nameSearch || ''}
         {...restProps}
         sx={{
           position: 'relative',
