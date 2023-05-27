@@ -1,24 +1,23 @@
-import s from 'features/auth/PasswordRecovery/style.module.scss'
+import s from 'features/auth/forgotPassword/style.module.scss'
 import { FormControl } from '@mui/material'
 import { InputEmail } from 'common/components/Inputs/InputEmail'
 import { Link } from 'react-router-dom'
-import { UniversalButton } from 'common/components/Button/UniversalButton'
+import { UniversalButton } from 'common/components/button/UniversalButton'
 import { SubmitHandler, useForm } from 'react-hook-form'
 import * as yup from 'yup'
 import { yupResolver } from '@hookform/resolvers/yup'
-import { forgotPasswordApi } from 'features/auth/PasswordRecovery/passwordRecovery.api'
-import { emailSchema } from 'features/auth/PasswordRecovery/emailSchema'
+import { forgotPasswordApi } from 'features/auth/forgotPassword/forgotPassword.api'
+import { emailSchema } from 'features/auth/forgotPassword/emailSchema'
 import { paths } from 'common/router/path'
 import { useState } from 'react'
-import { CheckEmailPage } from 'features/auth/CheckEmail/CheckEmailPage'
+import { CheckEmailPage } from 'features/auth/checkEmail/CheckEmailPage'
+import { emailMessage } from 'features/auth/forgotPassword/emailMessage'
 
 type InputType = yup.InferType<typeof emailSchema>
 
-export const PasswordRecoveryPage = () => {
+export const ForgotPasswordPage = () => {
   const [showCheckEmail, setShowCheckEmail] = useState<boolean>(false)
-
-  const { register, handleSubmit, formState: { errors } } = useForm<InputType>(
-    {
+  const { register, handleSubmit, formState: { errors }, getValues } = useForm<InputType>({
       mode: 'onBlur',
       resolver: yupResolver(emailSchema)
     }
@@ -27,21 +26,14 @@ export const PasswordRecoveryPage = () => {
   const onFormSubmit: SubmitHandler<InputType> = (data: InputType) => {
     const payload = {
       email: data.email,
-      message: `<div style='background-color: lime; padding: 15px'>
-password recovery link: 
-<a href='http://localhost:3000/#/auth/set-new-password/$token$'>
-link</a>
-</div>`
+      message: emailMessage()
     }
-    forgotPasswordApi.sendEmail(payload).then((res) => {
-      if (res.status === 200) {
-        setShowCheckEmail(true)
-      }
-    })
+    forgotPasswordApi.sendEmail(payload).then(() => setShowCheckEmail(true))
   }
 
+
   if (showCheckEmail) {
-    return <CheckEmailPage email={'need to fix'} />
+    return <CheckEmailPage email={getValues('email')} />
   }
 
   return (

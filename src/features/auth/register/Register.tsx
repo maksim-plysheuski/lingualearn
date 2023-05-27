@@ -1,11 +1,11 @@
-import s from 'features/auth/Register/style.module.scss'
+import s from 'features/auth/register/style.module.scss'
 import { SubmitHandler, useForm } from 'react-hook-form'
 import * as yup from 'yup'
 import { yupResolver } from '@hookform/resolvers/yup'
 import { NavLink, useNavigate } from 'react-router-dom'
 import { authThunks } from 'features/auth/auth.slice'
 import { InputEmail, InputPassword } from 'common/components'
-import { registerSchema } from 'features/auth/Register/registerSchema'
+import { registerSchema } from 'features/auth/register/registerSchema'
 import { useAppDispatch } from 'common/hooks'
 import { paths } from 'common/router/path'
 

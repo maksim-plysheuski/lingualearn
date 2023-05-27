@@ -1,7 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit'
 import { ProfileType } from 'features/auth/auth.api'
 import { createAppAsyncThunk } from 'common/utils/createAppAsyncThunk'
-import { profileApi, TChangeUser } from 'features/Profile/profile.api'
+import { profileApi, TChangeUser } from 'features/profile/profile.api'
 import { authThunks } from 'features/auth/auth.slice'
 
 

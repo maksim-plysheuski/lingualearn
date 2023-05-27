@@ -1,9 +1,9 @@
-import s from 'common/components/Header/Header.module.scss'
-import logo from 'common/components/Header/projectLogo.svg'
-import { UniversalButton } from 'common/components/Button/UniversalButton'
+import s from 'common/components/header/Header.module.scss'
+import logo from 'common/assets/images/projectLogo.svg'
+import { UniversalButton } from 'common/components/button/UniversalButton'
 import { useNavigate } from 'react-router-dom'
 import React from 'react'
-import { AvatarMenu } from 'common/components/AvatarMenu/AvatarMenu'
+import { AvatarMenu } from 'common/components/avatarMenu/AvatarMenu'
 import { useAppSelector } from 'common/hooks'
 import { paths } from 'common/router/path'
 

@@ -1,6 +1,6 @@
 import { useEffect } from 'react'
 import { authThunks } from 'features/auth/auth.slice'
-import { Header } from 'common/components/Header/Header'
+import { Header } from 'common/components/header/Header'
 import { Outlet } from 'react-router-dom'
 import { useAppDispatch, useAppSelector } from 'common/hooks'
 import s from './App.module.scss'

@@ -1,5 +1,5 @@
 import s from './style.module.scss'
-import { UniversalButton } from 'common/components/Button/UniversalButton'
+import { UniversalButton } from 'common/components/button/UniversalButton'
 import { FC } from 'react'
 import { useAppSelector } from 'common/hooks'
 

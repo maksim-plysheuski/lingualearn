@@ -1,8 +1,8 @@
 import { IconButton, TextField, Typography } from '@mui/material'
 import { ChangeEvent, useState } from 'react'
-import { UniversalButton } from 'common/components/Button/UniversalButton'
+import { UniversalButton } from 'common/components/button/UniversalButton'
 import BorderColorIcon from '@mui/icons-material/BorderColor'
-import { profileThunks } from 'features/Profile/profile.slice'
+import { profileThunks } from 'features/profile/profile.slice'
 import { useAppDispatch } from 'common/hooks'
 
 type EditableTitlePropsType = {

@@ -1,5 +1,5 @@
-import s from 'features/auth/CheckEmail/style.module.scss'
-import { UniversalButton } from 'common/components/Button/UniversalButton'
+import s from 'features/auth/checkEmail/style.module.scss'
+import { UniversalButton } from 'common/components/button/UniversalButton'
 import ForwardToInboxIcon from '@mui/icons-material/ForwardToInbox'
 import { useNavigate } from 'react-router-dom'
 import { paths } from 'common/router/path'
@@ -26,7 +26,7 @@ export const CheckEmailPage = (props: Props) => {
                          textColor={'white'}
                          height={'36'}
                          width={'347'}
-                         margin={'50px 0 0 0'} />
+                         margin={'40px 0 0 0'} />
       </div>
     </div>
   )
