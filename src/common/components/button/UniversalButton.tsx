@@ -32,6 +32,7 @@ export const UniversalButton: React.FC<PropsType> = (
   const btnStyle = {
     width: `${width}px`,
     height: `${height}px`,
+    backgroundColor: "#366EFF",
     color: textColor === "white" ? "#FFFFFF" : "#000000",
     margin: margin ? margin : "0px",
     borderRadius: rounded ? "30px" : "2px",

@@ -26,7 +26,6 @@ export const Login = () => {
     dispatch(authThunks.login(data))
   }
 
-
   return (
     <div className={s.loginPage}>
       <div className={s.formContainer}>
