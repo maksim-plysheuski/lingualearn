@@ -12,11 +12,13 @@
     background: #FFFFFF;
     box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1), -1px -1px 2px rgba(0, 0, 0, 0.1);
     border-radius: 2px;
+
     .inputEmail {
       position: absolute;
       width: 100%;
       margin-top: 41px;
     }
+
     .inputPassword {
       position: absolute;
       width: 100%;
@@ -59,11 +61,13 @@
         line-height: 17px;
         text-decoration: none;
         color: #000000;
+
         &:hover {
           text-decoration: underline;
         }
       }
     }
+
     p {
       font-family: 'Montserrat', sans-serif;
       font-style: normal;

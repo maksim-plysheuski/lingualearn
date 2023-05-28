@@ -12,6 +12,7 @@ import { PacksList } from 'features/pack/packsList/PacksList'
 import { CheckEmailPage } from 'features/auth/checkEmail/CheckEmailPage'
 import { NotPrivateLayout } from 'common/router/NotPrivateRoute'
 import { CardsPage } from 'features/cards/cardsPage/CardsPage'
+import { PasswordChangeSuccess } from 'features/auth/setNewPassword/passwordChanged/PasswordChangeSuccess'
 
 export const router = createHashRouter([
   {
@@ -60,6 +61,10 @@ export const router = createHashRouter([
           {
             path: paths.SET_NEW_PASSWORD,
             element: <SetNewPasswordPage />
+          },
+          {
+            path: paths.PASSWORD_CHANGED,
+            element: <PasswordChangeSuccess />
           }
         ]
       }

@@ -1,6 +1,6 @@
 @import "src/common/style/color";
 
-.page {
+.checkEmailPage {
   display: flex;
   justify-content: center;
 
@@ -25,27 +25,25 @@
       margin-top: 35px;
     }
 
-    .form {
-      width: 347px;
+    .iconContainer {
+      width: 115px;
+      height: 115px;
       display: flex;
-      flex-direction: column;
+      justify-content: center;
+      margin-top: 20px;
+    }
 
-      .inputPassword {
-        margin-top: 65px;
-      }
-
-      p {
-        position: absolute;
-        top: 45px;
-        font-size: 14px;
-        line-height: 24px;
-      }
-
-      .helperText {
-        margin-top: 35px;
-        opacity: 0.5;
-      }
+    .helperText {
+      font-family: 'Montserrat', sans-serif;
+      font-style: normal;
+      width: 85%;
+      font-weight: 400;
+      font-size: 15px;
+      line-height: 24px;
+      text-align: center;
+      color: #000000;
+      opacity: 0.5;
+      margin-top: 5px;
     }
   }
-
 }
