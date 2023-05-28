@@ -1,7 +1,7 @@
 import { useForm, SubmitHandler } from 'react-hook-form'
 import { Checkbox, FormControl } from '@mui/material'
 import s from 'features/auth/login/styles.module.scss'
-import { NavLink } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import { authThunks } from 'features/auth/auth.slice'
 import { yupResolver } from '@hookform/resolvers/yup'
 import { UniversalButton } from 'common/components/button/UniversalButton'
@@ -33,11 +33,11 @@ export const Login = () => {
         <h1>Sign In</h1>
         <form onSubmit={handleSubmit(onSubmit)}>
           <FormControl className={s.form}>
-            <InputEmail className={s.inputField}
+            <InputEmail className={s.inputEmail}
                         register={register('email')}
                         errorMessage={errors.email?.message}
             />
-            <InputPassword className={s.inputField}
+            <InputPassword className={s.inputPassword}
                            errorMessage={errors.password?.message}
                            register={register('password')}
             />
@@ -45,12 +45,12 @@ export const Login = () => {
               <Checkbox id='rememberMe' {...register('rememberMe')} />
               <span>Remember me</span>
             </div>
-            <NavLink className={s.forgotPasswordLink} to={paths.FORGOT_PASSWORD}>Forgot Password?</NavLink>
-            <UniversalButton title={'Sign In'} rounded={true} textColor={'white'} height={'36'} />
+            <Link className={s.forgotPasswordLink} to={paths.FORGOT_PASSWORD}>Forgot Password?</Link>
+            <UniversalButton title={'Sign In'} rounded={true} textColor={'white'} height={'36'} margin={'45px 0 0 0'} />
           </FormControl>
         </form>
-        <p>Don't have an account?</p>
-        <NavLink className={s.registrationLink} to={paths.REGISTER}>Sign Up</NavLink>
+        <span className={s.dontHaveAccount}>Don't have an account?</span>
+        <Link className={s.registrationLink} to={paths.REGISTER}>Sign Up</Link>
       </div>
     </div>
   )
