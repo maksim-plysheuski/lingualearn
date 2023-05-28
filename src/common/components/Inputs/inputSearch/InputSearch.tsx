@@ -7,7 +7,7 @@ import s from './style.module.scss'
 type  Props = {
   width?: string
   callback: (value: string) => void
-  nameSearch: string
+  nameSearch: string | null
 
 }
 
