@@ -6,40 +6,44 @@
 
   .container {
     width: 413px;
-    margin-top: 120px;
+    height: 372px;
+    margin-top: 180px;
     background: $whiteBGColor;
     box-shadow: $form;
     border-radius: 2px;
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding: 34px 33px 40px;
+
+    .title {
+      font-family: 'Montserrat', sans-serif;
+      font-style: normal;
+      font-weight: 600;
+      font-size: 26px;
+      line-height: 32px;
+      color: $blackColor;
+      margin-top: 35px;
+    }
 
     .form {
-      width: 100%;
+      width: 347px;
       display: flex;
       flex-direction: column;
 
       .inputPassword {
-        margin-top: 80px;
+        margin-top: 65px;
       }
 
-      .helperText{
-        margin-top: 18px;
+      p {
+        position: absolute;
+        top: 45px;
+        font-size: 14px;
+        line-height: 24px;
       }
 
-      .button {
-        background: $blueColor;
-        color: $whiteBGColor;
-        height: 36px;
-        margin-top: 60px;
-        box-shadow: $button;
-        border-radius: 30px;
-        font-weight: 500;
-        font-size: 16px;
-        line-height: 20px;
-        border: none;
-        cursor: pointer;
+      .helperText {
+        margin-top: 35px;
+        opacity: 0.5;
       }
     }
   }

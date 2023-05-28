@@ -29,7 +29,7 @@ export const Login = () => {
   return (
     <div className={s.loginPage}>
       <div className={s.formContainer}>
-        <h1>Sign In</h1>
+        <h1 className={s.title}>Sign In</h1>
         <form onSubmit={handleSubmit(onSubmit)}>
           <FormControl className={s.form}>
             <InputEmail className={s.inputEmail}
