@@ -1,9 +1,10 @@
-import { IconButton, TextField, Typography } from '@mui/material'
+import { IconButton, TextField } from '@mui/material'
 import { ChangeEvent, useState } from 'react'
+import BorderColorOutlinedIcon from '@mui/icons-material/BorderColorOutlined'
 import { UniversalButton } from 'common/components/button/UniversalButton'
-import BorderColorIcon from '@mui/icons-material/BorderColor'
 import { profileThunks } from 'features/profile/profile.slice'
 import { useAppDispatch } from 'common/hooks'
+import s from './style.module.scss'
 
 type EditableTitlePropsType = {
   userName: string
@@ -34,46 +35,33 @@ export const EditableTitle = (props: EditableTitlePropsType) => {
 
   return (
     <>
-      {!editMode ? (
-        <Typography
-          component={'span'}
-          sx={{
-            fontSize: '20px',
-            fontWeight: '500',
-            display: 'flex',
-            alignItems: 'center',
-            color: 'black',
-            lineHeight: '24px'
-          }}
-          onDoubleClick={onEditMode}
-        >
+      {!editMode ?
+        <span className={s.spanUserName} onDoubleClick={onEditMode}>
           {props.userName}
           <IconButton onClick={onEditMode}>
-            <BorderColorIcon sx={{ color: '#000', fontSize: '20px' }} />
+            <BorderColorOutlinedIcon sx={{ fontSize: '20px' }} />
           </IconButton>
-        </Typography>
-      ) : (
+        </span>
+        :
         <TextField type={'text'}
                    label={'Nickname'}
                    variant={'standard'}
-                   helperText={'enter your name'}
+                   sx={{ marginTop: '24px' }}
                    defaultValue={props.userName}
                    onChange={onChangeInputHandler}
                    onBlur={onBlurHandler}
+                   className={s.inputUserName}
                    autoFocus
                    InputProps={{
                      endAdornment: (
                        <UniversalButton title={'SAVE'}
-                                        onClickCallback={onSaveClickHandler}
-                                        textColor={'white'}
                                         width={'52px'}
                                         fontSize={'12px'}
-                       />
-                     )
-                   }}
-        />
+                                        squared={true}
+                                        onClickCallback={onSaveClickHandler} />)
+                   }} />
 
-      )}
+      }
     </>
   )
 }

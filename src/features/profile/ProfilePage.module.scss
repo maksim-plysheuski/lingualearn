@@ -7,7 +7,6 @@
     margin-top: 80px;
     display: flex;
     flex-direction: column;
-    justify-content: space-around;
     align-items: center;
     width: 413px;
     height: 408px;
@@ -21,11 +20,10 @@
       font-weight: 600;
       font-size: 22px;
       line-height: 27px;
-      text-align: right;
-      color: #000000;
     }
 
     .userPhotoContainer {
+      margin-top: 30px;
     }
 
     .emailSpan {

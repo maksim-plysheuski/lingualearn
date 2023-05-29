@@ -22,11 +22,8 @@ export const CheckEmailPage = (props: Props) => {
         <span>{`We’ve sent an Email with instructions to ${props.email}`}</span>
         <UniversalButton title={'Back to login'}
                          onClickCallback={() => navigate(paths.LOGIN)}
-                         rounded={true}
-                         textColor={'white'}
-                         height={'36'}
                          width={'347'}
-                         margin={'40px 0 0 0'} />
+                         marginTop={'40px'} />
       </div>
     </div>
   )

@@ -44,8 +44,7 @@ export const SetNewPasswordPage = () => {
                          errorMessage={errors.password?.message}
                          register={register('password')} />
           <span className={s.helperText}>Create new password and we will send you further instructions to email</span>
-          <UniversalButton title={'Change password'} rounded={true} textColor={'white'} height={'36'}
-                           margin={'35px 0 0 0'} />
+          <UniversalButton title={'Change password'} marginTop={'35px'} />
         </form>
       </div>
     </div>

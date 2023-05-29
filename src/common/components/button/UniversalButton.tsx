@@ -4,12 +4,12 @@ import React, { ReactNode } from "react";
 type PropsType = {
   title: string
   onClickCallback?: () => void
-  textColor?: "white" | "black"
+  textColor?: string
   width?: string
   height?: string
   fontSize?: string
-  rounded?: boolean
-  margin?: string
+  squared?: boolean
+  marginTop?: string
   type?: "button"
   icon?: ReactNode
 }
@@ -17,12 +17,12 @@ type PropsType = {
 export const UniversalButton: React.FC<PropsType> = (
   {
     title,
-    rounded,
+    squared,
     textColor,
     onClickCallback,
     width,
     height,
-    margin,
+    marginTop,
     type,
     fontSize,
     icon
@@ -30,12 +30,12 @@ export const UniversalButton: React.FC<PropsType> = (
 ) => {
 
   const btnStyle = {
-    width: `${width}px`,
-    height: `${height}px`,
-    backgroundColor: "#366EFF",
-    color: textColor === "white" ? "#FFFFFF" : "#000000",
-    margin: margin ? margin : "0px",
-    borderRadius: rounded ? "30px" : "2px",
+    width: width ? `${width}px` : '347px',
+    height: height ? `${height}px` : '36px',
+    backgroundColor: textColor === 'black' ? '#FCFCFC' : "#366EFF",
+    color: textColor ? textColor : "#FFFFFF",
+    marginTop: marginTop ? marginTop : "0px",
+    borderRadius: squared ? "2px" : "30px",
     textTransform: "none",
     fontWeight: "500",
     fontSize: fontSize ? fontSize : "16px",
@@ -48,9 +48,10 @@ export const UniversalButton: React.FC<PropsType> = (
     <>
       <Button
         sx={btnStyle}
+        disabled={false}
         onClick={onClickCallback}
-        variant={textColor === "white" ? "contained" : "text"}
-        type={type ? "button" : "submit"}
+        variant={textColor ? 'text' : 'contained'}
+        type={type ? type : "submit"}
         startIcon={icon}
       >
         {title}

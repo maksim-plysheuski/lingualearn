@@ -53,7 +53,7 @@ export const Register = () => {
                          errorMessage={errors.passwordConfirmation?.message}
                          register={register('passwordConfirmation')}
           />
-          <UniversalButton title={'Sign Up'} rounded={true} textColor={'white'} height={'36'} margin={'95px 0 0 0'} />
+          <UniversalButton title={'Sign Up'} marginTop={'95px'} />
         </form>
         <span className={s.helpText}>Already have an account?</span>
         <NavLink className={s.link} to={paths.LOGIN}>Sign In</NavLink>

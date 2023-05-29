@@ -45,7 +45,7 @@ export const Login = () => {
               <span>Remember me</span>
             </div>
             <Link className={s.forgotPasswordLink} to={paths.FORGOT_PASSWORD}>Forgot Password?</Link>
-            <UniversalButton title={'Sign In'} rounded={true} textColor={'white'} height={'36'} margin={'45px 0 0 0'} />
+            <UniversalButton title={'Sign In'} marginTop={'45px'} />
           </FormControl>
         </form>
         <span className={s.dontHaveAccount}>Don't have an account?</span>

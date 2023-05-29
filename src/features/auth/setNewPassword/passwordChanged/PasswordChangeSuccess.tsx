@@ -21,11 +21,9 @@ export const PasswordChangeSuccess = () => {
         </span>
         <UniversalButton title={'Login'}
                          onClickCallback={() => navigate(paths.LOGIN)}
-                         rounded={true}
-                         textColor={'white'}
-                         height={'36'}
+                         squared={true}
                          width={'347'}
-                         margin={'37px 0 0 0'} />
+                         marginTop={'37px'} />
       </div>
     </div>
   )

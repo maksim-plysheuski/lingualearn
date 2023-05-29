@@ -30,10 +30,7 @@ export const PageTitleBlock: FC<Props> = (
       {showButton &&
         <UniversalButton title={buttonTitle ? buttonTitle : ''}
                          onClickCallback={buttonCallback}
-                         rounded={true}
                          width={'175'}
-                         height={'36'}
-                         textColor={'white'}
         />}
     </div>
   )

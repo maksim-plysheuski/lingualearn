@@ -49,11 +49,7 @@ export const ForgotPasswordPage = () => {
             <span>
               Enter your address and we will send you further instructions
             </span>
-            <UniversalButton title={'Send Instructions'}
-                             rounded={true}
-                             textColor={'white'}
-                             height={'36'}
-                             margin={'60px 0 0 0'} />
+            <UniversalButton title={'Send Instructions'} marginTop={'60px'} />
           </FormControl>
         </form>
         <p className={s.descriptionText}>Did you remember your password?</p>
