@@ -8,7 +8,7 @@ import { InputEmail, InputPassword } from 'common/components'
 import { registerSchema } from 'features/auth/register/registerSchema'
 import { useAppDispatch } from 'common/hooks'
 import { paths } from 'common/router/path'
-import { UniversalButton } from 'common/components/button/UniversalButton'
+import { UniversalButton } from 'common/components/universalButton/UniversalButton'
 
 
 type Type = yup.InferType<typeof registerSchema>
@@ -17,24 +17,20 @@ type Type = yup.InferType<typeof registerSchema>
 export const Register = () => {
   const dispatch = useAppDispatch()
   const navigate = useNavigate()
-  const {
-    register,
-    handleSubmit,
-    formState: { errors, isValid }
-  } = useForm<Type>({
+  const { register, handleSubmit, formState: { errors }, getFieldState } = useForm<Type>({
     mode: 'onBlur',
     resolver: yupResolver(registerSchema)
   })
 
   const onSubmit: SubmitHandler<Type> = ({ email, password }) => {
-    console.log('hi')
     dispatch(authThunks.register({ email, password })).then((res) => {
-
       if (res.payload) {
         navigate(paths.LOGIN)
       }
     })
   }
+
+  const isButtonDisabled = getFieldState('password').invalid || getFieldState('email').invalid
 
   return (
     <div className={s.register}>
@@ -53,7 +49,7 @@ export const Register = () => {
                          errorMessage={errors.passwordConfirmation?.message}
                          register={register('passwordConfirmation')}
           />
-          <UniversalButton title={'Sign Up'} marginTop={'95px'} />
+          <UniversalButton title={'Sign Up'} disabled={isButtonDisabled} marginTop={'95px'} />
         </form>
         <span className={s.helpText}>Already have an account?</span>
         <NavLink className={s.link} to={paths.LOGIN}>Sign In</NavLink>

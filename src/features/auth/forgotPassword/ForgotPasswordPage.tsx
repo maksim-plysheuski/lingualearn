@@ -2,7 +2,7 @@ import s from 'features/auth/forgotPassword/style.module.scss'
 import { FormControl } from '@mui/material'
 import { InputEmail } from 'common/components/Inputs/InputEmail'
 import { Link } from 'react-router-dom'
-import { UniversalButton } from 'common/components/button/UniversalButton'
+import { UniversalButton } from 'common/components/universalButton/UniversalButton'
 import { SubmitHandler, useForm } from 'react-hook-form'
 import * as yup from 'yup'
 import { yupResolver } from '@hookform/resolvers/yup'
@@ -17,11 +17,10 @@ type InputType = yup.InferType<typeof emailSchema>
 
 export const ForgotPasswordPage = () => {
   const [showCheckEmail, setShowCheckEmail] = useState<boolean>(false)
-  const { register, handleSubmit, formState: { errors }, getValues } = useForm<InputType>({
+  const { register, handleSubmit, formState: { errors}, getFieldState, getValues } = useForm<InputType>({
       mode: 'onBlur',
       resolver: yupResolver(emailSchema)
-    }
-  )
+    })
 
   const onFormSubmit: SubmitHandler<InputType> = (data: InputType) => {
     const payload = {
@@ -31,6 +30,7 @@ export const ForgotPasswordPage = () => {
     forgotPasswordApi.sendEmail(payload).then(() => setShowCheckEmail(true))
   }
 
+  const isButtonDisabled = getFieldState('email').invalid
 
   if (showCheckEmail) {
     return <CheckEmailPage email={getValues('email')} />
@@ -49,7 +49,7 @@ export const ForgotPasswordPage = () => {
             <span>
               Enter your address and we will send you further instructions
             </span>
-            <UniversalButton title={'Send Instructions'} marginTop={'60px'} />
+            <UniversalButton title={'Send Instructions'} disabled={isButtonDisabled} marginTop={'60px'} />
           </FormControl>
         </form>
         <p className={s.descriptionText}>Did you remember your password?</p>

@@ -1,36 +1,37 @@
 import { IconButton, TextField } from '@mui/material'
-import { ChangeEvent, useState } from 'react'
+import { useState } from 'react'
 import BorderColorOutlinedIcon from '@mui/icons-material/BorderColorOutlined'
-import { UniversalButton } from 'common/components/button/UniversalButton'
+import { UniversalButton } from 'common/components/universalButton/UniversalButton'
 import { profileThunks } from 'features/profile/profile.slice'
 import { useAppDispatch } from 'common/hooks'
 import s from './style.module.scss'
+import { SubmitHandler, useForm } from 'react-hook-form'
+import { yupResolver } from '@hookform/resolvers/yup'
+import * as yup from 'yup'
+import { userNameSchema } from 'features/profile/userNameSchema'
 
 type EditableTitlePropsType = {
   userName: string
 }
 
+type InputType = yup.InferType<typeof userNameSchema>
+
 export const EditableTitle = (props: EditableTitlePropsType) => {
   const dispatch = useAppDispatch()
-
-  const [newUserName, setNewUserName] = useState<string>(props.userName)
   const [editMode, setEditMode] = useState<boolean>(false)
 
+  const { register, handleSubmit, formState: { errors } } = useForm<InputType>({
+    mode: 'onBlur',
+    resolver: yupResolver(userNameSchema)
+  })
 
-  const onChangeInputHandler = (e: ChangeEvent<HTMLInputElement>) => {
-    setNewUserName(e.currentTarget.value)
-  }
 
   const onEditMode = () => setEditMode(true)
 
-  const onSaveClickHandler = () => {
-    dispatch(profileThunks.changeUserData({ name: newUserName }))
-    setEditMode(false)
-  }
 
-  const onBlurHandler = () => {
+  const onFormSubmit: SubmitHandler<InputType> = (data: InputType) => {
+    dispatch(profileThunks.changeUserData({ name: data.userName }))
     setEditMode(false)
-    dispatch(profileThunks.changeUserData({ name: newUserName }))
   }
 
   return (
@@ -43,23 +44,27 @@ export const EditableTitle = (props: EditableTitlePropsType) => {
           </IconButton>
         </span>
         :
-        <TextField type={'text'}
-                   label={'Nickname'}
-                   variant={'standard'}
-                   sx={{ marginTop: '24px' }}
-                   defaultValue={props.userName}
-                   onChange={onChangeInputHandler}
-                   onBlur={onBlurHandler}
-                   className={s.inputUserName}
-                   autoFocus
-                   InputProps={{
-                     endAdornment: (
-                       <UniversalButton title={'SAVE'}
-                                        width={'52px'}
-                                        fontSize={'12px'}
-                                        squared={true}
-                                        onClickCallback={onSaveClickHandler} />)
-                   }} />
+        <form onSubmit={handleSubmit(onFormSubmit)}>
+          <TextField autoFocus
+                     type={'text'}
+                     label={'Nickname'}
+                     variant={'standard'}
+                     sx={{ marginTop: '25px' }}
+                     className={s.inputUserName}
+                     defaultValue={props.userName}
+                     {...register('userName')}
+                     error={!!errors.userName?.message}
+                     helperText={errors.userName?.message}
+                     InputProps={{
+                       endAdornment: (
+                         <UniversalButton title={'SAVE'}
+                                          width={'52px'}
+                                          fontSize={'12px'}
+                                          squared={true}
+                                          disabled={!!errors.userName?.message}
+                         />)
+                     }} />
+        </form>
 
       }
     </>

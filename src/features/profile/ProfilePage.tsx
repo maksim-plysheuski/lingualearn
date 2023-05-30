@@ -1,7 +1,7 @@
 import LogoutIcon from '@mui/icons-material/Logout'
 import s from 'features/profile/ProfilePage.module.scss'
 import { EditableTitle } from 'common/components/editableTitle/EditableTitle'
-import { UniversalButton } from 'common/components/button/UniversalButton'
+import { UniversalButton } from 'common/components/universalButton/UniversalButton'
 import { Avatar, Badge, IconButton } from '@mui/material'
 import LocalSeeOutlinedIcon from '@mui/icons-material/LocalSeeOutlined'
 import { ChangeEvent } from 'react'
@@ -58,7 +58,6 @@ export const ProfilePage = () => {
         <span className={s.emailSpan}>{profile ? profile.email : 'user@mail.com'}</span>
         <UniversalButton title={'Log out'}
                          width={'127'}
-                         marginTop={'25px'}
                          textColor={'black'}
                          icon={<LogoutIcon />}
                          onClickCallback={logoutHandler}

@@ -4,7 +4,7 @@ import { Login } from 'features/auth/login/Login'
 import { Register } from 'features/auth/register/Register'
 import { ProfilePage } from 'features/profile/ProfilePage'
 import { ForgotPasswordPage } from 'features/auth/forgotPassword/ForgotPasswordPage'
-import { SetNewPasswordPage } from 'features/auth/setNewPassword/SetNewPasswordPage'
+import { ChangePasswordPage } from 'features/auth/changePassword/ChangePasswordPage'
 import React from 'react'
 import { paths } from 'common/router/path'
 import { PrivateLayout } from 'common/router/PrivateRoute'
@@ -12,7 +12,7 @@ import { PacksList } from 'features/pack/packsList/PacksList'
 import { CheckEmailPage } from 'features/auth/checkEmail/CheckEmailPage'
 import { NotPrivateLayout } from 'common/router/NotPrivateRoute'
 import { CardsPage } from 'features/cards/cardsPage/CardsPage'
-import { PasswordChangeSuccess } from 'features/auth/setNewPassword/passwordChanged/PasswordChangeSuccess'
+import { PasswordChangeSuccess } from 'features/auth/changePassword/passwordChanged/PasswordChangeSuccess'
 
 export const router = createHashRouter([
   {
@@ -60,7 +60,7 @@ export const router = createHashRouter([
           },
           {
             path: paths.SET_NEW_PASSWORD,
-            element: <SetNewPasswordPage />
+            element: <ChangePasswordPage />
           },
           {
             path: paths.PASSWORD_CHANGED,

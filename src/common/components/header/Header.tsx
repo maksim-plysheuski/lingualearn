@@ -1,6 +1,6 @@
 import s from 'common/components/header/Header.module.scss'
 import logo from 'common/assets/images/projectLogo.svg'
-import { UniversalButton } from 'common/components/button/UniversalButton'
+import { UniversalButton } from 'common/components/universalButton/UniversalButton'
 import { Link, useNavigate } from 'react-router-dom'
 import React from 'react'
 import { AvatarMenu } from 'common/components/avatarMenu/AvatarMenu'

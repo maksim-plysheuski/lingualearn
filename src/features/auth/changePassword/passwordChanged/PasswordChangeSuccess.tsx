@@ -1,8 +1,8 @@
 import React from 'react'
-import s from './style.module.scss'
+import s from 'features/auth/changePassword/passwordChanged/style.module.scss'
 import { useNavigate } from 'react-router-dom'
 import CheckCircleOutlineIcon from '@mui/icons-material/CheckCircleOutline';
-import { UniversalButton } from 'common/components/button/UniversalButton'
+import { UniversalButton } from 'common/components/universalButton/UniversalButton'
 import { paths } from 'common/router/path'
 
 
@@ -21,8 +21,6 @@ export const PasswordChangeSuccess = () => {
         </span>
         <UniversalButton title={'Login'}
                          onClickCallback={() => navigate(paths.LOGIN)}
-                         squared={true}
-                         width={'347'}
                          marginTop={'37px'} />
       </div>
     </div>

@@ -1,5 +1,5 @@
 import s from 'features/auth/checkEmail/style.module.scss'
-import { UniversalButton } from 'common/components/button/UniversalButton'
+import { UniversalButton } from 'common/components/universalButton/UniversalButton'
 import ForwardToInboxIcon from '@mui/icons-material/ForwardToInbox'
 import { useNavigate } from 'react-router-dom'
 import { paths } from 'common/router/path'

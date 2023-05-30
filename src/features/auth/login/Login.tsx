@@ -4,7 +4,7 @@ import s from 'features/auth/login/styles.module.scss'
 import { Link } from 'react-router-dom'
 import { authThunks } from 'features/auth/auth.slice'
 import { yupResolver } from '@hookform/resolvers/yup'
-import { UniversalButton } from 'common/components/button/UniversalButton'
+import { UniversalButton } from 'common/components/universalButton/UniversalButton'
 import * as yup from 'yup'
 import { InputEmail, InputPassword } from 'common/components'
 import { loginSchema } from 'features/auth/login/loginSchema'
@@ -17,7 +17,7 @@ type InputsType = yup.InferType<typeof loginSchema>
 export const Login = () => {
   const dispatch = useAppDispatch()
 
-  const { register, handleSubmit, formState: { errors } } = useForm<InputsType>({
+  const { register, handleSubmit, formState: { errors }, getFieldState,  } = useForm<InputsType>({
     mode: 'onBlur',
     resolver: yupResolver(loginSchema)
   })
@@ -25,6 +25,8 @@ export const Login = () => {
   const onSubmit: SubmitHandler<InputsType> = (data: InputsType) => {
     dispatch(authThunks.login(data))
   }
+
+  const isButtonDisabled = getFieldState('password').invalid || getFieldState('email').invalid
 
   return (
     <div className={s.loginPage}>
@@ -45,7 +47,7 @@ export const Login = () => {
               <span>Remember me</span>
             </div>
             <Link className={s.forgotPasswordLink} to={paths.FORGOT_PASSWORD}>Forgot Password?</Link>
-            <UniversalButton title={'Sign In'} marginTop={'45px'} />
+            <UniversalButton title={'Sign In'} disabled={isButtonDisabled} marginTop={'45px'} />
           </FormControl>
         </form>
         <span className={s.dontHaveAccount}>Don't have an account?</span>
