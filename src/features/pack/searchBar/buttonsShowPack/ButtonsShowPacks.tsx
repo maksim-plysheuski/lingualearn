@@ -10,7 +10,7 @@ export const ButtonsShowPacks = memo(() => {
 
   const dispatch = useAppDispatch()
   const userId = useAppSelector(state => state.auth.profile._id)
-  const [select, setSelect] = useState(userId)
+  const [select, setSelect] = useState('')
 
   const getPackHandler = (user_id: string) => {
     dispatch(packAction.setPackParams({ user_id }))

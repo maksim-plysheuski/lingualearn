@@ -84,3 +84,15 @@ export type TGetPacksArg = {
   user_id?: string
   block?: boolean
 }
+
+export type PackArgs = {
+  packName?: string
+  min?: string
+  max?: string
+  // sortPacks: string
+  // page: number
+  // pageCount: number
+  user_id?: string
+  // block: boolean
+}
+
