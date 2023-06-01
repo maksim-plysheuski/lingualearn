@@ -15,11 +15,11 @@ export const CountSearch = memo(() => {
   const [value, setValue] = useState<number[]>([minValue, maxValue])
 
   useEffect(() => {
-      setValue([min!, max!])
+    setValue([min!, max!])
   }, [min, max])
 
   useEffect(() => {
-     setValue([minValue, maxValue])
+    setValue([minValue, maxValue])
   }, [maxValue, minValue])
 
   const handleChange = (event: Event, newValue: number | number[]) => {

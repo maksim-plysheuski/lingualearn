@@ -29,7 +29,6 @@ const slice = createSlice({
 const authMe = createAppAsyncThunk<{ profile: ProfileType, isLoggedIn: boolean }>('auth/me', async (arg, thunkAPI) => {
   return await thunkTryCatch(thunkAPI, async () => {
     const res = await authApi.authMe()
-    // thunkAPI.dispatch(packAction.setPackParams({ user_id: res._id }))
     return { profile: res, isLoggedIn: true }
   })
 })

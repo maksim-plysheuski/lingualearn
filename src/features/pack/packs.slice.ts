@@ -7,12 +7,12 @@ const slice = createSlice({
   name: 'packs',
   initialState: {
     packs: {} as TPacksResponse,
-    packParams: {} as TGetPacksArg,
+    packParams: {} as TGetPacksArg
   },
   reducers: {
     setPackParams: (state, action: PayloadAction<TGetPacksArg>) => {
       state.packParams = { ...state.packParams, ...action.payload }
-    },
+    }
   },
   extraReducers: builder => {
     builder
