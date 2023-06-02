@@ -1,5 +1,5 @@
 import s from './style.module.scss'
-import { UniversalButton } from 'common/components/Button/UniversalButton'
+import { UniversalButton } from 'common/components/universalButton/UniversalButton'
 import { FC } from 'react'
 import { useAppSelector } from 'common/hooks'
 
@@ -30,10 +30,7 @@ export const PageTitleBlock: FC<Props> = (
       {showButton &&
         <UniversalButton title={buttonTitle ? buttonTitle : ''}
                          onClickCallback={buttonCallback}
-                         rounded={true}
                          width={'175'}
-                         height={'36'}
-                         textColor={'white'}
         />}
     </div>
   )

@@ -1,17 +1,18 @@
 import { createHashRouter } from 'react-router-dom'
 import App from 'app/App'
-import { Login } from 'features/auth/Login/Login'
-import { Register } from 'features/auth/Register/Register'
-import { ProfilePage } from 'features/Profile/ProfilePage'
-import { PasswordRecoveryPage } from 'features/auth/PasswordRecovery/PasswordRecoveryPage'
-import { CreateNewPassword } from 'features/auth/CreateNewPassword/CreateNewPassword'
+import { Login } from 'features/auth/login/Login'
+import { Register } from 'features/auth/register/Register'
+import { ProfilePage } from 'features/profile/ProfilePage'
+import { ForgotPasswordPage } from 'features/auth/forgotPassword/ForgotPasswordPage'
+import { ChangePasswordPage } from 'features/auth/changePassword/ChangePasswordPage'
 import React from 'react'
 import { paths } from 'common/router/path'
 import { PrivateLayout } from 'common/router/PrivateRoute'
 import { PacksList } from 'features/pack/packsList/PacksList'
-import { CheckEmailPage } from 'features/auth/CheckEmail/CheckEmailPage'
+import { CheckEmailPage } from 'features/auth/checkEmail/CheckEmailPage'
 import { NotPrivateLayout } from 'common/router/NotPrivateRoute'
 import { CardsPage } from 'features/cards/cardsPage/CardsPage'
+import { PasswordChangeSuccess } from 'features/auth/changePassword/passwordChanged/PasswordChangeSuccess'
 
 export const router = createHashRouter([
   {
@@ -51,7 +52,7 @@ export const router = createHashRouter([
 
           {
             path: paths.FORGOT_PASSWORD,
-            element: <PasswordRecoveryPage />
+            element: <ForgotPasswordPage />
           },
           {
             path: paths.CHECK_EMAIL,
@@ -59,7 +60,11 @@ export const router = createHashRouter([
           },
           {
             path: paths.SET_NEW_PASSWORD,
-            element: <CreateNewPassword />
+            element: <ChangePasswordPage />
+          },
+          {
+            path: paths.PASSWORD_CHANGED,
+            element: <PasswordChangeSuccess />
           }
         ]
       }

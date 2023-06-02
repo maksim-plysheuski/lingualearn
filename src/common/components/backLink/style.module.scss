@@ -1,3 +1,6 @@
+@import "src/common/style/variables";
+@import "src/common/style/mixins";
+
 .backLinkContainer {
   margin-left: 10%;
   margin-top: 24px;
@@ -6,18 +9,13 @@
   align-items: center;
 
   .backLink {
-    font-family: 'Montserrat', sans-serif;
+    @include text(400, 15px, 24px);
     margin-left: 10px;
-    font-style: normal;
-    font-weight: 400;
-    font-size: 15px;
-    line-height: 24px;
-    color: #000000;
     text-decoration: none;
+    transition: color 250ms ease-in-out;
 
     &:hover {
-      color: #366EFF;
-      transition: 250ms ease-in-out;
+      color: $blueColor;
     }
   }
 }

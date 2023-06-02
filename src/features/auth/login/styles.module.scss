@@ -1,0 +1,101 @@
+@import "src/common/style/variables";
+@import "src/common/style/mixins";
+
+.loginPage {
+  display: flex;
+  justify-content: center;
+
+  .formContainer {
+    height: 552px;
+    width: 413px;
+    display: flex;
+    margin-top: 100px;
+    flex-direction: column;
+    align-items: center;
+    background: $whiteBGColor;
+    box-shadow: $form;
+    border-radius: 2px;
+
+    .inputEmail {
+      position: absolute;
+      width: 100%;
+      margin-top: 41px;
+    }
+
+    .inputPassword {
+      position: absolute;
+      width: 100%;
+      margin-top: 113px;
+    }
+
+    h1 {
+      @include text(600, 26px, 32px);
+      margin-top: 35px;
+    }
+
+    .form {
+      width: 347px;
+
+      .checkbox {
+        display: flex;
+        align-items: center;
+        margin-left: -10px;
+        margin-top: 195px;
+        @include text(500, 14px, 17px);
+        text-align: center;
+      }
+
+      .forgotPasswordLink {
+        @include text(500, 14px, 17px);
+        align-self: flex-end;
+        margin-top: 29px;
+        text-decoration: none;
+
+        &:hover {
+          color: #366EFF;
+          text-decoration: underline;
+
+        }
+      }
+    }
+
+    .dontHaveAccount {
+      @include text(600, 14px, 24px);
+      text-align: center;
+      opacity: 0.5;
+      margin-top: 25px;
+    }
+
+    .registrationLink {
+      @include text(600, 16px, 24px);
+      margin-top: 11px;
+      text-align: center;
+      text-decoration-line: underline;
+      color: $blueColor;
+    }
+  }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

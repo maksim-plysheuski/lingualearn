@@ -1,6 +1,6 @@
 import { useEffect } from 'react'
 import { authThunks } from 'features/auth/auth.slice'
-import { Header } from 'common/components/Header/Header'
+import { Header } from 'common/components/header/Header'
 import { Outlet } from 'react-router-dom'
 import { useAppDispatch, useAppSelector } from 'common/hooks'
 import s from './App.module.scss'
@@ -23,8 +23,8 @@ function App() {
       <Header />
       <div className={s.Content}>
         <GlobalError />
-        {isLoading && <LinearProgress />}
-        {isAppInitialized ? <Outlet /> : <h1>LOADING... - PRELOADER</h1>}
+        {isLoading && <LinearProgress sx={{position: "absolute", top: "60px", width: '100%'}} />}
+        {isAppInitialized && <Outlet />}
       </div>
     </div>
   )

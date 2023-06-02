@@ -20,7 +20,6 @@ const slice = createSlice({
       state.isLoading = action.payload.isLoading
     },
     setError: (state, action: PayloadAction<{ error: string | null }>) => {
-      debugger
       state.error = action.payload.error
 
     }

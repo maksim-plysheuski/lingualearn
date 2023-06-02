@@ -1,0 +1,52 @@
+@import "src/common/style/variables";
+@import "src/common/style/mixins";
+
+.recoveryPasswordPage {
+  display: flex;
+  justify-content: center;
+
+  .formContainer {
+    margin-top: 100px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 413px;
+    height: 456px;
+    background: $whiteBGColor;
+    box-shadow: $form;
+    border-radius: 2px;
+
+    h1 {
+      @include text(600, 26px, 32px);
+      margin-top: 35px;
+    }
+
+    .form {
+      width: 347px;
+
+      .inputField {
+        margin-top: 36px;
+        width: 100%;
+        position: absolute;
+      }
+
+      span {
+        @include text(400, 14px, 24px);
+        margin-top: 120px;
+        opacity: 0.5;
+      }
+    }
+
+    .descriptionText {
+      @include text(600, 14px, 24px);
+      margin-top: 31px;
+      opacity: 0.5;
+    }
+
+    .link {
+      @include text(600, 16px, 24px);
+      margin-top: 11px;
+      color: $blueColor;
+    }
+  }
+}

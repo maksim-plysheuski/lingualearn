@@ -10,7 +10,7 @@ export const packApi = {
   deletePack: (arg: TDeletePackArg) => {
     return instance.delete<TDeletePackResponse>(`/cards/pack?id=${arg.id}`)
   },
-  changePack: (arg: TChangeArg) => {
+  change: (arg: TChangeArg) => {
     return instance.put<TChangeResponse>('/cards/pack', arg).then(res => res.data)
   }
 }

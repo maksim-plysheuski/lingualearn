@@ -1,0 +1,43 @@
+@import "src/common/style/variables";
+@import "src/common/style/mixins";
+
+.checkEmailPage {
+  display: flex;
+  justify-content: center;
+
+  .container {
+    margin-top: 100px;
+    background: $whiteBGColor;
+    box-shadow: $form;
+    border-radius: 2px;
+    width: 413px;
+    height: 456px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    h1 {
+      @include text(600, 26px, 32px);
+      margin-top: 35px;
+    }
+
+    .iconContainer {
+      width: 115px;
+      height: 115px;
+      background: rgba(54, 110, 255, 0.05);
+      border: 1px solid $blueColor;
+      border-radius: 50%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin-top: 55px;
+    }
+
+    span {
+      @include text(400, 15px, 24px);
+      text-align: center;
+      opacity: 0.5;
+      margin-top: 48px;
+    }
+  }
+}
