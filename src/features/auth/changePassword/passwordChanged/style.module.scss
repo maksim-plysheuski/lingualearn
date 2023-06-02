@@ -1,4 +1,5 @@
-@import "../../../../common/style/color";
+@import "src/common/style/variables";
+@import "src/common/style/mixins";
 
 .checkEmailPage {
   display: flex;
@@ -16,12 +17,7 @@
     align-items: center;
 
     .title {
-      font-family: 'Montserrat', sans-serif;
-      font-style: normal;
-      font-weight: 600;
-      font-size: 26px;
-      line-height: 32px;
-      color: $blackColor;
+      @include text(600, 26px, 32px);
       margin-top: 35px;
     }
 
@@ -34,14 +30,9 @@
     }
 
     .helperText {
-      font-family: 'Montserrat', sans-serif;
-      font-style: normal;
+      @include text(400, 15px, 24px);
       width: 85%;
-      font-weight: 400;
-      font-size: 15px;
-      line-height: 24px;
       text-align: center;
-      color: #000000;
       opacity: 0.5;
       margin-top: 5px;
     }

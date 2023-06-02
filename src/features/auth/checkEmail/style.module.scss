@@ -1,11 +1,14 @@
+@import "src/common/style/variables";
+@import "src/common/style/mixins";
+
 .checkEmailPage {
   display: flex;
   justify-content: center;
 
   .container {
     margin-top: 100px;
-    background: #FFFFFF;
-    box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1), -1px -1px 2px rgba(0, 0, 0, 0.1);
+    background: $whiteBGColor;
+    box-shadow: $form;
     border-radius: 2px;
     width: 413px;
     height: 456px;
@@ -14,12 +17,7 @@
     align-items: center;
 
     h1 {
-      font-family: 'Montserrat', sans-serif;
-      font-style: normal;
-      font-weight: 600;
-      font-size: 26px;
-      line-height: 32px;
-      color: #000000;
+      @include text(600, 26px, 32px);
       margin-top: 35px;
     }
 
@@ -27,7 +25,7 @@
       width: 115px;
       height: 115px;
       background: rgba(54, 110, 255, 0.05);
-      border: 1px solid #366EFF;
+      border: 1px solid $blueColor;
       border-radius: 50%;
       display: flex;
       justify-content: center;
@@ -36,14 +34,8 @@
     }
 
     span {
-      font-family: 'Montserrat', sans-serif;
-      font-style: normal;
-      width: 85%;
-      font-weight: 400;
-      font-size: 15px;
-      line-height: 24px;
+      @include text(400, 15px, 24px);
       text-align: center;
-      color: #000000;
       opacity: 0.5;
       margin-top: 48px;
     }
