@@ -11,6 +11,10 @@ export const useSearchCards = () => {
   const packName = useAppSelector(state => state.packs.packParams.packName)
   const paramsCardId = useAppSelector(state => state.packs.packParams.user_id)
   const userId = useAppSelector(state => state.auth.profile._id)
+  const minCardsCount = useAppSelector(state => state.packs.packs.minCardsCount)
+  const maxCardsCount = useAppSelector(state => state.packs.packs.maxCardsCount)
+  const min = useAppSelector(state => state.packs.packParams.min)
+  const max = useAppSelector(state => state.packs.packParams.max)
   const [searchParams, setSearchParams] = useSearchParams()
   const params = Object.fromEntries(searchParams)
 
@@ -27,7 +31,7 @@ export const useSearchCards = () => {
 
   const setPackName = (packName: string) => {
     dispatch(packAction.setPackParams({ packName }))
-    clearInterval(interval)
+    clearTimeout(interval)
     const idInterval = setTimeout(() => {
       dispatch(packsThunks.getPacks({ packName }))
     }, 700)
@@ -39,7 +43,16 @@ export const useSearchCards = () => {
     dispatch(packsThunks.getPacks({ user_id }))
   }, [])
 
+  const setMinMaxCards = (minMax: number[]) => {
+    dispatch(packAction.setPackParams({ min: minMax[0], max: minMax[1] }))
+  }
+
   return {
+    max,
+    min,
+    maxCardsCount,
+    minCardsCount,
+    setMinMaxCards,
     userId,
     paramsCardId,
     setMyAllCards,
