@@ -18,17 +18,33 @@ const slice = createSlice({
     builder
       .addCase(getPacks.fulfilled, (state, action) => {
         state.packs = action.payload.packs
-
+        if (action.payload.arg.user_id || action.payload.arg.user_id === '') {
+          state.packParams = {
+            ...state.packParams,
+            packName: '',
+            min: action.payload.packs.minCardsCount,
+            max: action.payload.packs.maxCardsCount
+          }
+        }
+        if (!Object.keys(state.packParams).length) {
+          state.packParams = {
+            user_id: '',
+            packName: '',
+            min: action.payload.packs.minCardsCount,
+            max: action.payload.packs.maxCardsCount
+          }
+        }
       })
   }
 })
 
 
-const getPacks = createAppAsyncThunk<{ packs: TPacksResponse }, TGetPacksArg>
+const getPacks = createAppAsyncThunk<{ packs: TPacksResponse, arg: TGetPacksArg }, TGetPacksArg>
 ('packs/getPacks', async (arg, { getState }) => {
+
   const params = getState().packs.packParams
   const res = await packApi.getPacks({ ...params, ...arg })
-  return { packs: res.data }
+  return { packs: res.data, arg }
 })
 
 const deletePack = createAppAsyncThunk<void, TDeletePackArg>

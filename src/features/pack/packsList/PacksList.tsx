@@ -11,6 +11,7 @@ import { packAction, packsThunks } from 'features/pack/packs.slice'
 
 export const PacksList = () => {
   const { params, dispatch } = useSearchCards()
+  const packs = useAppSelector(state => state.packs.packs.cardPacks)
   const currentPage = useAppSelector(state => state.packs.packs.page)
   const packsTotalCount = useAppSelector(state => state.packs.packs.cardPacksTotalCount)
   const packsPerPage = useAppSelector(state => state.packs.packs.pageCount)
@@ -24,6 +25,7 @@ export const PacksList = () => {
     //need to fix
   }
 
+  if (!packs) return <h1>louding</h1>
   return (
     <div className={s.packsList}>
       <PageTitleBlock pageTitle={'Packs List'}
