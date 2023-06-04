@@ -1,13 +1,12 @@
 import { useAppDispatch, useAppSelector } from 'common/hooks'
 import { useSearchParams } from 'react-router-dom'
 import { useCallback, useEffect, useState } from 'react'
-import { PackArgs } from 'features/pack/packApi'
+import { PackArgs, TGetPacksArg } from 'features/pack/packApi'
 import { packAction, packsThunks } from 'features/pack/packs.slice'
 
 export const useSearchCards = () => {
   const dispatch = useAppDispatch()
   const [interval, setInterval] = useState<number | undefined>(undefined)
-  const packParams = useAppSelector(state => state.packs.packParams)
   const packName = useAppSelector(state => state.packs.packParams.packName)
   const paramsCardId = useAppSelector(state => state.packs.packParams.user_id)
   const userId = useAppSelector(state => state.auth.profile._id)
@@ -18,16 +17,14 @@ export const useSearchCards = () => {
   const [searchParams, setSearchParams] = useSearchParams()
   const params = Object.fromEntries(searchParams)
 
-
   useEffect(() => {
     const lastParams: PackArgs = {}
-    if (packParams.user_id) lastParams.user_id = packParams.user_id
-    if (packParams.packName) lastParams.packName = packParams.packName
-    if (packParams.min) lastParams.min = packParams?.min.toString()
-    if (packParams.max) lastParams.max = packParams?.max.toString()
+    if (paramsCardId) lastParams.user_id = paramsCardId
+    if (packName) lastParams.packName = packName
+    if (min) lastParams.min = min.toString()
+    if (max) lastParams.max = max.toString()
     setSearchParams({ ...lastParams })
-  }, [packParams])
-
+  }, [paramsCardId, packName, min, max])
 
   const setPackName = (packName: string) => {
     dispatch(packAction.setPackParams({ packName }))
@@ -47,7 +44,19 @@ export const useSearchCards = () => {
     dispatch(packAction.setPackParams({ min: minMax[0], max: minMax[1] }))
   }
 
+  const resetSearchParams = () => {
+    const resetParams: TGetPacksArg = {
+      packName: '',
+      sortPacks: '',
+      min: minCardsCount,
+      max: maxCardsCount
+    }
+    dispatch(packAction.setPackParams(resetParams))
+    dispatch(packsThunks.getPacks({}))
+  }
+
   return {
+    resetSearchParams,
     max,
     min,
     maxCardsCount,

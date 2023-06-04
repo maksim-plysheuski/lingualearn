@@ -9,7 +9,7 @@ export const CountSearch = memo(() => {
 
   const { setMinMaxCards, min, max, maxCardsCount, minCardsCount, dispatch } = useSearchCards()
 
-  const [value, setValue] = useState<number | number[]>([0, 0])
+  const [value, setValue] = useState<number | number[]>([])
 
   useEffect(() => {
     if (min && max) {
