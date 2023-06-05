@@ -16,7 +16,7 @@ export const authApi = {
   forgotPassword: (arg: TForgot) => {
     return instance.post('auth/forgot', arg)
   },
-  newPassword: (arg: TNewPassword) => {
+  setNewPassword: (arg: TNewPassword) => {
     return instance.post('auth/set-new-password', arg)
   }
 

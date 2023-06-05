@@ -27,7 +27,9 @@ export const Login = () => {
     dispatch(authThunks.login(data))
       .unwrap()
       .then(() => toast.success('You have successfully logged in'))
-      .catch()
+      .catch((err) => {
+        toast.error(err.e.response ? err.e.response.data.error : err.e.message)
+      })
   }
 
   const isButtonDisabled = getFieldState('password').invalid || getFieldState('email').invalid
