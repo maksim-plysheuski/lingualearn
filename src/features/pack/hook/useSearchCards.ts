@@ -57,7 +57,7 @@ export const useSearchCards = () => {
   const resetSearchParams = () => {
     const resetParams: TGetPacksArg = {
       packName: '',
-      sortPacks: '',
+      user_id: '',
       min: minCardsCount,
       max: maxCardsCount
     }
