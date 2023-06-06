@@ -1,9 +1,8 @@
-import { createSlice, isFulfilled, isPending } from '@reduxjs/toolkit'
+import { createSlice } from '@reduxjs/toolkit'
 import { ArgLoginType, ArgRegisterType, authApi, ProfileType, TNewPassword } from 'features/auth/auth.api'
 import { createAppAsyncThunk } from 'common/utils/createAppAsyncThunk'
 import { packAction } from 'features/pack/packs.slice'
 import { thunkTryCatch } from 'common/utils/thunk-try-catch'
-import { cardsAction } from 'features/cards/cards.slice'
 
 
 const slice = createSlice({
@@ -25,7 +24,6 @@ const slice = createSlice({
       .addCase(logout.fulfilled, (state, action) => {
         state.isLoggedIn = action.payload.isLoggedIn
       })
-
   }
 })
 
@@ -43,13 +41,15 @@ const login = createAppAsyncThunk<{ isLoggedIn: boolean }, ArgLoginType>
     await authApi.login(arg)
     await thunkAPI.dispatch(authMe())
     return { isLoggedIn: true }
-  })
+  }, false)
 })
 
 const logout = createAppAsyncThunk<{ isLoggedIn: boolean }>
-('auth/logout', async () => {
-  await authApi.logout()
-  return { isLoggedIn: false }
+('auth/logout', async (arg, thunkAPI) => {
+  return thunkTryCatch(thunkAPI, async () => {
+    await authApi.logout()
+    return { isLoggedIn: false }
+  })
 })
 
 const register = createAppAsyncThunk<boolean, ArgRegisterType>
@@ -60,21 +60,15 @@ const register = createAppAsyncThunk<boolean, ArgRegisterType>
   })
 })
 
-const newPassword = createAppAsyncThunk<void, TNewPassword>('auth/newPassword', async (arg, thunkAPI) => {
-  const { rejectWithValue } = thunkAPI
-  try {
-    await authApi.newPassword({ password: arg.password, resetPasswordToken: arg.resetPasswordToken })
-  } catch (e) {
-    return rejectWithValue(null)
-  }
+const setNewPassword = createAppAsyncThunk<void, TNewPassword>('auth/newPassword', async (arg, thunkAPI) => {
+  return thunkTryCatch(thunkAPI, async () => {
+    await authApi.setNewPassword({ password: arg.password, resetPasswordToken: arg.resetPasswordToken })
+  })
 })
 
 
 export const authReducer = slice.reducer
-export const authThunks = { authMe, register, login, logout, newPassword }
-
-export const authPending = isPending(authThunks.authMe)
-export const authFulfilled = isFulfilled(authThunks.authMe)
+export const authThunks = { authMe, register, login, logout, setNewPassword }
 
 
 
