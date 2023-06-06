@@ -53,6 +53,7 @@ export const UniversalButton: React.FC<PropsType> = (
   return (
     <>
       {isLoading ? <LoadingButton sx={btnStyle}
+                                  disabled={true}
                                   loading
                                   variant={'text'}
                                   loadingIndicator={

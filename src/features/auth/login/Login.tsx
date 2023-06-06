@@ -10,6 +10,7 @@ import { InputEmail, InputPassword } from 'common/components'
 import { loginSchema } from 'features/auth/login/loginSchema'
 import { useAppDispatch } from 'common/hooks'
 import { paths } from 'common/router/path'
+import { toast } from 'react-toastify'
 
 
 type InputsType = yup.InferType<typeof loginSchema>
@@ -17,13 +18,18 @@ type InputsType = yup.InferType<typeof loginSchema>
 export const Login = () => {
   const dispatch = useAppDispatch()
 
-  const { register, handleSubmit, formState: { errors }, getFieldState,  } = useForm<InputsType>({
+  const { register, handleSubmit, formState: { errors }, getFieldState } = useForm<InputsType>({
     mode: 'onBlur',
     resolver: yupResolver(loginSchema)
   })
 
   const onSubmit: SubmitHandler<InputsType> = (data: InputsType) => {
     dispatch(authThunks.login(data))
+      .unwrap()
+      .then(() => toast.success('You have successfully logged in'))
+      .catch((err) => {
+        toast.error(err.e.response ? err.e.response.data.error : err.e.message)
+      })
   }
 
   const isButtonDisabled = getFieldState('password').invalid || getFieldState('email').invalid
