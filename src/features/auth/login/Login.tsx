@@ -11,6 +11,8 @@ import { loginSchema } from 'features/auth/login/loginSchema'
 import { useAppDispatch } from 'common/hooks'
 import { paths } from 'common/router/path'
 import { toast } from 'react-toastify'
+import { BasicModal } from 'common/components/modals/basicModal/basicModal'
+import { AddNewPackModal } from 'common/components/modals/addNewPackModal/AddNewPackModal'
 
 
 type InputsType = yup.InferType<typeof loginSchema>
@@ -27,9 +29,7 @@ export const Login = () => {
     dispatch(authThunks.login(data))
       .unwrap()
       .then(() => toast.success('You have successfully logged in'))
-      .catch((err) => {
-        toast.error(err.e.response ? err.e.response.data.error : err.e.message)
-      })
+      .catch((err) => toast.error(err.e.response ? err.e.response.data.error : err.e.message))
   }
 
   const isButtonDisabled = getFieldState('password').invalid || getFieldState('email').invalid
@@ -59,6 +59,7 @@ export const Login = () => {
         <span className={s.dontHaveAccount}>Don't have an account?</span>
         <Link className={s.registrationLink} to={paths.REGISTER}>Sign Up</Link>
       </div>
+      <BasicModal children={<AddNewPackModal />} />
     </div>
   )
 }
