@@ -59,7 +59,6 @@ export const Login = () => {
         <span className={s.dontHaveAccount}>Don't have an account?</span>
         <Link className={s.registrationLink} to={paths.REGISTER}>Sign Up</Link>
       </div>
-      <BasicModal children={<AddNewPackModal />} />
     </div>
   )
 }

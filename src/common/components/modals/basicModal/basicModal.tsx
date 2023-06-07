@@ -1,8 +1,8 @@
 import * as React from 'react';
 import Box from '@mui/material/Box';
-import Button from '@mui/material/Button';
 import Modal from '@mui/material/Modal';
 import { FC, ReactNode } from 'react'
+import { UniversalButton } from 'common/components/universalButton/UniversalButton'
 
 const style = {
   position: 'absolute' as 'absolute',
@@ -18,21 +18,23 @@ const style = {
 
 
 type PropsType = {
-  children: ReactNode
+  children: ReactNode,
+  isModalOpen: boolean,
+  handleOpen: () => void
+  handleClose: () => void
 }
 
 
 
-export const BasicModal: FC<PropsType> = ({children}) => {
-  const [open, setOpen] = React.useState(false);
-  const handleOpen = () => setOpen(true);
-  const handleClose = () => setOpen(false);
+export const BasicModal: FC<PropsType> = ({children, isModalOpen, handleOpen, handleClose}) => {
+
+
 
   return (
     <div>
-      <Button onClick={handleOpen}>Open modal</Button>
+      <UniversalButton title={'Add new pack'} onClickCallback={handleOpen} width={"175"}/>
       <Modal
-        open={open}
+        open={isModalOpen}
         onClose={handleClose}
         aria-labelledby="modal-modal-title"
         aria-describedby="modal-modal-description"

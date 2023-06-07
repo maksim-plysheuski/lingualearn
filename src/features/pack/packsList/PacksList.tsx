@@ -4,12 +4,18 @@ import { PacksTable } from 'features/pack/packsList/packsTable/PacksTable'
 import s from './style.module.scss'
 import { PageTitleBlock } from 'common/components/pageTitleBlock/PageTitleBlock'
 import { useAppSelector } from 'common/hooks'
+import { AddNewPackModal } from 'common/components/modals/addNewPackModal/AddNewPackModal'
+import { BasicModal } from 'common/components/modals/basicModal/basicModal'
+import { useState } from 'react'
 
 
 export const PacksList = () => {
   const currentPage = useAppSelector(state => state.packs.packs.page)
   const packsTotalCount = useAppSelector(state => state.packs.packs.cardPacksTotalCount)
   const packsPerPage = useAppSelector(state => state.packs.packs.pageCount)
+
+
+  const [open, setOpen] = useState(false)
 
   const addPack = () => {
     //need to fix
