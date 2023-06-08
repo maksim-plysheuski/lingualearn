@@ -1,19 +1,28 @@
 import { useAppDispatch, useAppSelector } from 'common/hooks'
 import { useSearchParams } from 'react-router-dom'
 import { useCallback, useEffect, useState } from 'react'
-import { PackArgs, TGetPacksArg } from 'features/pack/packApi'
+import { PackArgs } from 'features/pack/packApi'
 import { packAction, packsThunks } from 'features/pack/packs.slice'
 import useDebounce from 'common/hooks/useDebounce'
+import {
+  maxCardsCountSelect,
+  maxSelect,
+  minCardsCountSelect,
+  minSelect,
+  namePackParamsSelect,
+  paramsCardIdSelect
+} from 'features/pack/packSelectors'
+import { useSelector } from 'react-redux'
 
 export const useSearchCards = () => {
   const dispatch = useAppDispatch()
-  const packName = useAppSelector(state => state.packs.packParams.packName)
-  const paramsCardId = useAppSelector(state => state.packs.packParams.user_id)
   const userId = useAppSelector(state => state.auth.profile._id)
-  const minCardsCount = useAppSelector(state => state.packs.packs.minCardsCount)
-  const maxCardsCount = useAppSelector(state => state.packs.packs.maxCardsCount)
-  const min = useAppSelector(state => state.packs.packParams.min)
-  const max = useAppSelector(state => state.packs.packParams.max)
+  const packName = useSelector(namePackParamsSelect)
+  const paramsCardId = useSelector(paramsCardIdSelect)
+  const minCardsCount = useSelector(minCardsCountSelect)
+  const maxCardsCount = useSelector(maxCardsCountSelect)
+  const min = useSelector(minSelect)
+  const max = useSelector(maxSelect)
 
 // запись параметров в поисковую строку
   const [searchParams, setSearchParams] = useSearchParams()
@@ -48,21 +57,18 @@ export const useSearchCards = () => {
   }, [])
 
   //количество карточек
-
   const setMinMaxCards = useCallback((minMax: number[]) => {
     dispatch(packAction.setPackParams({ min: minMax[0], max: minMax[1] }))
   }, [])
 
   //сброс поисковых настроек
   const resetSearchParams = () => {
-    const resetParams: TGetPacksArg = {
-      packName: '',
+    dispatch(packsThunks.getPacks({
+      packName: undefined,
       user_id: '',
-      min: minCardsCount,
-      max: maxCardsCount
-    }
-    dispatch(packAction.setPackParams(resetParams))
-    dispatch(packsThunks.getPacks({}))
+      min: undefined,
+      max: undefined
+    }))
   }
 
   return {

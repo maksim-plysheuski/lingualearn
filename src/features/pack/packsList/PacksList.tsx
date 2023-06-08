@@ -18,7 +18,7 @@ export const PacksList = () => {
 
   useEffect(() => {
     dispatch(packAction.setPackParams(params))
-    dispatch(packsThunks.getPacks(params))
+    dispatch(packsThunks.getPacks({}))
   }, [])
 
   const addPack = () => {

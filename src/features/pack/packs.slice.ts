@@ -21,6 +21,7 @@ const slice = createSlice({
         if (action.payload.arg.user_id || action.payload.arg.user_id === '') {
           state.packParams = {
             ...state.packParams,
+            user_id: action.payload.arg.user_id,
             packName: '',
             min: action.payload.packs.minCardsCount,
             max: action.payload.packs.maxCardsCount
