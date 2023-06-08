@@ -4,8 +4,8 @@ export const packApi = {
   getPacks: (args: TGetPacksArg = {}) => {
     return instance.get<TPacksResponse>('cards/pack', { params: { ...args } })
   },
-  createPack: (arg: TCreatePackArg) => {
-    return instance.post<TCreateResponse>('cards/pack ', arg).then(res => res.data)
+  createPack: (cardsPack: TCreatePackArg) => {
+    return instance.post<TCreateResponse>('cards/pack ', {cardsPack}).then(res => res.data)
   },
   deletePack: (arg: TDeletePackArg) => {
     return instance.delete<TDeletePackResponse>(`/cards/pack?id=${arg.id}`)
@@ -34,18 +34,18 @@ export type  TDeletePackArg = {
 export type TDeletePackResponse = {
   deletedCardsPack: TPack,
   token: string,
-  tokenDeathTime: string
+  tokenDeathTime: number
 }
 
 export type TCreateResponse = {
-  newCardsPack: TPack
+  newCardsPack: TPack,
+  token: string,
+  tokenDeathTime: number
 }
 export type TCreatePackArg = {
-  cardsPack: {
-    name: string
-    deckCover?: string
-    private?: boolean
-  }
+  name: string
+  deckCover?: string
+  private?: boolean
 }
 export type TPacksResponse = {
   cardPacks: TPack[]
@@ -84,3 +84,15 @@ export type TGetPacksArg = {
   user_id?: string
   block?: boolean
 }
+
+export type PackArgs = {
+  packName?: string
+  min?: string
+  max?: string
+  // sortPacks: string
+  // page: number
+  // pageCount: number
+  user_id?: string
+  // block: boolean
+}
+

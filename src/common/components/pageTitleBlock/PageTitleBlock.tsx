@@ -1,7 +1,9 @@
 import s from './style.module.scss'
-import { UniversalButton } from 'common/components/universalButton/UniversalButton'
 import { FC } from 'react'
 import { useAppSelector } from 'common/hooks'
+import { PackModal } from 'common/components/modals/addNewPackModal/PackModal'
+import { BasicModal } from 'common/components/modals/basicModal/basicModal'
+import * as React from 'react'
 
 
 type Props = {
@@ -21,6 +23,10 @@ export const PageTitleBlock: FC<Props> = (
   const packOwnerId = useAppSelector(state => state.cards.cards.packUserId)
   const userId = useAppSelector(state => state.profile.profile?._id)
 
+  const [openModal, setOpenModal] = React.useState(false);
+  const handleOpen = () => setOpenModal(true);
+  const handleClose = () => setOpenModal(false);
+
   return (
     <div className={s.addPackBlock}>
       <h2>{pageTitle ? pageTitle
@@ -28,10 +34,11 @@ export const PageTitleBlock: FC<Props> = (
           : 'Friends Pack'}
       </h2>
       {showButton &&
-        <UniversalButton title={buttonTitle ? buttonTitle : ''}
-                         onClickCallback={buttonCallback}
-                         width={'175'}
-        />}
+        <BasicModal isModalOpen={openModal}
+                    handleOpen={handleOpen}
+                    handleClose={handleClose}
+                    children={<PackModal title={'Add new pack'} handleCloseModal={handleClose}/>} />
+        }
     </div>
   )
 }

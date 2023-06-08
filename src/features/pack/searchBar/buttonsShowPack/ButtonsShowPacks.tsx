@@ -2,19 +2,14 @@ import ToggleButton from '@mui/material/ToggleButton/ToggleButton'
 import ToggleButtonGroup from '@mui/material/ToggleButtonGroup/ToggleButtonGroup'
 import { buttonStyle } from 'features/pack/searchBar/buttonsShowPack/style'
 import s from './style.module.scss'
-import { useAppDispatch, useAppSelector } from 'common/hooks'
-import { packAction } from 'features/pack/packs.slice'
-import { memo, useState } from 'react'
+import { memo } from 'react'
+import { useSearchCards } from 'features/pack/hook/useSearchCards'
 
 export const ButtonsShowPacks = memo(() => {
-
-  const dispatch = useAppDispatch()
-  const userId = useAppSelector(state => state.auth.profile._id)
-  const [select, setSelect] = useState(userId)
+  const { setMyAllCards, paramsCardId, userId } = useSearchCards()
 
   const getPackHandler = (user_id: string) => {
-    dispatch(packAction.setPackParams({ user_id }))
-    setSelect(user_id)
+    setMyAllCards(user_id)
   }
 
   return (
@@ -22,12 +17,12 @@ export const ButtonsShowPacks = memo(() => {
       <div>
         Show packs cards
       </div>
-      <ToggleButtonGroup exclusive value={select}>
+      <ToggleButtonGroup exclusive value={!!paramsCardId ? paramsCardId : ''}>
         <ToggleButton value={userId}
                       sx={buttonStyle}
                       onClick={() => getPackHandler(userId)}
         >My</ToggleButton>
-        <ToggleButton value=''
+        <ToggleButton value={''}
                       sx={buttonStyle}
                       onClick={() => getPackHandler('')}
         >All</ToggleButton>
