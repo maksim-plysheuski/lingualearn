@@ -7,6 +7,9 @@ import { useAppSelector } from 'common/hooks'
 import { useSearchCards } from 'features/pack/hook/useSearchCards'
 import { useEffect } from 'react'
 import { packAction, packsThunks } from 'features/pack/packs.slice'
+import { PackModal } from 'common/components/modals/addNewPackModal/PackModal'
+import { BasicModal } from 'common/components/modals/basicModal/basicModal'
+import { useState } from 'react'
 
 
 export const PacksList = () => {
@@ -20,6 +23,9 @@ export const PacksList = () => {
     dispatch(packAction.setPackParams(params))
     dispatch(packsThunks.getPacks({}))
   }, [])
+
+
+  const [open, setOpen] = useState(false)
 
   const addPack = () => {
     //need to fix

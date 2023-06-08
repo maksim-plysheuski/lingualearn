@@ -6,6 +6,7 @@ import DeleteIcon from '@mui/icons-material/Delete'
 import { useAppDispatch, useAppSelector } from 'common/hooks'
 import { packsThunks } from 'features/pack/packs.slice'
 import Tooltip from '@mui/material/Tooltip'
+import * as React from 'react'
 
 export const ActionsButtons = (props: { packId: string }) => {
   const dispatch = useAppDispatch()

@@ -1,6 +1,7 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
-import { packApi, TDeletePackArg, TGetPacksArg, TPacksResponse } from 'features/pack/packApi'
+import { packApi, TCreatePackArg, TDeletePackArg, TGetPacksArg, TPacksResponse } from 'features/pack/packApi'
 import { createAppAsyncThunk } from 'common/utils/createAppAsyncThunk'
+import { thunkTryCatch } from 'common/utils/thunk-try-catch'
 
 
 const slice = createSlice({
@@ -59,10 +60,18 @@ const deletePack = createAppAsyncThunk<void, TDeletePackArg>
   }
 })
 
+const createPack = createAppAsyncThunk<any, TCreatePackArg>('packs/createPack', (arg, thunkAPI) => {
+  const {dispatch} = thunkAPI
+  return thunkTryCatch(thunkAPI, async () => {
+    await packApi.createPack(arg)
+    dispatch(getPacks({}))
+  }, false)
+})
+
 
 export const packsReducer = slice.reducer
 export const packAction = slice.actions
-export const packsThunks = { getPacks, deletePack }
+export const packsThunks = { getPacks, deletePack, createPack }
 
 
 
