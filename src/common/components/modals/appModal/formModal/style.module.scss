@@ -1,0 +1,12 @@
+@import "../../../../style/mixins";
+@import "../../../../style/variables";
+
+.form {
+  width: 100%;
+
+  .buttons {
+    display: flex;
+    justify-content: space-between;
+  }
+}
+
