@@ -29,7 +29,9 @@ export const BasicModal: FC<PropsType> = ({ children, isModalOpen, handleOpen, h
     <div>
       <UniversalButton title={'Add new pack'} onClickCallback={handleOpen} width={'175'} />
       <Modal open={isModalOpen} onClose={handleClose}>
-        <Box sx={style}>{children}</Box>
+        <Box sx={style}>
+          {children}
+        </Box>
       </Modal>
     </div>
   )
