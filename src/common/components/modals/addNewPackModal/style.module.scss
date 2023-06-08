@@ -1,0 +1,46 @@
+@import "src/common/style/mixins";
+
+.line {
+  position: absolute;
+  width: 100%;
+  top: 60px;
+  left: 0;
+}
+
+.modalHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0;
+
+  span {
+    @include text(500, 18px, 22px)
+  }
+}
+
+.form {
+  width: 100%;
+
+  .inputPackName {
+    position: absolute;
+    width: 100%;
+    margin-top: 35px;
+  }
+
+  .checkbox {
+    display: flex;
+    align-items: center;
+    margin-left: -10px;
+    margin-top: 115px;
+    @include text(500, 14px, 17px);
+    text-align: center;
+  }
+
+  .buttons {
+    display: flex;
+    justify-content: space-between;
+  }
+}
+
+
+

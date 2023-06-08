@@ -1,7 +1,7 @@
 import s from './style.module.scss'
 import { FC } from 'react'
 import { useAppSelector } from 'common/hooks'
-import { AddNewPackModal } from 'common/components/modals/addNewPackModal/AddNewPackModal'
+import { PackModal } from 'common/components/modals/addNewPackModal/PackModal'
 import { BasicModal } from 'common/components/modals/basicModal/basicModal'
 import * as React from 'react'
 
@@ -37,7 +37,7 @@ export const PageTitleBlock: FC<Props> = (
         <BasicModal isModalOpen={openModal}
                     handleOpen={handleOpen}
                     handleClose={handleClose}
-                    children={<AddNewPackModal handleCloseModal={handleClose}/>} />
+                    children={<PackModal title={'Add new pack'} handleCloseModal={handleClose}/>} />
         }
     </div>
   )

@@ -1,6 +1,6 @@
-import * as React from 'react';
-import Box from '@mui/material/Box';
-import Modal from '@mui/material/Modal';
+import * as React from 'react'
+import Box from '@mui/material/Box'
+import Modal from '@mui/material/Modal'
 import { FC, ReactNode } from 'react'
 import { UniversalButton } from 'common/components/universalButton/UniversalButton'
 
@@ -11,10 +11,9 @@ const style = {
   transform: 'translate(-50%, -50%)',
   width: 395,
   bgcolor: 'background.paper',
-  border: '2px solid #000',
   boxShadow: 24,
-  p: 4,
-};
+  padding: '19px 24px 24px 24px'
+}
 
 
 type PropsType = {
@@ -25,24 +24,13 @@ type PropsType = {
 }
 
 
-
-export const BasicModal: FC<PropsType> = ({children, isModalOpen, handleOpen, handleClose}) => {
-
-
-
+export const BasicModal: FC<PropsType> = ({ children, isModalOpen, handleOpen, handleClose }) => {
   return (
     <div>
-      <UniversalButton title={'Add new pack'} onClickCallback={handleOpen} width={"175"}/>
-      <Modal
-        open={isModalOpen}
-        onClose={handleClose}
-        aria-labelledby="modal-modal-title"
-        aria-describedby="modal-modal-description"
-      >
-        <Box sx={style}>
-          {children}
-        </Box>
+      <UniversalButton title={'Add new pack'} onClickCallback={handleOpen} width={'175'} />
+      <Modal open={isModalOpen} onClose={handleClose}>
+        <Box sx={style}>{children}</Box>
       </Modal>
     </div>
-  );
+  )
 }

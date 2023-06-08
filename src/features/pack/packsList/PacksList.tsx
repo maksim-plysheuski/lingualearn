@@ -4,7 +4,7 @@ import { PacksTable } from 'features/pack/packsList/packsTable/PacksTable'
 import s from './style.module.scss'
 import { PageTitleBlock } from 'common/components/pageTitleBlock/PageTitleBlock'
 import { useAppSelector } from 'common/hooks'
-import { AddNewPackModal } from 'common/components/modals/addNewPackModal/AddNewPackModal'
+import { PackModal } from 'common/components/modals/addNewPackModal/PackModal'
 import { BasicModal } from 'common/components/modals/basicModal/basicModal'
 import { useState } from 'react'
 

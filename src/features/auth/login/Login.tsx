@@ -12,7 +12,7 @@ import { useAppDispatch } from 'common/hooks'
 import { paths } from 'common/router/path'
 import { toast } from 'react-toastify'
 import { BasicModal } from 'common/components/modals/basicModal/basicModal'
-import { AddNewPackModal } from 'common/components/modals/addNewPackModal/AddNewPackModal'
+import { PackModal } from 'common/components/modals/addNewPackModal/PackModal'
 
 
 type InputsType = yup.InferType<typeof loginSchema>

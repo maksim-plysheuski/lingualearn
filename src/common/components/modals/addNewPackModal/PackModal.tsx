@@ -1,4 +1,4 @@
-import s from 'common/components/editableTitle/style.module.scss'
+import s from './style.module.scss'
 import { UniversalButton } from 'common/components/universalButton/UniversalButton'
 import { Checkbox, FormControl, IconButton, TextField } from '@mui/material'
 import { SubmitHandler, useForm } from 'react-hook-form'
@@ -8,19 +8,18 @@ import { packNameSchema } from './packNameSchema'
 import { useAppDispatch } from 'common/hooks'
 import { packsThunks } from 'features/pack/packs.slice'
 import { toast } from 'react-toastify'
-import CloseIcon from '@mui/icons-material/Close';
+import CloseIcon from '@mui/icons-material/Close'
 
 
 type InputsType = yup.InferType<typeof packNameSchema>
 
 type PropsType = {
   handleCloseModal: () => void
+  title: string
 }
 
-export const AddNewPackModal = (props: PropsType) => {
+export const PackModal = (props: PropsType) => {
   const dispatch = useAppDispatch()
-
-
   const { register, handleSubmit, formState: { errors }, getFieldState } = useForm<InputsType>({
     mode: 'onBlur',
     resolver: yupResolver(packNameSchema)
@@ -41,13 +40,16 @@ export const AddNewPackModal = (props: PropsType) => {
   }
 
   return (
-    <div>
-      <span>Add new pack</span>
-      <IconButton onClick={props.handleCloseModal}>
-        <CloseIcon sx={{ fontSize: '20px' }} />
-      </IconButton>
+    <>
+      <div className={s.modalHeader}>
+        <span>{props.title}</span>
+        <IconButton onClick={props.handleCloseModal}>
+          <CloseIcon />
+        </IconButton>
+      </div>
+      <hr className={s.line} />
       <form onSubmit={handleSubmit(onSubmit)}>
-        <FormControl>
+        <FormControl className={s.form}>
           <TextField
             type={'text'}
             label={'Name pack'}
@@ -55,24 +57,26 @@ export const AddNewPackModal = (props: PropsType) => {
             variant={'standard'}
             error={!!errors.packName?.message}
             helperText={errors.packName?.message}
-            sx={{ marginTop: '25px' }}
-            className={s.inputUserName}
+            className={s.inputPackName}
           />
           <div className={s.checkbox}>
             <Checkbox id='rememberMe' {...register('privatePack')} />
             <span>Private pack</span>
           </div>
-          <UniversalButton title={'Save'}
-                           marginTop={'34px'}
-                           width={'127'} />
-          <UniversalButton title={'Close'}
-                           type={'button'}
-                           width={'127'}
-                           textColor={'black'}
-                           onClickCallback={props.handleCloseModal} />
+          <div className={s.buttons}>
+            <UniversalButton title={'Close'}
+                             marginTop={'35px'}
+                             type={'button'}
+                             width={'127'}
+                             textColor={'black'}
+                             onClickCallback={props.handleCloseModal} />
+            <UniversalButton title={'Save'}
+                             disabled={getFieldState('packName').invalid}
+                             marginTop={'35px'}
+                             width={'127'} />
+          </div>
         </FormControl>
       </form>
-
-    </div>
+    </>
   )
 }
