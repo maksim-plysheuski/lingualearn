@@ -10,7 +10,6 @@ type Props = {
   pageTitle?: string
   showButton: boolean
   buttonTitle: string
-  buttonCallback?: () => void
 }
 
 export const PageTitleBlock: FC<Props> = (
@@ -18,7 +17,6 @@ export const PageTitleBlock: FC<Props> = (
     pageTitle,
     showButton,
     buttonTitle,
-    buttonCallback
   }) => {
 
   const [openModal, setOpenModal] = React.useState(false)
@@ -40,7 +38,7 @@ export const PageTitleBlock: FC<Props> = (
         : packOwnerId === userId ? 'My Pack'
           : 'Friends Pack'}
       </h2>
-      {showButton && <UniversalButton title={'Add new pack'}
+      {showButton && <UniversalButton title={buttonTitle}
                                       width={'175'}
                                       onClickCallback={handleOpenModal} />}
       <CreatePackModal isOpen={openModal} handleClose={handleClose} />

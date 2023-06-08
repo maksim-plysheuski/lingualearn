@@ -27,7 +27,7 @@ export const CardsPage = () => {
       <BackLink />
       <PageTitleBlock showButton={true}
                       buttonTitle={'Learn cards'}
-                      buttonCallback={learnPack} />
+      />
       {/*<InputSearch nameSearch={cardQuestion!} searchCallback={setPackParamQuestion} width={'1008px'}/>*/}
       <CardsTable />
       <Paginator currentPage={currentPage}
