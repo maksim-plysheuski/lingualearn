@@ -5,12 +5,15 @@ import { PackArgs } from 'features/pack/packApi'
 import { packAction, packsThunks } from 'features/pack/packs.slice'
 import useDebounce from 'common/hooks/useDebounce'
 import {
-  currentPageSelect,
+  cardPacksTotalCountSelect,
+
   maxCardsCountSelect,
   maxSelect,
   minCardsCountSelect,
   minSelect,
-  namePackParamsSelect, packsPerPageSelect, packsSelect, packsTotalCountSelect,
+  namePackParamsSelect,
+  packsSelect,
+  pageCountSelect, pageSelect,
   paramsCardIdSelect
 } from 'features/pack/packSelectors'
 import { useSelector } from 'react-redux'
@@ -25,9 +28,9 @@ export const useSearchCards = () => {
   const min = useSelector(minSelect)
   const max = useSelector(maxSelect)
   const packs = useSelector(packsSelect)
-  const currentPage = useSelector(currentPageSelect)
-  const packsTotalCount = useSelector(packsTotalCountSelect)
-  const packsPerPage = useSelector(packsPerPageSelect)
+
+  const cardPacksTotalCount = useSelector(cardPacksTotalCountSelect)
+
 
 // запись параметров в поисковую строку
   const [searchParams, setSearchParams] = useSearchParams()
@@ -75,8 +78,27 @@ export const useSearchCards = () => {
       max: undefined
     }))
   }
+  //для пагинации
+  const pageSize = useSelector(pageCountSelect)
+  //количество страниц
+  const countPage = Math.ceil(cardPacksTotalCount / pageSize) || 0
+  //текущая страница
+  const page = useSelector(pageSelect)
+  const getNewPage = (params: {
+    page?: number, size?: number
+  }) => {
+    debugger
+    dispatch(packAction.setPackParams({ page: params.page, pageCount: params.size }))
+    dispatch(packsThunks.getPacks( params ))
+  }
+
 
   return {
+    getNewPage,
+    countPage,
+    pageSize,
+    page,
+    packs,
     resetSearchParams,
     max,
     min,

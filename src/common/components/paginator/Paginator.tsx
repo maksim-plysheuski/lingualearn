@@ -1,61 +1,48 @@
 import { Pagination, Select, SelectChangeEvent } from '@mui/material'
 import MenuItem from '@mui/material/MenuItem'
-import { packAction } from 'features/pack/packs.slice'
-import { useAppDispatch, useAppSelector } from 'common/hooks'
 import s from 'common/components/paginator/style.module.scss'
-import { ChangeEvent, FC } from 'react'
-import { cardsAction } from 'features/cards/cards.slice'
+import { FC } from 'react'
 
 
 type Props = {
+  pageSize: number
   currentPage: number
-  itemsPerPage: number
-  itemsTotalCount: number
-  itemsTitle: 'cards' | 'packs'
+  countPage: number
+  callback: (params: { page?: number, size?: number }) => void
 }
 
-export const Paginator: FC<Props> = ({
-                                       currentPage,
-                                       itemsPerPage,
-                                       itemsTotalCount,
-                                       itemsTitle
-                                     }) => {
+export const Paginator: FC<Props> = ({ currentPage, pageSize, countPage, callback }) => {
 
-  const dispatch = useAppDispatch()
-  const selectedPackId = useAppSelector(state => state.cards.cardsParams.cardsPack_id)
-  const pagesTotalCount = Math.ceil(itemsTotalCount / itemsPerPage) || 0
-  let payload
-
-  const handleRowsChange = (event: SelectChangeEvent) => {
-    payload = { page: currentPage, pageCount: Number(event.target.value) }
-    itemsTitle === 'packs'
-      ? dispatch(packAction.setPackParams(payload))
-      : dispatch(cardsAction.setCardsParams({ cardsPack_id: selectedPackId, ...payload }))
-
+  const paginationHandler = (event: React.ChangeEvent<unknown>, page: number) => {
+    callback({ page })
   }
 
-  const handlePagesChange = (event: ChangeEvent<unknown>, selectedPage: number) => {
-    payload = { page: selectedPage, pageCount: itemsPerPage }
-    itemsTitle === 'packs'
-      ? dispatch(packAction.setPackParams(payload))
-      : dispatch(cardsAction.setCardsParams({ cardsPack_id: selectedPackId, ...payload }))
+  const selectHandler = (event: SelectChangeEvent) => {
+    debugger
+    const size = +event.target.value
+    callback({ size })
   }
 
   return (
     <div className={s.container}>
-      <Pagination shape='rounded' color='primary' count={pagesTotalCount} onChange={handlePagesChange} />
+      <Pagination
+        shape='rounded'
+        color='primary'
+        count={countPage}
+        page={currentPage}
+        onChange={paginationHandler}
+      />
       <span>Show</span>
       <Select
         sx={{ height: '34px', margin: '0 7px 0 7px' }}
-        value={itemsPerPage ? String(itemsPerPage) : '4'}
-        onChange={handleRowsChange}
+        value={pageSize ? String(pageSize) : '4'}
+        onChange={selectHandler}
       >
         <MenuItem value={'4'}>4</MenuItem>
-        <MenuItem value={'15'}>15</MenuItem>
-        <MenuItem value={'25'}>25</MenuItem>
-        <MenuItem value={'50'}>50</MenuItem>
+        <MenuItem value={'8'}>8</MenuItem>
+        <MenuItem value={'12'}>12</MenuItem>
       </Select>
-      <span>{`${itemsTitle} per page`}</span>
+      <span>{`${pageSize} per page`}</span>
     </div>
   )
 }

@@ -32,7 +32,7 @@ export const CountSearch = memo(() => {
             max={maxCardsCount}
             min={minCardsCount}
             valueLabelDisplay='auto'
-            value={[min,max] as number[]}
+            value={[+min!,+max!] as number[]}
             onChange={handleChange}
             onChangeCommitted={onChangeCommittedHandler}
           />

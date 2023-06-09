@@ -30,10 +30,10 @@ export const CardsPage = () => {
                       buttonCallback={learnPack} />
       {/*<InputSearch nameSearch={cardQuestion!} searchCallback={setPackParamQuestion} width={'1008px'}/>*/}
       <CardsTable />
-      <Paginator currentPage={currentPage}
-                 itemsPerPage={cardsPerPage}
-                 itemsTotalCount={cardsTotalCount}
-                 itemsTitle={'cards'} />
+      {/*<Paginator currentPage={currentPage}*/}
+      {/*           itemsPerPage={cardsPerPage}*/}
+      {/*           itemsTotalCount={cardsTotalCount}*/}
+      {/*           itemsTitle={'cards'} />*/}
     </div>
   )
 }
