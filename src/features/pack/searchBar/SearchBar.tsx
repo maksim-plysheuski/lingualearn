@@ -5,6 +5,7 @@ import { ResetButton } from 'features/pack/searchBar/resetButton/resetButton'
 import s from './style.module.scss'
 import { NameSearch } from 'features/pack/searchBar/nameSearch/NameSearch'
 
+
 export const SearchBar = () => {
   return (
     <div className={s.container}>

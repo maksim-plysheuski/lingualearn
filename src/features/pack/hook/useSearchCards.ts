@@ -5,11 +5,12 @@ import { PackArgs } from 'features/pack/packApi'
 import { packAction, packsThunks } from 'features/pack/packs.slice'
 import useDebounce from 'common/hooks/useDebounce'
 import {
+  currentPageSelect,
   maxCardsCountSelect,
   maxSelect,
   minCardsCountSelect,
   minSelect,
-  namePackParamsSelect,
+  namePackParamsSelect, packsPerPageSelect, packsSelect, packsTotalCountSelect,
   paramsCardIdSelect
 } from 'features/pack/packSelectors'
 import { useSelector } from 'react-redux'
@@ -23,6 +24,10 @@ export const useSearchCards = () => {
   const maxCardsCount = useSelector(maxCardsCountSelect)
   const min = useSelector(minSelect)
   const max = useSelector(maxSelect)
+  const packs = useSelector(packsSelect)
+  const currentPage = useSelector(currentPageSelect)
+  const packsTotalCount = useSelector(packsTotalCountSelect)
+  const packsPerPage = useSelector(packsPerPageSelect)
 
 // запись параметров в поисковую строку
   const [searchParams, setSearchParams] = useSearchParams()

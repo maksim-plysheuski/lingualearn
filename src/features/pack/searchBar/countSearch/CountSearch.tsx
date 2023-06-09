@@ -2,8 +2,9 @@ import { memo } from 'react'
 import Box from '@mui/material/Box'
 import Slider from '@mui/material/Slider'
 import s from './style.module.scss'
-import { useSearchCards } from 'features/pack/hook/useSearchCards'
+
 import { packsThunks } from 'features/pack/packs.slice'
+import { useSearchCards } from 'features/pack/hook/useSearchCards'
 
 export const CountSearch = memo(() => {
 
