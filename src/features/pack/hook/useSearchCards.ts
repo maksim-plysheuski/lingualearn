@@ -84,12 +84,11 @@ export const useSearchCards = () => {
   const countPage = Math.ceil(cardPacksTotalCount / pageSize) || 0
   //текущая страница
   const page = useSelector(pageSelect)
-  const getNewPage = (params: {
-    page?: number, size?: number
-  }) => {
+
+  const getNewPage = (page: number, size: number) => {
     debugger
-    dispatch(packAction.setPackParams({ page: params.page, pageCount: params.size }))
-    dispatch(packsThunks.getPacks( params ))
+    dispatch(packAction.setPackParams({ page, pageCount: size }))
+    dispatch(packsThunks.getPacks({ page, pageCount: size }))
   }
 
 

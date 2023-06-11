@@ -19,6 +19,7 @@ const slice = createSlice({
     builder
       .addCase(getPacks.fulfilled, (state, action) => {
         state.packs = action.payload.packs
+
         if (action.payload.arg.user_id || action.payload.arg.user_id === '') {
           state.packParams = {
             ...state.packParams,
@@ -46,7 +47,9 @@ const getPacks = createAppAsyncThunk<{ packs: TPacksResponse, arg: TGetPacksArg 
 
   const params = getState().packs.packParams
   const res = await packApi.getPacks({ ...params, ...arg })
+  debugger
   return { packs: res.data, arg }
+
 })
 
 const deletePack = createAppAsyncThunk<void, TDeletePackArg>
@@ -61,7 +64,7 @@ const deletePack = createAppAsyncThunk<void, TDeletePackArg>
 })
 
 const createPack = createAppAsyncThunk<any, TCreatePackArg>('packs/createPack', (arg, thunkAPI) => {
-  const {dispatch} = thunkAPI
+  const { dispatch } = thunkAPI
   return thunkTryCatch(thunkAPI, async () => {
     await packApi.createPack(arg)
     dispatch(getPacks({}))

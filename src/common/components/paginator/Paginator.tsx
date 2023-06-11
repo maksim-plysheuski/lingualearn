@@ -1,26 +1,24 @@
 import { Pagination, Select, SelectChangeEvent } from '@mui/material'
 import MenuItem from '@mui/material/MenuItem'
 import s from 'common/components/paginator/style.module.scss'
-import { FC } from 'react'
-
 
 type Props = {
   pageSize: number
   currentPage: number
   countPage: number
-  callback: (params: { page?: number, size?: number }) => void
+  getNewPage: (page: number, size: number) => void
 }
 
-export const Paginator: FC<Props> = ({ currentPage, pageSize, countPage, callback }) => {
-
+export const Paginator = (props: Props) => {
+  const { pageSize, countPage, currentPage, getNewPage } = props
+  debugger
   const paginationHandler = (event: React.ChangeEvent<unknown>, page: number) => {
-    callback({ page })
+    getNewPage(page, pageSize)
   }
 
   const selectHandler = (event: SelectChangeEvent) => {
-    debugger
     const size = +event.target.value
-    callback({ size })
+    getNewPage(currentPage, size)
   }
 
   return (

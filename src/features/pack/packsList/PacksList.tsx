@@ -34,7 +34,7 @@ export const PacksList = () => {
       <Paginator pageSize={pageSize}
                  currentPage={page}
                  countPage={countPage}
-                 callback={getNewPage}
+                 getNewPage={getNewPage}
       />
     </div>
   )
