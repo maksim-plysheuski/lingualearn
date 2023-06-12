@@ -7,9 +7,10 @@ import { useAppDispatch, useAppSelector } from 'common/hooks'
 import Tooltip from '@mui/material/Tooltip'
 import * as React from 'react'
 import { modalsAction } from 'features/modals/modals.slice'
+import { TPack } from 'features/pack/packApi'
 
 type PropsType = {
-  pack: any
+  pack: TPack
   itemId: string
   itemName: string
 }
@@ -28,7 +29,8 @@ export const ActionsButtons = (props: PropsType) => {
                arrow placement='top'
                TransitionComponent={Zoom}
                TransitionProps={{ timeout: 400 }}>
-        <IconButton onClick={learnPackHandler}>
+        <IconButton disabled={props.pack.cardsCount === 0}
+                    onClick={learnPackHandler}>
           <SchoolIcon />
         </IconButton>
       </Tooltip>
