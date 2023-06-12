@@ -5,13 +5,13 @@ export const packApi = {
     return instance.get<TPacksResponse>('cards/pack', { params: { ...args } })
   },
   createPack: (cardsPack: TCreatePackArg) => {
-    return instance.post<TCreateResponse>('cards/pack ', {cardsPack}).then(res => res.data)
+    return instance.post<TCreateResponse>('cards/pack ', { cardsPack }).then(res => res.data)
   },
   deletePack: (arg: TDeletePackArg) => {
     return instance.delete<TDeletePackResponse>(`/cards/pack?id=${arg.id}`)
   },
-  change: (arg: TChangeArg) => {
-    return instance.put<TChangeResponse>('/cards/pack', arg).then(res => res.data)
+  updatePack: (cardsPack: TUpdatePackArg) => {
+    return instance.put<TChangeResponse>('/cards/pack', { cardsPack }).then(res => res.data)
   }
 }
 
@@ -20,11 +20,9 @@ export type TChangeResponse = {
   updatedCardsPack: TPack
 }
 
-export type TChangeArg = {
-  cardsPack: {
+export type TUpdatePackArg = {
     _id: string
     name?: string
-  }
 }
 
 export type  TDeletePackArg = {

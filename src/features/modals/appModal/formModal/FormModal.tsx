@@ -1,18 +1,19 @@
-import s from 'common/components/modals/appModal/formModal/style.module.scss'
+import s from 'features/modals/appModal/formModal/style.module.scss'
 import { FormControl } from '@mui/material'
 import { UniversalButton } from 'common/components/universalButton/UniversalButton'
 import * as React from 'react'
 import { FC, ReactNode } from 'react'
 import { UseFormHandleSubmit, SubmitHandler } from 'react-hook-form'
-import { TCreatePackInputs } from 'common/components/modals/packsModals/createPackModal/CreatePackModal'
+import { InputsType } from 'common/hooks/useFormModals'
 
 
 type PropsType = {
   children: ReactNode
-  handleSubmit: UseFormHandleSubmit<TCreatePackInputs>
-  onSubmit: SubmitHandler<TCreatePackInputs>
+  handleSubmit: UseFormHandleSubmit<InputsType>
+  onSubmit: SubmitHandler<InputsType>
   onClose: () => void
   buttonTitle: 'Save' | 'Delete'
+  isButtonDisable?: boolean
 }
 
 export const FormModal: FC<PropsType> = ({
@@ -20,7 +21,8 @@ export const FormModal: FC<PropsType> = ({
                                            handleSubmit,
                                            onSubmit,
                                            onClose,
-                                           buttonTitle
+                                           buttonTitle,
+                                           isButtonDisable
                                          }) => {
 
   return (
@@ -37,7 +39,7 @@ export const FormModal: FC<PropsType> = ({
           />
           <UniversalButton title={buttonTitle}
                            marginTop={'35px'}
-                           width={'127'} />
+                           width={'127'} disabled={isButtonDisable} />
         </div>
       </FormControl>
     </form>

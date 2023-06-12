@@ -5,6 +5,7 @@ import { CardsTable } from 'features/cards/cardsPage/cardsTable/CardsTable'
 import { useAppSelector } from 'common/hooks'
 
 import { BackLink } from 'common/components/backLink/BackLink'
+import * as React from 'react'
 
 export const CardsPage = () => {
   const currentPage = useAppSelector(state => state.cards.cards.page)

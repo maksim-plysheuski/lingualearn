@@ -2,7 +2,7 @@ import * as React from 'react'
 import Box from '@mui/material/Box'
 import Modal from '@mui/material/Modal'
 import { FC, ReactNode } from 'react'
-import s from 'common/components/modals/appModal/appModal/style.module.scss'
+import s from 'features/modals/appModal/appModal/style.module.scss'
 import { IconButton } from '@mui/material'
 import CloseIcon from '@mui/icons-material/Close'
 

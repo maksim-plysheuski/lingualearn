@@ -4,6 +4,12 @@
   position: absolute;
   width: 100%;
   top: 45px;
+
+  p {
+    position: absolute;
+    top: 45px;
+    @include text(600, 15px, 22px)
+  }
 }
 
 .checkbox {
