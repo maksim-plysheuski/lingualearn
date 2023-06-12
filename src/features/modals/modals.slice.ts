@@ -21,7 +21,7 @@ const slice = createSlice({
     showUpdateModal: (state) => {
       state.isUpdateModalOpen = true
     },
-    showRemoveModal: (state) => {
+    showDeleteModal: (state) => {
       state.isDeleteModalOpen = true
     },
     closeModal: () => initialState

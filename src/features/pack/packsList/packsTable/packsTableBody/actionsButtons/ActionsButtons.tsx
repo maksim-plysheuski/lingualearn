@@ -4,7 +4,6 @@ import SchoolIcon from '@mui/icons-material/School'
 import EditIcon from '@mui/icons-material/Edit'
 import DeleteIcon from '@mui/icons-material/Delete'
 import { useAppDispatch, useAppSelector } from 'common/hooks'
-import { packsThunks } from 'features/pack/packs.slice'
 import Tooltip from '@mui/material/Tooltip'
 import * as React from 'react'
 import { modalsAction } from 'features/modals/modals.slice'
@@ -22,13 +21,14 @@ export const ActionsButtons = (props: PropsType) => {
     console.log('need to fix')
   }
 
-  const handleOpenModal = () => {
+  const updatePackHandler = () => {
     dispatch(modalsAction.setSelectedPack(props.pack))
     dispatch(modalsAction.showUpdateModal())
   }
 
-  const handleDelete = () => {
-    dispatch(packsThunks.deletePack({ id: props.pack._id }))
+  const deletePackHandler = () => {
+    dispatch(modalsAction.setSelectedPack(props.pack))
+    dispatch(modalsAction.showDeleteModal())
   }
   return (
     <TableCell>
@@ -47,7 +47,7 @@ export const ActionsButtons = (props: PropsType) => {
                TransitionProps={{ timeout: 400 }}>
         <span>
           <IconButton disabled={!userId}
-                      onClick={handleOpenModal}>
+                      onClick={updatePackHandler}>
             <EditIcon />
         </IconButton>
         </span>
@@ -58,7 +58,7 @@ export const ActionsButtons = (props: PropsType) => {
                TransitionProps={{ timeout: 400 }}>
           <span>
         <IconButton disabled={!userId}
-                    onClick={handleDelete}>
+                    onClick={deletePackHandler}>
             <DeleteIcon />
         </IconButton>
           </span>

@@ -1,4 +1,4 @@
-import s from 'features/modals/appModal/formModal/style.module.scss'
+import s from './style.module.scss'
 import { FormControl } from '@mui/material'
 import { UniversalButton } from 'common/components/universalButton/UniversalButton'
 import * as React from 'react'

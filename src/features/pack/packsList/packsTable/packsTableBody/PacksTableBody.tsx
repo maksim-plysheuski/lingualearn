@@ -6,6 +6,7 @@ import { useNavigate } from 'react-router-dom'
 import { paths } from 'common/router/path'
 import * as React from 'react'
 import { UpdatePackModal } from 'features/modals/packsModals/updatePackModal/UpdatePackModal'
+import { DeletePackModal } from 'features/modals/packsModals/deletePackModal/DeletePackModal'
 
 const tableCellStyle = {
   wordWrap: 'break-word',
@@ -26,6 +27,7 @@ export const PacksTableBody = () => {
   return (
     <TableBody>
       <UpdatePackModal />
+      <DeletePackModal />
       {packs.cardPacks?.map((pack) => (
         <TableRow key={pack._id}>
           <TableCell sx={{

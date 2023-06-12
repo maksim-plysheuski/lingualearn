@@ -2,7 +2,7 @@ import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 import {
   packApi,
   TCreatePackArg,
-  TDeletePackArg,
+  TDeletePackArg, TDeletePackResponse,
   TGetPacksArg,
   TPacksResponse,
   TUpdatePackArg
@@ -41,15 +41,14 @@ const getPacks = createAppAsyncThunk<{ packs: TPacksResponse }, TGetPacksArg>
   })
 })
 
-const deletePack = createAppAsyncThunk<void, TDeletePackArg>
+const deletePack = createAppAsyncThunk<{pack: TDeletePackResponse}, TDeletePackArg>
 ('packs/deletePack', async (arg, thunkAPI) => {
-  const { dispatch, rejectWithValue } = thunkAPI
-  try {
-    await packApi.deletePack(arg)
+  const { dispatch } = thunkAPI
+  return thunkTryCatch(thunkAPI, async () => {
+    const res = await packApi.deletePack(arg)
     dispatch(packsThunks.getPacks({}))
-  } catch (e) {
-    return rejectWithValue(e)
-  }
+    return {pack: res.data}
+  }, false)
 })
 
 const createPack = createAppAsyncThunk<any, TCreatePackArg>('packs/createPack', (arg, thunkAPI) => {
@@ -66,7 +65,7 @@ const updatePack = createAppAsyncThunk<any, TUpdatePackArg>('/packs/updatePack',
   return thunkTryCatch(thunkAPI, async () => {
     await packApi.updatePack(arg)
     dispatch(getPacks({}))
-  })
+  }, false)
 })
 
 
