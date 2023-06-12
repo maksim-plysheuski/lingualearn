@@ -1,6 +1,5 @@
 import { TableBody, TableCell, TableRow } from '@mui/material'
 import { useAppSelector } from 'common/hooks'
-import { ActionsButtons } from 'features/pack/packsList/packsTable/packsTableBody/actionsButtons/ActionsButtons'
 import { CardRating } from 'common/components/cardRating/cardRating'
 
 export const CardsTableBody = () => {
@@ -28,7 +27,7 @@ export const CardsTableBody = () => {
           <TableCell sx={{ tableCellStyle }}>
             <CardRating grade={card.grade} cardId={card._id} />
           </TableCell>
-          <ActionsButtons packId={card.user_id} />
+         {/* <ActionsButtons itemId={card.user_id} pack={card} handleOpenModal={() => console.log('need to fix')}/>*/}
         </TableRow>
       ))}
     </TableBody>

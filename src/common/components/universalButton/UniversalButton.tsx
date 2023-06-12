@@ -14,6 +14,7 @@ type PropsType = {
   squared?: boolean
   marginTop?: string
   type?: 'button'
+  buttonStyle?: 'primary' | 'error'
   icon?: ReactNode
 }
 
@@ -29,6 +30,7 @@ export const UniversalButton: React.FC<PropsType> = (
     type,
     fontSize,
     disabled,
+    buttonStyle,
     icon
   }
 ) => {
@@ -64,7 +66,9 @@ export const UniversalButton: React.FC<PropsType> = (
                   onClick={onClickCallback}
                   variant={textColor ? 'text' : 'contained'}
                   type={type ? type : 'submit'}
-                  startIcon={icon}>
+                  startIcon={icon}
+                  color={buttonStyle ? buttonStyle : 'primary'}
+        >
           {title}
         </Button>}
     </>

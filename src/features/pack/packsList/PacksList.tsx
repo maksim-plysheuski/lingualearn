@@ -2,7 +2,7 @@ import { SearchBar } from '../searchBar/SearchBar'
 import { PacksTable } from 'features/pack/packsList/packsTable/PacksTable'
 import s from './style.module.scss'
 import { PageTitleBlock } from 'common/components/pageTitleBlock/PageTitleBlock'
-import { useEffect, useState } from 'react'
+import { useEffect } from 'react'
 import { packAction, packsThunks } from 'features/pack/packs.slice'
 import { useSearchCards } from 'features/pack/hook/useSearchCards'
 import { PaginatorPacks } from 'features/pack/paginatorPaks/paginatorPacks'
@@ -16,19 +16,13 @@ export const PacksList = () => {
     dispatch(packsThunks.getPacks({}))
   }, [])
 
-  const [open, setOpen] = useState(false)
-
-  const addPack = () => {
-    //need to fix
-  }
-
   if (!packs) return <h1>loading</h1>
   return (
     <div className={s.packsList}>
       <PageTitleBlock pageTitle={'Packs List'}
                       showButton={true}
                       buttonTitle={'Add New Pack'}
-                      buttonCallback={addPack} />
+      />
       <SearchBar />
       <PacksTable />
       <PaginatorPacks />
