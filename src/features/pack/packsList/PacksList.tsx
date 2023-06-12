@@ -1,18 +1,19 @@
 import { SearchBar } from '../searchBar/SearchBar'
-import { Paginator } from 'common/components/paginator/Paginator'
 import { PacksTable } from 'features/pack/packsList/packsTable/PacksTable'
 import s from './style.module.scss'
 import { PageTitleBlock } from 'common/components/pageTitleBlock/PageTitleBlock'
 import { useEffect, useState } from 'react'
-import { packsThunks } from 'features/pack/packs.slice'
+import { packAction, packsThunks } from 'features/pack/packs.slice'
 import { useSearchCards } from 'features/pack/hook/useSearchCards'
+import { PaginatorPacks } from 'features/pack/paginatorPaks/paginatorPacks'
 
 
 export const PacksList = () => {
-  const { params, dispatch, packs, pageSize, page, countPage, getNewPage } = useSearchCards()
+  const { params, dispatch, packs,} = useSearchCards()
 
   useEffect(() => {
-    dispatch(packsThunks.getPacks(params))
+    dispatch(packAction.setPackParams(params))
+    dispatch(packsThunks.getPacks({}))
   }, [])
 
   const [open, setOpen] = useState(false)
@@ -21,7 +22,7 @@ export const PacksList = () => {
     //need to fix
   }
 
-  if (!packs) return <h1>louding</h1>
+  if (!packs) return <h1>loading</h1>
   return (
     <div className={s.packsList}>
       <PageTitleBlock pageTitle={'Packs List'}
@@ -30,11 +31,7 @@ export const PacksList = () => {
                       buttonCallback={addPack} />
       <SearchBar />
       <PacksTable />
-      <Paginator pageSize={pageSize}
-                 currentPage={page}
-                 countPage={countPage}
-                 getNewPage={getNewPage}
-      />
+      <PaginatorPacks />
     </div>
   )
 }
