@@ -29,12 +29,13 @@ export const ActionsButtons = (props: PropsType) => {
                arrow placement='top'
                TransitionComponent={Zoom}
                TransitionProps={{ timeout: 400 }}>
-        <IconButton disabled={props.pack.cardsCount === 0}
-                    onClick={learnPackHandler}>
+        <span>
+          <IconButton disabled={props.pack.cardsCount === 0}
+                      onClick={learnPackHandler}>
           <SchoolIcon />
         </IconButton>
+        </span>
       </Tooltip>
-
       <Tooltip title={userId ? 'Edit' : false}
                arrow placement='top'
                TransitionComponent={Zoom}
