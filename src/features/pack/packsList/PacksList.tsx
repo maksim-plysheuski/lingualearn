@@ -12,7 +12,6 @@ export const PacksList = () => {
   const { params, dispatch, packs, pageSize, page, countPage, getNewPage } = useSearchCards()
 
   useEffect(() => {
-    // dispatch(packAction.setPackParams(params))
     dispatch(packsThunks.getPacks(params))
   }, [])
 

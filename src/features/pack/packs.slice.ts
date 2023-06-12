@@ -19,7 +19,7 @@ const slice = createSlice({
     builder
       .addCase(getPacks.fulfilled, (state, action) => {
         state.packs = action.payload.packs
-
+        state.packParams = { ...state.packParams, ...action.payload.arg }
         if (action.payload.arg.user_id || action.payload.arg.user_id === '') {
           state.packParams = {
             ...state.packParams,
