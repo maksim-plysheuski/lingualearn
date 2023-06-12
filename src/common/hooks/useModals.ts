@@ -4,6 +4,7 @@ import { modalsAction } from 'features/modals/modals.slice'
 import { packsThunks } from 'features/pack/packs.slice'
 import { toast } from 'react-toastify'
 import { InputsType } from 'common/hooks/useFormModals'
+import { TPack } from 'features/pack/packApi'
 
 
 export const useModals = () => {
@@ -15,7 +16,7 @@ export const useModals = () => {
   const selectedPackId = useAppSelector(selectedPackName => selectedPackName.modals.selectedPack._id)
 
   const openCreateModal = () => dispatch(modalsAction.showCreateModal())
-  const openUpdateModal = () => dispatch(modalsAction.showUpdateModal())
+  const openUpdateModal = (selectedPack: TPack) => dispatch(modalsAction.showUpdateModal(selectedPack))
   const closeModal = () => dispatch(modalsAction.closeModal())
 
   const createPack = (data: InputsType) => {
@@ -35,7 +36,7 @@ export const useModals = () => {
       name: data.packName
     }
     dispatch(packsThunks.updatePack(payload)).unwrap()
-      .then((data) => toast.info(`Pack ${data.pack.deletedCardsPack.name} has been updated`))
+      .then(() => toast.info(`Pack has been updated`))
       .catch((err) => toast.error(err.e.response ? err.e.response.data.error : err.e.message))
     closeModal()
   }

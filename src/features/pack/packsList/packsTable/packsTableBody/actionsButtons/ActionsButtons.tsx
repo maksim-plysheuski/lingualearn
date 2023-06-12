@@ -17,26 +17,18 @@ type PropsType = {
 export const ActionsButtons = (props: PropsType) => {
   const dispatch = useAppDispatch()
   const userId = useAppSelector(state => state.packs.packParams.user_id)
-  const handleLearn = () => {
-    console.log('need to fix')
-  }
 
-  const updatePackHandler = () => {
-    dispatch(modalsAction.setSelectedPack(props.pack))
-    dispatch(modalsAction.showUpdateModal())
-  }
+  const learnPackHandler = () => console.log('need to fix')
+  const updatePackHandler = () => dispatch(modalsAction.showUpdateModal(props.pack))
+  const deletePackHandler = () => dispatch(modalsAction.showDeleteModal(props.pack))
 
-  const deletePackHandler = () => {
-    dispatch(modalsAction.setSelectedPack(props.pack))
-    dispatch(modalsAction.showDeleteModal())
-  }
   return (
     <TableCell>
       <Tooltip title={'Learn'}
                arrow placement='top'
                TransitionComponent={Zoom}
                TransitionProps={{ timeout: 400 }}>
-        <IconButton onClick={handleLearn}>
+        <IconButton onClick={learnPackHandler}>
           <SchoolIcon />
         </IconButton>
       </Tooltip>

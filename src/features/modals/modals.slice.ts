@@ -12,16 +12,15 @@ const slice = createSlice({
   name: 'modals',
   initialState: initialState,
   reducers: {
-    setSelectedPack: (state, action: PayloadAction<TPack>) => {
-      state.selectedPack = action.payload
-    },
     showCreateModal: (state) => {
       state.isCreateModalOpen = true
     },
-    showUpdateModal: (state) => {
+    showUpdateModal: (state, action: PayloadAction<TPack>) => {
+      state.selectedPack = action.payload
       state.isUpdateModalOpen = true
     },
-    showDeleteModal: (state) => {
+    showDeleteModal: (state, action: PayloadAction<TPack>) => {
+      state.selectedPack = action.payload
       state.isDeleteModalOpen = true
     },
     closeModal: () => initialState
