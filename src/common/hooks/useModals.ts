@@ -5,15 +5,22 @@ import { packsThunks } from 'features/pack/packs.slice'
 import { toast } from 'react-toastify'
 import { InputsType } from 'common/hooks/useFormModals'
 import { TPack } from 'features/pack/packApi'
+import {
+  isCreateModalOpenSelector,
+  isDeleteModalOpenSelector,
+  isUpdateModalOpenSelector,
+  selectedPackIdSelector,
+  selectedPackNameSelector
+} from 'features/modals/modalsSelector'
 
 
 export const useModals = () => {
   const dispatch = useAppDispatch()
-  const isUpdateModalOpen = useAppSelector(state => state.modals.isUpdateModalOpen)
-  const isCreateModalOpen = useAppSelector(state => state.modals.isCreateModalOpen)
-  const isDeleteModalOpen = useAppSelector(state => state.modals.isDeleteModalOpen)
-  const selectedPackName = useAppSelector(state => state.modals.selectedPack.name)
-  const selectedPackId = useAppSelector(selectedPackName => selectedPackName.modals.selectedPack._id)
+  const isUpdateModalOpen = useAppSelector(isUpdateModalOpenSelector)
+  const isCreateModalOpen = useAppSelector(isCreateModalOpenSelector)
+  const isDeleteModalOpen = useAppSelector(isDeleteModalOpenSelector)
+  const selectedPackName = useAppSelector(selectedPackNameSelector)
+  const selectedPackId = useAppSelector(selectedPackIdSelector)
 
   const openCreateModal = () => dispatch(modalsAction.showCreateModal())
   const openUpdateModal = (selectedPack: TPack) => dispatch(modalsAction.showUpdateModal(selectedPack))
