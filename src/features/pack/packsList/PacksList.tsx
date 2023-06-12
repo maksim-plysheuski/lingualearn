@@ -4,7 +4,7 @@ import { PacksTable } from 'features/pack/packsList/packsTable/PacksTable'
 import s from './style.module.scss'
 import { PageTitleBlock } from 'common/components/pageTitleBlock/PageTitleBlock'
 import { useEffect, useState } from 'react'
-import { packAction, packsThunks } from 'features/pack/packs.slice'
+import { packsThunks } from 'features/pack/packs.slice'
 import { useSearchCards } from 'features/pack/hook/useSearchCards'
 
 
@@ -12,8 +12,8 @@ export const PacksList = () => {
   const { params, dispatch, packs, pageSize, page, countPage, getNewPage } = useSearchCards()
 
   useEffect(() => {
-    dispatch(packAction.setPackParams(params))
-    dispatch(packsThunks.getPacks({}))
+    // dispatch(packAction.setPackParams(params))
+    dispatch(packsThunks.getPacks(params))
   }, [])
 
   const [open, setOpen] = useState(false)

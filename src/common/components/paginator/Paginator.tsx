@@ -11,7 +11,6 @@ type Props = {
 
 export const Paginator = (props: Props) => {
   const { pageSize, countPage, currentPage, getNewPage } = props
-  debugger
   const paginationHandler = (event: React.ChangeEvent<unknown>, page: number) => {
     getNewPage(page, pageSize)
   }

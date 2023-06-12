@@ -47,7 +47,6 @@ const getPacks = createAppAsyncThunk<{ packs: TPacksResponse, arg: TGetPacksArg 
 
   const params = getState().packs.packParams
   const res = await packApi.getPacks({ ...params, ...arg })
-  debugger
   return { packs: res.data, arg }
 
 })
