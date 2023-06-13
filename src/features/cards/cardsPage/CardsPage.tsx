@@ -5,6 +5,7 @@ import { CardsTable } from 'features/cards/cardsPage/cardsTable/CardsTable'
 import { useAppSelector } from 'common/hooks'
 
 import { BackLink } from 'common/components/backLink/BackLink'
+import * as React from 'react'
 
 export const CardsPage = () => {
   const currentPage = useAppSelector(state => state.cards.cards.page)
@@ -27,13 +28,13 @@ export const CardsPage = () => {
       <BackLink />
       <PageTitleBlock showButton={true}
                       buttonTitle={'Learn cards'}
-                      buttonCallback={learnPack} />
+      />
       {/*<InputSearch nameSearch={cardQuestion!} searchCallback={setPackParamQuestion} width={'1008px'}/>*/}
       <CardsTable />
-      <Paginator currentPage={currentPage}
-                 itemsPerPage={cardsPerPage}
-                 itemsTotalCount={cardsTotalCount}
-                 itemsTitle={'cards'} />
+      {/*<Paginator currentPage={currentPage}*/}
+      {/*           itemsPerPage={cardsPerPage}*/}
+      {/*           itemsTotalCount={cardsTotalCount}*/}
+      {/*           itemsTitle={'cards'} />*/}
     </div>
   )
 }

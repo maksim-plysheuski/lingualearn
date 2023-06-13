@@ -1,0 +1,21 @@
+@import "../../../../common/style/mixins";
+@import "../../../../common/style/variables";
+
+.modalHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  span {
+    @include text(500, 18px, 22px)
+  }
+}
+
+.line {
+  position: absolute;
+  width: 100%;
+  top: 65px;
+  left: 0;
+}
+
+

@@ -1,5 +1,12 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
-import { packApi, TCreatePackArg, TDeletePackArg, TGetPacksArg, TPacksResponse } from 'features/pack/packApi'
+import {
+  packApi,
+  TCreatePackArg,
+  TDeletePackArg, TDeletePackResponse,
+  TGetPacksArg,
+  TPacksResponse,
+  TUpdatePackArg
+} from 'features/pack/packApi'
 import { createAppAsyncThunk } from 'common/utils/createAppAsyncThunk'
 import { thunkTryCatch } from 'common/utils/thunk-try-catch'
 
@@ -19,6 +26,7 @@ const slice = createSlice({
     builder
       .addCase(getPacks.fulfilled, (state, action) => {
         state.packs = action.payload.packs
+        state.packParams = { ...state.packParams, ...action.payload.arg }
         if (action.payload.arg.user_id || action.payload.arg.user_id === '') {
           state.packParams = {
             ...state.packParams,
@@ -42,26 +50,26 @@ const slice = createSlice({
 
 
 const getPacks = createAppAsyncThunk<{ packs: TPacksResponse, arg: TGetPacksArg }, TGetPacksArg>
-('packs/getPacks', async (arg, { getState }) => {
-
-  const params = getState().packs.packParams
-  const res = await packApi.getPacks({ ...params, ...arg })
-  return { packs: res.data, arg }
+('packs/getPacks', async (arg, thunkAPI) => {
+  return thunkTryCatch(thunkAPI, async () => {
+    const params = thunkAPI.getState().packs.packParams
+    const res = await packApi.getPacks({ ...params, ...arg })
+    return { packs: res.data, arg }
+  })
 })
 
-const deletePack = createAppAsyncThunk<void, TDeletePackArg>
+const deletePack = createAppAsyncThunk<{ pack: TDeletePackResponse }, TDeletePackArg>
 ('packs/deletePack', async (arg, thunkAPI) => {
-  const { dispatch, rejectWithValue } = thunkAPI
-  try {
-    await packApi.deletePack(arg)
+  const { dispatch } = thunkAPI
+  return thunkTryCatch(thunkAPI, async () => {
+    const res = await packApi.deletePack(arg)
     dispatch(packsThunks.getPacks({}))
-  } catch (e) {
-    return rejectWithValue(e)
-  }
+    return { pack: res.data }
+  }, false)
 })
 
 const createPack = createAppAsyncThunk<any, TCreatePackArg>('packs/createPack', (arg, thunkAPI) => {
-  const {dispatch} = thunkAPI
+  const { dispatch } = thunkAPI
   return thunkTryCatch(thunkAPI, async () => {
     await packApi.createPack(arg)
     dispatch(getPacks({}))
@@ -69,9 +77,18 @@ const createPack = createAppAsyncThunk<any, TCreatePackArg>('packs/createPack', 
 })
 
 
+const updatePack = createAppAsyncThunk<any, TUpdatePackArg>('/packs/updatePack', (arg, thunkAPI) => {
+  const { dispatch } = thunkAPI
+  return thunkTryCatch(thunkAPI, async () => {
+    await packApi.updatePack(arg)
+    dispatch(getPacks({}))
+  }, false)
+})
+
+
 export const packsReducer = slice.reducer
 export const packAction = slice.actions
-export const packsThunks = { getPacks, deletePack, createPack }
+export const packsThunks = { getPacks, deletePack, createPack, updatePack }
 
 
 
