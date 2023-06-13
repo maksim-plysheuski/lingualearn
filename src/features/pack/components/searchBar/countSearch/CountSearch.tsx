@@ -1,7 +1,7 @@
 import { memo } from 'react'
 import Box from '@mui/material/Box'
 import Slider from '@mui/material/Slider'
-import s from './style.module.scss'
+import s from 'features/pack/components/searchBar/countSearch/style.module.scss'
 
 import { packsThunks } from 'features/pack/packs.slice'
 import { useSearchCards } from 'features/pack/hook/useSearchCards'

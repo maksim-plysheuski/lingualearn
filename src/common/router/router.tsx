@@ -8,7 +8,7 @@ import { ChangePasswordPage } from 'features/auth/changePassword/ChangePasswordP
 import React from 'react'
 import { paths } from 'common/router/path'
 import { PrivateLayout } from 'common/router/PrivateRoute'
-import { PacksList } from 'features/pack/packsList/PacksList'
+import { PacksList } from 'features/pack/components/packsList/PacksList'
 import { CheckEmailPage } from 'features/auth/checkEmail/CheckEmailPage'
 import { NotPrivateLayout } from 'common/router/NotPrivateRoute'
 import { CardsPage } from 'features/cards/cardsPage/CardsPage'

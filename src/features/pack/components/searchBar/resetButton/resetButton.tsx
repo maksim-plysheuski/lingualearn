@@ -1,6 +1,6 @@
 import React from 'react'
-import resetIcon from './icon/Filter-Remove.svg'
-import s from './style.module.scss'
+import resetIcon from 'features/pack/components/searchBar/resetButton/icon/Filter-Remove.svg'
+import s from 'features/pack/components/searchBar/resetButton/style.module.scss'
 import { useSearchCards } from 'features/pack/hook/useSearchCards'
 
 

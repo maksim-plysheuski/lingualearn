@@ -1,6 +1,6 @@
 import { TableBody, TableCell, TableRow } from '@mui/material'
 import { useAppDispatch, useAppSelector } from 'common/hooks'
-import { ActionsButtons } from 'features/pack/packsList/packsTable/packsTableBody/actionsButtons/ActionsButtons'
+import { ActionsButtons } from 'features/pack/components/packsList/packsTable/packsTableBody/actionsButtons/ActionsButtons'
 import { cardsAction } from 'features/cards/cards.slice'
 import { useNavigate } from 'react-router-dom'
 import { paths } from 'common/router/path'

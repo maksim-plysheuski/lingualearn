@@ -1,11 +1,11 @@
-import { SearchBar } from '../searchBar/SearchBar'
-import { PacksTable } from 'features/pack/packsList/packsTable/PacksTable'
-import s from './style.module.scss'
+import { SearchBar } from 'features/pack/components/searchBar/SearchBar'
+import { PacksTable } from 'features/pack/components/packsList/packsTable/PacksTable'
+import s from 'features/pack/components/packsList/style.module.scss'
 import { PageTitleBlock } from 'common/components/pageTitleBlock/PageTitleBlock'
 import { useEffect } from 'react'
 import { packAction, packsThunks } from 'features/pack/packs.slice'
 import { useSearchCards } from 'features/pack/hook/useSearchCards'
-import { PaginatorPacks } from 'features/pack/paginatorPaks/paginatorPacks'
+import { PaginatorPacks } from 'features/pack/components/paginatorPaks/paginatorPacks'
 
 
 export const PacksList = () => {
