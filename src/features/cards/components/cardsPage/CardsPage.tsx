@@ -1,13 +1,24 @@
-import { Paginator } from 'common/components/paginator/Paginator'
-import s from 'features/cards/cardsPage/style.module.scss'
+import s from 'features/cards/components/cardsPage/style.module.scss'
 import { PageTitleBlock } from 'common/components/pageTitleBlock/PageTitleBlock'
-import { CardsTable } from 'features/cards/cardsPage/cardsTable/CardsTable'
-import { useAppSelector } from 'common/hooks'
+import { CardsTable } from 'features/cards/components/cardsPage/cardsTable/CardsTable'
+import { useAppDispatch, useAppSelector } from 'common/hooks'
 
 import { BackLink } from 'common/components/backLink/BackLink'
 import * as React from 'react'
+import { useEffect } from 'react'
+import { cardsThunks } from 'features/cards/cards.slice'
+import { useSearchCards } from 'features/cards/hooks/useSearchCards'
 
 export const CardsPage = () => {
+  const { params, cardsPack_id } = useSearchCards()
+  const dispatch = useAppDispatch()
+
+  useEffect(() => {
+    debugger
+    dispatch(cardsThunks.getCards({ cardsPack_id: params.cardsPack_id ?? cardsPack_id }))
+  }, [])
+
+
   const currentPage = useAppSelector(state => state.cards.cards.page)
   const cardsTotalCount = useAppSelector(state => state.cards.cards.cardsTotalCount)
   const cardsPerPage = useAppSelector(state => state.cards.cards.pageCount)

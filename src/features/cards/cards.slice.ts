@@ -8,13 +8,11 @@ import {
   TGetCardsResponse
 } from 'features/cards/cardsApi'
 
-
 const slice = createSlice({
   name: 'cards',
   initialState: {
     cards: {} as TGetCardsResponse,
     cardsParams: {} as TGetCardsArgs,
-    upd: {}
   },
   reducers: {
     setCardsParams: (state, action: PayloadAction<TGetCardsArgs>) => {
@@ -32,16 +30,17 @@ const slice = createSlice({
 })
 
 
-const getCards = createAppAsyncThunk<{ cards: TGetCardsResponse }>('cards/getCards', async (arg, { getState }) => {
+const getCards = createAppAsyncThunk<{ cards: TGetCardsResponse }, TGetCardsArgs>
+('cards/getCards', async (arg, { getState }) => {
   const params = { ...getState().cards.cardsParams }
-  const res = await cardsApi.getCards(params)
+  const res = await cardsApi.getCards({ ...params, ...arg })
   return { cards: res }
 })
 
-const changeGrade = createAppAsyncThunk<{updatedCard: TChangeGradeResponse}, TChangeGradeArg>('cards/changeGrade', async (arg) => {
+const changeGrade = createAppAsyncThunk<{ updatedCard: TChangeGradeResponse }, TChangeGradeArg>
+('cards/changeGrade', async (arg) => {
   const res = await cardsApi.changeGrade(arg)
-  return {updatedCard: res}
-
+  return { updatedCard: res }
 })
 
 

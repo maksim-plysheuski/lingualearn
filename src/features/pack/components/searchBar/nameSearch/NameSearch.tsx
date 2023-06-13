@@ -1,9 +1,9 @@
 import React from 'react'
 import { InputSearch } from 'common/components/Inputs/inputSearch/InputSearch'
-import { useSearchCards } from 'features/pack/hook/useSearchCards'
+import { useSearchPaks } from 'features/pack/hook/useSearchPaks'
 
 export const NameSearch = () => {
-  const { setPackName, packName } = useSearchCards()
+  const { setPackName, packName } = useSearchPaks()
 
   const setSearchParamsHandler = (packName: string) => {
     setPackName(packName)

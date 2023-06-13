@@ -6,19 +6,19 @@ import { packAction, packsThunks } from 'features/pack/packs.slice'
 import useDebounce from 'common/hooks/useDebounce'
 import {
   cardPacksTotalCountSelect,
-
   maxCardsCountSelect,
   maxSelect,
   minCardsCountSelect,
   minSelect,
   namePackParamsSelect,
   packsSelect,
-  pageCountSelect, pageSelect,
+  pageCountSelect,
+  pageSelect,
   paramsCardIdSelect
 } from 'features/pack/packSelectors'
 import { useSelector } from 'react-redux'
 
-export const useSearchCards = () => {
+export const useSearchPaks = () => {
   const dispatch = useAppDispatch()
   const userId = useAppSelector(state => state.auth.profile._id)
   const packName = useSelector(namePackParamsSelect)
@@ -28,9 +28,7 @@ export const useSearchCards = () => {
   const min = useSelector(minSelect)
   const max = useSelector(maxSelect)
   const packs = useSelector(packsSelect)
-
   const cardPacksTotalCount = useSelector(cardPacksTotalCountSelect)
-
 
 // запись параметров в поисковую строку
   const [searchParams, setSearchParams] = useSearchParams()
@@ -88,7 +86,6 @@ export const useSearchCards = () => {
   const getNewPage = (page: number, size: number) => {
     dispatch(packsThunks.getPacks({ page, pageCount: size }))
   }
-
 
   return {
     getNewPage,

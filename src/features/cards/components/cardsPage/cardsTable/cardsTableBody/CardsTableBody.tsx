@@ -1,9 +1,11 @@
 import { TableBody, TableCell, TableRow } from '@mui/material'
 import { useAppSelector } from 'common/hooks'
 import { CardRating } from 'common/components/cardRating/cardRating'
+import { selectCards } from 'features/cards/selectors'
 
 export const CardsTableBody = () => {
-  const cards = useAppSelector(state => state.cards.cards)
+
+  const cards = useAppSelector(selectCards)
   const tableCellStyle = {
     wordWrap: 'break-word',
     minWidth: '150px',
@@ -12,7 +14,7 @@ export const CardsTableBody = () => {
 
   return (
     <TableBody>
-      {cards.cards?.map((card) => (
+      {cards?.map((card) => (
         <TableRow key={card._id}>
           <TableCell sx={{
             ...tableCellStyle,
@@ -27,7 +29,7 @@ export const CardsTableBody = () => {
           <TableCell sx={{ tableCellStyle }}>
             <CardRating grade={card.grade} cardId={card._id} />
           </TableCell>
-         {/* <ActionsButtons itemId={card.user_id} pack={card} handleOpenModal={() => console.log('need to fix')}/>*/}
+          {/* <ActionsButtons itemId={card.user_id} pack={card} handleOpenModal={() => console.log('need to fix')}/>*/}
         </TableRow>
       ))}
     </TableBody>
