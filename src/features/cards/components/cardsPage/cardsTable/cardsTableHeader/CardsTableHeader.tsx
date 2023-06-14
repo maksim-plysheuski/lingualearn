@@ -2,7 +2,7 @@ import { TableCell, TableHead, TableRow, TableSortLabel } from '@mui/material'
 import * as React from 'react'
 import { useState } from 'react'
 import { useAppDispatch, useAppSelector } from 'common/hooks'
-import { cardsAction } from 'features/cards/cards.slice'
+import { cardsAction, cardsThunks } from 'features/cards/cards.slice'
 
 export const CardsTableHeader = () => {
   const dispatch = useAppDispatch()
@@ -32,7 +32,7 @@ export const CardsTableHeader = () => {
     }
     setSortOrder(sortOrder === 'desc' ? 'asc' : 'desc')
     setLastSortedCell(title)
-    dispatch(cardsAction.setCardsParams({ ...payload, cardsPack_id: selectedPackId }))
+    dispatch(cardsThunks.fetchCards({ ...payload, cardsPack_id: selectedPackId }))
   }
 
   return (

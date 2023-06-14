@@ -12,7 +12,7 @@ const slice = createSlice({
   name: 'cards',
   initialState: {
     cards: {} as TGetCardsResponse,
-    cardsParams: {} as TGetCardsArgs,
+    cardsParams: {} as TGetCardsArgs
   },
   reducers: {
     setCardsParams: (state, action: PayloadAction<TGetCardsArgs>) => {
@@ -21,20 +21,21 @@ const slice = createSlice({
   },
   extraReducers: builder => {
     builder
-      .addCase(getCards.fulfilled, (state, action) => {
+      .addCase(fetchCards.fulfilled, (state, action) => {
         state.cards = action.payload.cards
-      })
-      .addCase(changeGrade.fulfilled, (state, action) => {
+        state.cardsParams = { ...state.cardsParams, ...action.payload.arg }
       })
   }
 })
 
 
-const getCards = createAppAsyncThunk<{ cards: TGetCardsResponse }, TGetCardsArgs>
+const fetchCards = createAppAsyncThunk<{ cards: TGetCardsResponse, arg: TGetCardsArgs }, TGetCardsArgs>
 ('cards/getCards', async (arg, { getState }) => {
-  const params = { ...getState().cards.cardsParams }
+  const params = getState().cards.cardsParams
+
   const res = await cardsApi.getCards({ ...params, ...arg })
-  return { cards: res }
+
+  return { cards: res, arg }
 })
 
 const changeGrade = createAppAsyncThunk<{ updatedCard: TChangeGradeResponse }, TChangeGradeArg>
@@ -46,7 +47,7 @@ const changeGrade = createAppAsyncThunk<{ updatedCard: TChangeGradeResponse }, T
 
 export const cardsReducer = slice.reducer
 export const cardsAction = slice.actions
-export const cardsThunks = { getCards, changeGrade }
+export const cardsThunks = { fetchCards, changeGrade }
 
 
 

@@ -8,14 +8,16 @@ import * as React from 'react'
 import { useEffect } from 'react'
 import { cardsThunks } from 'features/cards/cards.slice'
 import { useSearchCards } from 'features/cards/hooks/useSearchCards'
+import { InputSearchCards } from 'features/cards/components/inputSearchCards/inputSearchCards'
 
 export const CardsPage = () => {
-  const { params, cardsPack_id } = useSearchCards()
+
+  const { params, cards } = useSearchCards()
   const dispatch = useAppDispatch()
 
   useEffect(() => {
-    debugger
-    dispatch(cardsThunks.getCards({ cardsPack_id: params.cardsPack_id ?? cardsPack_id }))
+    if (!Object.keys(params).length || !!cards) return
+    dispatch(cardsThunks.fetchCards({ cardsPack_id: params.cardsPack_id, ...params }))
   }, [])
 
 
@@ -33,6 +35,7 @@ export const CardsPage = () => {
   const learnPack = () => {
     //need to fix
   }
+  if (!cards) return <h1>louding</h1>
 
   return (
     <div className={s.packsList}>
@@ -40,7 +43,7 @@ export const CardsPage = () => {
       <PageTitleBlock showButton={true}
                       buttonTitle={'Learn cards'}
       />
-      {/*<InputSearch nameSearch={cardQuestion!} searchCallback={setPackParamQuestion} width={'1008px'}/>*/}
+      <InputSearchCards />
       <CardsTable />
       {/*<Paginator currentPage={currentPage}*/}
       {/*           itemsPerPage={cardsPerPage}*/}
