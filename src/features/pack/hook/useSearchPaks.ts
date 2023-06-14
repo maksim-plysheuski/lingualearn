@@ -28,7 +28,7 @@ export const useSearchPaks = () => {
   const min = useSelector(minSelect)
   const max = useSelector(maxSelect)
   const packs = useSelector(packsSelect)
-  const cardPacksTotalCount = useSelector(cardPacksTotalCountSelect)
+
 
 // запись параметров в поисковую строку
   const [searchParams, setSearchParams] = useSearchParams()
@@ -79,7 +79,7 @@ export const useSearchPaks = () => {
   //для пагинации
   const pageSize = useSelector(pageCountSelect)
   //количество страниц
-  const countPage = Math.ceil(cardPacksTotalCount / pageSize) || 0
+  const cardPacksTotalCount = useSelector(cardPacksTotalCountSelect)
   //текущая страница
   const page = useSelector(pageSelect)
 
@@ -89,7 +89,7 @@ export const useSearchPaks = () => {
 
   return {
     getNewPage,
-    countPage,
+    cardPacksTotalCount,
     pageSize,
     page,
     packs,

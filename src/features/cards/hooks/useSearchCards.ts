@@ -1,7 +1,15 @@
 import { useAppDispatch, useAppSelector } from 'common/hooks'
-import { useEffect, useState } from 'react'
+import { useEffect } from 'react'
 import { useSearchParams } from 'react-router-dom'
 import { cardsThunks } from 'features/cards/cards.slice'
+import {
+  selectCardQuestion,
+  selectCards,
+  selectCardsPack_id,
+  selectCardsTotalCount,
+  selectPage,
+  selectPageCount
+} from 'features/cards/selectors'
 
 type TSearch = {
   cardsPack_id?: string
@@ -10,13 +18,12 @@ type TSearch = {
 
 export const useSearchCards = () => {
   const dispatch = useAppDispatch()
-  const currentPage = useAppSelector(state => state.cards.cards.page)
-  const cardsTotalCount = useAppSelector(state => state.cards.cards.cardsTotalCount)
-  const cardsPerPage = useAppSelector(state => state.cards.cards.pageCount)
-  const cards = useAppSelector(state => state.cards.cards.cards)
-
-  const cardsPack_id = useAppSelector(state => state.cards.cardsParams.cardsPack_id)
-  const cardQuestion = useAppSelector(state => state.cards.cardsParams.cardQuestion)
+  const page = useAppSelector(selectPage)
+  const cardsTotalCount = useAppSelector(selectCardsTotalCount)
+  const pageCount = useAppSelector(selectPageCount)
+  const cards = useAppSelector(selectCards)
+  const cardsPack_id = useAppSelector(selectCardsPack_id)
+  const cardQuestion = useAppSelector(selectCardQuestion)
 
   const [searchParams, setSearchParams] = useSearchParams()
   const params = Object.fromEntries(searchParams)
@@ -29,16 +36,27 @@ export const useSearchCards = () => {
   }, [cardsPack_id, cardQuestion])
 
   //searchName
-  const [name, setName] = useState<string>()
-
   const fetchCardsName = (cardQuestion: string) => {
     dispatch(cardsThunks.fetchCards({ cardsPack_id, cardQuestion }))
   }
+  //fetchPageNewCards
+  const fetchPageNewCards = (page: number, pageCount: number) => {
+    dispatch(cardsThunks.fetchCards({ cardsPack_id, page, pageCount }))
+  }
+  //fetchSortCard
+  const fetchSortCard = (sortCards: string) => {
+    dispatch(cardsThunks.fetchCards({ cardsPack_id, sortCards }))
+  }
 
   return {
+    fetchSortCard,
+    fetchPageNewCards,
+    fetchCardsName,
+    pageCount,
+    cardsTotalCount,
+    page,
     cardQuestion,
     cards,
-    fetchCardsName,
     cardsPack_id,
     params
   }

@@ -1,2 +1,11 @@
-export { selectCards } from 'features/cards/selectors/cards.selector'
+export {
+  selectCardQuestion,
+  selectCardsPack_id,
+  selectCardsTotalCount,
+  selectPage,
+  selectPageCount,
+  selectCards
+} from 'features/cards/selectors/cards.selector'
+
+
 

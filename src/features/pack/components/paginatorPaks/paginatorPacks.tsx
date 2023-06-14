@@ -3,16 +3,14 @@ import { Paginator } from 'common/components/paginator/Paginator'
 import { useSearchPaks } from 'features/pack/hook/useSearchPaks'
 
 export const PaginatorPacks = () => {
-  const {pageSize, page, countPage, getNewPage } = useSearchPaks()
+  const { pageSize, page, cardPacksTotalCount, getNewPage } = useSearchPaks()
 
   return (
-    <>
-      <Paginator pageSize={pageSize}
-                 currentPage={page}
-                 countPage={countPage}
-                 getNewPage={getNewPage}
-      />
-    </>
+    <Paginator pageCount={pageSize}
+               page={page}
+               totalCount={cardPacksTotalCount}
+               getNewPage={getNewPage}
+    />
   )
 }
 

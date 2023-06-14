@@ -1,16 +1,14 @@
 import { TableCell, TableHead, TableRow, TableSortLabel } from '@mui/material'
 import * as React from 'react'
 import { useState } from 'react'
-import { useAppDispatch, useAppSelector } from 'common/hooks'
-import { cardsAction, cardsThunks } from 'features/cards/cards.slice'
+import { useSearchCards } from 'features/cards/hooks/useSearchCards'
 
 export const CardsTableHeader = () => {
-  const dispatch = useAppDispatch()
-  const currentRowsCount = useAppSelector(state => state.cards.cards.pageCount)
-  const selectedPackId = useAppSelector(state => state.cards.cardsParams.cardsPack_id)
+  const { fetchSortCard } = useSearchCards()
+
   const [sortOrder, setSortOrder] = useState<'asc' | 'desc'>('asc')
   const [lastSortedCell, setLastSortedCell] = useState<string>('Last Updated')
-  const columnTitles: string[] = ['Question', 'Answer', 'Last Updated', 'Grade', 'Actions']
+  const columnTitles: string[] = ['Question', 'Answer', 'Last Updated', 'Grade']
 
   const handleSortButton = (title: string) => () => {
     let sortArgTitle
@@ -24,15 +22,11 @@ export const CardsTableHeader = () => {
     } else {
       sortArgTitle = 'grade'
     }
-    const payload = {
-      sortCards: sortOrder === 'asc'
-        ? `0${sortArgTitle}`
-        : `1${sortArgTitle}`,
-      pageCount: currentRowsCount
-    }
+
+    const sortCards = sortOrder === 'asc' ? `0${sortArgTitle}` : `1${sortArgTitle}`
     setSortOrder(sortOrder === 'desc' ? 'asc' : 'desc')
     setLastSortedCell(title)
-    dispatch(cardsThunks.fetchCards({ ...payload, cardsPack_id: selectedPackId }))
+    fetchSortCard(sortCards)
   }
 
   return (
@@ -43,12 +37,9 @@ export const CardsTableHeader = () => {
             setLastSortedCell(t)
           }}>
             {t}
-            {t !== 'Actions' ?
-              <TableSortLabel
-                active={lastSortedCell === t}
-                direction={sortOrder}
-                onClick={handleSortButton(t)}>
-              </TableSortLabel> : null}
+            {<TableSortLabel active={lastSortedCell === t}
+                             direction={sortOrder}
+                             onClick={handleSortButton(t)} />}
           </TableCell>)}
       </TableRow>
     </TableHead>
