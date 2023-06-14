@@ -1,7 +1,7 @@
 import s from 'features/cards/components/cardsPage/style.module.scss'
 import { PageTitleBlock } from 'common/components/pageTitleBlock/PageTitleBlock'
 import { CardsTable } from 'features/cards/components/cardsPage/cardsTable/CardsTable'
-import { useAppDispatch, useAppSelector } from 'common/hooks'
+import { useAppDispatch } from 'common/hooks'
 
 import { BackLink } from 'common/components/backLink/BackLink'
 import * as React from 'react'
