@@ -1,7 +1,7 @@
 import { Paper, Table, TableContainer } from '@mui/material'
 import * as React from 'react'
-import { CardsTableHeader } from 'features/cards/components/cardsPage/cardsTable/cardsTableHeader/CardsTableHeader'
-import { CardsTableBody } from 'features/cards/components/cardsPage/cardsTable/cardsTableBody/CardsTableBody'
+import { CardsTableHeader } from 'features/cards/components/cardsTable/cardsTableHeader/CardsTableHeader'
+import { CardsTableBody } from 'features/cards/components/cardsTable/cardsTableBody/CardsTableBody'
 
 
 export const CardsTable = () => {

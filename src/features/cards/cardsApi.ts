@@ -38,6 +38,7 @@ export type TGetCardsResponse = {
   page: number
   pageCount: number
   packUserId: string
+  packName: string
 }
 
 export type TCard = {

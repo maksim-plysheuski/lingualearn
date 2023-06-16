@@ -4,7 +4,7 @@ import LoadingButton from '@mui/lab/LoadingButton'
 import { useAppSelector } from 'common/hooks'
 
 type PropsType = {
-  title: string
+  title?: string
   onClickCallback?: () => void
   textColor?: string
   disabled?: boolean

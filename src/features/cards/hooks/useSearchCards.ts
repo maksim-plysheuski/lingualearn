@@ -37,7 +37,7 @@ export const useSearchCards = () => {
 
   //searchName
   const fetchCardsName = (cardQuestion: string) => {
-    dispatch(cardsThunks.fetchCards({ cardsPack_id, cardQuestion }))
+      dispatch(cardsThunks.fetchCards({ cardsPack_id, cardQuestion }))
   }
   //fetchPageNewCards
   const fetchPageNewCards = (page: number, pageCount: number) => {

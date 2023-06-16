@@ -7,6 +7,7 @@ import Search from '@mui/icons-material/Search'
 type Props = {
   valueName: string | undefined
   searchCallback: (name: string) => void
+  disabled?: boolean
 }
 
 export const InputSearchName = ({ searchCallback, valueName }: Props) => {
@@ -34,7 +35,7 @@ export const InputSearchName = ({ searchCallback, valueName }: Props) => {
         value={value || ''}
         sx={{
           position: 'relative',
-          width: '1008px',
+          // width: '100%',
           height: '36px',
           backgroundColor: 'white',
           color: 'black',

@@ -17,6 +17,10 @@ const slice = createSlice({
   reducers: {
     setCardsParams: (state, action: PayloadAction<TGetCardsArgs>) => {
       state.cardsParams = { ...state.cardsParams, ...action.payload }
+    },
+    resetCards: (state) => {
+      state.cards = {} as TGetCardsResponse
+      state.cardsParams = {} as TGetCardsArgs
     }
   },
   extraReducers: builder => {
@@ -28,15 +32,13 @@ const slice = createSlice({
   }
 })
 
-
 const fetchCards = createAppAsyncThunk<{ cards: TGetCardsResponse, arg: TGetCardsArgs }, TGetCardsArgs>
 ('cards/getCards', async (arg, { getState }) => {
   const params = getState().cards.cardsParams
-
   const res = await cardsApi.getCards({ ...params, ...arg })
-
   return { cards: res, arg }
 })
+
 
 const changeGrade = createAppAsyncThunk<{ updatedCard: TChangeGradeResponse }, TChangeGradeArg>
 ('cards/changeGrade', async (arg) => {
