@@ -2,6 +2,7 @@ import Box from '@mui/material/Box'
 import MenuItem from '@mui/material/MenuItem'
 import FormControl from '@mui/material/FormControl'
 import Select, { SelectChangeEvent } from '@mui/material/Select'
+import s from 'features/cards/components/modal/addNewCardModal/select/style.module.css'
 
 export type SelectType = 'Text' | 'Img'
 type Props = {
@@ -17,10 +18,11 @@ export const SelectTextImg = (props: Props) => {
   }
 
   return (
-    <Box sx={{ minWidth: 120, marginTop: '21px', width: '1' }}>
+    <Box sx={{ minWidth: 120, marginTop: '24px', width: '1' }}>
       <FormControl fullWidth>
-
         <Select
+          classes={{}}
+          className={s.selectContainer}
           labelId='demo-simple-select-label'
           id='demo-simple-select'
           value={select}

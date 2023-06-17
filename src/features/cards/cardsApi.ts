@@ -6,7 +6,7 @@ export const cardsApi = {
     return instance.get<TGetCardsResponse>('cards/card', { params: { ...arg } }).then(res => res.data)
   },
   createCard: (arg: TCreateArg) => {
-    return instance.post<TCreateResponse>('cards/card', arg).then(res => res.data)
+    return instance.post<TCreateResponse>('cards/card', {card: arg }).then(res => res.data)
   },
   deleteCard: (arg: TDeleteArg) => {
     return instance.delete('cards/card', { params: { ...arg } })
@@ -54,17 +54,15 @@ export type TCard = {
 }
 
 export type TCreateArg = {
-  card: {
-    cardsPack_id: string
-    question?: string
-    answer?: string
-    grade?: number
-    shots?: number
-    answerImg?: string
-    questionImg?: string
-    questionVideo?: string
-    answerVideo?: string
-  }
+  cardsPack_id: string
+  question?: string
+  answer?: string
+  grade?: number
+  shots?: number
+  answerImg?: string
+  questionImg?: string
+  questionVideo?: string
+  answerVideo?: string
 }
 
 export type TCreateResponse = {

@@ -10,18 +10,18 @@ export const TitleBlockCards = () => {
   const packUserId = useAppSelector(selectPackUserId)
   const userId = useAppSelector(state => state.profile.profile?._id)
   const edit = packUserId === userId
+  const title = edit ? 'My Pack' : 'Friends Pack'
 
   return (
     <div className={s.container}>
       <div className={s.titleContainer}>
-        <h2>{edit ? 'My Pack' : 'Friends Pack'}</h2>
+        <h2>{title}</h2>
         {edit && <img src='' alt='icon' />}
       </div>
       {
-        edit ? <AddNewCardsModal/> :
+        edit ? <AddNewCardsModal /> :
           <UniversalButton width={'184'} title={'learn pack'} />
       }
-
     </div>
   )
 }
