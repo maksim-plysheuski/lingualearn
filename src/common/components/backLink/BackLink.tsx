@@ -14,7 +14,7 @@ export const BackLink = () => {
 
   return (
     <div className={s.backLinkContainer}>
-      <ArrowBackIcon fontSize={'medium'} />
+      <ArrowBackIcon fontSize={'medium'} sx={{color: 'white'}} />
       <Link onClick={resetCardParamsHandler} className={s.backLink} to={paths.PACKS}>Back to Pack List</Link>
     </div>
   )

@@ -37,7 +37,8 @@ export const PacksTableHeader = () => {
     <TableHead sx={{ backgroundColor: '#333333'}}>
       <TableRow>
         {columnTitles.map((t, i) =>
-          <TableCell key={i} sx={{color: 'white', borderBottom: '0'}}
+          <TableCell key={i}
+                     sx={{color: 'white', borderBottom: '0'}}
                      onMouseEnter={() => setLastSortedCell(t)}>
             {t}
             {t === 'Name' || t === 'Cards' || t === 'Last Updated' ?

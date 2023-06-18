@@ -30,14 +30,15 @@ export const CardsTableHeader = () => {
   }
 
   return (
-    <TableHead sx={{ backgroundColor: '#EFEFEF' }}>
+    <TableHead sx={{ backgroundColor: '#333333'}}>
       <TableRow>
         {columnTitles.map((t, i) =>
-          <TableCell key={i} onMouseEnter={() => {
-            setLastSortedCell(t)
-          }}>
+          <TableCell key={i}
+                     sx={{color: 'white', borderBottom: '0'}}
+                     onMouseEnter={() => setLastSortedCell(t)}>
             {t}
-            {<TableSortLabel active={lastSortedCell === t}
+            {<TableSortLabel sx={{'& .MuiTableSortLabel-icon': { color: 'white !important'} }}
+                             active={lastSortedCell === t}
                              direction={sortOrder}
                              onClick={handleSortButton(t)} />}
           </TableCell>)}
