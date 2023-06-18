@@ -2,17 +2,16 @@ import React, { useState } from 'react'
 import { BaseModalC } from 'features/cards/components/modal/BaseModalC'
 import { UniversalButton } from 'common/components/universalButton/UniversalButton'
 import { SelectTextImg, SelectType } from 'features/cards/components/modal/addRemoveCardModal/select/SelectTextImg'
-import { InputCastom } from 'features/cards/components/modal/addRemoveCardModal/InputCastom'
+import { InputCastom } from 'features/cards/components/modal/addRemoveCardModal/inputCastom/InputCastom'
 import s from './style.module.scss'
 import { useAppDispatch } from 'common/hooks'
 import { cardsThunks } from 'features/cards/cards.slice'
-import { InputText } from 'common/components/Inputs/InputText'
 
 type Props = {
   callback?: (question: string, answer: string) => void
 }
 export const AddRemoveCardsModal = (props: Props) => {
-  const {callback} = props
+  const { callback } = props
 
   const dispatch = useAppDispatch()
   const [open, setOpen] = useState(false)
@@ -39,7 +38,6 @@ export const AddRemoveCardsModal = (props: Props) => {
       >
         <div className={s.newCardContainer}>
           <SelectTextImg select={select} setSelect={setSelect} />
-          <InputText label={'Question'} value={question} setValue={setQuestion} />
           <InputCastom label={'Question'} value={question} setValue={setQuestion} />
           <InputCastom label={'Answer'} value={answer} setValue={setAnswer} />
         </div>
