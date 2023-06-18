@@ -1,8 +1,5 @@
-import Box from '@mui/material/Box'
-import MenuItem from '@mui/material/MenuItem'
-import FormControl from '@mui/material/FormControl'
-import Select, { SelectChangeEvent } from '@mui/material/Select'
-import s from 'features/cards/components/modal/addNewCardModal/select/style.module.css'
+import React, { ChangeEvent } from 'react'
+import s from 'features/cards/components/modal/addNewCardModal/select/style.module.scss'
 
 export type SelectType = 'Text' | 'Img'
 type Props = {
@@ -12,27 +9,22 @@ type Props = {
 export const SelectTextImg = (props: Props) => {
   const { select, setSelect } = props
 
-
-  const handleChange = (event: SelectChangeEvent) => {
+  const handleChange = (event: ChangeEvent<HTMLSelectElement>) => {
     setSelect(event.target.value as SelectType)
   }
 
   return (
-    <Box sx={{ minWidth: 120, marginTop: '24px', width: '1' }}>
-      <FormControl fullWidth>
-        <Select
-          classes={{}}
-          className={s.selectContainer}
-          labelId='demo-simple-select-label'
-          id='demo-simple-select'
-          value={select}
-          placeholder={select}
-          onChange={handleChange}
-        >
-          <MenuItem value={'Text'}>Text</MenuItem>
-          <MenuItem value={'Img'}>Img</MenuItem>
-        </Select>
-      </FormControl>
-    </Box>
+    <div  className={s.selectContainer}>
+      <label htmlFor='standard-select'>Choose a question format</label>
+      <select id='standard-select'
+              defaultValue={select}
+              onChange={handleChange}
+              className={s.select}
+      >
+        <option value={'Text'} className={s.option}>Text</option>
+        <option value={'Img'} className={s.option}>Img</option>
+      </select>
+    </div>
+
   )
 }

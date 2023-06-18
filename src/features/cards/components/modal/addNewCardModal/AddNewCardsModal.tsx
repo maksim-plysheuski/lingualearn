@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { ChangeEvent, useState } from 'react'
 import { BaseModalC } from 'features/cards/components/modal/BaseModalC'
 import { UniversalButton } from 'common/components/universalButton/UniversalButton'
 import { SelectTextImg, SelectType } from 'features/cards/components/modal/addNewCardModal/select/SelectTextImg'
@@ -20,6 +20,8 @@ export const AddNewCardsModal = () => {
     setQuestion('')
     setAnswer('')
   }
+
+
   return (
     <>
       <BaseModalC
