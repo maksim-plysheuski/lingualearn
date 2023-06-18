@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { BaseModalCard } from 'features/cards/components/modal/baseModal/BaseModalCard'
+import { BaseModalCard } from 'features/cards/components/modal/baseModalCard/BaseModalCard'
 import { UniversalButton } from 'common/components/universalButton/UniversalButton'
 import { SelectTextImg, SelectType } from 'features/cards/components/modal/addEditCard/select/SelectTextImg'
 import { InputCastom } from 'features/cards/components/modal/addEditCard/inputCastom/InputCastom'

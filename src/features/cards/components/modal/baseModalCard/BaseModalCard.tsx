@@ -29,9 +29,8 @@ type Props = {
   setOpen: (open: boolean) => void
   actionCallback: () => void
 }
-export const BaseModalC = (props: Props) => {
+export const BaseModalCard = (props: Props) => {
   const { children, buttonOpen, title, open, setOpen, actionCallback } = props
-
 
   const handleOpen = () => {
     setOpen(true)
