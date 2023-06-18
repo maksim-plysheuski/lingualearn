@@ -12,9 +12,9 @@ export const SelectTextImg = (props: Props) => {
   const handleChange = (event: ChangeEvent<HTMLSelectElement>) => {
     setSelect(event.target.value as SelectType)
   }
-
+  const a = []
   return (
-    <div  className={s.selectContainer}>
+    <div className={s.selectContainer}>
       <label htmlFor='standard-select'>Choose a question format</label>
       <select id='standard-select'
               defaultValue={select}
