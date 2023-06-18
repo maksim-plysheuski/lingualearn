@@ -15,10 +15,11 @@ export const InputSearchName = ({ searchCallback, valueName }: Props) => {
   const [id, setId] = useState<number>()
 
   const onChangeHandler = (e: ChangeEvent<HTMLInputElement>) => {
-    setValue(e.currentTarget.value)
+    const value = e.currentTarget.value
+    setValue(value)
     clearTimeout(id)
     const tID = setTimeout(() => {
-      searchCallback(value!)
+      searchCallback(value)
     }, 700)
     setId(+tID)
   }

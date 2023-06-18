@@ -1,5 +1,5 @@
 import React, { ChangeEvent } from 'react'
-import s from 'features/cards/components/modal/addNewCardModal/select/style.module.scss'
+import s from 'features/cards/components/modal/addEditCard/select/style.module.scss'
 
 export type SelectType = 'Text' | 'Img'
 type Props = {
