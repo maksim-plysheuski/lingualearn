@@ -60,7 +60,6 @@ export const EditableTitle = (props: EditableTitlePropsType) => {
                          <UniversalButton title={'SAVE'}
                                           width={'52px'}
                                           fontSize={'12px'}
-                                          squared={true}
                                           disabled={!!errors.userName?.message}
                          />)
                      }} />
