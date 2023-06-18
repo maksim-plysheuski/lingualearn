@@ -6,26 +6,25 @@
   justify-content: center;
 
   .formContainer {
-    height: 552px;
-    width: 413px;
+    height: 528px;
+    width: 420px;
     display: flex;
     margin-top: 100px;
     flex-direction: column;
     align-items: center;
-    background: $primaryBgColor;
+    background: $secondaryBgColor;
     border: 1px solid $grayColor;
     border-radius: 2px;
 
     .inputEmail {
       position: absolute;
-      width: 100%;
       margin-top: 41px;
     }
 
     .inputPassword {
       position: absolute;
       width: 100%;
-      margin-top: 113px;
+      margin-top: 125px;
     }
 
     h1 {
@@ -34,7 +33,7 @@
     }
 
     .form {
-      width: 347px;
+      width: 348px;
 
       .checkbox {
         display: flex;
@@ -73,6 +72,12 @@
       text-decoration-line: underline;
       color: $blueColor;
     }
+  }
+
+  input:-webkit-autofill,
+  input:-webkit-autofill:active {
+    -webkit-box-shadow: 0 0 0 30px $secondaryBgColor inset !important;
+    -webkit-text-fill-color: white !important;
   }
 }
 

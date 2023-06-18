@@ -3,23 +3,28 @@ import {  styled } from '@mui/material/styles';
 import TextField from '@mui/material/TextField';
 import { ChangeEvent, FC } from 'react'
 
-const CustomInput = styled(TextField)({
+export const CustomInput = styled(TextField)({
   '& label.Mui-focused': {
-    color: '#808080',
-  },
-  '& .MuiInput-underline:after': {
-    borderBottomColor: '#B2BAC2',
+    color: '#808080;',
   },
   '& .MuiOutlinedInput-root': {
     '& fieldset': {
-      borderColor: '#E0E3E7',
+      borderColor: '#4C4C4C',
     },
     '&:hover fieldset': {
-      borderColor: '#B2BAC2',
+      borderColor: '#5d5d5d',
     },
     '&.Mui-focused fieldset': {
-      borderColor: '#8C61FF',
+      borderColor: '#4C4C4C',
     },
+    '&.MuiFormLabel-filled' : {
+      backgroundColor: 'red'
+    },
+  },
+  width: '100%',
+  height: '60px',
+  input: {
+    color: 'white',
   },
 });
 
@@ -39,6 +44,7 @@ export const InputText: FC<Props> = ({label, value,setValue}) => {
 
   return (
     <CustomInput label={label}
+                 sx={{}}
                  id="custom-input"
                  value={value}
                  onChange={setValueHandler}

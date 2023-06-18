@@ -34,7 +34,7 @@ export const UniversalButton: React.FC<PropsType> = (
   const btnStyle = {
     width: width ? `${width}px` : '347px',
     height: height ? `${height}px` : '36px',
-    backgroundColor: '#8C61FF',
+    backgroundColor: disabled ? 'rgba(118,97,157,0.7)' : '#8C61FF',
     color: '#FFFFFF',
     marginTop: marginTop ? marginTop : '0px',
     borderRadius: '4px',
@@ -61,7 +61,7 @@ export const UniversalButton: React.FC<PropsType> = (
         : <Button sx={btnStyle}
                   disabled={disabled ? disabled : false}
                   onClick={onClickCallback}
-                  variant={'contained'}
+                  variant={disabled ? 'text' : 'contained'}
                   type={type ? type : 'submit'}
                   startIcon={icon}
         >
