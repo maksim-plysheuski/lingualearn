@@ -1,14 +1,19 @@
 import React, { useState } from 'react'
 import { BaseModalC } from 'features/cards/components/modal/BaseModalC'
 import { UniversalButton } from 'common/components/universalButton/UniversalButton'
-import { SelectTextImg, SelectType } from 'features/cards/components/modal/addNewCardModal/select/SelectTextImg'
-import { InputCastom } from 'features/cards/components/modal/addNewCardModal/InputCastom'
+import { SelectTextImg, SelectType } from 'features/cards/components/modal/addRemoveCardModal/select/SelectTextImg'
+import { InputCastom } from 'features/cards/components/modal/addRemoveCardModal/InputCastom'
 import s from './style.module.scss'
 import { useAppDispatch } from 'common/hooks'
 import { cardsThunks } from 'features/cards/cards.slice'
 import { InputText } from 'common/components/Inputs/InputText'
 
-export const AddNewCardsModal = () => {
+type Props = {
+  callback?: (question: string, answer: string) => void
+}
+export const AddRemoveCardsModal = (props: Props) => {
+  const {callback} = props
+
   const dispatch = useAppDispatch()
   const [open, setOpen] = useState(false)
   const [select, setSelect] = useState<SelectType>('Text')

@@ -3,7 +3,7 @@ import { useAppSelector } from 'common/hooks'
 import { UniversalButton } from 'common/components/universalButton/UniversalButton'
 import s from './style.module.scss'
 import { selectPackUserId } from 'features/cards/selectors'
-import { AddNewCardsModal } from 'features/cards/components/modal/addNewCardModal/AddNewCardsModal'
+import { AddRemoveCardsModal } from 'features/cards/components/modal/addRemoveCardModal/AddRemoveCardsModal'
 
 export const TitleBlockCards = () => {
 
@@ -19,7 +19,7 @@ export const TitleBlockCards = () => {
         {edit && <img src='' alt='icon' />}
       </div>
       {
-        edit ? <AddNewCardsModal /> :
+        edit ? <AddRemoveCardsModal /> :
           <UniversalButton width={'184'} title={'learn pack'} />
       }
     </div>
