@@ -5,7 +5,10 @@ import * as React from 'react'
 import { useEffect } from 'react'
 import { cardsThunks } from 'features/cards/cards.slice'
 import { useSearchCards } from 'features/cards/hooks/useSearchCards'
-import { Cards } from 'features/cards/components/cardsPage/cards'
+import { TitleBlockCards } from 'features/cards/components/cardsPage/titleBlockCards/titleBlockCards'
+import { InputSearchCards } from 'features/cards/components/cardsPage/inputSearchCards/inputSearchCards'
+import { CardsTable } from 'features/cards/components/cardsPage/cardsTable/CardsTable'
+import { PaginationCards } from 'features/cards/components/cardsPage/paginationCards/paginationCards'
 
 export const CardsPage = () => {
 
@@ -17,10 +20,14 @@ export const CardsPage = () => {
     dispatch(cardsThunks.fetchCards({ cardsPack_id: params.cardsPack_id, ...params }))
   }, [])
 
+  if (!cards) return <h1>loading</h1>
   return (
     <div className={s.packsList}>
       <BackLink />
-      <Cards />
+      <TitleBlockCards />
+      <InputSearchCards />
+      {cards.length === 0 ? <h1>карточек не найдено </h1> : <CardsTable />}
+      <PaginationCards />
     </div>
   )
 }
