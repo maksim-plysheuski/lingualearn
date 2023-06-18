@@ -12,8 +12,8 @@
     align-items: center;
     width: 413px;
     height: 456px;
-    background: $whiteBGColor;
-    box-shadow: $form;
+    background: $primaryBgColor;
+    border: 1px solid $grayColor;
     border-radius: 2px;
 
     h1 {

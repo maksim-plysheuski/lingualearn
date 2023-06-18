@@ -7,8 +7,8 @@
 
   .container {
     margin-top: 100px;
-    background: $whiteBGColor;
-    box-shadow: $form;
+    background: $primaryBgColor;
+    border: 1px solid $grayColor;
     border-radius: 2px;
     width: 413px;
     height: 456px;

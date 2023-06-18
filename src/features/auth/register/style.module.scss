@@ -9,8 +9,8 @@
     height: 552px;
     width: 413px;
     margin-top: 100px;
-    background: $whiteBGColor;
-    box-shadow: $form;
+    background: $primaryBgColor;
+    border: 1px solid $grayColor;
     border-radius: 2px;
     display: flex;
     flex-direction: column;
@@ -50,7 +50,7 @@
 
       .button {
         background: $blueColor;
-        color: $whiteBGColor;
+        color: $primaryBgColor;
         height: 36px;
         margin-top: 95px;
         box-shadow: $button;
