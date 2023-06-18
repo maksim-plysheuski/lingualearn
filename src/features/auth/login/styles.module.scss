@@ -12,8 +12,8 @@
     margin-top: 100px;
     flex-direction: column;
     align-items: center;
-    background: $whiteBGColor;
-    box-shadow: $form;
+    background: $primaryBgColor;
+    border: 1px solid $grayColor;
     border-radius: 2px;
 
     .inputEmail {

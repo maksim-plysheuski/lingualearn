@@ -1,6 +1,11 @@
+@import "src/common/style/variables";
+
 .addPackBlock {
   display: flex;
   justify-content: space-between;
   width: 1008px;
   margin-top: 36px;
+  h2 {
+    color: $primaryFontColor
+  }
 }
