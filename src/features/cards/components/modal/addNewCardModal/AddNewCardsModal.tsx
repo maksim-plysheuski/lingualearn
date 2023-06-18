@@ -6,6 +6,7 @@ import { InputCastom } from 'features/cards/components/modal/addNewCardModal/Inp
 import s from './style.module.scss'
 import { useAppDispatch } from 'common/hooks'
 import { cardsThunks } from 'features/cards/cards.slice'
+import { InputText } from 'common/components/Inputs/InputText'
 
 export const AddNewCardsModal = () => {
   const dispatch = useAppDispatch()
@@ -33,6 +34,7 @@ export const AddNewCardsModal = () => {
       >
         <div className={s.newCardContainer}>
           <SelectTextImg select={select} setSelect={setSelect} />
+          <InputText label={'Question'} value={question} setValue={setQuestion} />
           <InputCastom label={'Question'} value={question} setValue={setQuestion} />
           <InputCastom label={'Answer'} value={answer} setValue={setAnswer} />
         </div>
