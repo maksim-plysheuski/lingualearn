@@ -13,6 +13,7 @@ export const SelectTextImg = (props: Props) => {
     setSelect(event.target.value as SelectType)
   }
   const a = []
+  const b = []
   return (
     <div className={s.selectContainer}>
       <label htmlFor='standard-select'>Choose a question format</label>
