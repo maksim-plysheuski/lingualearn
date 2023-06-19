@@ -58,7 +58,7 @@ export const ProfilePage = () => {
         <span className={s.emailSpan}>{profile ? profile.email : 'user@mail.com'}</span>
         <UniversalButton title={'Log out'}
                          width={'127'}
-                         icon={<LogoutIcon />}
+                         icon={<LogoutIcon  />}
                          onClickCallback={logoutHandler}
         />
       </div>
