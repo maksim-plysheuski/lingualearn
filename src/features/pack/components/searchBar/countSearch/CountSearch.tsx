@@ -5,10 +5,11 @@ import s from 'features/pack/components/searchBar/countSearch/style.module.scss'
 
 import { packsThunks } from 'features/pack/packs.slice'
 import { useSearchPaks } from 'features/pack/hook/useSearchPaks'
+import { sliderStyle } from 'features/pack/components/searchBar/countSearch/style'
 
 export const CountSearch = memo(() => {
 
-  const { setMinMaxCards, maxCardsCount, minCardsCount,max,min, dispatch } = useSearchPaks()
+  const { setMinMaxCards, maxCardsCount, minCardsCount, max, min, dispatch } = useSearchPaks()
 
   const handleChange = (event: Event, newValue: number | number[]) => {
     setMinMaxCards(newValue as number[])
@@ -19,25 +20,26 @@ export const CountSearch = memo(() => {
   }
 
   return (
+
     <div className={s.container}>
-      <span>Number of cards</span>
-      <div className={s.countContainer}>
-        <span className={s.count}>{minCardsCount}</span>
+      <label htmlFor='CountLabel'>Number of cards</label>
+      <div className={s.countContainer} id={'CountLabel'}>
+        <div className={s.count}>{minCardsCount}</div>
         <Box sx={{
           width: '155px',
           marginLeft: '12px',
-          marginRight: '12px'
+          marginRight: '12px',
         }}>
-          <Slider
+          <Slider sx={sliderStyle}
             max={maxCardsCount}
             min={minCardsCount}
             valueLabelDisplay='auto'
-            value={[+min!,+max!] as number[]}
+            value={[+min!, +max!] as number[]}
             onChange={handleChange}
             onChangeCommitted={onChangeCommittedHandler}
           />
         </Box>
-        <span className={s.count}>{maxCardsCount}</span>
+        <div className={s.count}>{maxCardsCount}</div>
       </div>
     </div>
   )

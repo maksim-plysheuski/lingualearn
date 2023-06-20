@@ -14,18 +14,14 @@ export const ButtonsShowPacks = memo(() => {
 
   return (
     <div className={s.container}>
-      <div>
-        Show packs cards
-      </div>
-      <ToggleButtonGroup exclusive value={!!paramsCardId ? paramsCardId : ''}>
-        <ToggleButton value={userId}
-                      sx={buttonStyle}
-                      onClick={() => getPackHandler(userId)}
-        >My</ToggleButton>
-        <ToggleButton value={''}
-                      sx={buttonStyle}
-                      onClick={() => getPackHandler('')}
-        >All</ToggleButton>
+      <label htmlFor='IdButtonGroup'>Show packs cards</label>
+      <ToggleButtonGroup id={'IdButtonGroup'} exclusive value={!!paramsCardId ? paramsCardId : ''} >
+        <ToggleButton value={userId} sx={buttonStyle} onClick={() => getPackHandler(userId)}>
+          My
+        </ToggleButton>
+        <ToggleButton value={''} sx={buttonStyle} onClick={() => getPackHandler('')}>
+          All
+        </ToggleButton>
       </ToggleButtonGroup>
     </div>
   )

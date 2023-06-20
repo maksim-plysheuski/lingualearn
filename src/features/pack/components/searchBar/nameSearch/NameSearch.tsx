@@ -1,6 +1,7 @@
 import React from 'react'
-import { InputSearch } from 'common/components/Inputs/inputSearch/InputSearch'
 import { useSearchPaks } from 'features/pack/hook/useSearchPaks'
+import { InputSearch } from 'common/components'
+import s from './style.module.scss'
 
 export const NameSearch = () => {
   const { setPackName, packName } = useSearchPaks()
@@ -10,11 +11,12 @@ export const NameSearch = () => {
   }
 
   return (
-    <>
-      <InputSearch callback={setSearchParamsHandler}
-                   nameSearch={packName!}
-                   width={'412px'} />
-    </>
+    <div className={s.container} >
+      <InputSearch searchCallback={setSearchParamsHandler}
+                   valueName={packName!}
+      />
+    </div>
+
   )
 }
 
