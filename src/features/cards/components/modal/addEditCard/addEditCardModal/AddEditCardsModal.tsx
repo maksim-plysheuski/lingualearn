@@ -25,7 +25,7 @@ export const AddEditCardsModal = (props: Props) => {
   return (
     <>
       <BaseModalCard
-        buttonOpen={<UniversalButton width={'184'} title={'add card'} onClickCallback={() => setOpen(true)} />}
+        buttonOpen={<UniversalButton width={'184'} title={'Add New Card'} onClickCallback={() => setOpen(true)} />}
         title={'Add new card'}
         open={open}
         setOpen={setOpen}

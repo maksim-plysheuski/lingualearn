@@ -7,5 +7,15 @@
 
   .titleContainer {
     display: flex;
+    align-items: center;
+    color: #fff;
+
+    .icon {
+      width: 26px;
+      height: 26px;
+      border: 1px solid #FFFFFF;
+      border-radius: 50%;
+      display: flex;
+    }
   }
 }
