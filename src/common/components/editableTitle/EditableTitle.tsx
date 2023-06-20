@@ -25,6 +25,33 @@ export const EditableTitle = (props: EditableTitlePropsType) => {
     resolver: yupResolver(userNameSchema)
   })
 
+  const inputStyle = {
+    '& .MuiFormLabel-root': {
+      color: '#808080'
+    },
+    '& label.Mui-focused': {
+      color: '#808080;',
+    },
+    '& .MuiOutlinedInput-root': {
+      '& fieldset': {
+        borderColor: '#4C4C4C',
+      },
+      '&:hover fieldset': {
+        borderColor: '#5d5d5d',
+      },
+      '&.Mui-focused fieldset': {
+        borderColor: '#4C4C4C',
+      },
+      '&.MuiFormLabel-filled' : {
+        backgroundColor: 'red'
+      },
+    },
+    width: '100%',
+    height: '36px',
+    input: {
+      color: 'white',
+    },
+  }
 
   const onEditMode = () => setEditMode(true)
 
@@ -40,7 +67,7 @@ export const EditableTitle = (props: EditableTitlePropsType) => {
         <span className={s.spanUserName} onDoubleClick={onEditMode}>
           {props.userName}
           <IconButton onClick={onEditMode}>
-            <BorderColorOutlinedIcon sx={{ fontSize: '20px' }} />
+            <BorderColorOutlinedIcon sx={{ fontSize: '20px', color: 'white' }} />
           </IconButton>
         </span>
         :
@@ -48,8 +75,7 @@ export const EditableTitle = (props: EditableTitlePropsType) => {
           <TextField autoFocus
                      type={'text'}
                      label={'Nickname'}
-                     variant={'standard'}
-                     sx={{ marginTop: '25px' }}
+                     sx={{...inputStyle, marginTop: '36px'}}
                      className={s.inputUserName}
                      defaultValue={props.userName}
                      {...register('userName')}
@@ -60,7 +86,6 @@ export const EditableTitle = (props: EditableTitlePropsType) => {
                          <UniversalButton title={'SAVE'}
                                           width={'52px'}
                                           fontSize={'12px'}
-                                          squared={true}
                                           disabled={!!errors.userName?.message}
                          />)
                      }} />

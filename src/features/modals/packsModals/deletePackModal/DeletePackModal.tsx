@@ -17,8 +17,8 @@ export const DeletePackModal = () => {
         <span>Do you really want to remove <b>{selectedPackName}</b>?</span>
         <p>All cards will be deleted</p>
         <div className={s.buttons}>
-          <UniversalButton title={'Cancel'} onClickCallback={closeModal} textColor={'black'} width={'127'} />
-          <UniversalButton title={'Delete'} onClickCallback={deletePack} buttonStyle={'error'} width={'127'} />
+          <UniversalButton title={'Cancel'} onClickCallback={closeModal} width={'127'} />
+          <UniversalButton title={'Delete'} onClickCallback={deletePack} width={'127'} />
         </div>
       </div>
     </AppModal>

@@ -1,6 +1,12 @@
 .App {
+  display: flex;
+  justify-content: center;
+
   .Content {
+    width: 1010px;
     margin-top: 60px;
+    display: flex;
+    justify-content: center;
   }
 }
 

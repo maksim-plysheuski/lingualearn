@@ -40,7 +40,7 @@ export const AvatarMenu = () => {
   return (
     <React.Fragment>
       <Box sx={{ display: 'flex', alignItems: 'center', textAlign: 'right' }}>
-        <Typography sx={{ minWidth: 100 }}>
+        <Typography sx={{ minWidth: 100, color: 'white' }}>
           {userName}
         </Typography>
         <Tooltip title='Account settings'>

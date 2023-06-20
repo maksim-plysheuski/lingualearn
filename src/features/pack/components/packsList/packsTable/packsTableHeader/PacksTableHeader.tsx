@@ -34,18 +34,19 @@ export const PacksTableHeader = () => {
   }
 
   return (
-    <TableHead sx={{ backgroundColor: '#EFEFEF' }}>
+    <TableHead sx={{ backgroundColor: '#333333'}}>
       <TableRow>
         {columnTitles.map((t, i) =>
-          <TableCell key={i} onMouseEnter={() => {
-            setLastSortedCell(t)
-          }}>
+          <TableCell key={i}
+                     sx={{color: 'white', borderBottom: '0'}}
+                     onMouseEnter={() => setLastSortedCell(t)}>
             {t}
             {t === 'Name' || t === 'Cards' || t === 'Last Updated' ?
               <TableSortLabel
+                sx={{'& .MuiTableSortLabel-icon': { color: 'white !important'} }}
                 active={lastSortedCell === t}
                 direction={sortOrder}
-                onClick={handleSortButton(t)}>
+                onClick={handleSortButton(t)} >
               </TableSortLabel> : null}
           </TableCell>)}
       </TableRow>

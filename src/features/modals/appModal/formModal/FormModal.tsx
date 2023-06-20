@@ -35,7 +35,6 @@ export const FormModal: FC<PropsType> = ({
                            marginTop={'35px'}
                            type={'button'}
                            width={'127'}
-                           textColor={'black'}
           />
           <UniversalButton title={buttonTitle}
                            marginTop={'35px'}

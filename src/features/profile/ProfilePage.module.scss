@@ -11,7 +11,8 @@
     align-items: center;
     width: 413px;
     height: 408px;
-    box-shadow: $form;
+    border: 1px solid $grayColor;
+    background-color: $secondaryBgColor;
     border-radius: 2px;
     margin-top: 80px;
 

@@ -11,7 +11,7 @@ import { PrivateLayout } from 'common/router/PrivateRoute'
 import { PacksList } from 'features/pack/components/packsList/PacksList'
 import { CheckEmailPage } from 'features/auth/checkEmail/CheckEmailPage'
 import { NotPrivateLayout } from 'common/router/NotPrivateRoute'
-import { CardsPage } from 'features/cards/cardsPage/CardsPage'
+import { CardsPage } from 'features/cards/components/cardsPage/cardsPage'
 import { PasswordChangeSuccess } from 'features/auth/changePassword/passwordChanged/PasswordChangeSuccess'
 
 export const router = createHashRouter([

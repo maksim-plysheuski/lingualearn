@@ -3,10 +3,10 @@ import ToggleButtonGroup from '@mui/material/ToggleButtonGroup/ToggleButtonGroup
 import { buttonStyle } from 'features/pack/components/searchBar/buttonsShowPack/style'
 import s from 'features/pack/components/searchBar/buttonsShowPack/style.module.scss'
 import { memo } from 'react'
-import { useSearchCards } from 'features/pack/hook/useSearchCards'
+import { useSearchPaks } from 'features/pack/hook/useSearchPaks'
 
 export const ButtonsShowPacks = memo(() => {
-  const { setMyAllCards, paramsCardId, userId } = useSearchCards()
+  const { setMyAllCards, paramsCardId, userId } = useSearchPaks()
 
   const getPackHandler = (user_id: string) => {
     setMyAllCards(user_id)
@@ -14,18 +14,14 @@ export const ButtonsShowPacks = memo(() => {
 
   return (
     <div className={s.container}>
-      <div>
-        Show packs cards
-      </div>
-      <ToggleButtonGroup exclusive value={!!paramsCardId ? paramsCardId : ''}>
-        <ToggleButton value={userId}
-                      sx={buttonStyle}
-                      onClick={() => getPackHandler(userId)}
-        >My</ToggleButton>
-        <ToggleButton value={''}
-                      sx={buttonStyle}
-                      onClick={() => getPackHandler('')}
-        >All</ToggleButton>
+      <label htmlFor='IdButtonGroup'>Show packs cards</label>
+      <ToggleButtonGroup id={'IdButtonGroup'} exclusive value={!!paramsCardId ? paramsCardId : ''} >
+        <ToggleButton value={userId} sx={buttonStyle} onClick={() => getPackHandler(userId)}>
+          My
+        </ToggleButton>
+        <ToggleButton value={''} sx={buttonStyle} onClick={() => getPackHandler('')}>
+          All
+        </ToggleButton>
       </ToggleButtonGroup>
     </div>
   )

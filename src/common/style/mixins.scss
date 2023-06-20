@@ -2,7 +2,7 @@
 
 @mixin text($fontWeight, $fontSize, $lineHigh) {
   font-family: $primaryFontFamily;
-  color: $blackColor;
+  color: $primaryFontColor;
   font-weight: $fontWeight;
   font-size: $fontSize;
   line-height: $lineHigh;

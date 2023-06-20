@@ -1,0 +1,47 @@
+.titleContainer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 19px 24px;
+  border-bottom: 1px solid #333333;
+}
+
+.containerChildren {
+  padding: 0 24px;
+}
+
+.buttonContainer {
+  padding: 12px 24px 36px;
+  display: flex;
+  justify-content: space-between;
+
+  & button {
+    border-radius: 4px;
+    padding: 6px 28px;
+    color: #FFFFFF;
+    font-size: 14px;
+    line-height: 24px;
+    cursor: pointer;
+
+    &:disabled {
+      opacity: 0.3;
+    }
+
+  }
+
+  .buttonCancle {
+    background: #4C4C4C;
+
+    &:hover {
+      box-shadow: 0 2px 10px rgba(109, 109, 109, 0.25);
+    }
+  }
+
+  .buttonAction {
+    background: #8C61FF;
+
+    &:hover {
+      box-shadow: 0 4px 18px rgba(140, 97, 255, 0.35);
+    }
+  }
+}
