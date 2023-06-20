@@ -5,7 +5,8 @@ import s from 'features/cards/components/cardsPage/titleBlockCards/style.module.
 import {selectPackUserId} from 'features/cards/selectors'
 import {AddEditCardsModal} from 'features/cards/components/modal/addEditCard/addEditCardModal/AddEditCardsModal'
 import {cardsThunks} from 'features/cards/cards.slice'
-import MoreVertIcon from '@mui/icons-material/MoreVert';
+import {MenuCards} from "../menuCards/menuCards";
+
 
 export const TitleBlockCards = () => {
     const dispatch = useAppDispatch()
@@ -21,7 +22,7 @@ export const TitleBlockCards = () => {
         <div className={s.container}>
             <div className={s.titleContainer}>
                 <h2 className={s.title}>{title}</h2>
-                <MoreVertIcon sx={{marginLeft: '10px'}}/>
+                <MenuCards/>
             </div>
             {
                 edit ? <AddEditCardsModal callback={createCartHandler}/> :
