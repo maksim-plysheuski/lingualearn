@@ -3,7 +3,7 @@ import { createAppAsyncThunk } from 'common/utils/createAppAsyncThunk'
 import {
   cardsApi,
   TChangeGradeArg,
-  TChangeGradeResponse, TCreateResponse,
+  TChangeGradeResponse, TCreateResponse, TDeleteArg,
   TGetCardsArgs,
   TGetCardsResponse, TUpdateArg
 } from 'features/cards/cardsApi'
@@ -45,6 +45,15 @@ const fetchCards = createAppAsyncThunk<{ cards: TGetCardsResponse, arg: TGetCard
   return { cards: res, arg, whose }
 })
 
+const removeCard = createAppAsyncThunk<unknown, TDeleteArg>
+('cards/removeCard', (arg, thunkAPI) => {
+  return thunkTryCatch(thunkAPI, async () => {
+    const cardsPack_id = thunkAPI.getState().cards.cardsParams.cardsPack_id
+    await cardsApi.deleteCard({ id: arg.id })
+    await thunkAPI.dispatch(cardsThunks.fetchCards({cardsPack_id}))
+  })
+})
+
 const changeCard = createAppAsyncThunk<unknown, TUpdateArg>
 ('cards/changeCard', (arg, thunkAPI) => {
   const cardsPack_id = thunkAPI.getState().cards.cardsParams.cardsPack_id
@@ -76,7 +85,7 @@ const changeGrade = createAppAsyncThunk<{ updatedCard: TChangeGradeResponse }, T
 
 export const cardsReducer = slice.reducer
 export const cardsAction = slice.actions
-export const cardsThunks = { fetchCards, changeGrade, createCard, changeCard }
+export const cardsThunks = { fetchCards, changeGrade, createCard, changeCard,removeCard }
 
 
 

@@ -6,6 +6,7 @@ import { SxProps } from '@mui/material/styles'
 import s from './style.module.scss'
 import { useAppDispatch } from '../../../../../../../common/hooks'
 import { EditCardsModal } from '../../../../modal/editCardModal/EditCardModal'
+import { RemoveCardModal } from '../../../../modal/removeCardModal/removeCardModal'
 
 const style: SxProps = {
   width: '80px',
@@ -32,7 +33,7 @@ export const FieldButtons = (props: Props) => {
           questionValue={questionValue}
           answerValue={answerValue}
         />
-        <div><DeleteOutlineIcon fontSize={'small'} /></div>
+        <RemoveCardModal cardId={cardId} title={questionValue}/>
       </div>
     </TableCell>
   )

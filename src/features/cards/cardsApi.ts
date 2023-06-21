@@ -9,7 +9,7 @@ export const cardsApi = {
     return instance.post<TCreateResponse>('cards/card', { card: arg }).then(res => res.data)
   },
   deleteCard: (arg: TDeleteArg) => {
-    return instance.delete('cards/card', { params: { ...arg } })
+    return instance.delete('cards/card', { params: arg })
   },
   updateCard: (arg: TUpdateArg) => {
     return instance.put<TUpdateResponse>('cards/card', { card: arg }).then(res => res.data)
@@ -74,13 +74,13 @@ export type TDeleteArg = {
 }
 
 export type TUpdateArg = {
-    _id: string
-    question?: string
-    answer?: string
-    grade?: number | null
-    shots?: number
-    answerImg?: string
-    questionImg?: string
+  _id: string
+  question?: string
+  answer?: string
+  grade?: number | null
+  shots?: number
+  answerImg?: string
+  questionImg?: string
 }
 
 export type TUpdateResponse = {

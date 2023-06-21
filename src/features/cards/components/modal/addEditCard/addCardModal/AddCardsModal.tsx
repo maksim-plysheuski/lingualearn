@@ -1,24 +1,23 @@
-import React, { ReactNode, useState } from 'react'
+import React, { useState } from 'react'
 import { BaseModalCard } from 'features/cards/components/modal/baseModalCard/BaseModalCard'
 import { SelectTextImg, SelectType } from 'features/cards/components/modal/addEditCard/select/SelectTextImg'
 import { InputCastom } from 'features/cards/components/modal/addEditCard/inputCastom/InputCastom'
 import s from 'features/cards/components/modal/addEditCard/addCardModal/style.module.scss'
+import { cardsThunks } from '../../../../cards.slice'
+import { useAppDispatch } from '../../../../../../common/hooks'
+import { UniversalButton } from '../../../../../../common/components/universalButton/UniversalButton'
 
-type Props = {
-  callback: (question: string, answer: string) => void
-  fieldOpen?: ReactNode
-  title: string
-}
 
-export const AddCardsModal = (props: Props) => {
-  const { callback, fieldOpen } = props
+
+export const AddCardsModal = () => {
+  const dispatch = useAppDispatch()
   const [open, setOpen] = useState(false)
   const [select, setSelect] = useState<SelectType>('Text')
   const [question, setQuestion] = useState<string>('')
   const [answer, setAnswer] = useState<string>('')
 
   const createNewCards = async () => {
-    await callback(question, answer)
+    await dispatch(cardsThunks.createCard({ question, answer }))
     setOpen(false)
     setQuestion('')
     setAnswer('')
@@ -28,7 +27,7 @@ export const AddCardsModal = (props: Props) => {
     <>
       <BaseModalCard
         titleButtonAction={'Add New Card'}
-        buttonOpen={fieldOpen}
+        buttonOpen={<UniversalButton width={'184'} title={'Add New Card'}/>}
         title={'Add New Card'}
         open={open}
         setOpen={setOpen}
