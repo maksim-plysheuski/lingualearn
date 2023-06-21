@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { ReactNode, useState } from 'react'
 import { BaseModalCard } from 'features/cards/components/modal/baseModalCard/BaseModalCard'
 import { UniversalButton } from 'common/components/universalButton/UniversalButton'
 import { SelectTextImg, SelectType } from 'features/cards/components/modal/addEditCard/select/SelectTextImg'
@@ -7,9 +7,12 @@ import s from 'features/cards/components/modal/addEditCard/addEditCardModal/styl
 
 type Props = {
   callback: (question: string, answer: string) => void
+  fieldOpen?: ReactNode
+  title: string
 }
+
 export const AddEditCardsModal = (props: Props) => {
-  const { callback } = props
+  const { callback, fieldOpen, title } = props
   const [open, setOpen] = useState(false)
   const [select, setSelect] = useState<SelectType>('Text')
   const [question, setQuestion] = useState<string>('')
@@ -25,16 +28,18 @@ export const AddEditCardsModal = (props: Props) => {
   return (
     <>
       <BaseModalCard
-        buttonOpen={<UniversalButton width={'184'} title={'Add New Card'} onClickCallback={() => setOpen(true)} />}
-        title={'Add new card'}
+        buttonOpen={fieldOpen}
+        title={title}
         open={open}
         setOpen={setOpen}
         actionCallback={createNewCards}
       >
         <div className={s.newCardContainer}>
           <SelectTextImg select={select} setSelect={setSelect} />
-          <InputCastom label={'Question'} value={question} setValue={setQuestion} />
-          <InputCastom label={'Answer'} value={answer} setValue={setAnswer} />
+          <div className={s.input}>
+            <InputCastom label={'Question'} value={question} setValue={setQuestion} />
+            <InputCastom label={'Answer'} value={answer} setValue={setAnswer} />
+          </div>
         </div>
       </BaseModalCard>
     </>

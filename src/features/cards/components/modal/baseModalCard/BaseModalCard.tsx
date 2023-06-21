@@ -41,7 +41,9 @@ export const BaseModalCard = (props: Props) => {
 
   return (
     <div>
-      {buttonOpen}
+      <div onClick={handleOpen}>
+        {buttonOpen}
+      </div>
       <Modal
         open={open}
         onClose={handleClose}

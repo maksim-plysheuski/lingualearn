@@ -25,7 +25,10 @@ export const TitleBlockCards = () => {
                 <MenuCards/>
             </div>
             {
-                edit ? <AddEditCardsModal callback={createCartHandler}/> :
+                edit ? <AddEditCardsModal callback={createCartHandler}
+                                          fieldOpen={<UniversalButton width={'184'} title={'Add New Card'}/>}
+                                          title={'Add new card'}
+                    /> :
                     <UniversalButton width={'184'} title={'learn pack'}/>
             }
         </div>

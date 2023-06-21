@@ -5,7 +5,7 @@ import {
   TChangeGradeArg,
   TChangeGradeResponse, TCreateResponse,
   TGetCardsArgs,
-  TGetCardsResponse
+  TGetCardsResponse, TUpdateArg
 } from 'features/cards/cardsApi'
 import { thunkTryCatch } from 'common/utils/thunk-try-catch'
 
@@ -33,6 +33,16 @@ const slice = createSlice({
   }
 })
 
+const changeCard = createAppAsyncThunk<any, TUpdateArg>
+('cards/changeCard', (arg, thunkAPI) => {
+  const cardsPack_id = thunkAPI.getState().cards.cardsParams.cardsPack_id
+  return thunkTryCatch(thunkAPI, async () => {
+      await cardsApi.updateCard(arg)
+      thunkAPI.dispatch(cardsThunks.fetchCards({ cardsPack_id }))
+    }
+  )
+})
+
 const fetchCards = createAppAsyncThunk<{ cards: TGetCardsResponse, arg: TGetCardsArgs }, TGetCardsArgs>
 ('cards/getCards', async (arg, { getState }) => {
   const params = getState().cards.cardsParams
@@ -51,6 +61,7 @@ const createCard = createAppAsyncThunk<TCreateResponse, { question: string, answ
   }
 )
 
+
 const changeGrade = createAppAsyncThunk<{ updatedCard: TChangeGradeResponse }, TChangeGradeArg>
 ('cards/changeGrade', async (arg) => {
   const res = await cardsApi.changeGrade(arg)
@@ -60,7 +71,7 @@ const changeGrade = createAppAsyncThunk<{ updatedCard: TChangeGradeResponse }, T
 
 export const cardsReducer = slice.reducer
 export const cardsAction = slice.actions
-export const cardsThunks = { fetchCards, changeGrade, createCard }
+export const cardsThunks = { fetchCards, changeGrade, createCard, changeCard }
 
 
 
