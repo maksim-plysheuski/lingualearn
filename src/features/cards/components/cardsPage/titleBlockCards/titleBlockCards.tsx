@@ -3,7 +3,7 @@ import { useAppDispatch } from 'common/hooks'
 import { UniversalButton } from 'common/components/universalButton/UniversalButton'
 import s from 'features/cards/components/cardsPage/titleBlockCards/style.module.scss'
 import { selectWhoseCards } from 'features/cards/selectors'
-import { AddEditCardsModal } from 'features/cards/components/modal/addEditCard/addEditCardModal/AddEditCardsModal'
+import { AddCardsModal } from 'features/cards/components/modal/addEditCard/addCardModal/AddCardsModal'
 import { cardsThunks } from 'features/cards/cards.slice'
 import { MenuCards } from '../menuCards/menuCards'
 import { useSelector } from 'react-redux'
@@ -23,9 +23,9 @@ export const TitleBlockCards = () => {
                 {whoseCards&&<MenuCards />}
             </div>
             {
-                whoseCards ? <AddEditCardsModal callback={createCartHandler}
-                                          fieldOpen={<UniversalButton width={'184'} title={'Add New Card'}/>}
-                                          title={'Add new card'}
+                whoseCards ? <AddCardsModal callback={createCartHandler}
+                                            fieldOpen={<UniversalButton width={'184'} title={'Add New Card'}/>}
+                                            title={'Add new card'}
                     /> :
                     <UniversalButton width={'184'} title={'learn pack'}/>
             }

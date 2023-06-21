@@ -6,7 +6,7 @@ import MoreVertIcon from '@mui/icons-material/MoreVert'
 import PlayCircleOutlineIcon from '@mui/icons-material/PlayCircleOutline'
 import DriveFileRenameOutlineIcon from '@mui/icons-material/DriveFileRenameOutline'
 import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline'
-import { AddEditCardsModal } from '../../modal/addEditCard/addEditCardModal/AddEditCardsModal'
+import { AddCardsModal } from '../../modal/addEditCard/addCardModal/AddCardsModal'
 import { useAppDispatch } from '../../../../../common/hooks'
 import { cardsThunks } from '../../../cards.slice'
 

@@ -4,8 +4,8 @@ import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline'
 import { TableCell } from '@mui/material'
 import { SxProps } from '@mui/material/styles'
 import s from './style.module.scss'
-import { AddEditCardsModal } from '../../../../modal/addEditCard/addEditCardModal/AddEditCardsModal'
 import { useAppDispatch } from '../../../../../../../common/hooks'
+import { EditCardsModal } from '../../../../modal/editCardModal/EditCardModal'
 
 const style: SxProps = {
   width: '80px',
@@ -13,17 +13,24 @@ const style: SxProps = {
   borderBottom: '1px solid #333333',
   padding: '0'
 }
-export const FieldButtons = () => {
+type Props = {
+  questionValue: string
+  answerValue: string
+}
+export const FieldButtons = (props: Props) => {
+  const { answerValue, questionValue } = props
   const dispatch = useAppDispatch()
   const editCardHandler = () => {
 
   }
   return (
     <TableCell sx={style}>
-      <div className={s.iconCntainer}>
-        <AddEditCardsModal
-          callback={editCardHandler} title={'Edit Card'}
-          fieldOpen={<DriveFileRenameOutlineIcon fontSize={'small'} />}
+      <div className={s.iconContainer}>
+        <EditCardsModal
+          callback={editCardHandler}
+          buttonOpen={<DriveFileRenameOutlineIcon fontSize={'small'} />}
+          questionValue={questionValue}
+          answerValue={answerValue}
         />
         <div><DeleteOutlineIcon fontSize={'small'} /></div>
       </div>
