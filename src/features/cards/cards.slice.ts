@@ -33,7 +33,7 @@ const slice = createSlice({
   }
 })
 
-const changeCard = createAppAsyncThunk<any, TUpdateArg>
+const changeCard = createAppAsyncThunk<unknown, TUpdateArg>
 ('cards/changeCard', (arg, thunkAPI) => {
   const cardsPack_id = thunkAPI.getState().cards.cardsParams.cardsPack_id
   return thunkTryCatch(thunkAPI, async () => {
@@ -60,7 +60,6 @@ const createCard = createAppAsyncThunk<TCreateResponse, { question: string, answ
     })
   }
 )
-
 
 const changeGrade = createAppAsyncThunk<{ updatedCard: TChangeGradeResponse }, TChangeGradeArg>
 ('cards/changeGrade', async (arg) => {

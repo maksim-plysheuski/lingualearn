@@ -7,10 +7,12 @@ import PlayCircleOutlineIcon from '@mui/icons-material/PlayCircleOutline'
 import DriveFileRenameOutlineIcon from '@mui/icons-material/DriveFileRenameOutline'
 import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline'
 import { AddEditCardsModal } from '../../modal/addEditCard/addEditCardModal/AddEditCardsModal'
+import { useAppDispatch } from '../../../../../common/hooks'
+import { cardsThunks } from '../../../cards.slice'
 
 
 export const MenuCards = () => {
-
+  const dispatch = useAppDispatch()
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null)
   const open = Boolean(anchorEl)
 
@@ -22,6 +24,7 @@ export const MenuCards = () => {
   }
 
   const editCardHandler = () => {
+    // dispatch(cardsThunks.changeCard())
     handleClose()
   }
 
@@ -73,10 +76,7 @@ export const MenuCards = () => {
         </MenuItem>
         <Divider />
         <MenuItem>
-          <AddEditCardsModal title={'Edit Card'}
-                             callback={editCardHandler}
-                             fieldOpen={<><DriveFileRenameOutlineIcon />Edit</>}
-          />
+          <DriveFileRenameOutlineIcon />Edit
         </MenuItem>
         <Divider />
         <MenuItem>
