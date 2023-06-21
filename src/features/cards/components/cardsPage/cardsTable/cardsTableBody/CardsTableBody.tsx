@@ -1,12 +1,11 @@
 import { TableBody, TableCell, TableRow } from '@mui/material'
 import { useAppSelector } from 'common/hooks'
-import { selectCards } from 'features/cards/selectors'
+import { selectCards, selectWhoseCards } from 'features/cards/selectors'
 import React from 'react'
 import Rating from '@mui/material/Rating'
 import StarBorderIcon from '@mui/icons-material/StarBorder'
-import DriveFileRenameOutlineIcon from '@mui/icons-material/DriveFileRenameOutline'
-import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline'
 import { FieldButtons } from './fieldButtons/FieldButtons'
+import { useSelector } from 'react-redux'
 
 export const tableCellStyle = {
   wordWrap: 'break-word',
@@ -20,7 +19,7 @@ export const tableCellStyle = {
 
 export const CardsTableBody = () => {
   const cards = useAppSelector(selectCards)
-
+  const whoseCards = useSelector(selectWhoseCards)
   return (
     <TableBody>
       {cards?.map((card) => {
@@ -34,7 +33,7 @@ export const CardsTableBody = () => {
               <Rating value={card.grade} readOnly precision={0.5}
                       emptyIcon={<StarBorderIcon sx={{ color: '#faaf00' }} />} />
             </TableCell>
-            <FieldButtons />
+            {whoseCards && <FieldButtons />}
           </TableRow>
         )
       })}

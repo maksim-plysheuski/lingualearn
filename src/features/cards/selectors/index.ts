@@ -1,13 +1,12 @@
-import { selectPackUserId } from 'features/cards/selectors/cards.selector'
-
 export {
+  selectPackUserId,
+  selectWhoseCards,
   selectCardQuestion,
   selectCardsPack_id,
   selectCardsTotalCount,
   selectPage,
   selectPageCount,
-  selectCards, selectPackUserId
+  selectCards
 } from 'features/cards/selectors/cards.selector'
-
 
 

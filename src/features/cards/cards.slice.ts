@@ -13,7 +13,8 @@ const slice = createSlice({
   name: 'cards',
   initialState: {
     cards: {} as TGetCardsResponse,
-    cardsParams: {} as TGetCardsArgs
+    cardsParams: {} as TGetCardsArgs,
+    whose: null as boolean | null
   },
   reducers: {
     setCardsParams: (state, action: PayloadAction<TGetCardsArgs>) => {
@@ -22,15 +23,26 @@ const slice = createSlice({
     resetCards: (state) => {
       state.cards = {} as TGetCardsResponse
       state.cardsParams = {} as TGetCardsArgs
+      state.whose = null
     }
   },
   extraReducers: builder => {
     builder
       .addCase(fetchCards.fulfilled, (state, action) => {
         state.cards = action.payload.cards
+        state.whose = action.payload.whose
         state.cardsParams = { ...state.cardsParams, ...action.payload.arg }
       })
   }
+})
+
+const fetchCards = createAppAsyncThunk<{ cards: TGetCardsResponse, arg: TGetCardsArgs, whose: boolean }, TGetCardsArgs>
+('cards/getCards', async (arg, { getState }) => {
+  const params = getState().cards.cardsParams
+  const _id = getState().auth.profile._id
+  const res = await cardsApi.getCards({ ...params, ...arg })
+  const whose = res.packUserId === _id
+  return { cards: res, arg, whose }
 })
 
 const changeCard = createAppAsyncThunk<unknown, TUpdateArg>
@@ -43,12 +55,6 @@ const changeCard = createAppAsyncThunk<unknown, TUpdateArg>
   )
 })
 
-const fetchCards = createAppAsyncThunk<{ cards: TGetCardsResponse, arg: TGetCardsArgs }, TGetCardsArgs>
-('cards/getCards', async (arg, { getState }) => {
-  const params = getState().cards.cardsParams
-  const res = await cardsApi.getCards({ ...params, ...arg })
-  return { cards: res, arg }
-})
 
 const createCard = createAppAsyncThunk<TCreateResponse, { question: string, answer: string, }>
 ('cards/addCard', (arg, thunkAPI) => {
