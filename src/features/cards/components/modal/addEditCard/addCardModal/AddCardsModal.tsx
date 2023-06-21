@@ -11,7 +11,7 @@ type Props = {
 }
 
 export const AddCardsModal = (props: Props) => {
-  const { callback, fieldOpen, title } = props
+  const { callback, fieldOpen } = props
   const [open, setOpen] = useState(false)
   const [select, setSelect] = useState<SelectType>('Text')
   const [question, setQuestion] = useState<string>('')
@@ -27,11 +27,13 @@ export const AddCardsModal = (props: Props) => {
   return (
     <>
       <BaseModalCard
+        titleButtonAction={'Add New Card'}
         buttonOpen={fieldOpen}
-        title={title}
+        title={'Add New Card'}
         open={open}
         setOpen={setOpen}
         actionCallback={createNewCards}
+        disable={false}
       >
         <div className={s.newCardContainer}>
           <SelectTextImg select={select} setSelect={setSelect} />

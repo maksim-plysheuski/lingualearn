@@ -26,11 +26,13 @@ type Props = {
   buttonOpen: ReactNode
   title: string
   open: boolean
+  titleButtonAction: string
   setOpen: (open: boolean) => void
   actionCallback: () => void
+  disable: boolean
 }
 export const BaseModalCard = (props: Props) => {
-  const { children, buttonOpen, title, open, setOpen, actionCallback } = props
+  const { children, buttonOpen, title, open, setOpen, actionCallback, titleButtonAction, disable } = props
 
   const handleOpen = () => {
     setOpen(true)
@@ -60,7 +62,7 @@ export const BaseModalCard = (props: Props) => {
           </div>
           <div className={s.buttonContainer}>
             <button className={s.buttonCancle} onClick={handleClose}>Cancel</button>
-            <button className={s.buttonAction} onClick={actionCallback}>Add New Pack</button>
+            <button disabled={disable!} className={s.buttonAction} onClick={actionCallback}>{titleButtonAction}</button>
           </div>
         </Box>
       </Modal>

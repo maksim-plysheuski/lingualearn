@@ -16,9 +16,10 @@ const style: SxProps = {
 type Props = {
   questionValue: string
   answerValue: string
+  cardId: string
 }
 export const FieldButtons = (props: Props) => {
-  const { answerValue, questionValue } = props
+  const { answerValue, questionValue, cardId } = props
   const dispatch = useAppDispatch()
   const editCardHandler = () => {
 
@@ -27,8 +28,7 @@ export const FieldButtons = (props: Props) => {
     <TableCell sx={style}>
       <div className={s.iconContainer}>
         <EditCardsModal
-          callback={editCardHandler}
-          buttonOpen={<DriveFileRenameOutlineIcon fontSize={'small'} />}
+          cardId={cardId}
           questionValue={questionValue}
           answerValue={answerValue}
         />

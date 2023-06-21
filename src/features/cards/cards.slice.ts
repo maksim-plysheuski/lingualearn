@@ -50,7 +50,7 @@ const changeCard = createAppAsyncThunk<unknown, TUpdateArg>
   const cardsPack_id = thunkAPI.getState().cards.cardsParams.cardsPack_id
   return thunkTryCatch(thunkAPI, async () => {
       await cardsApi.updateCard(arg)
-      thunkAPI.dispatch(cardsThunks.fetchCards({ cardsPack_id }))
+      await thunkAPI.dispatch(cardsThunks.fetchCards({ cardsPack_id }))
     }
   )
 })
@@ -61,7 +61,7 @@ const createCard = createAppAsyncThunk<TCreateResponse, { question: string, answ
     const cardsPack_id = thunkAPI.getState().cards.cardsParams.cardsPack_id
     return thunkTryCatch(thunkAPI, async () => {
       const res = await cardsApi.createCard({ cardsPack_id, ...arg })
-      thunkAPI.dispatch(cardsThunks.fetchCards({ cardsPack_id }))
+      await thunkAPI.dispatch(cardsThunks.fetchCards({ cardsPack_id }))
       return res
     })
   }

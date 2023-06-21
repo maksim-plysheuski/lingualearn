@@ -1,38 +1,47 @@
-import React, { ReactNode, useState } from 'react'
+import React, { useState } from 'react'
 import { BaseModalCard } from 'features/cards/components/modal/baseModalCard/BaseModalCard'
 import { SelectTextImg, SelectType } from 'features/cards/components/modal/addEditCard/select/SelectTextImg'
 import { InputCastom } from 'features/cards/components/modal/addEditCard/inputCastom/InputCastom'
 import s from './style.module.scss'
+import DriveFileRenameOutlineIcon from '@mui/icons-material/DriveFileRenameOutline'
+import { cardsThunks } from '../../../cards.slice'
+import { useAppDispatch } from '../../../../../common/hooks'
 
 type Props = {
-  callback: (question: string, answer: string) => void
-  buttonOpen?: ReactNode
+  cardId: string
   questionValue: string
   answerValue: string
 }
 
 export const EditCardsModal = (props: Props) => {
-  const { callback, buttonOpen, questionValue, answerValue } = props
+  const { questionValue, answerValue, cardId } = props
+
+  const dispatch = useAppDispatch()
+
   const [open, setOpen] = useState(false)
+  const [disable, setDisable] = useState(false)
   const [select, setSelect] = useState<SelectType>('Text')
   const [question, setQuestion] = useState<string>(questionValue)
   const [answer, setAnswer] = useState<string>(answerValue)
 
-  const createNewCards = async () => {
-    await callback(question, answer)
+
+  const editCards = async () => {
+    setDisable(true)
+    await dispatch(cardsThunks.changeCard({ _id: cardId, question, answer }))
     setOpen(false)
-    setQuestion('')
-    setAnswer('')
+    setDisable(false)
   }
 
   return (
     <>
       <BaseModalCard
-        buttonOpen={buttonOpen}
+        buttonOpen={<DriveFileRenameOutlineIcon fontSize={'small'} />}
         title={'Edit Pack'}
         open={open}
         setOpen={setOpen}
-        actionCallback={createNewCards}
+        actionCallback={editCards}
+        titleButtonAction={'Save Changes'}
+        disable={disable}
       >
         <div className={s.newCardContainer}>
           <SelectTextImg select={select} setSelect={setSelect} />
