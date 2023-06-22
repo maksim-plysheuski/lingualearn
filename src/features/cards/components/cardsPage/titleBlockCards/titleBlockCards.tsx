@@ -2,7 +2,7 @@ import React from 'react'
 import { UniversalButton } from 'common/components/universalButton/UniversalButton'
 import s from 'features/cards/components/cardsPage/titleBlockCards/style.module.scss'
 import { selectWhoseCards } from 'features/cards/selectors'
-import { AddCardsModal } from 'features/cards/components/modal/addEditCard/addCardModal/AddCardsModal'
+import { AddCardsModal } from 'features/cards/components/modal/addCard/addCardModal/AddCardsModal'
 import { MenuCards } from '../menuCards/menuCards'
 import { useSelector } from 'react-redux'
 

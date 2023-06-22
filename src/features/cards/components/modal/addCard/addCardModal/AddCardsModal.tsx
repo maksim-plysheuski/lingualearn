@@ -1,8 +1,8 @@
 import React, { useState } from 'react'
-import { BaseModalCard } from 'features/cards/components/modal/baseModalCard/BaseModalCard'
-import { SelectTextImg, SelectType } from 'features/cards/components/modal/addEditCard/select/SelectTextImg'
-import { InputCastom } from 'features/cards/components/modal/addEditCard/inputCastom/InputCastom'
-import s from 'features/cards/components/modal/addEditCard/addCardModal/style.module.scss'
+import { BaseModal } from 'common/components/baseModal/BaseModal'
+import { SelectTextImg, SelectType } from 'features/cards/components/modal/addCard/select/SelectTextImg'
+import { InputCastom } from 'common/components/baseModal/inputCastom/InputCastom'
+import s from 'features/cards/components/modal/addCard/addCardModal/style.module.scss'
 import { cardsThunks } from '../../../../cards.slice'
 import { useAppDispatch } from '../../../../../../common/hooks'
 import { UniversalButton } from '../../../../../../common/components/universalButton/UniversalButton'
@@ -25,7 +25,7 @@ export const AddCardsModal = () => {
 
   return (
     <>
-      <BaseModalCard
+      <BaseModal
         titleButtonAction={'Add New Card'}
         buttonOpen={<UniversalButton width={'184'} title={'Add New Card'}/>}
         title={'Add New Card'}
@@ -41,7 +41,7 @@ export const AddCardsModal = () => {
             <InputCastom label={'Answer'} value={answer} setValue={setAnswer} />
           </div>
         </div>
-      </BaseModalCard>
+      </BaseModal>
     </>
   )
 }

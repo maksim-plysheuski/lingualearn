@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { BaseModalCard } from 'features/cards/components/modal/baseModalCard/BaseModalCard'
+import { BaseModal } from 'common/components/baseModal/BaseModal'
 import s from './style.module.scss'
 import { useAppDispatch } from '../../../../../common/hooks'
 import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline'
@@ -26,7 +26,7 @@ export const RemoveCardModal = (props: Props) => {
 
   return (
     <>
-      <BaseModalCard
+      <BaseModal
         buttonOpen={<DeleteOutlineIcon fontSize={'small'} />}
         title={'Delete Pack'}
         open={open}
@@ -39,7 +39,7 @@ export const RemoveCardModal = (props: Props) => {
           Do you really want to remove?
           <div className={s.text}>{`${title}`}</div>
         </div>
-      </BaseModalCard>
+      </BaseModal>
     </>
   )
 }

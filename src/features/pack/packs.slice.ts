@@ -68,12 +68,12 @@ const deletePack = createAppAsyncThunk<{ pack: TDeletePackResponse }, TDeletePac
   }, false)
 })
 
-const createPack = createAppAsyncThunk<any, TCreatePackArg>
+const createPack = createAppAsyncThunk<unknown, TCreatePackArg>
 ('packs/createPack', (arg, thunkAPI) => {
   const { dispatch } = thunkAPI
   return thunkTryCatch(thunkAPI, async () => {
     await packApi.createPack(arg)
-    dispatch(getPacks({}))
+    await dispatch(getPacks({}))
   }, false)
 })
 

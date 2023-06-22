@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
-import { BaseModalCard } from 'features/cards/components/modal/baseModalCard/BaseModalCard'
-import { SelectTextImg, SelectType } from 'features/cards/components/modal/addEditCard/select/SelectTextImg'
-import { InputCastom } from 'features/cards/components/modal/addEditCard/inputCastom/InputCastom'
+import { BaseModal } from 'common/components/baseModal/BaseModal'
+import { SelectTextImg, SelectType } from 'features/cards/components/modal/addCard/select/SelectTextImg'
+import { InputCastom } from 'common/components/baseModal/inputCastom/InputCastom'
 import s from './style.module.scss'
 import DriveFileRenameOutlineIcon from '@mui/icons-material/DriveFileRenameOutline'
 import { cardsThunks } from '../../../cards.slice'
@@ -34,7 +34,7 @@ export const EditCardsModal = (props: Props) => {
 
   return (
     <>
-      <BaseModalCard
+      <BaseModal
         buttonOpen={<DriveFileRenameOutlineIcon fontSize={'small'} />}
         title={'Edit Pack'}
         open={open}
@@ -50,7 +50,7 @@ export const EditCardsModal = (props: Props) => {
             <InputCastom label={'Answer'} value={answer} setValue={setAnswer} />
           </div>
         </div>
-      </BaseModalCard>
+      </BaseModal>
     </>
   )
 }

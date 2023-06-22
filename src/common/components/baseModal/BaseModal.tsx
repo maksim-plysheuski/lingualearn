@@ -31,7 +31,7 @@ type Props = {
   actionCallback: () => void
   disable: boolean
 }
-export const BaseModalCard = (props: Props) => {
+export const BaseModal = (props: Props) => {
   const { children, buttonOpen, title, open, setOpen, actionCallback, titleButtonAction, disable } = props
 
   const handleOpen = () => {

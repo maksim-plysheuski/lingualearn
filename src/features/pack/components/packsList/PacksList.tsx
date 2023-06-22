@@ -9,7 +9,7 @@ import { PaginatorPacks } from 'features/pack/components/paginatorPaks/paginator
 
 
 export const PacksList = () => {
-  const { params, dispatch, packs,} = useSearchPaks()
+  const { params, dispatch, packs } = useSearchPaks()
 
   useEffect(() => {
     dispatch(packAction.setPackParams(params))
@@ -17,12 +17,10 @@ export const PacksList = () => {
   }, [])
 
   if (!packs) return <h1>loading</h1>
+
   return (
     <div className={s.packsList}>
-      <PageTitleBlock pageTitle={'Packs List'}
-                      showButton={true}
-                      buttonTitle={'Add New Pack'}
-      />
+      <PageTitleBlock />
       <SearchBar />
       <PacksTable />
       <PaginatorPacks />
