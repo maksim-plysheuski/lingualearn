@@ -1,5 +1,5 @@
 import React, { ChangeEvent } from 'react'
-import s from 'features/cards/components/modal/addEditCard/select/style.module.scss'
+import s from 'features/cards/components/modal/addCard/select/style.module.scss'
 
 export type SelectType = 'Text' | 'Img'
 type Props = {
@@ -15,7 +15,7 @@ export const SelectTextImg = (props: Props) => {
 
   return (
     <div className={s.selectContainer}>
-      <label htmlFor='standard-select'>Choose a question format</label>
+      <label htmlFor='standard-select' className={s.label}>Choose a question format</label>
       <select id='standard-select'
               defaultValue={select}
               onChange={handleChange}

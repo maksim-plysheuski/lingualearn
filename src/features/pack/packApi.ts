@@ -21,8 +21,9 @@ export type TChangeResponse = {
 }
 
 export type TUpdatePackArg = {
-    _id: string
-    name?: string
+  _id: string
+  name: string
+  private: boolean
 }
 
 export type  TDeletePackArg = {

@@ -10,7 +10,7 @@ import * as React from 'react'
 import { UpdatePackModal } from 'features/modals/packsModals/updatePackModal/UpdatePackModal'
 import { DeletePackModal } from 'features/modals/packsModals/deletePackModal/DeletePackModal'
 
-export const tableCellStyle = {
+const tableCellStyle = {
   wordWrap: 'break-word',
   minWidth: '150px',
   maxWidth: '200px',

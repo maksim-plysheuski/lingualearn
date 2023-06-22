@@ -40,7 +40,8 @@ export const useModals = () => {
   const updatePack = (data: InputsType) => {
     let payload = {
       _id: selectedPackId,
-      name: data.packName
+      name: data.packName,
+      private:false
     }
     dispatch(packsThunks.updatePack(payload)).unwrap()
       .then(() => toast.info(`Pack has been updated`))

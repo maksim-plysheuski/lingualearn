@@ -6,13 +6,13 @@ export const cardsApi = {
     return instance.get<TGetCardsResponse>('cards/card', { params: { ...arg } }).then(res => res.data)
   },
   createCard: (arg: TCreateArg) => {
-    return instance.post<TCreateResponse>('cards/card', {card: arg }).then(res => res.data)
+    return instance.post<TCreateResponse>('cards/card', { card: arg }).then(res => res.data)
   },
   deleteCard: (arg: TDeleteArg) => {
-    return instance.delete('cards/card', { params: { ...arg } })
+    return instance.delete('cards/card', { params: arg })
   },
   updateCard: (arg: TUpdateArg) => {
-    return instance.put<TUpdateResponse>('cards/card', arg).then(res => res.data)
+    return instance.put<TUpdateResponse>('cards/card', { card: arg }).then(res => res.data)
   },
   changeGrade: (arg: TChangeGradeArg) => {
     return instance.put<TChangeGradeResponse>('cards/grade', arg).then(res => res.data)
@@ -32,6 +32,7 @@ export type TGetCardsArgs = {
 
 export type TGetCardsResponse = {
   cards: TCard[]
+  packPrivate:boolean
   cardsTotalCount: number
   maxGrade: number
   minGrade: number
@@ -74,15 +75,13 @@ export type TDeleteArg = {
 }
 
 export type TUpdateArg = {
-  card: {
-    _id: string
-    question?: string
-    answer?: string
-    grade?: number | null
-    shots?: number
-    answerImg?: string
-    questionImg?: string
-  }
+  _id: string
+  question?: string
+  answer?: string
+  grade?: number | null
+  shots?: number
+  answerImg?: string
+  questionImg?: string
 }
 
 export type TUpdateResponse = {
