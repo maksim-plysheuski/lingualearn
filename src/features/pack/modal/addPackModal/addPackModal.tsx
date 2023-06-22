@@ -6,6 +6,7 @@ import React, { useState } from 'react'
 import { packsThunks } from '../../packs.slice'
 
 
+
 export const AddPackModal = () => {
   const dispatch = useAppDispatch()
   const [open, setOpen] = useState<boolean>(false)

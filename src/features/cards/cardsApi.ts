@@ -32,6 +32,7 @@ export type TGetCardsArgs = {
 
 export type TGetCardsResponse = {
   cards: TCard[]
+  packPrivate:boolean
   cardsTotalCount: number
   maxGrade: number
   minGrade: number
