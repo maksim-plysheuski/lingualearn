@@ -6,8 +6,8 @@
   justify-content: center;
 
   .container {
-    height: 552px;
-    width: 413px;
+    height: 528px;
+    width: 420px;
     margin-top: 100px;
     background: $secondaryBgColor;
     border: 1px solid $grayColor;
@@ -18,48 +18,18 @@
 
     .title {
       @include text(600, 26px, 32px);
-      margin-top: 35px;
+      margin-top: 33px;
     }
 
     .form {
-      width: 347px;
+      width: 348px;
       display: flex;
       flex-direction: column;
 
-      .inputEmail {
-        width: 100%;
-        margin-top: 41px;
-      }
-
-      .inputPassword {
-        width: 100%;
-        margin-top: 24px;
-      }
-
-      .passwordConfirmation {
-        width: 100%;
-        margin-top: 24px;
-      }
-
       p {
         position: absolute;
-        top: 45px;
-        font-size: 14px;
-        line-height: 24px;
-      }
-
-      .button {
-        background: $blueColor;
-        color: $primaryBgColor;
-        height: 36px;
-        margin-top: 95px;
-        box-shadow: $button;
-        border-radius: 30px;
-        font-weight: 500;
-        font-size: 16px;
-        line-height: 20px;
-        border: none;
-        cursor: pointer;
+        left: -15px;
+        top: 35px;
       }
     }
 
@@ -67,15 +37,26 @@
       @include text(600, 14px, 24px);
       text-align: center;
       opacity: 0.5;
-      margin-top: 25px;
+      margin-top: 20px;
     }
 
     .link {
       @include text(600, 16px, 24px);
       text-align: center;
       text-decoration-line: underline;
-      color: $blueColor;
-      margin-top: 11px;
+      color: $pinkColor;
+      margin-top: 7px;
+      transition: color 250ms ease-in-out;
+
+      &:hover {
+        color: $primaryFontColor;
+      }
     }
+  }
+
+  input:-webkit-autofill,
+  input:-webkit-autofill:active {
+    -webkit-box-shadow: 0 0 0 30px $secondaryBgColor inset !important;
+    -webkit-text-fill-color: white !important;
   }
 }

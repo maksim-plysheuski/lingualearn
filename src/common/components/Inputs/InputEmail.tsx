@@ -1,8 +1,7 @@
 import React, { FC } from 'react'
-import { TextFieldProps } from '@mui/material/TextField/TextField'
+import TextField, { TextFieldProps } from '@mui/material/TextField/TextField'
 import { UseFormRegisterReturn } from 'react-hook-form/dist/types/form'
-import { CustomInput } from 'common/components/Inputs/InputText'
-
+import { inputStyle } from 'common/components/Inputs/InputText'
 
 type Props = TextFieldProps & {
   errorMessage: string | undefined
@@ -11,13 +10,17 @@ type Props = TextFieldProps & {
 
 export const InputEmail: FC<Props> = ({ errorMessage, register, ...resProps }) => {
   return (
-      <CustomInput type={'text'}
-                   id="custom-input"
-                   label={'Email'}
-                   InputLabelProps={{ sx: { color: "white" }}}
-                   error={!!errorMessage}
-                   helperText={errorMessage}
-                   {...register}
-                   {...resProps}/>
+    <>
+      <span style={{ marginTop: '24px', color: "rgba(128, 128, 128, 1)", fontSize: '14px'
+      }}>Email</span>
+      <TextField type={'text'}
+                 sx={inputStyle}
+                 error={!!errorMessage}
+                 helperText={errorMessage}
+                 {...register}
+                 {...resProps}
+      />
+    </>
+
   )
 }

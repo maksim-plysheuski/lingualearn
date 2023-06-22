@@ -17,10 +17,10 @@ type InputType = yup.InferType<typeof emailSchema>
 
 export const ForgotPasswordPage = () => {
   const [showCheckEmail, setShowCheckEmail] = useState<boolean>(false)
-  const { register, handleSubmit, formState: { errors}, getFieldState, getValues } = useForm<InputType>({
-      mode: 'onBlur',
-      resolver: yupResolver(emailSchema)
-    })
+  const { register, handleSubmit, formState: { errors }, getFieldState, getValues } = useForm<InputType>({
+    mode: 'onTouched',
+    resolver: yupResolver(emailSchema)
+  })
 
   const onFormSubmit: SubmitHandler<InputType> = (data: InputType) => {
     const payload = {
@@ -40,13 +40,12 @@ export const ForgotPasswordPage = () => {
     <div className={s.recoveryPasswordPage}>
       <div className={s.formContainer}>
         <h1>Forgot your password?</h1>
-        <form onSubmit={handleSubmit(onFormSubmit)} className={s.form}>
-          <FormControl>
-            <InputEmail className={s.inputField}
-                        register={register('email')}
+        <form onSubmit={handleSubmit(onFormSubmit)}>
+          <FormControl className={s.form}>
+            <InputEmail register={register('email')}
                         errorMessage={errors.email?.message}
             />
-            <span>
+            <span className={s.descriptionText}>
               Enter your address and we will send you further instructions
             </span>
             <UniversalButton title={'Send Instructions'} disabled={isButtonDisabled} marginTop={'60px'} />
