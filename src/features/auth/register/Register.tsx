@@ -18,7 +18,7 @@ export const Register = () => {
   const dispatch = useAppDispatch()
   const navigate = useNavigate()
   const { register, handleSubmit, formState: { errors }, getFieldState } = useForm<Type>({
-    mode: 'onBlur',
+    mode: 'onTouched',
     resolver: yupResolver(registerSchema)
   })
 
