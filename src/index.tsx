@@ -7,13 +7,12 @@ import 'index.scss'
 import { RouterProvider } from 'react-router-dom'
 import { router } from 'common/router'
 
-
 const container = document.getElementById('root')!
 const root = createRoot(container)
 
 root.render(
   <Provider store={store}>
-    <RouterProvider router={router} />
+      <RouterProvider router={router} />
   </Provider>
 )
 
