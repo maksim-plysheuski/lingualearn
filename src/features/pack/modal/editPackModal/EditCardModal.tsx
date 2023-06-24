@@ -11,7 +11,6 @@ export const EditPackModal = () => {
   const packName = useAppSelector(state => state.cards.cards.packName)
   const packPrivate = useAppSelector(state => state.cards.cards.packPrivate)
   const cardsPack_id = useAppSelector(state => state.cards.cardsParams.cardsPack_id)
-
   const dispatch = useAppDispatch()
 
   const [open, setOpen] = useState<boolean>(false)
