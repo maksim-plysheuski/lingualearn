@@ -9,6 +9,7 @@ type Props = {
 
 export const InputCastom = (props: Props) => {
     const {label, value, setValue} = props
+
     const setValueHandler = (e: ChangeEvent<HTMLInputElement>) => {
         setValue(e.currentTarget.value)
     }
