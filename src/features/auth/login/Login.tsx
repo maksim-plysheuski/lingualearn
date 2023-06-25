@@ -11,6 +11,7 @@ import { loginSchema } from 'features/auth/login/loginSchema'
 import { useAppDispatch } from 'common/hooks'
 import { paths } from 'common/router/path'
 import { toast } from 'react-toastify'
+import * as React from 'react'
 
 
 type InputsType = yup.InferType<typeof loginSchema>
@@ -19,7 +20,7 @@ export const Login = () => {
   const dispatch = useAppDispatch()
 
   const { register, handleSubmit, formState: { errors }, getFieldState } = useForm<InputsType>({
-    mode: 'onBlur',
+    mode: 'onTouched',
     resolver: yupResolver(loginSchema)
   })
 
@@ -38,20 +39,19 @@ export const Login = () => {
         <h1 className={s.title}>Sign In</h1>
         <form onSubmit={handleSubmit(onSubmit)}>
           <FormControl className={s.form}>
-            <InputEmail className={s.inputEmail}
-                        register={register('email')}
+            <InputEmail register={register('email')}
                         errorMessage={errors.email?.message}
             />
-            <InputPassword className={s.inputPassword}
-                           errorMessage={errors.password?.message}
+            <InputPassword errorMessage={errors.password?.message}
                            register={register('password')}
             />
             <div className={s.checkbox}>
-              <Checkbox id='rememberMe' {...register('rememberMe')} />
+              <Checkbox sx={{ color: '#4C4C4C' }}
+                        {...register('rememberMe')} />
               <span>Remember me</span>
             </div>
             <Link className={s.forgotPasswordLink} to={paths.FORGOT_PASSWORD}>Forgot Password?</Link>
-            <UniversalButton title={'Sign In'} disabled={isButtonDisabled} marginTop={'45px'} />
+            <UniversalButton title={'Sign In'} disabled={isButtonDisabled} marginTop={'60px'} />
           </FormControl>
         </form>
         <span className={s.dontHaveAccount}>Don't have an account?</span>
