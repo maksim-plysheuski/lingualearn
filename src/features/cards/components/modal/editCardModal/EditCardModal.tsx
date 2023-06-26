@@ -5,7 +5,7 @@ import { InputCastom } from 'common/components/baseModal/inputCastom/InputCastom
 import s from './style.module.scss'
 import DriveFileRenameOutlineIcon from '@mui/icons-material/DriveFileRenameOutline'
 import { cardsThunks } from '../../../cards.slice'
-import { useAppDispatch } from '../../../../../common/hooks'
+import { useAppDispatch } from 'common/hooks'
 
 type Props = {
   cardId: string

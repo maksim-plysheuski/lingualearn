@@ -4,13 +4,11 @@ import Divider from '@mui/material/Divider'
 import React, { useState } from 'react'
 import MoreVertIcon from '@mui/icons-material/MoreVert'
 import PlayCircleOutlineIcon from '@mui/icons-material/PlayCircleOutline'
-import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline'
-import { useAppDispatch } from 'common/hooks'
 import { EditPackModal } from 'features/pack/modal/editPackModal/EditCardModal'
+import { RemovePackModal } from 'features/pack/modal/removePackModal/removePackModal'
 
 
-export const MenuCards = () => {
-  const dispatch = useAppDispatch()
+export const MenuPacks = () => {
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null)
   const open = Boolean(anchorEl)
 
@@ -19,11 +17,6 @@ export const MenuCards = () => {
   }
   const handleClose = () => {
     setAnchorEl(null)
-  }
-
-  const editCardHandler = () => {
-    // dispatch(cardsThunks.changeCard())
-    handleClose()
   }
 
   return (
@@ -39,7 +32,6 @@ export const MenuCards = () => {
             id='account-menu'
             open={open}
             onClose={handleClose}
-        // onClick={handleClose}
             PaperProps={{
               elevation: 0,
               sx: {
@@ -74,11 +66,11 @@ export const MenuCards = () => {
         </MenuItem>
         <Divider />
         <MenuItem>
-          <EditPackModal />
+          <EditPackModal handleCloseMenu={handleClose} />
         </MenuItem>
         <Divider />
         <MenuItem>
-          <DeleteOutlineIcon /> Delete
+          <RemovePackModal />
         </MenuItem>
       </Menu>
     </div>
