@@ -20,7 +20,7 @@ export const MenuPacks = () => {
   }
 
   return (
-    <div>
+    <>
       <div onClick={handleClick}
            aria-controls={open ? 'account-menu' : undefined}
            aria-haspopup='true'
@@ -66,13 +66,13 @@ export const MenuPacks = () => {
         </MenuItem>
         <Divider />
         <MenuItem>
-          <EditPackModal handleCloseMenu={handleClose} />
+          <EditPackModal handleCloseMenu={handleClose} /> Edit
         </MenuItem>
         <Divider />
         <MenuItem>
-          <RemovePackModal />
+          <RemovePackModal /> Delete
         </MenuItem>
       </Menu>
-    </div>
+    </>
   )
 }

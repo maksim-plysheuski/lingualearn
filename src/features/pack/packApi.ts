@@ -11,12 +11,12 @@ export const packApi = {
     return instance.delete<TDeletePackResponse>(`/cards/pack?id=${arg.id}`)
   },
   updatePack: (cardsPack: TUpdatePackArg) => {
-    return instance.put<TChangeResponse>('/cards/pack', { cardsPack }).then(res => res.data)
+    return instance.put<TUpdatePackResponse>('/cards/pack', { cardsPack }).then(res => res.data)
   }
 }
 
 
-export type TChangeResponse = {
+export type TUpdatePackResponse = {
   updatedCardsPack: TPack
 }
 

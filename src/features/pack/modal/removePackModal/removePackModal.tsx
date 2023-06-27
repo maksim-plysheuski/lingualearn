@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import { BaseModal } from 'common/components/baseModal/BaseModal'
 import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline'
 import { useAppDispatch, useAppSelector } from 'common/hooks'
-import { selectCardsPack_id, selectPackName } from 'features/cards/selectors/cards.selector'
+import { selectPackId, selectPackName } from 'features/cards/selectors/cards.selector'
 import { packsThunks } from 'features/pack/packs.slice'
 import { useNavigate } from 'react-router-dom'
 import s from './style.module.scss'
@@ -14,7 +14,7 @@ export const RemovePackModal = () => {
   const [open, setOpen] = useState<boolean>(false)
   const [disable, setDisable] = useState<boolean>(false)
   const packName = useAppSelector(selectPackName)
-  const cardsPack_id = useAppSelector(selectCardsPack_id)
+  const cardsPack_id = useAppSelector(selectPackId)
 
   const removePackHandler = async () => {
     setDisable(true)
@@ -28,13 +28,13 @@ export const RemovePackModal = () => {
     <BaseModal title={'Delete Pack'}
                open={open}
                setOpen={setOpen}
-               buttonOpen={<><DeleteOutlineIcon /> Delete</>}
+               buttonOpen={<DeleteOutlineIcon />}
                actionCallback={removePackHandler}
                titleButtonAction={'Delete Pack'}
                disable={disable}
     >
       <div className={s.childrenContainer}>
-        Do you really want to remove {packName}? All cards will be deleted.
+        {`Do you really want to remove ${packName}? All cards will be deleted.`}
       </div>
     </BaseModal>
 

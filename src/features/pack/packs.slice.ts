@@ -5,7 +5,7 @@ import {
   TDeletePackArg, TDeletePackResponse,
   TGetPacksArg,
   TPacksResponse,
-  TUpdatePackArg
+  TUpdatePackArg, TUpdatePackResponse
 } from 'features/pack/packApi'
 import { createAppAsyncThunk } from 'common/utils/createAppAsyncThunk'
 import { thunkTryCatch } from 'common/utils/thunk-try-catch'
@@ -76,12 +76,15 @@ const createPack = createAppAsyncThunk<unknown, TCreatePackArg>
 })
 
 
-const updatePack = createAppAsyncThunk<any, TUpdatePackArg>
+const updatePack = createAppAsyncThunk<TUpdatePackResponse, { newPack: TUpdatePackArg, needGetPacks: boolean }>
 ('/packs/updatePack', (arg, thunkAPI) => {
   const { dispatch } = thunkAPI
   return thunkTryCatch(thunkAPI, async () => {
-    await packApi.updatePack(arg)
-    dispatch(getPacks({}))
+    const res = await packApi.updatePack(arg.newPack)
+    if (arg.needGetPacks) {
+      await dispatch(getPacks({}))
+    }
+    return res
   }, false)
 })
 

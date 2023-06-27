@@ -2,7 +2,7 @@ export {
   selectPackUserId,
   selectWhoseCards,
   selectCardQuestion,
-  selectCardsPack_id,
+  selectPackId,
   selectCardsTotalCount,
   selectPage,
   selectPageCount,

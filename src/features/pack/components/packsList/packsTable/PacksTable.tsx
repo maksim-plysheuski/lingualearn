@@ -7,14 +7,12 @@ export const tableStyle = {
   marginTop: '24px',
   maxWidth: 1008,
   backgroundColor: 'black',
-  borderColor: "#333333",
-  borderStyle: "solid",
-  border: "0px 1px 0px 1px",
+  borderColor: '#333333',
+  borderStyle: 'solid',
+  border: '0px 1px 0px 1px'
 }
 
 export const PacksTable = () => {
-
-
   return (
     <TableContainer style={tableStyle} component={Paper}>
       <Table>

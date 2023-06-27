@@ -5,7 +5,7 @@ import { cardsThunks } from 'features/cards/cards.slice'
 import {
   selectCardQuestion,
   selectCards,
-  selectCardsPack_id,
+  selectPackId,
   selectCardsTotalCount,
   selectPage,
   selectPageCount
@@ -22,7 +22,7 @@ export const useSearchCards = () => {
   const cardsTotalCount = useAppSelector(selectCardsTotalCount)
   const pageCount = useAppSelector(selectPageCount)
   const cards = useAppSelector(selectCards)
-  const cardsPack_id = useAppSelector(selectCardsPack_id)
+  const cardsPack_id = useAppSelector(selectPackId)
   const cardQuestion = useAppSelector(selectCardQuestion)
 
   const [searchParams, setSearchParams] = useSearchParams()

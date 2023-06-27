@@ -5,9 +5,12 @@ import { selectWhoseCards } from 'features/cards/selectors'
 import { AddCardsModal } from 'features/cards/components/modal/addCard/addCardModal/AddCardsModal'
 import { MenuPacks } from 'features/cards/components/cardsPage/menuCards/menuPacks'
 import { useSelector } from 'react-redux'
+import { useAppSelector } from 'common/hooks'
+import { selectPackName } from 'features/cards/selectors/cards.selector'
 
 export const TitleBlockCards = () => {
   const whoseCards = useSelector(selectWhoseCards)
+  const packName = useAppSelector(selectPackName)
   const title = whoseCards ? 'My Pack' : 'Friend’s Pack'
 
   return (
@@ -16,6 +19,7 @@ export const TitleBlockCards = () => {
         <h2 className={s.title}>{title}</h2>
         {whoseCards && <MenuPacks />}
       </div>
+      <span>{packName}</span>
       {whoseCards ? <AddCardsModal /> : <UniversalButton width={'184'} title={'learn pack'} />}
     </div>
   )

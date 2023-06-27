@@ -4,8 +4,8 @@ import { SelectTextImg, SelectType } from 'features/cards/components/modal/addCa
 import { InputCastom } from 'common/components/baseModal/inputCastom/InputCastom'
 import s from 'features/cards/components/modal/addCard/addCardModal/style.module.scss'
 import { cardsThunks } from '../../../../cards.slice'
-import { useAppDispatch } from '../../../../../../common/hooks'
-import { UniversalButton } from '../../../../../../common/components/universalButton/UniversalButton'
+import { UniversalButton } from 'common/components/universalButton/UniversalButton'
+import { useAppDispatch } from 'common/hooks'
 
 
 
@@ -27,7 +27,7 @@ export const AddCardsModal = () => {
     <>
       <BaseModal
         titleButtonAction={'Add New Card'}
-        buttonOpen={<UniversalButton width={'184'} title={'Add New Card'}/>}
+        buttonOpen={<UniversalButton width={'184'} title={'Add New Card'} />}
         title={'Add New Card'}
         open={open}
         setOpen={setOpen}

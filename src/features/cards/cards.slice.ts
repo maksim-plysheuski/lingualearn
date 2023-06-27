@@ -8,6 +8,7 @@ import {
   TGetCardsResponse, TUpdateArg
 } from 'features/cards/cardsApi'
 import { thunkTryCatch } from 'common/utils/thunk-try-catch'
+import { packsThunks } from 'features/pack/packs.slice'
 
 const slice = createSlice({
   name: 'cards',
@@ -32,6 +33,9 @@ const slice = createSlice({
         state.cards = action.payload.cards
         state.whose = action.payload.whose
         state.cardsParams = { ...state.cardsParams, ...action.payload.arg }
+      })
+      .addCase(packsThunks.updatePack.fulfilled, (state, action) => {
+        state.cards.packName = action.payload.updatedCardsPack.name
       })
   }
 })

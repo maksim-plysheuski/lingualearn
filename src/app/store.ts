@@ -4,7 +4,6 @@ import { authReducer } from 'features/auth/auth.slice'
 import { profileReducer } from 'features/profile/profile.slice'
 import { packsReducer } from 'features/pack/packs.slice'
 import { cardsReducer } from 'features/cards/cards.slice'
-import { modalsReducer } from 'features/modals/modals.slice'
 
 export const store = configureStore({
   reducer: {
@@ -13,7 +12,6 @@ export const store = configureStore({
     profile: profileReducer,
     packs: packsReducer,
     cards: cardsReducer,
-    modals: modalsReducer
   }
 })
 

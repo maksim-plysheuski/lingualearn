@@ -20,7 +20,7 @@ export const Header = () => {
           <span>Lingualearn</span>
         </Link>
         {isLoggedIn ? <AvatarMenu /> :
-          <UniversalButton title='Sign Up' width={'100'} height={'30'} onClickCallback={singUpCallback} />}
+          <UniversalButton title='Sign Up' width={'100px'} onClickCallback={singUpCallback} disabled={false} />}
       </div>
     </header>
   )

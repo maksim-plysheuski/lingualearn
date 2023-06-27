@@ -35,16 +35,17 @@ type Props = {
 }
 
 
-export const InputText: FC<Props> = ({ label, value, setValue }) => {
+export const InputText: FC<Props> = ({ value, setValue }) => {
   const setValueHandler = (e: ChangeEvent<HTMLInputElement>) => {
     if (setValue) setValue(e.currentTarget.value)
   }
 
   return (
     <>
-      <span style={{ color: '#808080', fontSize: '14px' }}>{label}</span>
       <TextField id='custom-input'
                  value={value}
+                 sx={inputStyle}
+                 defaultValue={value}
                  onChange={setValueHandler}
       />
     </>

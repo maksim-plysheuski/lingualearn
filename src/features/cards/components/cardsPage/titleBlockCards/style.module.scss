@@ -1,14 +1,24 @@
+@import "src/common/style/variables";
+@import "src/common/style/mixins";
+
 .container {
   width: 100%;
   margin-top: 34px;
   display: flex;
-  align-items: center;
   justify-content: space-between;
+  align-items: self-end;
+
 
   .titleContainer {
     display: flex;
-    align-items: center;
+    align-items: self-end;
     color: #fff;
-    gap:6px;
+    gap: 6px;
+
+  }
+
+  span {
+    @include text(600, 28px, 35px);
+    color: $borderColor
   }
 }

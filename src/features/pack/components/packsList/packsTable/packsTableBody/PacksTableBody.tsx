@@ -1,14 +1,18 @@
 import { TableBody, TableCell, TableRow } from '@mui/material'
 import { useAppDispatch, useAppSelector } from 'common/hooks'
-import {
-  ActionsButtons
-} from 'features/pack/components/packsList/packsTable/packsTableBody/actionsButtons/ActionsButtons'
 import { cardsThunks } from 'features/cards/cards.slice'
 import { useNavigate } from 'react-router-dom'
 import { paths } from 'common/router/path'
 import * as React from 'react'
-import { UpdatePackModal } from 'features/modals/packsModals/updatePackModal/UpdatePackModal'
-import { DeletePackModal } from 'features/modals/packsModals/deletePackModal/DeletePackModal'
+import {
+  LearnPack
+} from 'features/pack/components/packsList/packsTable/packsTableBody/actionsButtons/learnPack/LearnPack'
+import {
+  EditPack
+} from 'features/pack/components/packsList/packsTable/packsTableBody/actionsButtons/editPack/EditPack'
+import {
+  RemovePack
+} from 'features/pack/components/packsList/packsTable/packsTableBody/actionsButtons/removePack/RemovePack'
 
 const tableCellStyle = {
   wordWrap: 'break-word',
@@ -30,8 +34,6 @@ export const PacksTableBody = () => {
 
   return (
     <TableBody>
-      <UpdatePackModal />
-      <DeletePackModal />
       {packs.cardPacks?.map((pack) => (
         <TableRow key={pack._id}>
 
@@ -48,10 +50,11 @@ export const PacksTableBody = () => {
           <TableCell sx={tableCellStyle}>{pack.cardsCount}</TableCell>
           <TableCell sx={tableCellStyle}>{pack.updated.slice(0, 10).replaceAll('-', '.')}</TableCell>
           <TableCell sx={tableCellStyle}>{pack.user_name}</TableCell>
-          <ActionsButtons itemId={pack._id}
-                          itemName={pack.name}
-                          pack={pack}
-          />
+          <TableCell sx={tableCellStyle}>
+            <LearnPack cardsCount={pack.cardsCount} />
+            <EditPack pack={pack} />
+            <RemovePack />
+          </TableCell>
         </TableRow>
       ))}
     </TableBody>
