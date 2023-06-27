@@ -1,7 +1,7 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 import { createAppAsyncThunk } from 'common/utils/createAppAsyncThunk'
 import {
-  cardsApi,
+  cardsApi, TCard,
   TChangeGradeArg,
   TChangeGradeResponse, TCreateResponse, TDeleteArg,
   TGetCardsArgs,
@@ -50,7 +50,7 @@ const removeCard = createAppAsyncThunk<unknown, TDeleteArg>
   return thunkTryCatch(thunkAPI, async () => {
     const cardsPack_id = thunkAPI.getState().cards.cardsParams.cardsPack_id
     await cardsApi.deleteCard({ id: arg.id })
-    await thunkAPI.dispatch(cardsThunks.fetchCards({cardsPack_id}))
+    await thunkAPI.dispatch(cardsThunks.fetchCards({ cardsPack_id }))
   })
 })
 
@@ -76,16 +76,17 @@ const createCard = createAppAsyncThunk<TCreateResponse, { question: string, answ
   }
 )
 
-const changeGrade = createAppAsyncThunk<{ updatedCard: TChangeGradeResponse }, TChangeGradeArg>
+const changeGrade = createAppAsyncThunk<TCard[], TChangeGradeArg & { packId: string }>
 ('cards/changeGrade', async (arg) => {
-  const res = await cardsApi.changeGrade(arg)
-  return { updatedCard: res }
+  await cardsApi.changeGrade({ grade: arg.grade, card_id: arg.card_id })
+  const res = await cardsApi.getCards({ cardsPack_id: arg.packId })
+  return res.cards
 })
 
 
 export const cardsReducer = slice.reducer
 export const cardsAction = slice.actions
-export const cardsThunks = { fetchCards, changeGrade, createCard, changeCard,removeCard }
+export const cardsThunks = { fetchCards, changeGrade, createCard, changeCard, removeCard }
 
 
 

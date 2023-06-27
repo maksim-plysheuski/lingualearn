@@ -13,6 +13,7 @@ import { CheckEmailPage } from 'features/auth/checkEmail/CheckEmailPage'
 import { NotPrivateLayout } from 'common/router/NotPrivateRoute'
 import { CardsPage } from 'features/cards/components/cardsPage/cardsPage'
 import { PasswordChangeSuccess } from 'features/auth/changePassword/passwordChanged/PasswordChangeSuccess'
+import { LearnPage } from 'features/learn/LearnPage'
 
 export const router = createHashRouter([
   {
@@ -34,6 +35,10 @@ export const router = createHashRouter([
           {
             path: paths.PROFILE,
             element: <ProfilePage />
+          },
+          {
+            path: paths.LEARN,
+            element: <LearnPage />
           }
         ]
       },

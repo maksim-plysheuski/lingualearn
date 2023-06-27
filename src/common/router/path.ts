@@ -10,4 +10,5 @@ export const paths = {
   PROFILE: '/profile',
   PACKS: '/packs',
   CARDS: '/cards',
+  LEARN: 'learn/:id'
 } as const
