@@ -50,7 +50,7 @@ export const PacksTableBody = () => {
           <TableCell sx={tableCellStyle}>{pack.updated.slice(0, 10).replaceAll('-', '.')}</TableCell>
           <TableCell sx={tableCellStyle}>{pack.user_name}</TableCell>
           <TableCell sx={tableCellStyle}>
-            <LearnPack cardsCount={pack.cardsCount} />
+            <LearnPack cardsCount={pack.cardsCount} packId={pack._id} />
             <EditPack pack={pack} />
             <RemovePack packName={pack.name} packId={pack._id} />
           </TableCell>

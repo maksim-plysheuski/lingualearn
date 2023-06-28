@@ -7,12 +7,16 @@ import { FC } from 'react'
 import {
   iconStyle
 } from 'features/pack/components/packsList/packsTable/packsTableBody/actionsButtons/editPack/EditPack'
+import { useNavigate } from 'react-router-dom'
 
 type Props = {
   cardsCount: number
+  packId: string
 }
 
-export const LearnPack: FC<Props> = ({cardsCount}) => {
+export const LearnPack: FC<Props> = ({cardsCount, packId}) => {
+  const navigate = useNavigate()
+  const learnPack = () => navigate(`/learn/${packId}`)
 
   return(
     <>
@@ -22,6 +26,7 @@ export const LearnPack: FC<Props> = ({cardsCount}) => {
                TransitionProps={{ timeout: 400 }}>
         <span>
           <IconButton disabled={cardsCount === 0}
+                      onClick={learnPack}
                       sx={iconStyle}>
           <div><PlayCircleOutlinedIcon /></div>
         </IconButton>

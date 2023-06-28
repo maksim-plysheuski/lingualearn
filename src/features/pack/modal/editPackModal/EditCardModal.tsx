@@ -12,6 +12,8 @@ type Props = {
   handleCloseMenu?: () => void
   pack?: TPack
 }
+
+
 export const EditPackModal = (props: Props) => {
   const packName = useAppSelector(selectPackName)
   const packId = useAppSelector(selectPackId)

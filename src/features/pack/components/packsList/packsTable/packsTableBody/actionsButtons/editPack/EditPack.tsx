@@ -10,7 +10,9 @@ type Props = {
   pack: TPack
 }
 
-export const iconStyle = {color: 'white', ":disabled": {
+export const iconStyle = {
+  color: 'white',
+  ":disabled": {
     color: '#323232'
   }}
 
