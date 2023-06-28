@@ -1,11 +1,14 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 import { createAppAsyncThunk } from 'common/utils/createAppAsyncThunk'
 import {
-  cardsApi, TCard,
+  cardsApi,
+  TCard,
   TChangeGradeArg,
-  TChangeGradeResponse, TCreateResponse, TDeleteArg,
+  TCreateResponse,
+  TDeleteArg,
   TGetCardsArgs,
-  TGetCardsResponse, TUpdateArg
+  TGetCardsResponse,
+  TUpdateArg
 } from 'features/cards/cardsApi'
 import { thunkTryCatch } from 'common/utils/thunk-try-catch'
 
