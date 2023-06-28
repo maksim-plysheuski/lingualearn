@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { getCard } from 'features/learn/getRandomCard'
 import { useAppDispatch, useAppSelector } from 'common/hooks'
 import { selectCards, selectCardsPack_id, selectPackName } from 'features/cards/selectors'
-import { cardsThunks } from 'features/cards/cards.slice'
+import { cardsAction, cardsThunks } from 'features/cards/cards.slice'
 import { useParams } from 'react-router-dom'
 import s from './style.module.scss'
 import { TCard } from 'features/cards/cardsApi'
@@ -35,8 +35,12 @@ export const LearnPage = () => {
       setCard(getCard(cards))
       return
     }
-    if (id && id !== cardParamsId)
+    if (id) {
       dispatch(cardsThunks.fetchCards({ cardsPack_id: id })).unwrap().then(res => setCard(getCard(res.cards.cards)))
+    }
+    return () => {
+      dispatch(cardsAction.resetCards())
+    }
   }, [])
 
   if (!card) {
