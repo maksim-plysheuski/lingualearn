@@ -7,10 +7,11 @@ type Props = {
   setGrade: (grade: number) => void
   nextAnswer: () => void
 }
+const arrMenu = ['Did not know', 'Forgot', 'A lot of thought', 'Сonfused', 'Knew the answer']
 
 export const Answer = (props: Props) => {
   const { setGrade, grade, answer, nextAnswer } = props
-  const arrMenu = ['Did not know', 'Forgot', 'A lot of thought', 'Сonfused', 'Knew the answer']
+
   const radioSlice = arrMenu.map((res, index) => {
     return (
       <label key={index}>
@@ -32,8 +33,7 @@ export const Answer = (props: Props) => {
         <span>Answer:</span> {answer}
       </div>
       <div className={s.formGroup}>
-        <span className={s.rate}>Rate yourself:</span>
-        {radioSlice}
+        <span className={s.rate}>Rate yourself:</span>{radioSlice}
       </div>
       <button onClick={nextAnswer} disabled={grade === null} className={s.button}>Next Question</button>
     </div>
