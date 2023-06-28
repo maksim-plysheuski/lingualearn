@@ -45,6 +45,14 @@ const slice = createSlice({
           }
         }
       })
+      .addCase(deletePack.fulfilled, (state, action) => {
+        state.packs = {
+          ...state.packs,
+          cardPacks: state.packs.cardPacks.filter(pack =>
+            pack._id !== action.payload.pack.deletedCardsPack._id
+              ? { ...pack } : false)
+        }
+      })
   }
 })
 
@@ -77,7 +85,7 @@ const createPack = createAppAsyncThunk<unknown, TCreatePackArg>
 
 
 const updatePack = createAppAsyncThunk<TUpdatePackResponse, { newPack: TUpdatePackArg, needGetPacks: boolean }>
-('/packs/updatePack', (arg, thunkAPI) => {
+('packs/updatePack', (arg, thunkAPI) => {
   const { dispatch } = thunkAPI
   return thunkTryCatch(thunkAPI, async () => {
     const res = await packApi.updatePack(arg.newPack)

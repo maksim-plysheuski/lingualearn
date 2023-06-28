@@ -7,9 +7,15 @@ import { RemovePackModal } from 'features/pack/modal/removePackModal/removePackM
 import {
   iconStyle
 } from 'features/pack/components/packsList/packsTable/packsTableBody/actionsButtons/editPack/EditPack'
+import { FC } from 'react'
 
 
-export const RemovePack = () => {
+type Props = {
+  packId: string
+  packName?: string
+}
+
+export const RemovePack: FC<Props> = ({packId, packName}) => {
   const userId = useAppSelector(state => state.packs.packParams.user_id)
 
   return (
@@ -21,7 +27,7 @@ export const RemovePack = () => {
           <span>
         <IconButton disabled={!userId}
                     sx={iconStyle}>
-            <RemovePackModal />
+            <RemovePackModal packName={packName} packId={packId} />
         </IconButton>
           </span>
       </Tooltip>

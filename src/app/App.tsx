@@ -23,7 +23,7 @@ function App() {
       <Header />
       <div className={s.Content}>
         <GlobalError />
-        {isLoading && <LinearProgress sx={{position: "absolute", top: "60px", width: '100%'}} />}
+        {isLoading && <LinearProgress sx={{position: "absolute", top: "60px", width: '100%', bgcolor: '#664400'}} color={'warning'} />}
         {isAppInitialized && <Outlet />}
       </div>
     </div>
