@@ -4,9 +4,6 @@ import { CardsTableHeader } from 'features/cards/components/cardsPage/cardsTable
 import { CardsTableBody } from 'features/cards/components/cardsPage/cardsTable/cardsTableBody/CardsTableBody'
 import { tableStyle } from 'features/pack/components/packsList/packsTable/PacksTable'
 
-
-
-
 export const CardsTable = () => {
   return (
     <TableContainer style={tableStyle} component={Paper}>

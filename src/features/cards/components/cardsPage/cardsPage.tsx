@@ -10,7 +10,6 @@ import { InputSearchCards } from 'features/cards/components/cardsPage/inputSearc
 import { CardsTable } from 'features/cards/components/cardsPage/cardsTable/CardsTable'
 import { PaginationCards } from 'features/cards/components/cardsPage/paginationCards/paginationCards'
 import { selectCards } from 'features/cards/selectors'
-import { selectPackName } from 'features/cards/selectors/cards.selector'
 
 export const CardsPage = () => {
 

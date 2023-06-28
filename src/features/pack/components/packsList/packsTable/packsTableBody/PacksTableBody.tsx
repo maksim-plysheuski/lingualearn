@@ -36,7 +36,6 @@ export const PacksTableBody = () => {
     <TableBody>
       {packs.cardPacks?.map((pack) => (
         <TableRow key={pack._id}>
-
           <TableCell sx={{
             ...tableCellStyle,
             paddingLeft: '40px',

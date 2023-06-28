@@ -3,7 +3,7 @@ import { instance } from 'common/api/common.api'
 
 export const cardsApi = {
   getCards: (arg: TGetCardsArgs) => {
-    return instance.get<TGetCardsResponse>('cards/card', { params: { ...arg } }).then(res => res.data)
+    return instance.get<TGetCardsResponse>('cards/card', { params: arg  }).then(res => res.data)
   },
   createCard: (arg: TCreateArg) => {
     return instance.post<TCreateResponse>('cards/card', { card: arg }).then(res => res.data)
@@ -32,7 +32,7 @@ export type TGetCardsArgs = {
 
 export type TGetCardsResponse = {
   cards: TCard[]
-  packPrivate:boolean
+  packPrivate: boolean
   cardsTotalCount: number
   maxGrade: number
   minGrade: number
@@ -89,7 +89,7 @@ export type TUpdateResponse = {
 }
 
 export type TChangeGradeArg = {
-  grade: number | null
+  grade: number
   card_id: string
 }
 
