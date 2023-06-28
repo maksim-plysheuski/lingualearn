@@ -4,26 +4,23 @@ import Divider from '@mui/material/Divider'
 import React, { useState } from 'react'
 import MoreVertIcon from '@mui/icons-material/MoreVert'
 import PlayCircleOutlineIcon from '@mui/icons-material/PlayCircleOutline'
-import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline'
-import { useAppDispatch } from 'common/hooks'
 import { EditPackModal } from 'features/pack/modal/editPackModal/EditCardModal'
+import { RemovePackModal } from 'features/pack/modal/removePackModal/removePackModal'
+import { useNavigate, useParams } from 'react-router-dom'
+import { useAppSelector } from 'common/hooks'
+import { selectCardsPack_id } from 'features/cards/selectors'
 
 
-export const MenuCards = () => {
-  const dispatch = useAppDispatch()
+export const MenuPacks = () => {
+  const navigate = useNavigate()
+  const  cardsPack_id =useAppSelector(selectCardsPack_id)
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null)
   const open = Boolean(anchorEl)
-
   const handleClick = (event: React.MouseEvent<HTMLElement>) => {
     setAnchorEl(event.currentTarget)
   }
   const handleClose = () => {
     setAnchorEl(null)
-  }
-
-  const editCardHandler = () => {
-    // dispatch(cardsThunks.changeCard())
-    handleClose()
   }
 
   return (
@@ -39,7 +36,6 @@ export const MenuCards = () => {
             id='account-menu'
             open={open}
             onClose={handleClose}
-        // onClick={handleClose}
             PaperProps={{
               elevation: 0,
               sx: {
@@ -69,16 +65,16 @@ export const MenuCards = () => {
             transformOrigin={{ horizontal: 'right', vertical: 'top' }}
             anchorOrigin={{ horizontal: 'right', vertical: 'bottom' }}
       >
-        <MenuItem>
+        <MenuItem onClick={() => navigate(`/learn/${cardsPack_id}`)}>
           <PlayCircleOutlineIcon /> Learn
         </MenuItem>
         <Divider />
         <MenuItem>
-          <EditPackModal />
+          <EditPackModal handleCloseMenu={handleClose} />
         </MenuItem>
         <Divider />
         <MenuItem>
-          <DeleteOutlineIcon /> Delete
+          <RemovePackModal />
         </MenuItem>
       </Menu>
     </div>

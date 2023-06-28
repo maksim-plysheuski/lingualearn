@@ -1,5 +1,5 @@
 import s from 'features/cards/components/cardsPage/style.module.scss'
-import { useAppDispatch } from 'common/hooks'
+import { useAppDispatch, useAppSelector } from 'common/hooks'
 import { BackLink } from 'common/components/backLink/BackLink'
 import * as React from 'react'
 import { useEffect } from 'react'
@@ -9,10 +9,13 @@ import { TitleBlockCards } from 'features/cards/components/cardsPage/titleBlockC
 import { InputSearchCards } from 'features/cards/components/cardsPage/inputSearchCards/inputSearchCards'
 import { CardsTable } from 'features/cards/components/cardsPage/cardsTable/CardsTable'
 import { PaginationCards } from 'features/cards/components/cardsPage/paginationCards/paginationCards'
+import { selectCards } from 'features/cards/selectors'
+import { selectPackName } from 'features/cards/selectors/cards.selector'
 
 export const CardsPage = () => {
 
-  const { params, cards } = useSearchCards()
+  const { params } = useSearchCards()
+  const cards = useAppSelector(selectCards)
   const dispatch = useAppDispatch()
 
   useEffect(() => {

@@ -1,6 +1,7 @@
 import { RootState } from 'app/store'
 
 export const selectCards = (state: RootState) => state.cards.cards.cards
+export const selectPackName = (state: RootState) => state.cards.cards.packName
 export const selectPage = (state: RootState) => state.cards.cards.page
 export const selectCardsTotalCount = (state: RootState) => state.cards.cards.cardsTotalCount
 export const selectPageCount = (state: RootState) => state.cards.cards.pageCount

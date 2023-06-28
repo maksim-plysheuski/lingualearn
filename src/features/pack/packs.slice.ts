@@ -60,10 +60,8 @@ const getPacks = createAppAsyncThunk<{ packs: TPacksResponse, arg: TGetPacksArg 
 
 const deletePack = createAppAsyncThunk<{ pack: TDeletePackResponse }, TDeletePackArg>
 ('packs/deletePack', async (arg, thunkAPI) => {
-  const { dispatch } = thunkAPI
   return thunkTryCatch(thunkAPI, async () => {
     const res = await packApi.deletePack(arg)
-    dispatch(packsThunks.getPacks({}))
     return { pack: res.data }
   }, false)
 })

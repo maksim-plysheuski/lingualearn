@@ -17,13 +17,13 @@ export const CheckEmailPage = (props: Props) => {
       <div className={s.container}>
         <h1>Check Email</h1>
         <div className={s.iconContainer}>
-          <ForwardToInboxIcon color={'primary'} sx={{ fontSize: '52px' }} />
+          <ForwardToInboxIcon color={'secondary'} sx={{ fontSize: '45px' }} />
         </div>
         <span>{`We’ve sent an Email with instructions to ${props.email}`}</span>
         <UniversalButton title={'Back to login'}
                          onClickCallback={() => navigate(paths.LOGIN)}
                          width={'347'}
-                         marginTop={'40px'} />
+                         marginTop={'70px'} />
       </div>
     </div>
   )

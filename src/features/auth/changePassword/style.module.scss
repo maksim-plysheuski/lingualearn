@@ -6,39 +6,39 @@
   justify-content: center;
 
   .container {
-    width: 413px;
-    height: 372px;
-    margin-top: 120px;
+    width: 420px;
+    height: 384px;
+    margin-top: 100px;
     background: $secondaryBgColor;
-    border-color: $grayColor;
+    border: 1px solid $grayColor;
     border-radius: 2px;
     display: flex;
     flex-direction: column;
     align-items: center;
 
-    .title {
+    h1 {
       @include text(600, 26px, 32px);
-      margin-top: 35px;
+      margin-top: 33px;
+      padding-bottom: 20px;
     }
 
     .form {
-      width: 347px;
+      width: 348px;
       display: flex;
       flex-direction: column;
 
-      .inputPassword {
-        margin-top: 65px;
-      }
 
       p {
         position: absolute;
-        top: 45px;
+        top: 35px;
+        left: -15px;
         font-size: 14px;
         line-height: 24px;
       }
 
       .helperText {
-        margin-top: 35px;
+        @include text(400, 14px, 24px);
+        margin-top: 31px;
         opacity: 0.5;
       }
     }

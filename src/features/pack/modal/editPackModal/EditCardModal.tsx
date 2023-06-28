@@ -5,9 +5,10 @@ import React, { useState } from 'react'
 import { packsThunks } from '../../packs.slice'
 import DriveFileRenameOutlineIcon from '@mui/icons-material/DriveFileRenameOutline'
 
-
-export const EditPackModal = () => {
-
+type Props={
+  handleCloseMenu:()=>void
+}
+export const EditPackModal = (props:Props) => {
   const packName = useAppSelector(state => state.cards.cards.packName)
   const packPrivate = useAppSelector(state => state.cards.cards.packPrivate)
   const cardsPack_id = useAppSelector(state => state.cards.cardsParams.cardsPack_id)
@@ -22,6 +23,7 @@ export const EditPackModal = () => {
     setDisable(true)
     await dispatch(packsThunks.updatePack({ _id: cardsPack_id, name: valuePack, private: privatePack }))
     setValueCard('')
+    props.handleCloseMenu()
     setOpen(false)
     setDisable(false)
   }

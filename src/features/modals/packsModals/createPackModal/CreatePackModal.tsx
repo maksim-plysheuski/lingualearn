@@ -5,7 +5,6 @@ import * as React from 'react'
 import { FormModal } from 'features/modals/appModal/formModal/FormModal'
 import { useModals } from 'common/hooks/useModals'
 import { useFormModals } from 'common/hooks/useFormModals'
-import { InputText } from 'common/components/Inputs/InputText'
 
 
 export const CreatePackModal = () => {
@@ -27,7 +26,6 @@ export const CreatePackModal = () => {
                  handleSubmit={handleSubmit}
                  onSubmit={onSubmitHandler}
                  onClose={close}>
-        <InputText label={'terxt'} value={'he'} setValue={() => {}} />
         <TextField
           type={'text'}
           label={'Name pack'}
