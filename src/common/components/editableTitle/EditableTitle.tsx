@@ -8,7 +8,7 @@ import s from './style.module.scss'
 import { SubmitHandler, useForm } from 'react-hook-form'
 import { yupResolver } from '@hookform/resolvers/yup'
 import * as yup from 'yup'
-import { userNameSchema } from 'features/profile/userNameSchema'
+import { userNameSchema } from 'features/profile/components/userNameSchema'
 
 type EditableTitlePropsType = {
   userName: string
