@@ -5,7 +5,7 @@ import LocalSeeOutlinedIcon from '@mui/icons-material/LocalSeeOutlined'
 import { useAppSelector } from 'common/hooks'
 import { convertFileToBase64 } from 'common/utils'
 import defAva from 'features/profile/components/imegs/defAva.png'
-import { IconButtonSx } from 'features/profile/components/profileAva/style'
+import { AvatarSx, IconButtonSx } from 'features/profile/components/profileAva/style'
 
 export const ProfileAva = () => {
   const profile = useAppSelector(state => state.profile.profile)
@@ -26,7 +26,7 @@ export const ProfileAva = () => {
     }
   }
 
-   const errorHandler = () => {
+  const errorHandler = () => {
     setIsAvaBroken(true)
     alert('Кривая картинка')
   }
@@ -42,11 +42,7 @@ export const ProfileAva = () => {
                </IconButton>
              }
       >
-        <Avatar onError={errorHandler}
-                alt='user avatar'
-                src={isAvaBroken ? defAva : ava}
-                sx={{ width: '96px', height: '96px', '& .MuiAvatar-img': { width: '100px' } }}
-        />
+        <Avatar onError={errorHandler} alt='user avatar' src={isAvaBroken ? defAva : ava} sx={AvatarSx} />
       </Badge>
     </div>
   )

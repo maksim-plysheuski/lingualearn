@@ -2,8 +2,8 @@ import { instance } from 'common/api/common.api'
 import { ProfileType } from 'features/auth/auth.api'
 
 export const profileApi = {
-  changeUserData: (arg: TChangeUser) => {
-    return instance.put<TUpdatedUser>('auth/me', arg).then(res => res.data)
+  changeUserProfile: (arg: TChangeUser) => {
+    return instance.put<TUpdatedUser>('auth/me', arg).then(res => res.data.updatedUser)
   }
 }
 

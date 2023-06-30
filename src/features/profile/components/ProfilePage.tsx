@@ -15,10 +15,6 @@ export const ProfilePage = () => {
   const dispatch = useAppDispatch()
   const profile = useAppSelector(state => state.profile.profile)
 
-  const onChangeAvatarHandler = (event: ChangeEvent<HTMLInputElement>) => {
-    //need to fix
-  }
-
   const logoutHandler = () => {
     dispatch(authThunks.logout())
   }
@@ -31,11 +27,7 @@ export const ProfilePage = () => {
         <ProfileAva />
         <EditableTitle userName={profile ? profile.name : 'Username'} />
         <span className={s.emailSpan}>{profile ? profile.email : 'user@mail.com'}</span>
-        <UniversalButton title={'Log out'}
-                         width={'127'}
-                         icon={<LogoutIcon />}
-                         onClickCallback={logoutHandler}
-        />
+        <UniversalButton title={'Log out'} width={'127'} icon={<LogoutIcon />} onClickCallback={logoutHandler} />
       </div>
     </div>
   )

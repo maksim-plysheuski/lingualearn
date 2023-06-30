@@ -25,8 +25,8 @@ const slice = createSlice({
 
 const changeUserData = createAppAsyncThunk<{ profile: ProfileType }, TChangeUser>
 ('profile/changeUser', async (arg) => {
-  const res = await profileApi.changeUserData(arg)
-  return { profile: res.updatedUser }
+  const res = await profileApi.changeUserProfile(arg)
+  return { profile: res }
 })
 
 
