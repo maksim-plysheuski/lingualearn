@@ -3,6 +3,7 @@ import { ProfileType } from 'features/auth/auth.api'
 import { createAppAsyncThunk } from 'common/utils/createAppAsyncThunk'
 import { profileApi, TChangeUser } from 'features/profile/profile.api'
 import { authThunks } from 'features/auth/auth.slice'
+import { thunkTryCatch } from 'common/utils'
 
 
 const slice = createSlice({
@@ -13,9 +14,6 @@ const slice = createSlice({
   reducers: {},
   extraReducers: builder => {
     builder
-      .addCase(changeUserData.fulfilled, (state, action) => {
-        state.profile = action.payload.profile
-      })
       .addCase(authThunks.authMe.fulfilled, (state, action) => {
         state.profile = action.payload.profile
       })
@@ -23,15 +21,19 @@ const slice = createSlice({
 })
 
 
-const changeUserData = createAppAsyncThunk<{ profile: ProfileType }, TChangeUser>
-('profile/changeUser', async (arg) => {
-  const res = await profileApi.changeUserProfile(arg)
-  return { profile: res }
+const changeUserProfile = createAppAsyncThunk<{ name: string, avatar?: string }, TChangeUser>
+('profile/changeUser', (arg, thunkAPI) => {
+  return thunkTryCatch(thunkAPI, async () => {
+    const res = await profileApi.changeUserProfile(arg)
+    return { name: res.name, avatar: res.avatar }
+  })
+
+
 })
 
 
 export const profileReducer = slice.reducer
-export const profileThunks = { changeUserData }
+export const profileThunks = {  changeUserProfile }
 
 
 

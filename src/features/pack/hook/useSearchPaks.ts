@@ -3,7 +3,7 @@ import { useSearchParams } from 'react-router-dom'
 import { useCallback, useEffect, useState } from 'react'
 import { PackArgs } from 'features/pack/packApi'
 import { packAction, packsThunks } from 'features/pack/packs.slice'
-import useDebounce from 'common/hooks/useDebounce'
+
 import {
   cardPacksTotalCountSelect,
   maxCardsCountSelect,
@@ -17,6 +17,7 @@ import {
   paramsCardIdSelect
 } from 'features/pack/packSelectors'
 import { useSelector } from 'react-redux'
+import { useDebounce } from 'common/hooks/useDebounce'
 
 export const useSearchPaks = () => {
   const dispatch = useAppDispatch()
