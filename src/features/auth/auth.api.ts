@@ -59,7 +59,7 @@ export type ProfileType = {
   __v: number;
   token: string;
   tokenDeathTime: number;
-  avatar: string
+  avatar?: string
   error?: string
 }
 

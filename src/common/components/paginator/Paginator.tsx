@@ -34,7 +34,7 @@ const selectorSx = {
 }
 
 const selectorMenuSx = {
-  '&& .Mui-selected': { bgcolor: '#333333' },
+  '& .Mui-selected': { bgcolor: '#333333' },
   '& .MuiPaper-root': { bgcolor: '#333333' },
   '& .MuiMenuItem-root': {
     bgcolor: '#333333', color: 'white',

@@ -4,20 +4,21 @@ import { Avatar, Badge, IconButton } from '@mui/material'
 import LocalSeeOutlinedIcon from '@mui/icons-material/LocalSeeOutlined'
 import { useAppSelector } from 'common/hooks'
 import { convertFileToBase64 } from 'common/utils'
+import defAva from 'features/profile/components/imegs/defAva.png'
+import { IconButtonSx } from 'features/profile/components/profileAva/style'
 
 export const ProfileAva = () => {
   const profile = useAppSelector(state => state.profile.profile)
 
-  const [ava, setAva] = useState('')
+  const [ava, setAva] = useState(profile?.avatar)
   const [isAvaBroken, setIsAvaBroken] = useState(false)
 
   const uploadHandler = (e: ChangeEvent<HTMLInputElement>) => {
-    debugger
     if (e.target.files && e.target.files.length) {
       const file = e.target.files[0]
       if (file.size < 4000000) {
         convertFileToBase64(file, (file64: string) => {
-          setAva('11')
+          setAva(file64)
         })
       } else {
         console.error('Error: ', 'Файл слишком большого размера')
@@ -25,38 +26,26 @@ export const ProfileAva = () => {
     }
   }
 
-
-  const errorHandler = () => {
+   const errorHandler = () => {
     setIsAvaBroken(true)
     alert('Кривая картинка')
   }
 
   return (
     <div className={s.userPhotoContainer}>
-      <Badge
-        overlap={'circular'}
-        anchorOrigin={{ vertical: 'bottom', horizontal: 'right' }}
-        badgeContent={
-          <IconButton
-            component={'label'}
-            disableRipple={true}
-            sx={{ width: '30px', height: '30px', border: '1px solid #fff', bgcolor: '#808080' }}
-          >
-            <LocalSeeOutlinedIcon sx={{ fontSize: '16px', color: '#FFF' }} />
-            <input
-              type={'file'}
-              hidden
-              accept='image/*'
-              onChange={uploadHandler}
-            />
-          </IconButton>
-        }
+      <Badge overlap={'circular'}
+             anchorOrigin={{ vertical: 'bottom', horizontal: 'right' }}
+             badgeContent={
+               <IconButton component={'label'} disableRipple={true} sx={IconButtonSx}>
+                 <LocalSeeOutlinedIcon sx={{ fontSize: '16px', color: '#FFF' }} />
+                 <input type={'file'} hidden accept='image/*' onChange={uploadHandler} />
+               </IconButton>
+             }
       >
-        <Avatar
-          onError={errorHandler}
-          alt='user avatar'
-          src={ava}
-          sx={{ width: '96px', height: '96px' }}
+        <Avatar onError={errorHandler}
+                alt='user avatar'
+                src={isAvaBroken ? defAva : ava}
+                sx={{ width: '96px', height: '96px', '& .MuiAvatar-img': { width: '100px' } }}
         />
       </Badge>
     </div>
