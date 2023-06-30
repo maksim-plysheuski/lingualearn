@@ -11,12 +11,11 @@ import { selectPackName } from 'features/cards/selectors/cards.selector'
 export const TitleBlockCards = () => {
   const whoseCards = useSelector(selectWhoseCards)
   const packName = useAppSelector(selectPackName)
-  const title = whoseCards ? 'My Pack' : 'Friend’s Pack'
 
   return (
     <div className={s.container}>
       <div className={s.titleContainer}>
-        <h2 className={s.title}>{title}</h2>
+        <h2 className={s.title}>{whoseCards ? 'My Pack' : 'Friend’s Pack'}</h2>
         {whoseCards && <MenuPacks />}
       </div>
       <span>{packName}</span>
