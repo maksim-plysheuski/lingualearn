@@ -57,7 +57,7 @@ export const EditableTitle = (props: EditableTitlePropsType) => {
 
 
   const onFormSubmit: SubmitHandler<InputType> = (data: InputType) => {
-    dispatch(profileThunks.changeUserData({ name: data.userName }))
+    dispatch(profileThunks.changeUserProfile({ name: data.userName }))
     setEditMode(false)
   }
 
