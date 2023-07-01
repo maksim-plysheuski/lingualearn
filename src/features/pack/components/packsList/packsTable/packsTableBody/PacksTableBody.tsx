@@ -1,18 +1,12 @@
 import { TableBody, TableCell, TableRow } from '@mui/material'
-import { useAppDispatch, useAppSelector } from 'common/hooks'
-import { cardsThunks } from 'features/cards/cards.slice'
-import { useNavigate } from 'react-router-dom'
-import { paths } from 'common/router/path'
-import * as React from 'react'
-import {
-  LearnPack
-} from 'features/pack/components/packsList/packsTable/packsTableBody/actionsButtons/learnPack/LearnPack'
-import {
-  EditPack
-} from 'features/pack/components/packsList/packsTable/packsTableBody/actionsButtons/editPack/EditPack'
+import { EditPack } from 'features/pack/components/packsList/packsTable/packsTableBody/actionsButtons/editPack/EditPack'
 import {
   RemovePack
 } from 'features/pack/components/packsList/packsTable/packsTableBody/actionsButtons/removePack/RemovePack'
+import { useGetPacksQuery } from 'features/pack/service/pack.slice'
+import {
+  LearnPack
+} from 'features/pack/components/packsList/packsTable/packsTableBody/actionsButtons/learnPack/LearnPack'
 
 const tableCellStyle = {
   wordWrap: 'break-word',
@@ -23,18 +17,17 @@ const tableCellStyle = {
 }
 
 export const PacksTableBody = () => {
-  const dispatch = useAppDispatch()
-  const navigate = useNavigate()
-  const packs = useAppSelector(state => state.packs.packs)
 
+
+  const { data: packs, isLoading } = useGetPacksQuery({})
+  console.log(packs)
   const openSelectedPack = (packId: string) => {
-    dispatch(cardsThunks.fetchCards({ cardsPack_id: packId }))
-    navigate(paths.CARDS)
   }
+  if (isLoading) return <></>
 
   return (
     <TableBody>
-      {packs.cardPacks?.map((pack) => (
+      {packs.cardPacks?.map((pack: any) => (
         <TableRow key={pack._id}>
           <TableCell sx={{
             ...tableCellStyle,

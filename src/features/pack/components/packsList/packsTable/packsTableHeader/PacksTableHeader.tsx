@@ -6,7 +6,7 @@ import { packAction } from 'features/pack/packs.slice'
 
 export const PacksTableHeader = () => {
   const dispatch = useAppDispatch()
-  const currentRowsCount = useAppSelector(state => state.packs.packs.pageCount)
+  // const currentRowsCount = useAppSelector(state => state.packs.packs.pageCount)
   const [sortOrder, setSortOrder] = useState<'asc' | 'desc'>('asc')
   const [lastSortedCell, setLastSortedCell] = useState<string>('Last Updated')
   const columnTitles: string[] = ['Name', 'Cards', 'Last Updated', 'Created by', 'Actions']
@@ -25,7 +25,7 @@ export const PacksTableHeader = () => {
       sortPacks: sortOrder === 'asc'
         ? `0${sortArgTitle}`
         : `1${sortArgTitle}`,
-      pageCount: currentRowsCount
+      pageCount: 4
     }
     setSortOrder(sortOrder === 'desc' ? 'asc' : 'desc')
     setLastSortedCell(title)
