@@ -39,15 +39,10 @@ export const Login = () => {
         <h1 className={s.title}>Sign In</h1>
         <form onSubmit={handleSubmit(onSubmit)}>
           <FormControl className={s.form}>
-            <InputEmail register={register('email')}
-                        errorMessage={errors.email?.message}
-            />
-            <InputPassword errorMessage={errors.password?.message}
-                           register={register('password')}
-            />
+            <InputEmail register={register('email')} errorMessage={errors.email?.message} />
+            <InputPassword errorMessage={errors.password?.message} register={register('password')} />
             <div className={s.checkbox}>
-              <Checkbox sx={{ color: '#4C4C4C' }}
-                        {...register('rememberMe')} />
+              <Checkbox sx={{ color: '#4C4C4C' }}{...register('rememberMe')} />
               <span>Remember me</span>
             </div>
             <Link className={s.forgotPasswordLink} to={paths.FORGOT_PASSWORD}>Forgot Password?</Link>

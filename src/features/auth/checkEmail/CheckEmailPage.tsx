@@ -23,7 +23,8 @@ export const CheckEmailPage = (props: Props) => {
         <UniversalButton title={'Back to login'}
                          onClickCallback={() => navigate(paths.LOGIN)}
                          width={'347'}
-                         marginTop={'70px'} />
+                         marginTop={'70px'}
+        />
       </div>
     </div>
   )

@@ -14,16 +14,13 @@ export const PasswordChangeSuccess = () => {
       <div className={s.container}>
         <h1>Password Changed</h1>
         <div className={s.iconContainer}>
-          <CheckCircleOutlineIcon color={'success'}
-                                  sx={{ fontSize: '100px' }} />
+          <CheckCircleOutlineIcon color={'success'} sx={{ fontSize: '100px' }} />
         </div>
         <span className={s.helperText}>
           {`Password has been changed!`}
           <p> Please login to your account again</p>
         </span>
-        <UniversalButton title={'Login'}
-                         onClickCallback={() => navigate(paths.LOGIN)}
-                         marginTop={'55px'} />
+        <UniversalButton title={'Login'} onClickCallback={() => navigate(paths.LOGIN)} marginTop={'55px'} />
       </div>
     </div>
   )

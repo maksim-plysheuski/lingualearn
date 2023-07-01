@@ -41,11 +41,9 @@ export const ChangePasswordPage = () => {
       <div className={s.container}>
         <h1>Create new password</h1>
         <form className={s.form} onSubmit={handleSubmit(onSubmit)}>
-          <InputPassword errorMessage={errors.password?.message}
-                         register={register('password')} />
+          <InputPassword errorMessage={errors.password?.message} register={register('password')} />
           <span className={s.helperText}>Create new password and we will send you further instructions to email</span>
-          <UniversalButton title={'Change password'}
-                           disabled={isButtonDisabled} marginTop={'65px'} />
+          <UniversalButton title={'Change password'} disabled={isButtonDisabled} marginTop={'65px'} />
         </form>
       </div>
     </div>

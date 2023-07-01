@@ -37,18 +37,11 @@ export const Register = () => {
       <div className={s.container}>
         <span className={s.title}>Sign Up</span>
         <form className={s.form} onSubmit={handleSubmit(onSubmit)}>
-          <InputEmail errorMessage={errors.email?.message}
-                      register={register('email')}
-          />
-          <InputPassword errorMessage={errors.password?.message}
-                         register={register('password')}
-          />
+          <InputEmail errorMessage={errors.email?.message} register={register('email')} />
+          <InputPassword errorMessage={errors.password?.message} register={register('password')} />
           <InputPassword errorMessage={errors.passwordConfirmation?.message}
-                         register={register('passwordConfirmation')}
-          />
-          <UniversalButton title={'Sign Up'}
-                           disabled={isButtonDisabled}
-                           marginTop={'78px'} />
+                         register={register('passwordConfirmation')} />
+          <UniversalButton title={'Sign Up'} disabled={isButtonDisabled} marginTop={'78px'} />
         </form>
         <span className={s.helpText}>Already have an account?</span>
         <Link className={s.link} to={paths.LOGIN}>Sign In</Link>
