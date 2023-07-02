@@ -11,6 +11,8 @@ import { ProfileAva } from './profileAva/ProfileAva'
 export const ProfilePage = () => {
   const dispatch = useAppDispatch()
   const profile = useAppSelector(state => state.profile.profile)
+  const isLoading = useAppSelector(state => state.app.isLoading)
+
 
   const logoutHandler = () => {
     dispatch(authThunks.logout())
@@ -24,7 +26,8 @@ export const ProfilePage = () => {
         <ProfileAva />
         <EditableTitle userName={profile ? profile.name : 'Username'} />
         <span className={s.emailSpan}>{profile ? profile.email : 'user@mail.com'}</span>
-        <UniversalButton title={'Log out'} width={'127'} icon={<LogoutIcon />} onClickCallback={logoutHandler} />
+        <UniversalButton title={'Log out'} width={'127'} icon={<LogoutIcon />} isGrayColor={true}
+                         onClickCallback={logoutHandler} isLoading={isLoading} />
       </div>
     </div>
   )
