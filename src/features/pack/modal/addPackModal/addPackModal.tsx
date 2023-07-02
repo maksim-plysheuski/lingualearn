@@ -6,8 +6,8 @@ import React, { ChangeEvent, useState } from 'react'
 import { packsThunks } from '../../packs.slice'
 import defAva from 'features/profile/components/imegs/defAva.png'
 import { convertFileToBase64 } from 'common/utils'
-import { Button } from '@mui/material'
 import { toast } from 'react-toastify'
+import s from './styles.module.scss'
 
 
 export const AddPackModal = () => {
@@ -54,15 +54,16 @@ export const AddPackModal = () => {
                disable={disable}
     >
       <>
-        <div>
-          <img src={deckCover ? deckCover : defAva} alt='pack image' style={{ height: '90px', width: '90px' }} />
-          <label>
-            <Button variant='contained' component='span'>Change cover</Button>
-            <input type='file' style={{ display: 'none' }} onChange={uploadHandler} />
+        <div className={s.coverBlock}>
+          <img src={deckCover ? deckCover : defAva} alt='pack image' />
+          <label className={s.buttonContainer}>
+            <UniversalButton title={'Change Cover'} isSpan={true} isGrayColor={true} marginTop={'24px'}/>
+            <input type='file' onChange={uploadHandler} />
           </label>
         </div>
-        <InputCastom label={'Name Pack'} value={valuePack} setValue={setValueCard} />
-        <div>
+
+        <div className={s.packNameBlock}>
+          <InputCastom label={'Name Pack'} value={valuePack} setValue={setValueCard} />
           <input type='checkbox' checked={privatePack} onClick={() => setPrivatePack(state => !state)} />
           <span>Private pack</span>
         </div>

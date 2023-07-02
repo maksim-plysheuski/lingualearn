@@ -6,7 +6,7 @@ import { Link, useNavigate } from 'react-router-dom'
 import { authThunks } from 'features/auth/auth.slice'
 import { InputEmail, InputPassword } from 'common/components'
 import { registerSchema } from 'features/auth/register/registerSchema'
-import { useAppDispatch } from 'common/hooks'
+import { useAppDispatch, useAppSelector } from 'common/hooks'
 import { paths } from 'common/router/path'
 import { UniversalButton } from 'common/components/universalButton/UniversalButton'
 
@@ -16,6 +16,7 @@ type Type = yup.InferType<typeof registerSchema>
 
 export const Register = () => {
   const dispatch = useAppDispatch()
+  const isLoading = useAppSelector(state => state.app.isLoading)
   const navigate = useNavigate()
   const { register, handleSubmit, formState: { errors }, getFieldState } = useForm<Type>({
     mode: 'onTouched',
@@ -47,6 +48,7 @@ export const Register = () => {
                          register={register('passwordConfirmation')}
           />
           <UniversalButton title={'Sign Up'}
+                           isLoading={isLoading}
                            disabled={isButtonDisabled}
                            marginTop={'78px'} />
         </form>

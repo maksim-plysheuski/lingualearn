@@ -8,7 +8,7 @@ import { UniversalButton } from 'common/components/universalButton/UniversalButt
 import * as yup from 'yup'
 import { InputEmail, InputPassword } from 'common/components'
 import { loginSchema } from 'features/auth/login/loginSchema'
-import { useAppDispatch } from 'common/hooks'
+import { useAppDispatch, useAppSelector } from 'common/hooks'
 import { paths } from 'common/router/path'
 import { toast } from 'react-toastify'
 import * as React from 'react'
@@ -18,6 +18,7 @@ type InputsType = yup.InferType<typeof loginSchema>
 
 export const Login = () => {
   const dispatch = useAppDispatch()
+  const isLoading = useAppSelector(state => state.app.isLoading)
 
   const { register, handleSubmit, formState: { errors }, getFieldState } = useForm<InputsType>({
     mode: 'onTouched',
@@ -51,7 +52,10 @@ export const Login = () => {
               <span>Remember me</span>
             </div>
             <Link className={s.forgotPasswordLink} to={paths.FORGOT_PASSWORD}>Forgot Password?</Link>
-            <UniversalButton title={'Sign In'} disabled={isButtonDisabled} marginTop={'60px'} />
+            <UniversalButton title={'Sign In'}
+                             disabled={isButtonDisabled}
+                             isLoading={isLoading}
+                             marginTop={'60px'} />
           </FormControl>
         </form>
         <span className={s.dontHaveAccount}>Don't have an account?</span>
