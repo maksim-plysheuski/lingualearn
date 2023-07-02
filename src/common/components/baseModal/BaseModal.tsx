@@ -4,6 +4,7 @@ import React, { ReactNode } from 'react'
 import CloseIcon from '@mui/icons-material/Close'
 import s from './style.module.scss'
 import { SxProps, Theme } from '@mui/material/styles'
+import { UniversalButton } from 'common/components/universalButton/UniversalButton'
 
 const style: SxProps<Theme> = {
   position: 'absolute' as 'absolute',
@@ -53,8 +54,8 @@ export const BaseModal = (props: Props) => {
           </div>
           <div className={s.containerChildren}>{children}</div>
           <div className={s.buttonContainer}>
-            <button className={s.buttonCancel} onClick={handleClose}>Cancel</button>
-            <button disabled={disable} className={s.buttonAction} onClick={actionCallback}>{titleButtonAction}</button>
+            <UniversalButton title={'Cancel'} onClickCallback={handleClose} isGrayColor={true} width={'100'}  />
+            <UniversalButton title={titleButtonAction} onClickCallback={actionCallback} width={'148'} disabled={disable}/>
           </div>
         </Box>
       </Modal>

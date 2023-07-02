@@ -15,34 +15,4 @@
   display: flex;
   justify-content: space-between;
   margin-top: 36px;
-
-  & button {
-    border-radius: 4px;
-    padding: 6px 28px;
-    color: #FFFFFF;
-    font-size: 14px;
-    line-height: 24px;
-    cursor: pointer;
-
-    &:disabled {
-      opacity: 0.3;
-    }
-
-  }
-
-  .buttonCancel {
-    background: #4C4C4C;
-
-    &:hover {
-      box-shadow: 0 2px 10px rgba(109, 109, 109, 0.25);
-    }
-  }
-
-  .buttonAction {
-    background: #8C61FF;
-
-    &:hover {
-      box-shadow: 0 4px 18px rgba(140, 97, 255, 0.35);
-    }
-  }
 }
