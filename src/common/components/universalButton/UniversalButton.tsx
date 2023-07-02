@@ -1,17 +1,19 @@
 import { Button, CircularProgress } from '@mui/material'
 import React, { ReactNode } from 'react'
 import LoadingButton from '@mui/lab/LoadingButton'
-import { useAppSelector } from 'common/hooks'
 
 type PropsType = {
   title: string
+  type?: 'button'
   onClickCallback?: () => void
   disabled?: boolean
+  isLoading?: boolean
+  isSpan?: boolean
+  isGrayColor?: boolean
   width?: string
   height?: string
   fontSize?: string
   marginTop?: string
-  type?: 'button'
   icon?: ReactNode
 }
 
@@ -19,49 +21,67 @@ export const UniversalButton: React.FC<PropsType> = (
   {
     title,
     onClickCallback,
+    type,
     width,
     height,
-    marginTop,
-    type,
     fontSize,
+    marginTop,
+    isSpan,
+    isGrayColor,
+    isLoading,
     disabled,
     icon
   }
 ) => {
 
-  const isLoading = useAppSelector(state => state.app.isLoading)
-
-  const btnStyle = {
-    width: width ? `${width}px` : '347px',
+  const baseBntStyle = {
+    width: width ? `${width}px` : '100%',
     height: height ? `${height}px` : '36px',
-    backgroundColor: disabled ? 'rgba(56, 39, 102, 1)' : '#8C61FF',
-    color: '#FFFFFF',
+    backgroundColor: isGrayColor ? '#4C4C4C' : '#8C61FF',
+    color: disabled? '#C3C1C7' : '#FFFFFF',
     marginTop: marginTop ? marginTop : '0px',
     borderRadius: '4px',
     textTransform: 'none',
-    fontWeight: '500',
+    fontWeight: '700',
     fontSize: fontSize ? fontSize : '14px',
-    lineHeight: '20px',
+    lineHeight: '24px',
     boxShadow: '0px 2px 10px rgba(109, 109, 109, 0.25), ' +
-      'inset 0px 1px 0px rgba(255, 255, 255, 0.5)',
+      'inset 0px 1px 0px rgba(255, 255, 255, 0.5)'
+  }
+
+  const primaryBtnStyle = {
+    ...baseBntStyle,
     '&:hover': {
-      backgroundColor: 'rgb(114,80,210)'
+      backgroundColor: disabled ? '#382766' : '#A280FF'
+    },
+    '&.Mui-disabled': {
+      backgroundColor: '#382766',
+      color: '#C3C1C7'
     }
   }
 
+  const secondaryBtnStyle = {
+    ...baseBntStyle,
+    '&:hover': {
+      backgroundColor: disabled ? '#4C4C4C' : '#808080'
+    },
+    '&.Mui-disabled': {
+      backgroundColor: '#4C4C4C',
+    }
+  }
+
+
   return (
     <>
-      {isLoading ? <LoadingButton sx={{ ...btnStyle, backgroundColor: 'rgba(56, 39, 102, 1)' }}
-                                  disabled={true}
+      {isLoading ? <LoadingButton sx={baseBntStyle}
                                   loading
-                                  variant={'text'}
                                   loadingIndicator={
                                     <CircularProgress variant={'indeterminate'}
-                                                      color='inherit' size={22} />} />
-        : <Button sx={btnStyle}
+                                                      color='inherit' size={26} />} />
+        : <Button sx={isGrayColor ? secondaryBtnStyle : primaryBtnStyle}
+                  component={isSpan ? 'span' : 'button'}
                   disabled={disabled ? disabled : false}
                   onClick={onClickCallback}
-                  variant={disabled ? 'text' : 'contained'}
                   type={type ? type : 'submit'}
                   startIcon={icon}
         >

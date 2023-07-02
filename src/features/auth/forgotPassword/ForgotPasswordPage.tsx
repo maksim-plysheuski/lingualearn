@@ -12,11 +12,13 @@ import { paths } from 'common/router/path'
 import { useState } from 'react'
 import { CheckEmailPage } from 'features/auth/checkEmail/CheckEmailPage'
 import { emailMessage } from 'features/auth/forgotPassword/emailMessage'
+import { useAppSelector } from 'common/hooks'
 
 type InputType = yup.InferType<typeof emailSchema>
 
 export const ForgotPasswordPage = () => {
   const [showCheckEmail, setShowCheckEmail] = useState<boolean>(false)
+  const isLoading = useAppSelector(state => state.app.isLoading)
   const { register, handleSubmit, formState: { errors }, getFieldState, getValues } = useForm<InputType>({
     mode: 'onTouched',
     resolver: yupResolver(emailSchema)
@@ -46,7 +48,10 @@ export const ForgotPasswordPage = () => {
             <span className={s.descriptionText}>
               Enter your address and we will send you further instructions
             </span>
-            <UniversalButton title={'Send Instructions'} disabled={isButtonDisabled} marginTop={'60px'} />
+            <UniversalButton title={'Send Instructions'}
+                             isLoading={isLoading}
+                             disabled={isButtonDisabled}
+                             marginTop={'60px'} />
           </FormControl>
         </form>
         <p className={s.descriptionText}>Did you remember your password?</p>

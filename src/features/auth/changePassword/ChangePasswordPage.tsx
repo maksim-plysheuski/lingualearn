@@ -7,7 +7,7 @@ import { useNavigate, useParams } from 'react-router-dom'
 import { authThunks } from 'features/auth/auth.slice'
 import { InputPassword } from 'common/components'
 import { passwordSchema } from 'features/auth/changePassword/passwordSchema'
-import { useAppDispatch } from 'common/hooks'
+import { useAppDispatch, useAppSelector } from 'common/hooks'
 import { UniversalButton } from 'common/components/universalButton/UniversalButton'
 import { paths } from 'common/router/path'
 
@@ -16,6 +16,7 @@ type Type = yup.InferType<typeof passwordSchema>
 
 export const ChangePasswordPage = () => {
   const navigate = useNavigate()
+  const isLoading = useAppSelector(state => state.app.isLoading)
 
   const {
     register,
@@ -43,7 +44,7 @@ export const ChangePasswordPage = () => {
         <form className={s.form} onSubmit={handleSubmit(onSubmit)}>
           <InputPassword errorMessage={errors.password?.message} register={register('password')} />
           <span className={s.helperText}>Create new password and we will send you further instructions to email</span>
-          <UniversalButton title={'Change password'} disabled={isButtonDisabled} marginTop={'65px'} />
+          <UniversalButton title={'Change password'} isLoading={isLoading} disabled={isButtonDisabled} marginTop={'65px'} />
         </form>
       </div>
     </div>

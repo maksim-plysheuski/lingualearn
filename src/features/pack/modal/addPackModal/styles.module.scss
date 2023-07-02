@@ -1,0 +1,50 @@
+@import "src/common/style/variables";
+@import "src/common/style/mixins";
+
+.coverBlock {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  img {
+    width: 100%;
+    min-height: 50px;
+  }
+
+  .buttonContainer {
+    width: 100%;
+
+    input {
+      display: none;
+    }
+  }
+  .packNameBlock {
+    margin-top: 24px;
+    background-color: #366EFF;
+    border: 2px red solid;
+  }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

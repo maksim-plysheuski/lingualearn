@@ -23,7 +23,8 @@ export type TUpdatePackResponse = {
 export type TUpdatePackArg = {
   _id: string
   name: string
-  private: boolean
+  private?: boolean
+  deckCover?: string
 }
 
 export type  TDeletePackArg = {
@@ -65,6 +66,7 @@ export type TPack = {
   shots: number,
   cardsCount: number,
   type: string,
+  deckCover: string,
   rating: number,
   more_id: string,
   created: string,
