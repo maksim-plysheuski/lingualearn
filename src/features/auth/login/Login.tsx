@@ -4,7 +4,7 @@ import s from 'features/auth/login/styles.module.scss'
 import { Link } from 'react-router-dom'
 import { authThunks } from 'features/auth/auth.slice'
 import { yupResolver } from '@hookform/resolvers/yup'
-import { UniversalButton } from 'common/components/universalButton/UniversalButton'
+import { SuperButton } from 'common/components/superButton/SuperButton'
 import * as yup from 'yup'
 import { InputEmail, InputPassword } from 'common/components'
 import { loginSchema } from 'features/auth/login/loginSchema'
@@ -47,10 +47,10 @@ export const Login = () => {
               <span>Remember me</span>
             </div>
             <Link className={s.forgotPasswordLink} to={paths.FORGOT_PASSWORD}>Forgot Password?</Link>
-            <UniversalButton title={'Sign In'}
-                             disabled={isButtonDisabled}
-                             isLoading={isLoading}
-                             marginTop={'60px'} />
+            <SuperButton title={'Sign In'}
+                         disabled={isButtonDisabled}
+                         isLoading={isLoading}
+                         marginTop={'60px'} />
           </FormControl>
         </form>
         <span className={s.dontHaveAccount}>Don't have an account?</span>

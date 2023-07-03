@@ -1,19 +1,28 @@
-@import "common/style/variables";
+@import "src/common/style/variables";
+@import "src/common/style/mixins";
 
 .inputContainer {
   width: 100%;
-  color: $borderColor;
-
+  label {
+    color: $dark100;
+    font-size: 14px;
+    font-weight: 400;
+  }
   .input {
     width: 100%;
-    font-size: 16px;
-    line-height: 24px;
+    @include text(400, 16px, 24px);
     height: 36px;
     outline: none;
-    border: 1px solid $borderColor;
+    border: 1px solid $dark300;
     border-radius: 2px;
     background-color: transparent;
-    color: $primaryFontColor;
     padding: 6px 12px;
+    margin-top: 2px;
+    &:hover {
+      border-color: $dark100;
+    }
+    &:focus {
+      border-color: $light100;
+    }
   }
 }

@@ -2,7 +2,7 @@ import s from 'features/auth/forgotPassword/style.module.scss'
 import { FormControl } from '@mui/material'
 import { InputEmail } from 'common/components/Inputs/InputEmail'
 import { Link } from 'react-router-dom'
-import { UniversalButton } from 'common/components/universalButton/UniversalButton'
+import { SuperButton } from 'common/components/superButton/SuperButton'
 import { SubmitHandler, useForm } from 'react-hook-form'
 import * as yup from 'yup'
 import { yupResolver } from '@hookform/resolvers/yup'
@@ -48,10 +48,10 @@ export const ForgotPasswordPage = () => {
             <span className={s.descriptionText}>
               Enter your address and we will send you further instructions
             </span>
-            <UniversalButton title={'Send Instructions'}
-                             isLoading={isLoading}
-                             disabled={isButtonDisabled}
-                             marginTop={'60px'} />
+            <SuperButton title={'Send Instructions'}
+                         isLoading={isLoading}
+                         disabled={isButtonDisabled}
+                         marginTop={'60px'} />
           </FormControl>
         </form>
         <p className={s.descriptionText}>Did you remember your password?</p>

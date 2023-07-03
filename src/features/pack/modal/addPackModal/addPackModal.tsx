@@ -1,13 +1,14 @@
 import { BaseModal } from 'common/components/baseModal/BaseModal'
-import { InputCastom } from 'common/components/baseModal/inputCastom/InputCastom'
-import { UniversalButton } from 'common/components/universalButton/UniversalButton'
+import { InputCustom } from 'common/components/baseModal/inputCastom/InputCustom'
+import { SuperButton } from 'common/components/superButton/SuperButton'
 import { useAppDispatch } from 'common/hooks'
 import React, { ChangeEvent, useState } from 'react'
 import { packsThunks } from '../../packs.slice'
-import defAva from 'features/profile/components/imegs/defAva.png'
 import { convertFileToBase64 } from 'common/utils'
 import { toast } from 'react-toastify'
 import s from './styles.module.scss'
+import InsertPhotoOutlinedIcon from '@mui/icons-material/InsertPhotoOutlined'
+import { Checkbox } from '@mui/material'
 
 
 export const AddPackModal = () => {
@@ -22,8 +23,8 @@ export const AddPackModal = () => {
     setDisable(true)
     const newPack = { name: valuePack, private: privatePack, deckCover: deckCover }
     await dispatch(packsThunks.createPack(newPack)).unwrap()
-      .then(() => toast.success('Cover Added'))
-      .catch(err => toast.error('Error'))
+      .then((res) => toast.success(`New pack ${res.newCardsPack.name} has been created`))
+      .catch(() => toast.error('Size is too lage'))
       .finally(() => {
         setValueCard('')
         setOpen(false)
@@ -50,22 +51,25 @@ export const AddPackModal = () => {
                setOpen={setOpen}
                titleButtonAction={'Add New Pack'}
                actionCallback={addPackHandler}
-               buttonOpen={<UniversalButton title={'Add New Pack'} width={'175'} />}
+               buttonOpen={<SuperButton title={'Add New Pack'} width={'175'} />}
                disable={disable}
     >
       <>
         <div className={s.coverBlock}>
-          <img src={deckCover ? deckCover : defAva} alt='pack image' />
+          {deckCover
+            ? <img src={deckCover} alt='pack image' />
+            : <InsertPhotoOutlinedIcon sx={{ fontSize: '120px', marginTop: '20px' }} />}
           <label className={s.buttonContainer}>
-            <UniversalButton title={'Change Cover'} isSpan={true} isGrayColor={true} marginTop={'24px'}/>
-            <input type='file' onChange={uploadHandler} />
+            <SuperButton title={'Change Cover'} isSpan={true} isGrayColor={true} marginTop={'24px'} />
+            <input type='file' accept='image/*' onChange={uploadHandler} />
           </label>
         </div>
-
         <div className={s.packNameBlock}>
-          <InputCastom label={'Name Pack'} value={valuePack} setValue={setValueCard} />
-          <input type='checkbox' checked={privatePack} onClick={() => setPrivatePack(state => !state)} />
-          <span>Private pack</span>
+          <InputCustom label={'Name Pack'} value={valuePack} setValue={setValueCard} />
+          <div className={s.checkBoxContainer}>
+            <Checkbox checked={privatePack} onClick={() => setPrivatePack(state => !state)} />
+            <span>Private pack</span>
+          </div>
         </div>
       </>
     </BaseModal>

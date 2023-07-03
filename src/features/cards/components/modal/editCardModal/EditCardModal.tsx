@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { BaseModal } from 'common/components/baseModal/BaseModal'
 import { SelectTextImg, SelectType } from 'features/cards/components/modal/addCard/select/SelectTextImg'
-import { InputCastom } from 'common/components/baseModal/inputCastom/InputCastom'
+import { InputCustom } from 'common/components/baseModal/inputCastom/InputCustom'
 import s from './style.module.scss'
 import DriveFileRenameOutlineIcon from '@mui/icons-material/DriveFileRenameOutline'
 import { cardsThunks } from '../../../cards.slice'
@@ -46,8 +46,8 @@ export const EditCardsModal = (props: Props) => {
         <div className={s.newCardContainer}>
           <SelectTextImg select={select} setSelect={setSelect} />
           <div className={s.input}>
-            <InputCastom label={'Question'} value={question} setValue={setQuestion} />
-            <InputCastom label={'Answer'} value={answer} setValue={setAnswer} />
+            <InputCustom label={'Question'} value={question} setValue={setQuestion} />
+            <InputCustom label={'Answer'} value={answer} setValue={setAnswer} />
           </div>
         </div>
       </BaseModal>

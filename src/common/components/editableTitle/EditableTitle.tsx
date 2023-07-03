@@ -1,7 +1,7 @@
 import { IconButton, TextField } from '@mui/material'
 import { useState } from 'react'
 import BorderColorOutlinedIcon from '@mui/icons-material/BorderColorOutlined'
-import { UniversalButton } from 'common/components/universalButton/UniversalButton'
+import { SuperButton } from 'common/components/superButton/SuperButton'
 import { profileThunks } from 'features/profile/profile.slice'
 import { useAppDispatch } from 'common/hooks'
 import s from './style.module.scss'
@@ -83,10 +83,10 @@ export const EditableTitle = (props: EditableTitlePropsType) => {
                      helperText={errors.userName?.message}
                      InputProps={{
                        endAdornment: (
-                         <UniversalButton title={'SAVE'}
-                                          width={'52px'}
-                                          fontSize={'12px'}
-                                          disabled={!!errors.userName?.message}
+                         <SuperButton title={'SAVE'}
+                                      width={'52px'}
+                                      fontSize={'12px'}
+                                      disabled={!!errors.userName?.message}
                          />)
                      }} />
         </form>

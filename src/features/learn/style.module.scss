@@ -1,4 +1,4 @@
-@import "common/style/variables";
+@import "src/common/style/variables";
 
 .learnContainer {
   margin-top: 80px;
@@ -24,7 +24,7 @@
     overflow: hidden;
 
     & p {
-      color: $borderColor;
+      color: $dark300;
     }
 
     .question {

@@ -1,5 +1,5 @@
 import s from 'common/components/header/Header.module.scss'
-import { UniversalButton } from 'common/components/universalButton/UniversalButton'
+import { SuperButton } from 'common/components/superButton/SuperButton'
 import { Link, useNavigate } from 'react-router-dom'
 import React from 'react'
 import { AvatarMenu } from 'common/components/avatarMenu/AvatarMenu'
@@ -20,7 +20,7 @@ export const Header = () => {
           <span>Lingualearn</span>
         </Link>
         {isLoggedIn ? <AvatarMenu /> :
-          <UniversalButton title='Sign Up' width={'100px'} onClickCallback={singUpCallback} disabled={false} />}
+          <SuperButton title='Sign Up' width={'100px'} onClickCallback={singUpCallback} disabled={false} />}
       </div>
     </header>
   )

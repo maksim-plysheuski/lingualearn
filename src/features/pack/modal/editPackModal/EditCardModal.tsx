@@ -1,5 +1,5 @@
 import { BaseModal } from 'common/components/baseModal/BaseModal'
-import { InputCastom } from 'common/components/baseModal/inputCastom/InputCastom'
+import { InputCustom } from 'common/components/baseModal/inputCastom/InputCustom'
 import { useAppDispatch, useAppSelector } from 'common/hooks'
 import React, { useState } from 'react'
 import { packsThunks } from '../../packs.slice'
@@ -57,7 +57,7 @@ export const EditPackModal = (props: Props) => {
                disable={disable}
     >
       <>
-        <InputCastom label={'Name Pack'} value={inputValue} setValue={setInputValue} />
+        <InputCustom label={'Name Pack'} value={inputValue} setValue={setInputValue} />
         <div>
           <input type='checkbox' checked={isPrivatePack} onChange={() => setIsPrivatePack(state => !state)} />
           <span>Private pack</span>

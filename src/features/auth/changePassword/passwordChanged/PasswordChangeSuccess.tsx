@@ -2,7 +2,7 @@ import React from 'react'
 import s from 'features/auth/changePassword/passwordChanged/style.module.scss'
 import { useNavigate } from 'react-router-dom'
 import CheckCircleOutlineIcon from '@mui/icons-material/CheckCircleOutline'
-import { UniversalButton } from 'common/components/universalButton/UniversalButton'
+import { SuperButton } from 'common/components/superButton/SuperButton'
 import { paths } from 'common/router/path'
 
 
@@ -20,7 +20,7 @@ export const PasswordChangeSuccess = () => {
           {`Password has been changed!`}
           <p> Please login to your account again</p>
         </span>
-        <UniversalButton title={'Login'} onClickCallback={() => navigate(paths.LOGIN)} marginTop={'55px'} />
+        <SuperButton title={'Login'} onClickCallback={() => navigate(paths.LOGIN)} marginTop={'55px'} />
       </div>
     </div>
   )

@@ -1,4 +1,4 @@
-@import "common/style/variables";
+@import "src/common/style/variables";
 
 .container {
   display: flex;
@@ -6,7 +6,7 @@
   justify-content: center;
   width: 144px;
   height: 36px;
-  background-color: $borderColor;
+  background-color: $dark300;
   border-radius: 4px;
   cursor: pointer;
   color: #fff;

@@ -1,5 +1,5 @@
 import React from 'react'
-import { UniversalButton } from 'common/components/universalButton/UniversalButton'
+import { SuperButton } from 'common/components/superButton/SuperButton'
 import s from 'features/cards/components/cardsPage/titleBlockCards/style.module.scss'
 import { selectWhoseCards } from 'features/cards/selectors'
 import { AddCardsModal } from 'features/cards/components/modal/addCard/addCardModal/AddCardsModal'
@@ -19,7 +19,7 @@ export const TitleBlockCards = () => {
         {whoseCards && <MenuPacks />}
       </div>
       <span>{packName}</span>
-      {whoseCards ? <AddCardsModal /> : <UniversalButton width={'184'} title={'learn pack'} />}
+      {whoseCards ? <AddCardsModal /> : <SuperButton width={'184'} title={'learn pack'} />}
     </div>
   )
 }

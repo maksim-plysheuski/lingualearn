@@ -18,10 +18,19 @@
       display: none;
     }
   }
-  .packNameBlock {
-    margin-top: 24px;
-    background-color: #366EFF;
-    border: 2px red solid;
+}
+
+.packNameBlock {
+  margin-top: 23px;
+
+  .checkBoxContainer {
+    margin-top: 25px;
+    display: flex;
+    align-items: center;
+
+    span {
+      @include text(400, 15px, 24px);
+    }
   }
 }
 

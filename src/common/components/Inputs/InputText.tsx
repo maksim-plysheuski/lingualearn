@@ -42,6 +42,7 @@ export const InputText: FC<Props> = ({ value, setValue }) => {
 
   return (
     <>
+      <label htmlFor=''>hello</label>
       <TextField id='custom-input'
                  value={value}
                  sx={inputStyle}

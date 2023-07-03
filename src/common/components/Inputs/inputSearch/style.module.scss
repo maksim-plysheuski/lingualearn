@@ -1,9 +1,9 @@
-@import "common/style/variables";
+@import "src/common/style/variables";
 
 .container {
   width: 100%;
   height: 36px;
-  border: 1px solid $borderColor;
+  border: 1px solid $dark300;
   border-radius: 2px;
   display: flex;
   align-items: center;

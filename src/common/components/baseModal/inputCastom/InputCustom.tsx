@@ -7,7 +7,7 @@ type Props = {
     setValue: (value: string) => void
 }
 
-export const InputCastom = (props: Props) => {
+export const InputCustom = (props: Props) => {
     const {label, value, setValue} = props
 
     const setValueHandler = (e: ChangeEvent<HTMLInputElement>) => {
@@ -16,8 +16,8 @@ export const InputCastom = (props: Props) => {
 
     return (
         <div className={s.inputContainer}>
-            <label htmlFor="ImputId">{label}</label>
-            <input id='ImputId'
+            <label htmlFor="InputCustom">{label}</label>
+            <input id='InputCustom'
                    value={value}
                    onChange={setValueHandler}
                    className={s.input}

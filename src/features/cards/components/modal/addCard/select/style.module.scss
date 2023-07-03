@@ -1,11 +1,11 @@
-@import "common/style/variables";
+@import "src/common/style/variables";
 
 .selectContainer {
   margin-top: 24px;
   width: 100%;
 
   & label {
-    color: $borderColor;
+    color: $dark300;
   }
 
   .select {

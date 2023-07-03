@@ -17,7 +17,7 @@ type PropsType = {
   icon?: ReactNode
 }
 
-export const UniversalButton: React.FC<PropsType> = (
+export const SuperButton: React.FC<PropsType> = (
   {
     title,
     onClickCallback,
@@ -38,7 +38,7 @@ export const UniversalButton: React.FC<PropsType> = (
     width: width ? `${width}px` : '100%',
     height: height ? `${height}px` : '36px',
     backgroundColor: isGrayColor ? '#4C4C4C' : '#8C61FF',
-    color: disabled? '#C3C1C7' : '#FFFFFF',
+    color: disabled ? '#C3C1C7' : '#FFFFFF',
     marginTop: marginTop ? marginTop : '0px',
     borderRadius: '4px',
     textTransform: 'none',
@@ -49,7 +49,7 @@ export const UniversalButton: React.FC<PropsType> = (
       'inset 0px 1px 0px rgba(255, 255, 255, 0.5)'
   }
 
-  const primaryBtnStyle = {
+  const primaryStyle = {
     ...baseBntStyle,
     '&:hover': {
       backgroundColor: disabled ? '#382766' : '#A280FF'
@@ -60,13 +60,13 @@ export const UniversalButton: React.FC<PropsType> = (
     }
   }
 
-  const secondaryBtnStyle = {
+  const secondaryStyle = {
     ...baseBntStyle,
     '&:hover': {
       backgroundColor: disabled ? '#4C4C4C' : '#808080'
     },
     '&.Mui-disabled': {
-      backgroundColor: '#4C4C4C',
+      backgroundColor: '#4C4C4C'
     }
   }
 
@@ -78,7 +78,7 @@ export const UniversalButton: React.FC<PropsType> = (
                                   loadingIndicator={
                                     <CircularProgress variant={'indeterminate'}
                                                       color='inherit' size={26} />} />
-        : <Button sx={isGrayColor ? secondaryBtnStyle : primaryBtnStyle}
+        : <Button sx={isGrayColor ? secondaryStyle : primaryStyle}
                   component={isSpan ? 'span' : 'button'}
                   disabled={disabled ? disabled : false}
                   onClick={onClickCallback}

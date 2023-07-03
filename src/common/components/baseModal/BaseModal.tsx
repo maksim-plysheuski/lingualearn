@@ -4,7 +4,7 @@ import React, { ReactNode } from 'react'
 import CloseIcon from '@mui/icons-material/Close'
 import s from './style.module.scss'
 import { SxProps, Theme } from '@mui/material/styles'
-import { UniversalButton } from 'common/components/universalButton/UniversalButton'
+import { SuperButton } from 'common/components/superButton/SuperButton'
 
 const style: SxProps<Theme> = {
   position: 'absolute' as 'absolute',
@@ -54,8 +54,8 @@ export const BaseModal = (props: Props) => {
           </div>
           <div className={s.containerChildren}>{children}</div>
           <div className={s.buttonContainer}>
-            <UniversalButton title={'Cancel'} onClickCallback={handleClose} isGrayColor={true} width={'100'}  />
-            <UniversalButton title={titleButtonAction} onClickCallback={actionCallback} width={'148'} disabled={disable}/>
+            <SuperButton title={'Cancel'} onClickCallback={handleClose} isGrayColor={true} width={'100'}  />
+            <SuperButton title={titleButtonAction} onClickCallback={actionCallback} width={'148'} disabled={disable}/>
           </div>
         </Box>
       </Modal>
