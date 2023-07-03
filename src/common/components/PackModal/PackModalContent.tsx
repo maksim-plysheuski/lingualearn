@@ -6,11 +6,12 @@ import { Checkbox } from '@mui/material'
 import React, { ChangeEvent, FC } from 'react'
 import { convertFileToBase64 } from 'common/utils'
 import { toast } from 'react-toastify'
+import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline'
 
 type Props = {
   packValue: string
-  isPrivatePack: boolean
   packCover: string
+  isPrivatePack: boolean
   setPackValue: (newValue: string) => void
   setIsPrivate: (newValue: boolean) => void
   setPackCover: (newCover: string) => void
@@ -39,17 +40,34 @@ export const PackModalContent: FC<Props> = (
     }
   }
 
-
   return (
     <>
       <div className={s.coverBlock}>
-        {packCover
-          ? <img src={packCover} alt='pack image' />
-          : <InsertPhotoOutlinedIcon sx={{ fontSize: '120px', marginTop: '20px' }} />}
-        <label className={s.buttonContainer}>
-          <SuperButton title={'Change Cover'} isSpan={true} isGrayColor={true} marginTop={'24px'} />
-          <input type='file' accept='image/*' onChange={setCoverHandler} />
-        </label>
+        {packCover ?
+          <>
+            <img src={packCover} alt='pack image' />
+            <div className={s.buttonContainer}>
+              <label style={{ width: '100%' }}>
+                <SuperButton title={'Change Cover'} isSpan={true} isGrayColor={true} marginTop={'24px'} />
+                <input type='file' accept='image/*' onChange={setCoverHandler} />
+              </label>
+              <SuperButton isGrayColor={true}
+                           isDeleteButton={true}
+                           title={'Delete Cover'}
+                           marginTop={'24px'}
+                           marginLeft={'10px'}
+                           onClickCallback={() => setPackCover('')}
+                           icon={<DeleteOutlineIcon />} />
+            </div>
+          </>
+          : <>
+            <InsertPhotoOutlinedIcon sx={{ fontSize: '120px', marginTop: '20px' }} />
+            <label className={s.buttonContainer}>
+              <SuperButton title={'Change Cover'} isSpan={true} isGrayColor={true} marginTop={'24px'} />
+              <input type='file' accept='image/*' onChange={setCoverHandler} />
+            </label>
+          </>
+        }
       </div>
       <div className={s.packNameBlock}>
         <InputCustom label={'Name Pack'} value={packValue} setValue={setPackValue} />

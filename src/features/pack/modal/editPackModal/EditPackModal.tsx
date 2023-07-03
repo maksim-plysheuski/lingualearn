@@ -11,12 +11,12 @@ import s from './styles.module.scss'
 import { Checkbox } from '@mui/material'
 import InsertPhotoOutlinedIcon from '@mui/icons-material/InsertPhotoOutlined'
 import { SuperButton } from 'common/components/superButton/SuperButton'
+import { PackModalContent } from 'common/components/PackModal/PackModalContent'
 
 type Props = {
   handleCloseMenu?: () => void
   pack?: TPack
 }
-
 
 export const EditPackModal = (props: Props) => {
   const packName = useAppSelector(selectPackName)
@@ -25,7 +25,7 @@ export const EditPackModal = (props: Props) => {
 
   const dispatch = useAppDispatch()
 
-  const [open, setOpen] = useState<boolean>(false)
+  const [isModalOpen, setIsModalOpen] = useState<boolean>(false)
   const [inputValue, setInputValue] = useState<string>(props.pack?.name || packName)
   const [isPrivatePack, setIsPrivatePack] = useState<boolean>(props.pack?.private || isPackPrivate)
   const [disable, setDisable] = useState<boolean>(false)
@@ -45,7 +45,7 @@ export const EditPackModal = (props: Props) => {
       .then(() => toast.info(`Pack has been updated`))
       .catch((err) => toast.error(err.e.response ? err.e.response.data.error : err.e.message))
       .finally(() => {
-        setOpen(false)
+        setIsModalOpen(false)
         setDisable(false)
       })
     if (props.handleCloseMenu) {
@@ -54,14 +54,21 @@ export const EditPackModal = (props: Props) => {
   }
   return (
     <BaseModal title={'Edit Pack'}
-               open={open}
-               setOpen={setOpen}
+               open={isModalOpen}
+               setOpen={setIsModalOpen}
                titleButtonAction={'Save Changes'}
                actionCallback={updatePack}
                buttonOpen={<DriveFileRenameOutlineIcon />}
                disable={disable}
     >
-      <>
+      <PackModalContent packValue={inputValue}
+                        isPrivatePack={isPrivatePack}
+                        packCover={packCover}
+                        setPackValue={setInputValue}
+                        setIsPrivate={setIsPrivatePack}
+                        setPackCover={setPackCover} />
+
+     {/* <>
         <div className={s.coverBlock}>
           {packCover
             ? <img src={packCover} alt='pack image' />
@@ -78,7 +85,7 @@ export const EditPackModal = (props: Props) => {
           <span>Private pack</span>
         </div>
         </div>
-      </>
+      </>*/}
     </BaseModal>
   )
 }

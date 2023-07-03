@@ -3,17 +3,19 @@ import React, { ReactNode } from 'react'
 import LoadingButton from '@mui/lab/LoadingButton'
 
 type PropsType = {
-  title: string
+  title?: string
   type?: 'button'
   onClickCallback?: () => void
   disabled?: boolean
   isLoading?: boolean
   isSpan?: boolean
   isGrayColor?: boolean
+  isDeleteButton? :boolean
   width?: string
   height?: string
   fontSize?: string
   marginTop?: string
+  marginLeft?: string
   icon?: ReactNode
 }
 
@@ -26,8 +28,10 @@ export const SuperButton: React.FC<PropsType> = (
     height,
     fontSize,
     marginTop,
+    marginLeft,
     isSpan,
     isGrayColor,
+    isDeleteButton,
     isLoading,
     disabled,
     icon
@@ -40,6 +44,7 @@ export const SuperButton: React.FC<PropsType> = (
     backgroundColor: isGrayColor ? '#4C4C4C' : '#8C61FF',
     color: disabled ? '#C3C1C7' : '#FFFFFF',
     marginTop: marginTop ? marginTop : '0px',
+    marginLeft: marginLeft ? marginLeft : '0px',
     borderRadius: '4px',
     textTransform: 'none',
     fontWeight: '700',
@@ -52,7 +57,7 @@ export const SuperButton: React.FC<PropsType> = (
   const primaryStyle = {
     ...baseBntStyle,
     '&:hover': {
-      backgroundColor: disabled ? '#382766' : '#A280FF'
+      backgroundColor: disabled ? '#382766' : '#A280FF',
     },
     '&.Mui-disabled': {
       backgroundColor: '#382766',
@@ -63,7 +68,8 @@ export const SuperButton: React.FC<PropsType> = (
   const secondaryStyle = {
     ...baseBntStyle,
     '&:hover': {
-      backgroundColor: disabled ? '#4C4C4C' : '#808080'
+      backgroundColor: disabled ? '#4C4C4C' : '#808080',
+      color: isDeleteButton ? '#990f2b' : '#FFFFFF'
     },
     '&.Mui-disabled': {
       backgroundColor: '#4C4C4C'
