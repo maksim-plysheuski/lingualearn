@@ -54,8 +54,8 @@ export const BaseModal = (props: Props) => {
           </div>
           <div className={s.containerChildren}>{children}</div>
           <div className={s.buttonContainer}>
-            <SuperButton title={'Cancel'} onClickCallback={handleClose} isGrayColor={true} width={'100'}  />
-            <SuperButton title={titleButtonAction} onClickCallback={actionCallback} width={'148'} disabled={disable}/>
+            <SuperButton title={'Cancel'} onClickCallback={handleClose} isGrayColor={true} width={'100'} />
+            <SuperButton title={titleButtonAction} onClickCallback={actionCallback} width={'148'} disabled={disable} />
           </div>
         </Box>
       </Modal>

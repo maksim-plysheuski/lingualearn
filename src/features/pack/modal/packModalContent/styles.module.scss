@@ -1,5 +1,4 @@
-@import "src/common/style/variables";
-@import "src/common/style/mixins";
+@import "../../../../common/style/mixins";
 
 .coverBlock {
   display: flex;
@@ -12,6 +11,9 @@
   }
 
   .buttonContainer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
     width: 100%;
 
     input {

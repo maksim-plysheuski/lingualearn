@@ -4,7 +4,7 @@ import { useAppDispatch } from 'common/hooks'
 import React, { useState } from 'react'
 import { packsThunks } from '../../packs.slice'
 import { toast } from 'react-toastify'
-import { PackModalContent } from 'common/components/PackModal/PackModalContent'
+import { PackModalContent } from 'features/pack/modal/packModalContent/PackModalContent'
 
 
 export const AddPackModal = () => {
@@ -19,7 +19,7 @@ export const AddPackModal = () => {
     setIsButtonDisabled(true)
     const newPack = { name: packName, private: isPrivatePack, deckCover: packCover }
     await dispatch(packsThunks.createPack(newPack)).unwrap()
-      .then((res) => toast.success(`New pack ${res.newCardsPack.name} has been created`))
+      .then((res) => toast.info(`New pack ${res.newCardsPack.name} has been successfully created`))
       .catch((err) => toast.error(err.e.response ? err.e.response.data.error : err.e.message))
       .finally(() => {
         setIsModalOpen(false)

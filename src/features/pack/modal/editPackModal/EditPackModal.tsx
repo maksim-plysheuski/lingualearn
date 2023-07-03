@@ -1,5 +1,4 @@
 import { BaseModal } from 'common/components/baseModal/BaseModal'
-import { InputCustom } from 'common/components/baseModal/inputCastom/InputCustom'
 import { useAppDispatch, useAppSelector } from 'common/hooks'
 import React, { useState } from 'react'
 import { packsThunks } from '../../packs.slice'
@@ -7,11 +6,7 @@ import DriveFileRenameOutlineIcon from '@mui/icons-material/DriveFileRenameOutli
 import { TPack } from 'features/pack/packApi'
 import { toast } from 'react-toastify'
 import { selectPackId, selectPackName, selectPrivatePack } from 'features/cards/selectors/cards.selector'
-import s from './styles.module.scss'
-import { Checkbox } from '@mui/material'
-import InsertPhotoOutlinedIcon from '@mui/icons-material/InsertPhotoOutlined'
-import { SuperButton } from 'common/components/superButton/SuperButton'
-import { PackModalContent } from 'common/components/PackModal/PackModalContent'
+import { PackModalContent } from 'features/pack/modal/packModalContent/PackModalContent'
 
 type Props = {
   handleCloseMenu?: () => void
@@ -19,34 +14,34 @@ type Props = {
 }
 
 export const EditPackModal = (props: Props) => {
+  const dispatch = useAppDispatch()
   const packName = useAppSelector(selectPackName)
   const packId = useAppSelector(selectPackId)
   const isPackPrivate = useAppSelector(selectPrivatePack)
 
-  const dispatch = useAppDispatch()
-
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false)
   const [inputValue, setInputValue] = useState<string>(props.pack?.name || packName)
   const [isPrivatePack, setIsPrivatePack] = useState<boolean>(props.pack?.private || isPackPrivate)
-  const [disable, setDisable] = useState<boolean>(false)
-  const [packCover, setPackCover] = useState<string>(props.pack?.deckCover || "")
+  const [isButtonDisabled, setIsButtonDisabled] = useState<boolean>(false)
+  const [packCover, setPackCover] = useState<string>(props.pack?.deckCover || '')
 
   const updatePack = async () => {
     let payload = {
       newPack: {
         _id: props.pack ? props.pack._id : packId,
         name: inputValue,
-        private: isPrivatePack
+        private: isPrivatePack,
+        deckCover: packCover
       },
       needGetPacks: !!props.pack
     }
-    setDisable(true)
+    setIsButtonDisabled(true)
     await dispatch(packsThunks.updatePack(payload)).unwrap()
-      .then(() => toast.info(`Pack has been updated`))
+      .then(() => toast.info(`Pack has been successfully updated`))
       .catch((err) => toast.error(err.e.response ? err.e.response.data.error : err.e.message))
       .finally(() => {
         setIsModalOpen(false)
-        setDisable(false)
+        setIsButtonDisabled(false)
       })
     if (props.handleCloseMenu) {
       props.handleCloseMenu()
@@ -54,38 +49,20 @@ export const EditPackModal = (props: Props) => {
   }
   return (
     <BaseModal title={'Edit Pack'}
-               open={isModalOpen}
-               setOpen={setIsModalOpen}
                titleButtonAction={'Save Changes'}
+               open={isModalOpen}
+               disable={isButtonDisabled}
+               setOpen={setIsModalOpen}
                actionCallback={updatePack}
                buttonOpen={<DriveFileRenameOutlineIcon />}
-               disable={disable}
+
     >
       <PackModalContent packValue={inputValue}
-                        isPrivatePack={isPrivatePack}
                         packCover={packCover}
+                        isPrivatePack={isPrivatePack}
                         setPackValue={setInputValue}
-                        setIsPrivate={setIsPrivatePack}
-                        setPackCover={setPackCover} />
-
-     {/* <>
-        <div className={s.coverBlock}>
-          {packCover
-            ? <img src={packCover} alt='pack image' />
-            : <InsertPhotoOutlinedIcon sx={{ fontSize: '120px', marginTop: '20px' }} />}
-          <label className={s.buttonContainer}>
-            <SuperButton title={'Change Cover'} isSpan={true} isGrayColor={true} marginTop={'24px'} />
-            <input type='file' accept='image/*' onChange={() => {}} />
-          </label>
-        </div>
-        <div className={s.packNameBlock}>
-        <InputCustom label={'Name Pack'} value={inputValue} setValue={setInputValue} />
-        <div className={s.checkBoxContainer}>
-          <Checkbox checked={isPrivatePack} onClick={() => setIsPrivatePack(state => !state)} />
-          <span>Private pack</span>
-        </div>
-        </div>
-      </>*/}
+                        setPackCover={setPackCover}
+                        setIsPrivate={setIsPrivatePack} />
     </BaseModal>
   )
 }

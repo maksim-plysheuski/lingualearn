@@ -1,4 +1,4 @@
-import s from './styles.module.scss'
+import s from 'features/pack/modal/packModalContent/styles.module.scss'
 import InsertPhotoOutlinedIcon from '@mui/icons-material/InsertPhotoOutlined'
 import { SuperButton } from 'common/components/superButton/SuperButton'
 import { InputCustom } from 'common/components/baseModal/inputCastom/InputCustom'
