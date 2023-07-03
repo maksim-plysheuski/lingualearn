@@ -20,6 +20,7 @@ export const PacksTableBody = () => {
 
 
   const { data: packs, isLoading } = useGetPacksQuery({})
+
   console.log(packs)
   const openSelectedPack = (packId: string) => {
   }

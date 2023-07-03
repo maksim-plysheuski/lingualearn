@@ -3,18 +3,13 @@ import { PacksTable } from 'features/pack/components/packsList/packsTable/PacksT
 import s from 'features/pack/components/packsList/style.module.scss'
 import { PageTitleBlock } from 'common/components/pageTitleBlock/PageTitleBlock'
 import { PaginatorPacks } from 'features/pack/components/paginatorPaks/paginatorPacks'
+import { useGetPacksQuery } from 'features/pack/service/pack.slice'
 
 
 export const PacksList = () => {
-  // const { params, dispatch, packs } = useSearchPaks()
-  //
-  // useEffect(() => {
-  //   dispatch(packAction.setPackParams(params))
-  //   dispatch(packsThunks.getPacks({}))
-  // }, [])
-  //
-  // if (!packs) return <h1>loading</h1>
 
+
+  const { data, isLoading } = useGetPacksQuery({})
   return (
     <div className={s.packsList}>
       <PageTitleBlock />
