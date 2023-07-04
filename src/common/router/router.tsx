@@ -1,5 +1,5 @@
 import { createHashRouter } from 'react-router-dom'
-import App from 'app/App'
+import App from 'app/components/App'
 import { Login } from 'features/auth/login/Login'
 import { Register } from 'features/auth/register/Register'
 import { ProfilePage } from 'features/profile/components/ProfilePage'

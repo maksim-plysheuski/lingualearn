@@ -1,6 +1,6 @@
 import { useAppDispatch, useAppSelector } from "common/hooks";
 import { useEffect } from "react";
-import { appActions } from 'app/app.slice'
+import { appActions } from 'app/components/app.slice'
 import { toast, ToastContainer } from 'react-toastify'
 
 
