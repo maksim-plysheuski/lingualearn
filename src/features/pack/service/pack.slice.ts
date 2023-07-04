@@ -1,5 +1,5 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
-import { FetchPackT, ResponsePack } from 'features/pack/service/type'
+import { AddPackT, FetchPackT, ResponseAddPack, ResponsePack } from 'features/pack/service/type'
 
 
 export const packApi = createApi({
@@ -8,6 +8,7 @@ export const packApi = createApi({
     baseUrl: 'https://neko-back.herokuapp.com/2.0/',
     credentials: 'include'
   }),
+  tagTypes: ['Packs'],
 
   endpoints: (build) => {
     return {
@@ -18,12 +19,24 @@ export const packApi = createApi({
             url: 'cards/pack',
             params: params
           }
+        },
+        providesTags: ['Packs']
+      }),
+      addPack: build.mutation<ResponseAddPack, AddPackT>({
+          query: (arg) => {
+            return {
+              method: 'POST',
+              url: 'cards/pack',
+              body: { cardsPack: arg }
+            }
+          },
+          invalidatesTags: ['Packs']
         }
-      })
+      )
 
     }
   }
 })
 
 
-export const { useGetPacksQuery } = packApi
+export const { useGetPacksQuery, useAddPackMutation } = packApi

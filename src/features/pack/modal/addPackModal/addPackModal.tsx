@@ -1,14 +1,12 @@
 import { BaseModal } from 'common/components/baseModal/BaseModal'
 import { InputCastom } from 'common/components/baseModal/inputCastom/InputCastom'
 import { UniversalButton } from 'common/components/universalButton/UniversalButton'
-import { useAppDispatch } from 'common/hooks'
 import React, { useState } from 'react'
-import { packsThunks } from '../../packs.slice'
-
+import { useAddPackMutation } from 'features/pack/service'
 
 
 export const AddPackModal = () => {
-  const dispatch = useAppDispatch()
+  const [addPack] = useAddPackMutation()
   const [open, setOpen] = useState<boolean>(false)
   const [valuePack, setValueCard] = useState<string>('')
   const [privatePack, setPrivatePack] = useState<boolean>(false)
@@ -16,7 +14,7 @@ export const AddPackModal = () => {
 
   const addPackHandler = async () => {
     setDisable(true)
-    await dispatch(packsThunks.createPack({ name: valuePack, private: privatePack }))
+    await addPack({name:valuePack})
     setValueCard('')
     setOpen(false)
     setDisable(false)

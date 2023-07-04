@@ -1,26 +1,28 @@
-import { memo, useState } from 'react'
+import { memo, useEffect, useState } from 'react'
 import Box from '@mui/material/Box'
 import Slider from '@mui/material/Slider'
 import s from 'features/pack/components/searchBar/countSearch/style.module.scss'
 import { sliderStyle } from 'features/pack/components/searchBar/countSearch/style'
 import { useGetPacksQuery } from 'features/pack/service/pack.slice'
-import { useAppDispatch } from 'common/hooks'
+import { useAppDispatch, useAppSelector } from 'common/hooks'
 import { setPackParams } from 'features/pack/service/sortPackSlice'
+import { maxPackSelect, minPackSelect } from 'features/pack/service'
 
 export const CountSearch = memo(() => {
   const dispatch = useAppDispatch()
+  const min = useAppSelector(minPackSelect)
+  const max = useAppSelector(maxPackSelect)
   const { data } = useGetPacksQuery({})
 
-  const [value, setValue] = useState<number[]>([+data!.minCardsCount, +data!.maxCardsCount])
+  const [value, setValue] = useState<number[]>([data!.minCardsCount, data!.maxCardsCount])
 
+  useEffect(() => {
+    if (min === undefined && max === undefined) setValue([data!.minCardsCount, data!.maxCardsCount])
+  }, [min, max])
 
-  const handleChange = (event: Event, newValue: number | number[]) => {
-    setValue(newValue as number [])
-  }
+  const handleChange = (event: Event, newValue: number | number[]) => setValue(newValue as number [])
 
-  const onChangeCommittedHandler = () => {
-    dispatch(setPackParams({ min: value[0], max: value[1] }))
-  }
+  const onChangeCommittedHandler = () => dispatch(setPackParams({ min: value[0], max: value[1] }))
 
   return (
     <div className={s.container}>

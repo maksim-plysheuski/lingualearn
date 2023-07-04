@@ -19,8 +19,8 @@ const tableCellStyle = {
 
 export const PacksTableBody = () => {
 
-
-  const { data } = useGetPacksQuery({})
+  const sortPackParams = useAppSelector(state => state.sortPackSlice.packParams)
+  const { data } = useGetPacksQuery(sortPackParams)
 
   const openSelectedPack = (packId: string) => {
   }
