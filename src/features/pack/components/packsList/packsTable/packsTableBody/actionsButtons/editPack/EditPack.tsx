@@ -3,7 +3,7 @@ import * as React from 'react'
 import { Zoom } from '@mui/material'
 import { useAppSelector } from 'common/hooks'
 import Tooltip from '@mui/material/Tooltip'
-import { EditPackModal } from 'features/pack/modal/editPackModal/EditPackModal'
+import { EditPackModal } from 'features/pack/components/modal/editPackModal/EditPackModal'
 import { TPack } from 'features/pack/packApi'
 
 type Props = {

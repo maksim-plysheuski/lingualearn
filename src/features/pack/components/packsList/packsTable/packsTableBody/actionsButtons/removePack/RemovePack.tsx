@@ -3,7 +3,7 @@ import * as React from 'react'
 import { Zoom } from '@mui/material'
 import { useAppSelector } from 'common/hooks'
 import Tooltip from '@mui/material/Tooltip'
-import { RemovePackModal } from 'features/pack/modal/removePackModal/removePackModal'
+import { RemovePackModal } from 'features/pack/components/modal/removePackModal/removePackModal'
 import {
   iconStyle
 } from 'features/pack/components/packsList/packsTable/packsTableBody/actionsButtons/editPack/EditPack'

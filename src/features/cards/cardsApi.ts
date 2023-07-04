@@ -3,9 +3,9 @@ import { instance } from 'common/api/common.api'
 
 export const cardsApi = {
   getCards: (arg: TGetCardsArgs) => {
-    return instance.get<TGetCardsResponse>('cards/card', { params: arg  }).then(res => res.data)
+    return instance.get<TGetCardsResponse>('cards/card', { params: arg }).then(res => res.data)
   },
-  createCard: (arg: TCreateArg) => {
+  createCard: (arg: TCreateCardArg) => {
     return instance.post<TCreateResponse>('cards/card', { card: arg }).then(res => res.data)
   },
   deleteCard: (arg: TDeleteArg) => {
@@ -54,7 +54,7 @@ export type TCard = {
   _id: string
 }
 
-export type TCreateArg = {
+export type TCreateCardArg = {
   cardsPack_id: string
   question?: string
   answer?: string

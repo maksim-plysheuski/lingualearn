@@ -1,18 +1,18 @@
 import LogoutIcon from '@mui/icons-material/Logout'
-import s from 'features/profile/components/ProfilePage.module.scss'
+import s from './ProfilePage.module.scss'
 import { EditableTitle } from 'common/components/editableTitle/EditableTitle'
 import { SuperButton } from 'common/components/superButton/SuperButton'
 import { authThunks } from 'features/auth/auth.slice'
 import { useAppDispatch, useAppSelector } from 'common/hooks'
 import { BackLink } from 'common/components/backLink/BackLink'
 import { ProfileAva } from './profileAva/ProfileAva'
+import { loadingSelect } from 'app'
 
 
 export const ProfilePage = () => {
   const dispatch = useAppDispatch()
   const profile = useAppSelector(state => state.profile.profile)
-  const isLoading = useAppSelector(state => state.app.isLoading)
-
+  const isLoading = useAppSelector(loadingSelect)
 
   const logoutHandler = () => {
     dispatch(authThunks.logout())

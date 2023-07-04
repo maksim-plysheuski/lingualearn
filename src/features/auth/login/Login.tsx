@@ -1,6 +1,6 @@
 import { useForm, SubmitHandler } from 'react-hook-form'
 import { Checkbox, FormControl } from '@mui/material'
-import s from 'features/auth/login/styles.module.scss'
+import s from './styles.module.scss'
 import { Link } from 'react-router-dom'
 import { authThunks } from 'features/auth/auth.slice'
 import { yupResolver } from '@hookform/resolvers/yup'
@@ -12,13 +12,14 @@ import { useAppDispatch, useAppSelector } from 'common/hooks'
 import { paths } from 'common/router/path'
 import { toast } from 'react-toastify'
 import * as React from 'react'
+import { loadingSelect } from 'app'
 
 
 type InputsType = yup.InferType<typeof loginSchema>
 
 export const Login = () => {
   const dispatch = useAppDispatch()
-  const isLoading = useAppSelector(state => state.app.isLoading)
+  const isLoading = useAppSelector(loadingSelect)
 
   const { register, handleSubmit, formState: { errors }, getFieldState } = useForm<InputsType>({
     mode: 'onTouched',

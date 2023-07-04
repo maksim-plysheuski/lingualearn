@@ -1,5 +1,5 @@
 import React from 'react'
-import s from 'features/auth/changePassword/style.module.scss'
+import s from './style.module.scss'
 import * as yup from 'yup'
 import { SubmitHandler, useForm } from 'react-hook-form'
 import { yupResolver } from '@hookform/resolvers/yup'
@@ -10,13 +10,14 @@ import { passwordSchema } from 'features/auth/changePassword/passwordSchema'
 import { useAppDispatch, useAppSelector } from 'common/hooks'
 import { SuperButton } from 'common/components/superButton/SuperButton'
 import { paths } from 'common/router/path'
+import { loadingSelect } from 'app'
 
 
 type Type = yup.InferType<typeof passwordSchema>
 
 export const ChangePasswordPage = () => {
   const navigate = useNavigate()
-  const isLoading = useAppSelector(state => state.app.isLoading)
+  const isLoading = useAppSelector(loadingSelect)
 
   const {
     register,

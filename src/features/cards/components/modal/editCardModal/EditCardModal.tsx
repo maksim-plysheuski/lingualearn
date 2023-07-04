@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { BaseModal } from 'common/components/baseModal/BaseModal'
-import { SelectTextImg, SelectType } from 'features/cards/components/modal/addCard/select/SelectTextImg'
+import { SelectTextImg, SelectType } from 'features/cards/components/modal/addCardModal/select/SelectTextImg'
 import { InputCustom } from 'common/components/baseModal/inputCastom/InputCustom'
 import s from './style.module.scss'
 import DriveFileRenameOutlineIcon from '@mui/icons-material/DriveFileRenameOutline'

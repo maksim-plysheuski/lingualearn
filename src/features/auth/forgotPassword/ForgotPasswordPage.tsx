@@ -1,4 +1,4 @@
-import s from 'features/auth/forgotPassword/style.module.scss'
+import s from './style.module.scss'
 import { FormControl } from '@mui/material'
 import { InputEmail } from 'common/components/Inputs/InputEmail'
 import { Link } from 'react-router-dom'
@@ -13,12 +13,13 @@ import { useState } from 'react'
 import { CheckEmailPage } from 'features/auth/checkEmail/CheckEmailPage'
 import { emailMessage } from 'features/auth/forgotPassword/emailMessage'
 import { useAppSelector } from 'common/hooks'
+import { loadingSelect } from 'app'
 
 type InputType = yup.InferType<typeof emailSchema>
 
 export const ForgotPasswordPage = () => {
   const [showCheckEmail, setShowCheckEmail] = useState<boolean>(false)
-  const isLoading = useAppSelector(state => state.app.isLoading)
+  const isLoading = useAppSelector(loadingSelect)
   const { register, handleSubmit, formState: { errors }, getFieldState, getValues } = useForm<InputType>({
     mode: 'onTouched',
     resolver: yupResolver(emailSchema)

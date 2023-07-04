@@ -1,6 +1,6 @@
-import s from './styles.module.scss'
+import s from 'features/pack/components/modal/common/packBodyModal/styles.module.scss'
 import { InputCustom } from 'common/components/baseModal/inputCastom/InputCustom'
-import { CoverModalBlock } from 'features/cards/components/modal/cardsModalContent/CoverModalBlock'
+import { ImageBlockModal } from 'common/components/imageBlockModal/ImageBlockModal'
 import { Checkbox } from '@mui/material'
 import React, { FC } from 'react'
 
@@ -14,7 +14,7 @@ type Props = {
   setPackCover: (newCover: string) => void
 }
 
-export const PackModalContent: FC<Props> = (
+export const PackBodyModal: FC<Props> = (
   {
     packValue,
     packCover,
@@ -26,7 +26,7 @@ export const PackModalContent: FC<Props> = (
 
   return (
     <>
-      <CoverModalBlock coverImage={packCover} setCoverImage={setPackCover} />
+      <ImageBlockModal coverImage={packCover} setCoverImage={setPackCover} />
       <div className={s.packNameBlock}>
         <InputCustom label={'Name Pack'} value={packValue} setValue={setPackValue} />
         <div className={s.checkBoxContainer}>

@@ -1,12 +1,12 @@
 import { BaseModal } from 'common/components/baseModal/BaseModal'
 import { useAppDispatch, useAppSelector } from 'common/hooks'
 import React, { useState } from 'react'
-import { packsThunks } from '../../packs.slice'
+import { packsThunks } from 'features/pack/packs.slice'
 import DriveFileRenameOutlineIcon from '@mui/icons-material/DriveFileRenameOutline'
 import { TPack } from 'features/pack/packApi'
 import { toast } from 'react-toastify'
 import { selectPackId, selectPackName, selectPrivatePack } from 'features/cards/selectors/cards.selector'
-import { PackModalContent } from 'features/pack/modal/packModalContent/PackModalContent'
+import { PackBodyModal } from 'features/pack/components/modal/common/packBodyModal/PackBodyModal'
 
 type Props = {
   handleCloseMenu?: () => void
@@ -57,12 +57,12 @@ export const EditPackModal = (props: Props) => {
                buttonOpen={<DriveFileRenameOutlineIcon />}
 
     >
-      <PackModalContent packValue={inputValue}
-                        packCover={packCover}
-                        isPrivatePack={isPrivatePack}
-                        setPackValue={setInputValue}
-                        setPackCover={setPackCover}
-                        setIsPrivate={setIsPrivatePack} />
+      <PackBodyModal packValue={inputValue}
+                     packCover={packCover}
+                     isPrivatePack={isPrivatePack}
+                     setPackValue={setInputValue}
+                     setPackCover={setPackCover}
+                     setIsPrivate={setIsPrivatePack} />
     </BaseModal>
   )
 }

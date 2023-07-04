@@ -1,4 +1,4 @@
-import s from 'features/auth/register/style.module.scss'
+import s from './style.module.scss'
 import { SubmitHandler, useForm } from 'react-hook-form'
 import * as yup from 'yup'
 import { yupResolver } from '@hookform/resolvers/yup'
@@ -9,6 +9,7 @@ import { registerSchema } from 'features/auth/register/registerSchema'
 import { useAppDispatch, useAppSelector } from 'common/hooks'
 import { paths } from 'common/router/path'
 import { SuperButton } from 'common/components/superButton/SuperButton'
+import { loadingSelect } from 'app'
 
 
 type Type = yup.InferType<typeof registerSchema>
@@ -16,7 +17,7 @@ type Type = yup.InferType<typeof registerSchema>
 
 export const Register = () => {
   const dispatch = useAppDispatch()
-  const isLoading = useAppSelector(state => state.app.isLoading)
+  const isLoading = useAppSelector(loadingSelect)
   const navigate = useNavigate()
   const { register, handleSubmit, formState: { errors }, getFieldState } = useForm<Type>({
     mode: 'onTouched',

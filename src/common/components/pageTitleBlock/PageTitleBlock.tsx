@@ -1,7 +1,7 @@
 import s from './style.module.scss'
 import * as React from 'react'
 import { useAppSelector } from 'common/hooks'
-import { AddPackModal } from 'features/pack/modal/addPackModal/addPackModal'
+import { AddPackModal } from 'features/pack/components/modal/addPackModal/addPackModal'
 import { selectPackUserId } from 'features/cards/selectors'
 
 

@@ -1,30 +1,29 @@
 import { BaseModal } from 'common/components/baseModal/BaseModal'
 import { SuperButton } from 'common/components/superButton/SuperButton'
-import { useAppDispatch } from 'common/hooks'
+import { useAppDispatch, useAppSelector } from 'common/hooks'
 import React, { useState } from 'react'
-import { packsThunks } from '../../packs.slice'
+import { packsThunks } from 'features/pack/packs.slice'
 import { toast } from 'react-toastify'
-import { PackModalContent } from 'features/pack/modal/packModalContent/PackModalContent'
+import { PackBodyModal } from 'features/pack/components/modal/common/packBodyModal/PackBodyModal'
+import { loadingSelect } from 'app'
 
 
 export const AddPackModal = () => {
   const dispatch = useAppDispatch()
+  const isLoading = useAppSelector(loadingSelect)
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false)
   const [packCover, setPackCover] = useState<string>('')
   const [packName, setPackName] = useState<string>('')
   const [isPrivatePack, setIsPrivatePack] = useState<boolean>(false)
-  const [isButtonDisabled, setIsButtonDisabled] = useState<boolean>(false)
 
   const addPackHandler = async () => {
-    setIsButtonDisabled(true)
     const newPack = { name: packName, private: isPrivatePack, deckCover: packCover }
     await dispatch(packsThunks.createPack(newPack)).unwrap()
-      .then((res) => toast.info(`New pack ${res.newCardsPack.name} has been successfully created`))
+      .then((res) => toast.info(`New pack ${res.newCardsPack.name} has been created`))
       .catch((err) => toast.error(err.e.response ? err.e.response.data.error : err.e.message))
       .finally(() => {
         setIsModalOpen(false)
         setPackName('')
-        setIsButtonDisabled(false)
       })
   }
 
@@ -32,18 +31,18 @@ export const AddPackModal = () => {
     <BaseModal title={'Add New Pack'}
                titleButtonAction={'Add New Pack'}
                open={isModalOpen}
-               isButtonDisabled={isButtonDisabled}
+               isButtonDisabled={isLoading}
                setOpen={setIsModalOpen}
                actionCallback={addPackHandler}
                buttonOpen={<SuperButton title={'Add New Pack'} width={'175'} />}
 
     >
-      <PackModalContent packValue={packName}
-                        packCover={packCover}
-                        isPrivatePack={isPrivatePack}
-                        setPackValue={setPackName}
-                        setPackCover={setPackCover}
-                        setIsPrivate={setIsPrivatePack} />
+      <PackBodyModal packValue={packName}
+                     packCover={packCover}
+                     isPrivatePack={isPrivatePack}
+                     setPackValue={setPackName}
+                     setPackCover={setPackCover}
+                     setIsPrivate={setIsPrivatePack} />
     </BaseModal>
   )
 }

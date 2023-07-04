@@ -1,5 +1,5 @@
 import React from 'react'
-import s from './style.module.scss'
+import s from 'features/cards/components/modal/addCardModal/select/style.module.scss'
 import { selectOptionsStyle, selectorStyle } from 'common/components/paginator/style'
 import MenuItem from '@mui/material/MenuItem'
 import { Select, SelectChangeEvent } from '@mui/material'
@@ -29,6 +29,5 @@ export const SelectTextImg = (props: Props) => {
         <MenuItem value={'Picture'}>Picture</MenuItem>
       </Select>
     </div>
-
   )
 }

@@ -72,7 +72,7 @@ const changeCard = createAppAsyncThunk<unknown, TUpdateArg>
 })
 
 
-const createCard = createAppAsyncThunk<TCreateResponse, { question: string, answer: string, }>
+const createCard = createAppAsyncThunk<TCreateResponse, { question?: string, answer?: string, answerImg?: string, questionImg?: string }>
 ('cards/addCard', (arg, thunkAPI) => {
     const cardsPack_id = thunkAPI.getState().cards.cardsParams.cardsPack_id
     return thunkTryCatch(thunkAPI, async () => {
