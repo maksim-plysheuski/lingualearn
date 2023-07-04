@@ -2,10 +2,10 @@ import React, { useState } from 'react'
 import { BaseModal } from 'common/components/baseModal/BaseModal'
 import { SelectTextImg, SelectType } from 'features/cards/components/modal/addCard/select/SelectTextImg'
 import { InputCustom } from 'common/components/baseModal/inputCastom/InputCustom'
-import s from 'features/cards/components/modal/addCard/addCardModal/style.module.scss'
-import { cardsThunks } from '../../../../cards.slice'
+import s from './style.module.scss'
 import { SuperButton } from 'common/components/superButton/SuperButton'
 import { useAppDispatch } from 'common/hooks'
+import { cardsThunks } from 'features/cards/cards.slice'
 
 
 
