@@ -1,14 +1,27 @@
 import React from 'react'
 import { Paginator } from 'common/components/paginator/Paginator'
-import { useSearchPaks } from 'features/pack/hook/useSearchPaks'
+import { useGetPacksQuery } from 'features/pack/service/pack.slice'
+import { useAppDispatch, useAppSelector } from 'common/hooks'
+import { setPackParams } from 'features/pack/service/sortPackSlice'
+import { pageCountSelect, pagePackSelect } from 'features/pack/service/selectors'
 
 export const PaginatorPacks = () => {
-  const { pageSize, page, cardPacksTotalCount, getNewPage } = useSearchPaks()
+  const dispatch = useAppDispatch()
+  const { data, isLoading } = useGetPacksQuery({})
 
+  const pagePack = useAppSelector(pagePackSelect)
+  const pageCountPack = useAppSelector(pageCountSelect)
+
+  const getNewPage = (page: number, size: number) => {
+    dispatch(setPackParams({ page, pageCount: size }))
+  }
+
+  if (isLoading) return <></>
   return (
-    <Paginator pageCount={pageSize}
-               page={page}
-               totalCount={cardPacksTotalCount}
+
+    <Paginator pageCount={pageCountPack ?? 4}
+               page={pagePack ?? 1}
+               totalCount={data!.cardPacksTotalCount}
                getNewPage={getNewPage}
     />
   )

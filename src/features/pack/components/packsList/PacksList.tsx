@@ -4,12 +4,16 @@ import s from 'features/pack/components/packsList/style.module.scss'
 import { PageTitleBlock } from 'common/components/pageTitleBlock/PageTitleBlock'
 import { PaginatorPacks } from 'features/pack/components/paginatorPaks/paginatorPacks'
 import { useGetPacksQuery } from 'features/pack/service/pack.slice'
+import { useAppSelector } from 'common/hooks'
 
 
 export const PacksList = () => {
 
+  const sortPackParams = useAppSelector(state => state.sortPackSlice.packParams)
+  const { isLoading } = useGetPacksQuery(sortPackParams)
 
-  const { data, isLoading } = useGetPacksQuery({})
+  if (isLoading) return <></>
+
   return (
     <div className={s.packsList}>
       <PageTitleBlock />

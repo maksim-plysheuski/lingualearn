@@ -61,15 +61,14 @@ export const Paginator = (props: Props) => {
         variant={'text'}
         sx={paginationSx}
         count={Math.ceil(totalCount / pageCount) || 0}
-        page={page}
         onChange={paginationHandler}
-
+        defaultValue={page}
       />
       <div>
         <span>Show</span>
         <Select
           sx={selectorSx}
-          value={pageCount ? String(pageCount) : '4'}
+          defaultValue={String(pageCount)}
           onChange={selectHandler}
           MenuProps={{ sx: selectorMenuSx }}
         >

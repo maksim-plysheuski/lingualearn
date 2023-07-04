@@ -1,5 +1,5 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
-import { FetchPackT } from 'features/pack/service/type'
+import { FetchPackT, ResponsePack } from 'features/pack/service/type'
 
 
 export const packApi = createApi({
@@ -11,7 +11,7 @@ export const packApi = createApi({
 
   endpoints: (build) => {
     return {
-      getPacks: build.query<any, FetchPackT>({
+      getPacks: build.query<ResponsePack, FetchPackT>({
         query: (params) => {
           return {
             method: 'GET',
@@ -19,7 +19,7 @@ export const packApi = createApi({
             params: params
           }
         }
-      }),
+      })
 
     }
   }

@@ -1,18 +1,15 @@
 import s from './style.module.scss'
 import * as React from 'react'
-import { useAppSelector } from 'common/hooks'
 import { AddPackModal } from 'features/pack/modal/addPackModal/addPackModal'
+import { useAppSelector } from 'common/hooks'
 
 
 export const PageTitleBlock = () => {
-  const packOwnerId = useAppSelector(state => state.cards.cards.packUserId)
-  const userId = useAppSelector(state => state.profile.profile?._id)
+  const packParamsUserId = useAppSelector(state => state.sortPackSlice.packParams.user_id)
 
   return (
     <div className={s.addPackBlock}>
-      <h2>
-        {packOwnerId === userId ? 'My Pack' : 'Friends Pack'}
-      </h2>
+      <h2>Packs</h2>
       <AddPackModal />
     </div>
   )

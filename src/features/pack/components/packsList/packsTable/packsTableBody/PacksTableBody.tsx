@@ -7,6 +7,7 @@ import { useGetPacksQuery } from 'features/pack/service/pack.slice'
 import {
   LearnPack
 } from 'features/pack/components/packsList/packsTable/packsTableBody/actionsButtons/learnPack/LearnPack'
+import { useAppSelector } from 'common/hooks'
 
 const tableCellStyle = {
   wordWrap: 'break-word',
@@ -19,16 +20,15 @@ const tableCellStyle = {
 export const PacksTableBody = () => {
 
 
-  const { data: packs, isLoading } = useGetPacksQuery({})
+  const { data } = useGetPacksQuery({})
 
-  console.log(packs)
   const openSelectedPack = (packId: string) => {
   }
-  if (isLoading) return <></>
+
 
   return (
     <TableBody>
-      {packs.cardPacks?.map((pack: any) => (
+      {data!.cardPacks?.map((pack: any) => (
         <TableRow key={pack._id}>
           <TableCell sx={{
             ...tableCellStyle,
