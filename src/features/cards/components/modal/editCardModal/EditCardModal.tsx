@@ -41,7 +41,7 @@ export const EditCardsModal = (props: Props) => {
         setOpen={setOpen}
         actionCallback={editCards}
         titleButtonAction={'Save Changes'}
-        disable={disable}
+        isButtonDisabled={disable}
       >
         <div className={s.newCardContainer}>
           <SelectTextImg select={select} setSelect={setSelect} />

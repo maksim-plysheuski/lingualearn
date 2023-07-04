@@ -1,9 +1,9 @@
 import React, { useState } from 'react'
 import { BaseModal } from 'common/components/baseModal/BaseModal'
 import s from './style.module.scss'
-import { useAppDispatch } from '../../../../../common/hooks'
+import { useAppDispatch } from 'common/hooks'
 import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline'
-import { cardsThunks } from '../../../cards.slice'
+import { cardsThunks } from 'features/cards/cards.slice'
 
 type Props = {
   cardId: string
@@ -33,7 +33,7 @@ export const RemoveCardModal = (props: Props) => {
         setOpen={setOpen}
         actionCallback={editCards}
         titleButtonAction={'Delete Pack'}
-        disable={disable}
+        isButtonDisabled={disable}
       >
         <div className={s.textContainer}>
           Do you really want to remove?

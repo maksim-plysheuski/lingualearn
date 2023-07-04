@@ -51,7 +51,7 @@ export const EditPackModal = (props: Props) => {
     <BaseModal title={'Edit Pack'}
                titleButtonAction={'Save Changes'}
                open={isModalOpen}
-               disable={isButtonDisabled}
+               isButtonDisabled={isButtonDisabled}
                setOpen={setIsModalOpen}
                actionCallback={updatePack}
                buttonOpen={<DriveFileRenameOutlineIcon />}

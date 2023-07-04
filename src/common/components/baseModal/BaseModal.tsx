@@ -30,11 +30,11 @@ type Props = {
   titleButtonAction: string
   setOpen: (open: boolean) => void
   actionCallback: () => void
-  disable: boolean
+  isButtonDisabled: boolean
 }
 
 export const BaseModal = (props: Props) => {
-  const { children, buttonOpen, title, open, setOpen, actionCallback, titleButtonAction, disable } = props
+  const { children, buttonOpen, title, open, setOpen, actionCallback, titleButtonAction, isButtonDisabled } = props
 
   const handleOpen = () => setOpen(true)
   const handleClose = () => setOpen(false)
@@ -55,7 +55,7 @@ export const BaseModal = (props: Props) => {
           <div className={s.containerChildren}>{children}</div>
           <div className={s.buttonContainer}>
             <SuperButton title={'Cancel'} onClickCallback={handleClose} isGrayColor={true} width={'100'} />
-            <SuperButton title={titleButtonAction} onClickCallback={actionCallback} width={'148'} disabled={disable} />
+            <SuperButton title={titleButtonAction} onClickCallback={actionCallback} width={'148'} disabled={isButtonDisabled} />
           </div>
         </Box>
       </Modal>

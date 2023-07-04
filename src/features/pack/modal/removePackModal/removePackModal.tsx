@@ -45,7 +45,7 @@ export const RemovePackModal = (props: Props) => {
                buttonOpen={<DeleteOutlineIcon />}
                actionCallback={removePackHandler}
                titleButtonAction={'Delete Pack'}
-               disable={disable}
+               isButtonDisabled={disable}
     >
       <div className={s.childrenContainer}>
         {`Do you really want to remove ${props.packName ? props.packName : packName}? All cards will be deleted.`}

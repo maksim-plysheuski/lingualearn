@@ -11,14 +11,14 @@ import { useAppDispatch } from 'common/hooks'
 
 export const AddCardsModal = () => {
   const dispatch = useAppDispatch()
-  const [open, setOpen] = useState(false)
-  const [select, setSelect] = useState<SelectType>('Text')
+  const [isModalOpen, setIsModalOpen] = useState(false)
+  const [selectValue, setSelectValue] = useState<SelectType>('Text')
   const [question, setQuestion] = useState<string>('')
   const [answer, setAnswer] = useState<string>('')
 
   const createNewCards = async () => {
     await dispatch(cardsThunks.createCard({ question, answer }))
-    setOpen(false)
+    setIsModalOpen(false)
     setQuestion('')
     setAnswer('')
   }
@@ -29,13 +29,13 @@ export const AddCardsModal = () => {
         titleButtonAction={'Add New Card'}
         buttonOpen={<SuperButton width={'184'} title={'Add New Card'} />}
         title={'Add New Card'}
-        open={open}
-        setOpen={setOpen}
+        open={isModalOpen}
+        setOpen={setIsModalOpen}
         actionCallback={createNewCards}
-        disable={false}
+        isButtonDisabled={false}
       >
         <div className={s.newCardContainer}>
-          <SelectTextImg select={select} setSelect={setSelect} />
+          <SelectTextImg select={selectValue} setSelect={setSelectValue} />
           <div className={s.input}>
             <InputCustom label={'Question'} value={question} setValue={setQuestion} />
             <InputCustom label={'Answer'} value={answer} setValue={setAnswer} />

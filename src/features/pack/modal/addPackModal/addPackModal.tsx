@@ -32,7 +32,7 @@ export const AddPackModal = () => {
     <BaseModal title={'Add New Pack'}
                titleButtonAction={'Add New Pack'}
                open={isModalOpen}
-               disable={isButtonDisabled}
+               isButtonDisabled={isButtonDisabled}
                setOpen={setIsModalOpen}
                actionCallback={addPackHandler}
                buttonOpen={<SuperButton title={'Add New Pack'} width={'175'} />}
