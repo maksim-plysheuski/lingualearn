@@ -1,21 +1,19 @@
 import React, { useState } from 'react'
 import { BaseModal } from 'common/components/baseModal/BaseModal'
-import { SelectTextImg, SelectType } from 'features/cards/components/modal/addCardModal/select/SelectTextImg'
-import { InputCustom } from 'common/components/baseModal/inputCastom/InputCustom'
-import s from 'features/cards/components/modal/addCardModal/addCardModal/style.module.scss'
+import { QuestionSelectType } from 'features/cards/components/modal/addCardModal/select/SelectTextImg'
 import { SuperButton } from 'common/components/superButton/SuperButton'
 import { useAppDispatch, useAppSelector } from 'common/hooks'
 import { cardsThunks } from 'features/cards/cards.slice'
-import { ImageBlockModal } from 'common/components/imageBlockModal/ImageBlockModal'
 import { toast } from 'react-toastify'
 import { loadingSelect } from 'app'
+import { CardsBodyModal } from 'features/cards/components/modal/common/cardsBodyModal/CardsBodyModal'
 
 
 export const AddCardsModal = () => {
   const dispatch = useAppDispatch()
   const isLoading = useAppSelector(loadingSelect)
   const [isModalOpen, setIsModalOpen] = useState(false)
-  const [selectValue, setSelectValue] = useState<SelectType>('Text')
+  const [selectValue, setSelectValue] = useState<QuestionSelectType>('Text')
   const [question, setQuestion] = useState<string>('')
   const [answer, setAnswer] = useState<string>('')
   const [questionImg, setQuestionImg] = useState<string>('')
@@ -47,28 +45,28 @@ export const AddCardsModal = () => {
     <>
       <BaseModal
         titleButtonAction={'Add New Card'}
-        buttonOpen={<SuperButton width={'184'} title={'Add New Card'} />}
         title={'Add New Card'}
         open={isModalOpen}
+        isButtonDisabled={isLoading}
         setOpen={setIsModalOpen}
         actionCallback={createNewCards}
-        isButtonDisabled={isLoading}
+        buttonOpen={<SuperButton width={'184'} title={'Add New Card'} />}
       >
-        <div className={s.newCardContainer}>
-          <SelectTextImg select={selectValue} setSelect={setSelectValue} />
-          {selectValue === 'Text'
-            ? <div className={s.input}>
-              <InputCustom label={'Question'} value={question} setValue={setQuestion} />
-              <InputCustom label={'Answer'} value={answer} setValue={setAnswer} />
-            </div>
-            : <>
-              <ImageBlockModal coverTitle={'Question:'} coverImage={questionImg} setCoverImage={setQuestionImg} />
-              <ImageBlockModal coverTitle={'Answer:'} coverImage={answerImg} setCoverImage={setAnswerImg} />
-            </>
-          }
-        </div>
+        <CardsBodyModal answer={answer}
+                        question={question}
+                        answerImg={answerImg}
+                        questionImg={questionImg}
+                        selectValue={selectValue}
+                        setAnswer={setAnswer}
+                        setQuestion={setQuestion}
+                        setAnswerImg={setAnswerImg}
+                        setQuestionImg={setQuestionImg}
+                        setSelectValue={setSelectValue}
+        />
       </BaseModal>
     </>
   )
 }
+
+
 

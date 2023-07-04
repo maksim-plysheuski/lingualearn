@@ -33,7 +33,11 @@ export const CardsTableBody = () => {
               <Rating value={card.grade} readOnly precision={0.5}
                       emptyIcon={<StarBorderIcon sx={{ color: '#faaf00' }} />} />
             </TableCell>
-            {whoseCards && <FieldButtons cardId={card._id} questionValue={card.question} answerValue={card.answer} />}
+            {whoseCards && <FieldButtons cardId={card._id}
+                                         questionValue={card.question}
+                                         answerValue={card.answer}
+                                         questionImg={card.questionImg}
+                                         answerImg={card.answerImg} />}
           </TableRow>
         )
       })}

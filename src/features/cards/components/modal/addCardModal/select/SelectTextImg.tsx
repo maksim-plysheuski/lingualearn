@@ -1,20 +1,20 @@
 import React from 'react'
-import s from 'features/cards/components/modal/addCardModal/select/style.module.scss'
+import s from './style.module.scss'
 import { selectOptionsStyle, selectorStyle } from 'common/components/paginator/style'
 import MenuItem from '@mui/material/MenuItem'
 import { Select, SelectChangeEvent } from '@mui/material'
 
-export type SelectType = 'Text' | 'Picture'
+export type QuestionSelectType = 'Text' | 'Picture'
 type Props = {
-  select: SelectType
-  setSelect: (select: SelectType) => void
+  select: QuestionSelectType
+  setSelect: (select: QuestionSelectType) => void
 }
 
 export const SelectTextImg = (props: Props) => {
   const { select, setSelect } = props
 
   const handleChange = (event: SelectChangeEvent) => {
-    setSelect(event.target.value as SelectType)
+    setSelect(event.target.value as QuestionSelectType)
   }
   return (
     <div className={s.selectContainer}>

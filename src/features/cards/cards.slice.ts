@@ -8,7 +8,7 @@ import {
   TDeleteArg,
   TGetCardsArgs,
   TGetCardsResponse,
-  TUpdateArg
+  TUpdateCardArg, TUpdateCardResponse
 } from 'features/cards/cardsApi'
 import { thunkTryCatch } from 'common/utils/thunk-try-catch'
 import { packsThunks } from 'features/pack/packs.slice'
@@ -61,27 +61,26 @@ const removeCard = createAppAsyncThunk<unknown, TDeleteArg>
   })
 })
 
-const changeCard = createAppAsyncThunk<unknown, TUpdateArg>
+const updateCard = createAppAsyncThunk<TUpdateCardResponse, TUpdateCardArg>
 ('cards/changeCard', (arg, thunkAPI) => {
   const cardsPack_id = thunkAPI.getState().cards.cardsParams.cardsPack_id
   return thunkTryCatch(thunkAPI, async () => {
-      await cardsApi.updateCard(arg)
-      await thunkAPI.dispatch(cardsThunks.fetchCards({ cardsPack_id }))
-    }
-  )
+    const res = await cardsApi.updateCard(arg)
+    await thunkAPI.dispatch(cardsThunks.fetchCards({ cardsPack_id }))
+    return res
+  }, false)
 })
 
 
 const createCard = createAppAsyncThunk<TCreateResponse, { question?: string, answer?: string, answerImg?: string, questionImg?: string }>
 ('cards/addCard', (arg, thunkAPI) => {
-    const cardsPack_id = thunkAPI.getState().cards.cardsParams.cardsPack_id
-    return thunkTryCatch(thunkAPI, async () => {
-      const res = await cardsApi.createCard({ cardsPack_id, ...arg })
-      await thunkAPI.dispatch(cardsThunks.fetchCards({ cardsPack_id }))
-      return res
-    })
-  }
-)
+  const cardsPack_id = thunkAPI.getState().cards.cardsParams.cardsPack_id
+  return thunkTryCatch(thunkAPI, async () => {
+    const res = await cardsApi.createCard({ cardsPack_id, ...arg })
+    await thunkAPI.dispatch(cardsThunks.fetchCards({ cardsPack_id }))
+    return res
+  }, false)
+})
 
 const changeGrade = createAppAsyncThunk<TCard[], TChangeGradeArg & { packId: string }>
 ('cards/changeGrade', async (arg) => {
@@ -93,7 +92,7 @@ const changeGrade = createAppAsyncThunk<TCard[], TChangeGradeArg & { packId: str
 
 export const cardsReducer = slice.reducer
 export const cardsAction = slice.actions
-export const cardsThunks = { fetchCards, changeGrade, createCard, changeCard, removeCard }
+export const cardsThunks = { fetchCards, changeGrade, createCard, updateCard, removeCard }
 
 
 

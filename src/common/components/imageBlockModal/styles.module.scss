@@ -1,8 +1,16 @@
+@import "src/common/style/mixins";
+
 .coverBlock {
   width: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
+
+  .titles {
+    @include text(700, 14px, 24px);
+    align-self: flex-start;
+    margin-top: 15px;
+  }
 
   img {
     width: 100%;
