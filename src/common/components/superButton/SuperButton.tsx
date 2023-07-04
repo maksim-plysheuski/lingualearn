@@ -10,7 +10,6 @@ type PropsType = {
   isLoading?: boolean
   isSpan?: boolean
   isGrayColor?: boolean
-  isDeleteButton? :boolean
   width?: string
   height?: string
   fontSize?: string
@@ -31,7 +30,6 @@ export const SuperButton: React.FC<PropsType> = (
     marginLeft,
     isSpan,
     isGrayColor,
-    isDeleteButton,
     isLoading,
     disabled,
     icon
@@ -69,7 +67,6 @@ export const SuperButton: React.FC<PropsType> = (
     ...baseBntStyle,
     '&:hover': {
       backgroundColor: disabled ? '#4C4C4C' : '#808080',
-      color: isDeleteButton ? '#990f2b' : '#FFFFFF'
     },
     '&.Mui-disabled': {
       backgroundColor: '#4C4C4C'

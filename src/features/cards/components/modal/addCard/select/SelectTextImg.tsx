@@ -22,7 +22,7 @@ export const SelectTextImg = (props: Props) => {
               className={s.select}
       >
         <option value={'Text'} className={s.option}>Text</option>
-        <option value={'Picture'} className={s.option}>Img</option>
+        <option value={'Picture'} className={s.option}>Picture</option>
       </select>
     </div>
 

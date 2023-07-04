@@ -6,6 +6,7 @@ import s from './style.module.scss'
 import { SuperButton } from 'common/components/superButton/SuperButton'
 import { useAppDispatch } from 'common/hooks'
 import { cardsThunks } from 'features/cards/cards.slice'
+import { CoverModalBlock } from 'features/cards/components/modal/cardsModalContent/CoverModalBlock'
 
 
 
@@ -15,6 +16,8 @@ export const AddCardsModal = () => {
   const [selectValue, setSelectValue] = useState<SelectType>('Text')
   const [question, setQuestion] = useState<string>('')
   const [answer, setAnswer] = useState<string>('')
+  const [questionCover, setQuestionCover] = useState<string>('')
+  const [answerCover, setAnswerCover] = useState<string>('')
 
   const createNewCards = async () => {
     await dispatch(cardsThunks.createCard({ question, answer }))
@@ -36,10 +39,18 @@ export const AddCardsModal = () => {
       >
         <div className={s.newCardContainer}>
           <SelectTextImg select={selectValue} setSelect={setSelectValue} />
-          <div className={s.input}>
-            <InputCustom label={'Question'} value={question} setValue={setQuestion} />
-            <InputCustom label={'Answer'} value={answer} setValue={setAnswer} />
-          </div>
+          {selectValue === 'Text'
+            ? <div className={s.input}>
+              <InputCustom label={'Question'} value={question} setValue={setQuestion} />
+              <InputCustom label={'Answer'} value={answer} setValue={setAnswer} />
+            </div>
+            : <>
+                <span className={s.titles}>Question:</span>
+                <CoverModalBlock coverImage={questionCover} setCoverImage={setQuestionCover} />
+                <span className={s.titles}>Answer:</span>
+                <CoverModalBlock coverImage={answerCover} setCoverImage={setAnswerCover} />
+              </>
+          }
         </div>
       </BaseModal>
     </>

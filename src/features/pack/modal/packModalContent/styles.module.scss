@@ -1,27 +1,5 @@
 @import "src/common/style/mixins";
 
-.coverBlock {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-
-  img {
-    width: 100%;
-    min-height: 50px;
-  }
-
-  .buttonContainer {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 100%;
-
-    input {
-      display: none;
-    }
-  }
-}
-
 .packNameBlock {
   margin-top: 23px;
 
