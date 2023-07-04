@@ -2,7 +2,7 @@ import { Pagination, Select, SelectChangeEvent } from '@mui/material'
 import MenuItem from '@mui/material/MenuItem'
 import s from 'common/components/paginator/style.module.scss'
 import { ChangeEvent } from 'react'
-import { paginationSx, selectorMenuSx, selectorSx } from 'common/components/paginator/style'
+import { paginatorStyle, selectOptionsStyle, selectorStyle } from 'common/components/paginator/style'
 
 type Props = {
   pageCount: number
@@ -27,7 +27,7 @@ export const Paginator = (props: Props) => {
       <Pagination
         shape='rounded'
         variant={'text'}
-        sx={paginationSx}
+        sx={paginatorStyle}
         count={Math.ceil(totalCount / pageCount) || 0}
         page={page}
         onChange={paginationHandler}
@@ -35,10 +35,10 @@ export const Paginator = (props: Props) => {
       <div>
         <span>Show</span>
         <Select
-          sx={selectorSx}
+          sx={{ ...selectorStyle, width: '60px', ml: 1, mr: 1 }}
           value={pageCount ? String(pageCount) : '4'}
           onChange={selectHandler}
-          MenuProps={{ sx: selectorMenuSx }}
+          MenuProps={{ sx: selectOptionsStyle }}
         >
           <MenuItem value={'4'}>4</MenuItem>
           <MenuItem value={'8'}>8</MenuItem>

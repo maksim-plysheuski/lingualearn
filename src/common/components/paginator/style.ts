@@ -1,4 +1,4 @@
-export const paginationSx = {
+export const paginatorStyle = {
   '& .MuiPaginationItem-root': {
     color: '#ffffff'
   },
@@ -16,21 +16,40 @@ export const paginationSx = {
   }
 }
 
-export const selectorSx = {
+export const selectorStyle = {
   color: 'white',
-  bgcolor: '#333333',
-  borderColor: 'red',
-  height: '34px',
-  margin: '0 7px 0 7px',
-  '&.Mui-focused': { '& .MuiOutlinedInput-notchedOutline': { borderColor: '#ffffff' } },
-  '& .MuiSelect-icon': { color: 'white' }
+  height: '36px',
+  fontSize: '16px',
+  fontWeight: '400',
+  lineHeight: '24px',
+  width: '100%',
+  border: '1px solid #4C4C4C',
+  '&:hover': {
+    bgcolor: '#333333',
+    borderColor: '#808080'
+  },
+  '&.Mui-focused': {
+    '& .MuiOutlinedInput-notchedOutline': {
+      borderColor: '#ffffff'
+    }
+  },
+  '& .MuiSelect-icon': {
+    color: 'white'
+  }
 }
 
-export const selectorMenuSx = {
-  '& .Mui-selected': { bgcolor: '#333333' },
-  '& .MuiPaper-root': { bgcolor: '#333333' },
+export const selectOptionsStyle = {
+  '& .MuiPaper-root': {
+    bgcolor: '#333333'
+  },
+  '& .Mui-selected': {
+    bgcolor: 'transparent'
+  },
   '& .MuiMenuItem-root': {
-    bgcolor: '#333333', color: 'white',
-    '&: hover': { bgcolor: 'rgba(140,97,255,0.54)' }
+    color: 'white',
+    bgcolor: 'transparent',
+    '&: hover': {
+      bgcolor: '#8C61FF'
+    }
   }
 }

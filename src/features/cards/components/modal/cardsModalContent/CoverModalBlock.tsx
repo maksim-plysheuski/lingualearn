@@ -5,7 +5,7 @@ import { convertFileToBase64 } from 'common/utils'
 import { toast } from 'react-toastify'
 import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline'
 import PhotoOutlinedIcon from '@mui/icons-material/PhotoOutlined'
-import PanoramaOutlinedIcon from '@mui/icons-material/PanoramaOutlined';
+import PanoramaOutlinedIcon from '@mui/icons-material/PanoramaOutlined'
 
 type Props = {
   coverImage: string

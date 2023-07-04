@@ -55,7 +55,7 @@ export const SuperButton: React.FC<PropsType> = (
   const primaryStyle = {
     ...baseBntStyle,
     '&:hover': {
-      backgroundColor: disabled ? '#382766' : '#A280FF',
+      backgroundColor: disabled ? '#382766' : '#A280FF'
     },
     '&.Mui-disabled': {
       backgroundColor: '#382766',
@@ -66,7 +66,7 @@ export const SuperButton: React.FC<PropsType> = (
   const secondaryStyle = {
     ...baseBntStyle,
     '&:hover': {
-      backgroundColor: disabled ? '#4C4C4C' : '#808080',
+      backgroundColor: disabled ? '#4C4C4C' : '#808080'
     },
     '&.Mui-disabled': {
       backgroundColor: '#4C4C4C'

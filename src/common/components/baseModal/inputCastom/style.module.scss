@@ -3,11 +3,13 @@
 
 .inputContainer {
   width: 100%;
+
   label {
     color: $dark100;
     font-size: 14px;
     font-weight: 400;
   }
+
   .input {
     width: 100%;
     @include text(400, 16px, 24px);
@@ -18,13 +20,16 @@
     background-color: transparent;
     padding: 6px 12px;
     margin-top: 2px;
+
     &:hover {
       border-color: $dark100;
     }
+
     &:focus {
       border-color: $light100;
     }
   }
+
   input:-webkit-autofill,
   input:-webkit-autofill:active {
     -webkit-box-shadow: 0 0 0 30px $secondaryBgColor inset !important;
