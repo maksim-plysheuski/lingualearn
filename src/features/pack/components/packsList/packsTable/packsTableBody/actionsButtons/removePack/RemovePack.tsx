@@ -5,7 +5,7 @@ import { useAppSelector } from 'common/hooks'
 import Tooltip from '@mui/material/Tooltip'
 import { RemovePackModal } from 'features/pack/components/modal/removePackModal/removePackModal'
 import { FC } from 'react'
-import { tableActionsStyle } from 'common/style/tableContainerStyle'
+import { tableActionsStyle } from 'common/style/tableStyle'
 
 
 type Props = {

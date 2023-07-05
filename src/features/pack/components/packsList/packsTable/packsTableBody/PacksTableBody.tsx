@@ -13,7 +13,7 @@ import {
 import {
   RemovePack
 } from 'features/pack/components/packsList/packsTable/packsTableBody/actionsButtons/removePack/RemovePack'
-import { tableCellStyle } from 'common/style/tableContainerStyle'
+import { tableCellHoverStyle, tableCellStyle } from 'common/style/tableStyle'
 import PanoramaOutlinedIcon from '@mui/icons-material/PanoramaOutlined'
 
 
@@ -37,17 +37,15 @@ export const PacksTableBody = () => {
               : <PanoramaOutlinedIcon sx={{ fontSize: '40px', color: '#4C4C4C' }} />
             }
           </TableCell>
-          <TableCell sx={{
-            ...tableCellStyle,
-            cursor: 'pointer',
-            ':hover': { backgroundColor: '#333333' }
-          }}
+          <TableCell sx={tableCellHoverStyle}
                      onClick={() => openSelectedPack(pack._id)}
           >
             {pack.name}
           </TableCell>
           <TableCell sx={tableCellStyle}>{pack.cardsCount}</TableCell>
-          <TableCell sx={tableCellStyle}>{pack.updated.slice(0, 10).replaceAll('-', '.')}</TableCell>
+          <TableCell sx={tableCellStyle}>
+            {pack.updated.slice(0, 10).split('-').reverse().join('.')}
+          </TableCell>
           <TableCell sx={tableCellStyle}>{pack.user_name}</TableCell>
           <TableCell sx={tableCellStyle}>
             <LearnPack cardsCount={pack.cardsCount} packId={pack._id} />

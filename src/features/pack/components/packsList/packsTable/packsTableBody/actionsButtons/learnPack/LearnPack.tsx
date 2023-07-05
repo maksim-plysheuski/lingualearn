@@ -5,7 +5,7 @@ import Tooltip from '@mui/material/Tooltip'
 import PlayCircleOutlinedIcon from '@mui/icons-material/PlayCircleOutlined';
 import { FC } from 'react'
 import { useNavigate } from 'react-router-dom'
-import { tableActionsStyle } from 'common/style/tableContainerStyle'
+import { tableActionsStyle } from 'common/style/tableStyle'
 
 type Props = {
   cardsCount: number

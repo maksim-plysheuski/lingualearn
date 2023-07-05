@@ -3,7 +3,7 @@ import * as React from 'react'
 import { useState } from 'react'
 import { useAppDispatch, useAppSelector } from 'common/hooks'
 import { packsThunks } from 'features/pack/packs.slice'
-import { tableCellStyle } from 'common/style/tableContainerStyle'
+import { tableCellStyle } from 'common/style/tableStyle'
 
 export const PacksTableHeader = () => {
   const dispatch = useAppDispatch()

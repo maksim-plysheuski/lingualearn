@@ -1,7 +1,7 @@
 import React from 'react'
 import { SuperButton } from 'common/components/superButton/SuperButton'
 import s from 'features/cards/components/cardsPage/titleBlockCards/style.module.scss'
-import { isMyCard } from 'features/cards/selectors'
+import { selectIsMyCard } from 'features/cards/selectors'
 import { AddCardsModal } from 'features/cards/components/modal/addCardModal/addCardModal/AddCardsModal'
 import { MenuPacks } from 'features/cards/components/cardsPage/menuCards/menuPacks'
 import { useSelector } from 'react-redux'
@@ -9,7 +9,7 @@ import { useAppSelector } from 'common/hooks'
 import { selectPackName } from 'features/cards/selectors/cards.selector'
 
 export const TitleBlockCards = () => {
-  const whoseCards = useSelector(isMyCard)
+  const whoseCards = useSelector(selectIsMyCard)
   const packName = useAppSelector(selectPackName)
 
   return (

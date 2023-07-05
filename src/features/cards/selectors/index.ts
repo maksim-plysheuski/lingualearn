@@ -3,7 +3,7 @@ export {
 
   selectPackName,
   selectPackUserId,
-  isMyCard,
+  selectIsMyCard,
   selectCardQuestion,
   selectPackId,
   selectCardsTotalCount,

@@ -3,12 +3,12 @@ import * as React from 'react'
 import { useState } from 'react'
 import { useSearchCards } from 'features/cards/hooks/useSearchCards'
 import { useSelector } from 'react-redux'
-import { isMyCard } from '../../../../selectors'
-import { tableCellStyle } from 'common/style/tableContainerStyle'
+import { selectIsMyCard } from '../../../../selectors'
+import { tableCellStyle } from 'common/style/tableStyle'
 
 export const CardsTableHeader = () => {
   const { fetchSortCard } = useSearchCards()
-  const whoseCards = useSelector(isMyCard)
+  const isMyCard = useSelector(selectIsMyCard)
   const [sortOrder, setSortOrder] = useState<'asc' | 'desc'>('asc')
   const [lastSortedCell, setLastSortedCell] = useState<string>('Last Updated')
   const columnTitles: string[] = ['Question', 'Answer', 'Last Updated', 'Grade']
@@ -49,7 +49,7 @@ export const CardsTableHeader = () => {
             />
           </TableCell>)
         }
-        {whoseCards && <TableCell sx={{ borderBottom: '0' }} />}
+        {isMyCard && <TableCell sx={{ borderBottom: '0' }} />}
       </TableRow>
     </TableHead>
   )
