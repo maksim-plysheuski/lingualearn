@@ -1,3 +1,8 @@
-.childrenContainer {
-  padding: 18px 24px 18px 24px
+@import "src/common/style/mixins";
+
+.descriptionMessage {
+  margin: 18px 0 18px 0;
+  span {
+    @include text(500, 16px, 24px);
+  }
 }

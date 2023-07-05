@@ -8,7 +8,7 @@ import { tableContainerStyle } from 'common/style/tableContainerStyle'
 
 export const PacksTable = () => {
   return (
-    <TableContainer style={tableContainerStyle} component={Paper}>
+    <TableContainer sx={tableContainerStyle} component={Paper}>
       <Table>
         <PacksTableHeader />
         <PacksTableBody />

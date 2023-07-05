@@ -47,8 +47,12 @@ export const RemovePackModal = (props: Props) => {
                titleButtonAction={'Delete Pack'}
                isButtonDisabled={disable}
     >
-      <div className={s.childrenContainer}>
-        {`Do you really want to remove ${props.packName ? props.packName : packName}? All cards will be deleted.`}
+      <div className={s.descriptionMessage}>
+        <span>
+          {`Do you really want to remove `}
+          <b>{`${props.packName ? props.packName : packName}?`}</b>
+        </span>
+        <p>All cards will be deleted.</p>
       </div>
     </BaseModal>
 

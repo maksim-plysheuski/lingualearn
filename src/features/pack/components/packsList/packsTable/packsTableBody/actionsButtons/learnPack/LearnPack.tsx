@@ -4,10 +4,8 @@ import { Zoom } from '@mui/material'
 import Tooltip from '@mui/material/Tooltip'
 import PlayCircleOutlinedIcon from '@mui/icons-material/PlayCircleOutlined';
 import { FC } from 'react'
-import {
-  iconStyle
-} from 'features/pack/components/packsList/packsTable/packsTableBody/actionsButtons/editPack/EditPack'
 import { useNavigate } from 'react-router-dom'
+import { tableActionsStyle } from 'common/style/tableContainerStyle'
 
 type Props = {
   cardsCount: number
@@ -27,7 +25,7 @@ export const LearnPack: FC<Props> = ({cardsCount, packId}) => {
         <span>
           <IconButton disabled={cardsCount === 0}
                       onClick={learnPack}
-                      sx={iconStyle}>
+                      sx={tableActionsStyle}>
           <div><PlayCircleOutlinedIcon /></div>
         </IconButton>
         </span>

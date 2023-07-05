@@ -6,7 +6,7 @@ import { tableContainerStyle } from 'common/style/tableContainerStyle'
 
 export const CardsTable = () => {
   return (
-    <TableContainer style={tableContainerStyle} component={Paper}>
+    <TableContainer sx={tableContainerStyle} component={Paper}>
       <Table>
         <CardsTableHeader />
         <CardsTableBody />

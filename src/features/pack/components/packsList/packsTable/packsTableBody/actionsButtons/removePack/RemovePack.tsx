@@ -4,10 +4,8 @@ import { Zoom } from '@mui/material'
 import { useAppSelector } from 'common/hooks'
 import Tooltip from '@mui/material/Tooltip'
 import { RemovePackModal } from 'features/pack/components/modal/removePackModal/removePackModal'
-import {
-  iconStyle
-} from 'features/pack/components/packsList/packsTable/packsTableBody/actionsButtons/editPack/EditPack'
 import { FC } from 'react'
+import { tableActionsStyle } from 'common/style/tableContainerStyle'
 
 
 type Props = {
@@ -26,7 +24,7 @@ export const RemovePack: FC<Props> = ({packId, packName}) => {
                TransitionProps={{ timeout: 400 }}>
           <span>
         <IconButton disabled={!userId}
-                    sx={iconStyle}>
+                    sx={tableActionsStyle}>
             <RemovePackModal packName={packName} packId={packId} />
         </IconButton>
           </span>

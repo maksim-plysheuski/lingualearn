@@ -33,7 +33,7 @@ export const PacksTableBody = () => {
         <TableRow key={pack._id}>
           <TableCell sx={{ ...tableCellStyle, maxWidth: '60px' }}>
             {pack.deckCover
-              ? <img style={{ height: '36px' }} src={pack.deckCover} alt='pack cover' />
+              ? <img style={{ height: '36px' }} src={pack.deckCover} alt={'cover'} />
               : <PanoramaOutlinedIcon sx={{ fontSize: '40px', color: '#4C4C4C' }} />
             }
           </TableCell>

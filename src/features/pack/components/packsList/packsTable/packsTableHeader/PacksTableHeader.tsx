@@ -3,6 +3,7 @@ import * as React from 'react'
 import { useState } from 'react'
 import { useAppDispatch, useAppSelector } from 'common/hooks'
 import { packAction } from 'features/pack/packs.slice'
+import { tableCellStyle } from 'common/style/tableContainerStyle'
 
 export const PacksTableHeader = () => {
   const dispatch = useAppDispatch()
@@ -34,11 +35,11 @@ export const PacksTableHeader = () => {
   }
 
   return (
-    <TableHead sx={{ backgroundColor: '#333333', width: '100%'}}>
+    <TableHead sx={{ backgroundColor: '#333333'}}>
       <TableRow>
         {columnTitles.map((t, i) =>
           <TableCell key={i}
-                     sx={{color: 'white', borderBottom: '0'}}
+                     sx={tableCellStyle}
                      onMouseEnter={() => setLastSortedCell(t)}>
             {t}
             {t === 'Name' || t === 'Cards' || t === 'Last Updated' ?
