@@ -1,6 +1,6 @@
 import { TableBody, TableCell, TableRow } from '@mui/material'
 import { useAppSelector } from 'common/hooks'
-import { selectCards, selectWhoseCards } from 'features/cards/selectors'
+import { selectCards, isMyCard } from 'features/cards/selectors'
 import React from 'react'
 import Rating from '@mui/material/Rating'
 import StarBorderIcon from '@mui/icons-material/StarBorder'
@@ -11,7 +11,7 @@ import { tableCellStyle } from 'common/style/tableContainerStyle'
 
 export const CardsTableBody = () => {
   const cards = useAppSelector(selectCards)
-  const whoseCards = useSelector(selectWhoseCards)
+  const whoseCards = useSelector(isMyCard)
   return (
     <TableBody>
       {cards?.map((card) => {

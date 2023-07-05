@@ -2,7 +2,7 @@ import { TableCell, TableHead, TableRow, TableSortLabel } from '@mui/material'
 import * as React from 'react'
 import { useState } from 'react'
 import { useAppDispatch, useAppSelector } from 'common/hooks'
-import { packAction } from 'features/pack/packs.slice'
+import { packsThunks } from 'features/pack/packs.slice'
 import { tableCellStyle } from 'common/style/tableContainerStyle'
 
 export const PacksTableHeader = () => {
@@ -30,12 +30,11 @@ export const PacksTableHeader = () => {
     }
     setSortOrder(sortOrder === 'desc' ? 'asc' : 'desc')
     setLastSortedCell(title)
-
-    dispatch(packAction.setPackParams(payload))
+    dispatch(packsThunks.getPacks(payload))
   }
 
   return (
-    <TableHead sx={{ backgroundColor: '#333333'}}>
+    <TableHead sx={{ backgroundColor: '#333333' }}>
       <TableRow>
         {columnTitles.map((t, i) =>
           <TableCell key={i}
@@ -44,10 +43,10 @@ export const PacksTableHeader = () => {
             {t}
             {t === 'Name' || t === 'Cards' || t === 'Last Updated' ?
               <TableSortLabel
-                sx={{'& .MuiTableSortLabel-icon': { color: 'white !important'} }}
+                sx={{ '& .MuiTableSortLabel-icon': { color: 'white !important' } }}
                 active={lastSortedCell === t}
                 direction={sortOrder}
-                onClick={handleSortButton(t)} >
+                onClick={handleSortButton(t)}>
               </TableSortLabel> : null}
           </TableCell>)}
       </TableRow>

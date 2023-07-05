@@ -3,27 +3,31 @@ import * as React from 'react'
 import { useState } from 'react'
 import { useSearchCards } from 'features/cards/hooks/useSearchCards'
 import { useSelector } from 'react-redux'
-import { selectWhoseCards } from '../../../../selectors'
+import { isMyCard } from '../../../../selectors'
 import { tableCellStyle } from 'common/style/tableContainerStyle'
 
 export const CardsTableHeader = () => {
   const { fetchSortCard } = useSearchCards()
-  const whoseCards = useSelector(selectWhoseCards)
+  const whoseCards = useSelector(isMyCard)
   const [sortOrder, setSortOrder] = useState<'asc' | 'desc'>('asc')
   const [lastSortedCell, setLastSortedCell] = useState<string>('Last Updated')
   const columnTitles: string[] = ['Question', 'Answer', 'Last Updated', 'Grade']
 
   const handleSortButton = (title: string) => () => {
     let sortArgTitle
-
-    if (title === 'Question') {
-      sortArgTitle = 'question'
-    } else if (title === 'Answer') {
-      sortArgTitle = 'answer'
-    } else if (title === 'Last Updated') {
-      sortArgTitle = 'updated'
-    } else {
-      sortArgTitle = 'grade'
+    switch (title) {
+      case 'Question':
+        sortArgTitle = 'question'
+        break
+      case 'Answer':
+        sortArgTitle = 'answer'
+        break
+      case 'Last Updated':
+        sortArgTitle = 'updated'
+        break
+      default:
+        sortArgTitle = 'grade'
+        break
     }
 
     const sortCards = sortOrder === 'asc' ? `0${sortArgTitle}` : `1${sortArgTitle}`
