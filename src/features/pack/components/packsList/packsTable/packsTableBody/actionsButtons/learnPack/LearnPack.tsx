@@ -18,7 +18,7 @@ export const LearnPack: FC<Props> = ({cardsCount, packId}) => {
 
   return(
     <>
-      <Tooltip title={cardsCount === 0 ? "" : 'Learn'}
+      <Tooltip title={cardsCount === 0 ? "" : 'Learn cards'}
                arrow placement='top'
                TransitionComponent={Zoom}
                TransitionProps={{ timeout: 400 }}>

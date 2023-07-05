@@ -3,8 +3,8 @@ import * as React from 'react'
 import { useState } from 'react'
 import { useSearchCards } from 'features/cards/hooks/useSearchCards'
 import { useSelector } from 'react-redux'
-import { selectIsMyCard } from '../../../../selectors'
-import { tableCellStyle } from 'common/style/tableStyle'
+import { tableCellStyle, tableHeaderStyle } from 'common/style/tableStyle'
+import { selectIsMyCard } from 'features/cards/selectors'
 
 export const CardsTableHeader = () => {
   const { fetchSortCard } = useSearchCards()
@@ -12,10 +12,11 @@ export const CardsTableHeader = () => {
   const [sortOrder, setSortOrder] = useState<'asc' | 'desc'>('asc')
   const [lastSortedCell, setLastSortedCell] = useState<string>('Last Updated')
   const columnTitles: string[] = ['Question', 'Answer', 'Last Updated', 'Grade']
+  if (isMyCard) columnTitles.push('Actions')
 
-  const handleSortButton = (title: string) => () => {
+  const handleSort = (sortTitle: string) => () => {
     let sortArgTitle
-    switch (title) {
+    switch (sortTitle) {
       case 'Question':
         sortArgTitle = 'question'
         break
@@ -29,27 +30,24 @@ export const CardsTableHeader = () => {
         sortArgTitle = 'grade'
         break
     }
-
     const sortCards = sortOrder === 'asc' ? `0${sortArgTitle}` : `1${sortArgTitle}`
     setSortOrder(sortOrder === 'desc' ? 'asc' : 'desc')
-    setLastSortedCell(title)
+    setLastSortedCell(sortTitle)
     fetchSortCard(sortCards)
   }
 
   return (
-    <TableHead sx={{ backgroundColor: '#333333' }}>
+    <TableHead sx={tableHeaderStyle}>
       <TableRow>
         {columnTitles.map((t, i) =>
           <TableCell key={i} sx={tableCellStyle} onMouseEnter={() => setLastSortedCell(t)}>
             {t}
-            <TableSortLabel sx={{ '& .MuiTableSortLabel-icon': { color: 'white !important' } }}
-                            active={lastSortedCell === t}
-                            direction={sortOrder}
-                            onClick={handleSortButton(t)}
-            />
-          </TableCell>)
-        }
-        {isMyCard && <TableCell sx={{ borderBottom: '0' }} />}
+            {t !== 'Actions' ? <TableSortLabel
+                sx={{ '& .MuiTableSortLabel-icon': { color: 'white !important' } }}
+                active={lastSortedCell === t}
+                direction={sortOrder}
+                onClick={handleSort(t)} /> : null}
+          </TableCell>)}
       </TableRow>
     </TableHead>
   )

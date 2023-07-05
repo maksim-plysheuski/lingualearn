@@ -52,18 +52,8 @@ export const EditCardsModal = (props: Props) => {
         isButtonDisabled={isLoading}
         setOpen={setIsModalOpen}
         actionCallback={editCards}
-        buttonOpen={<DriveFileRenameOutlineIcon fontSize={'small'} />}
-
-
+        buttonOpen={<DriveFileRenameOutlineIcon />}
       >
-        {/*<div className={s.newCardContainer}>
-          <SelectTextImg select={select} setSelect={setSelect} />
-          <div className={s.input}>
-            <InputCustom label={'Question'} value={question} setValue={setQuestion} />
-            <InputCustom label={'Answer'} value={answer} setValue={setAnswer} />
-          </div>
-        </div>*/}
-
         <CardsBodyModal answer={answer}
                         question={question}
                         answerImg={answerImg}

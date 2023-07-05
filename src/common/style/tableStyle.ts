@@ -1,5 +1,9 @@
 import { SxProps, Theme } from '@mui/material/styles'
 
+export const tableHeaderStyle = {
+  backgroundColor: '#333333'
+}
+
 export const tableStyle: SxProps<Theme> = {
   marginTop: '36px',
   maxWidth: 1008,

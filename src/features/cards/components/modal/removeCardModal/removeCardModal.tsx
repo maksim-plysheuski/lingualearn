@@ -27,7 +27,7 @@ export const RemoveCardModal = (props: Props) => {
   return (
     <>
       <BaseModal
-        buttonOpen={<DeleteOutlineIcon fontSize={'small'} />}
+        buttonOpen={<DeleteOutlineIcon />}
         title={'Delete Pack'}
         open={open}
         setOpen={setOpen}

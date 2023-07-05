@@ -16,7 +16,7 @@ export const EditPack = (props: Props) => {
 
   return(
     <>
-      <Tooltip title={userId ? 'Edit' : false}
+      <Tooltip title={userId ? 'Edit pack' : false}
                arrow placement='top'
                TransitionComponent={Zoom}
                TransitionProps={{ timeout: 400 }}>

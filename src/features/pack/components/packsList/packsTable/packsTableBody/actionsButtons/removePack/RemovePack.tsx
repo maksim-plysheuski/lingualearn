@@ -18,7 +18,7 @@ export const RemovePack: FC<Props> = ({packId, packName}) => {
 
   return (
     <>
-      <Tooltip title={userId ? 'Delete' : false}
+      <Tooltip title={userId ? 'Delete pack' : false}
                arrow placement='top'
                TransitionComponent={Zoom}
                TransitionProps={{ timeout: 400 }}>
