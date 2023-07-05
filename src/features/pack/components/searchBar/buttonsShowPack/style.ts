@@ -3,12 +3,14 @@ export const buttonStyle = {
   height: '36px',
   color: '#fff',
   border: '1px solid #4C4C4C',
+
   '&:hover': {
-    backgroundColor: '#4C4C4C'
+    backgroundColor: '#4C4C4C',
+    transition: '300ms ease-in-out'
   },
   '&.Mui-selected:hover': {
-    backgroundColor: '#8C61FF',
-    opacity: '0.9'
+    backgroundColor: '#A280FF',
+    transition: '300ms ease-in-out'
   },
   '&.Mui-selected': {
     backgroundColor: '#8C61FF',
