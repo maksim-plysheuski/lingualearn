@@ -5,10 +5,11 @@ import React from 'react'
 import { AvatarMenu } from 'common/components/avatarMenu/AvatarMenu'
 import { useAppSelector } from 'common/hooks'
 import { paths } from 'common/router/path'
-import StyleOutlinedIcon from '@mui/icons-material/StyleOutlined';
+import StyleOutlinedIcon from '@mui/icons-material/StyleOutlined'
+import { isLoggedInSelect } from 'features/auth/selectors'
 
 export const Header = () => {
-  const isLoggedIn = useAppSelector(state => state.auth.isLoggedIn)
+  const isLoggedIn = useAppSelector(isLoggedInSelect)
   const navigate = useNavigate()
   const singUpCallback = () => navigate(paths.REGISTER)
 

@@ -1,3 +1,4 @@
 import { useAppSelector } from 'common/hooks'
+import { RootState } from 'app/store'
 
-export const isLoggedInSelect = useAppSelector(state => state.auth.isLoggedIn)
+export const isLoggedInSelect = (state: RootState) => state.auth.isLoggedIn

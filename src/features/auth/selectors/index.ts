@@ -1,2 +1,2 @@
-export { isLoggedInSelect } from 'features/auth/selectors/selectors'
+export * from 'features/auth/selectors/selectors'
 
