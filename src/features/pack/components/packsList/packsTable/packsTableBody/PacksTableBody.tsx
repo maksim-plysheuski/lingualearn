@@ -6,15 +6,16 @@ import { paths } from 'common/router/path'
 import * as React from 'react'
 import { tableCellHoverStyle, tableCellStyle } from 'common/style/tableStyle'
 import PanoramaOutlinedIcon from '@mui/icons-material/PanoramaOutlined'
-import { LearnPack } from './actionsButtons/learnPack/LearnPack'
 import { EditPack } from './actionsButtons/editPack/EditPack'
 import { RemovePack } from './actionsButtons/removePack/RemovePack'
+import { LearnPack } from './actionsButtons/learnPack/LearnPack'
 
 
 export const PacksTableBody = () => {
   const dispatch = useAppDispatch()
   const navigate = useNavigate()
   const packs = useAppSelector(state => state.packs.packs)
+
 
   const openSelectedPack = (packId: string) => {
     dispatch(cardsThunks.fetchCards({ cardsPack_id: packId }))

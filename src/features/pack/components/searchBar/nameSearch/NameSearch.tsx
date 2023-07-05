@@ -5,10 +5,7 @@ import s from './style.module.scss'
 
 export const NameSearch = () => {
   const { setPackName, packName } = useSearchPacks()
-
-  const setSearchParamsHandler = (packName: string) => {
-    setPackName(packName)
-  }
+  const setSearchParamsHandler = (packName: string) => setPackName(packName)
 
   return (
     <div className={s.container} >

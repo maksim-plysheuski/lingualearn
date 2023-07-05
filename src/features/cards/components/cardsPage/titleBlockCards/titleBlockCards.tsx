@@ -9,17 +9,17 @@ import { useAppSelector } from 'common/hooks'
 import { selectPackName } from 'features/cards/selectors/cards.selector'
 
 export const TitleBlockCards = () => {
-  const whoseCards = useSelector(selectIsMyCard)
+  const isMyPack = useSelector(selectIsMyCard)
   const packName = useAppSelector(selectPackName)
 
   return (
     <div className={s.container}>
       <div className={s.titleContainer}>
-        <h2 className={s.title}>{whoseCards ? 'My Pack' : 'Friend’s Pack'}</h2>
-        {whoseCards && <MenuPacks />}
+        <h2 className={s.title}>{isMyPack ? 'My Pack' : 'Friend’s Pack'}</h2>
+        {isMyPack && <MenuPacks />}
       </div>
       <span>{packName}</span>
-      {whoseCards ? <AddCardsModal /> : <SuperButton width={'184'} title={'learn pack'} />}
+      {isMyPack ? <AddCardsModal /> : <SuperButton width={'184'} title={'learn pack'} />}
     </div>
   )
 }
