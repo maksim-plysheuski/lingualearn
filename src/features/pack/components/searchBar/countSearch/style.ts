@@ -15,7 +15,7 @@ export const sliderStyle = {
   },
   '& .MuiSlider-valueLabel': {
     lineHeight: 1.2,
-    fontSize: 14,
+    fontSize: 12,
     background: 'unset',
     padding: 0,
     width: 32,
@@ -26,7 +26,8 @@ export const sliderStyle = {
     transform: 'translate(50%, -100%) rotate(-45deg) scale(0)',
     '&:before': { display: 'none' },
     '&.MuiSlider-valueLabelOpen': {
-      transform: 'translate(50%, -100%) rotate(-45deg) scale(1)'
+      transform: 'translate(50%, -100%) rotate(-45deg) scale(1)',
+      transition: '200ms ease-in-out'
     },
     '& > *': {
       transform: 'rotate(45deg)'

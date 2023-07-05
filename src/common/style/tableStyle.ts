@@ -26,7 +26,8 @@ export const tableCellHoverStyle: SxProps<Theme> = {
   ...tableCellStyle,
   cursor: 'pointer',
   ':hover': {
-    backgroundColor: '#333333'
+    backgroundColor: '#333333',
+    transition: '300ms ease-in-out',
   }
 }
 
@@ -36,6 +37,7 @@ export const tableActionsStyle: SxProps<Theme> = {
     color: '#333333'
   },
   '&:hover': {
-    color: '#e66300'
+    color: '#e66300',
+    transition: '300ms ease-in-out',
   }
 }

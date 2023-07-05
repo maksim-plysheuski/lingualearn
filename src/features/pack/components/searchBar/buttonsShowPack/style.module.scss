@@ -4,7 +4,8 @@
 .container {
   display: flex;
   flex-direction: column;
-  label{
+
+  label {
     margin-bottom: 5px;
     @include text(400, 14px, 24px)
   }
