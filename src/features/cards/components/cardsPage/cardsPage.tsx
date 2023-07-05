@@ -4,22 +4,20 @@ import { BackLink } from 'common/components/backLink/BackLink'
 import * as React from 'react'
 import { useEffect } from 'react'
 import { cardsThunks } from 'features/cards/cards.slice'
-import { useSearchCards } from 'features/cards/hooks/useSearchCards'
 import { TitleBlockCards } from 'features/cards/components/cardsPage/titleBlockCards/titleBlockCards'
 import { InputSearchCards } from 'features/cards/components/cardsPage/inputSearchCards/inputSearchCards'
 import { CardsTable } from 'features/cards/components/cardsPage/cardsTable/CardsTable'
 import { PaginationCards } from 'features/cards/components/cardsPage/paginationCards/paginationCards'
 import { selectCards } from 'features/cards/selectors'
+import { useParams } from 'react-router-dom'
 
 export const CardsPage = () => {
-
-  const { params } = useSearchCards()
+  const { id } = useParams<{ id: string }>()
   const cards = useAppSelector(selectCards)
   const dispatch = useAppDispatch()
 
   useEffect(() => {
-    if (!Object.keys(params).length || !!cards) return
-    dispatch(cardsThunks.fetchCards({ cardsPack_id: params.cardsPack_id, ...params }))
+    dispatch(cardsThunks.fetchCards({ cardsPack_id: id! }))
   }, [])
 
   if (!cards) return <h1>loading</h1>

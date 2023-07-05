@@ -11,12 +11,12 @@ import { FC } from 'react'
 
 
 type Props = {
-  packId: string
   packName?: string
+  packId: string
 }
 
-export const RemovePack: FC<Props> = ({packId, packName}) => {
-  const userId = useAppSelector(state => state.packs.packParams.user_id)
+export const RemovePack: FC<Props> = ({ packName, packId }) => {
+  const userId = useAppSelector(state => state.auth.profile._id)
 
   return (
     <>

@@ -12,7 +12,9 @@ export const CountSearch = memo(() => {
   const dispatch = useAppDispatch()
   const min = useAppSelector(minPackSelect)
   const max = useAppSelector(maxPackSelect)
-  const { data } = useGetPacksQuery({})
+  const sortPackParams = useAppSelector(state => state.sortPackSlice.packParams)
+
+  const { data } = useGetPacksQuery(sortPackParams)
 
   const [value, setValue] = useState<number[]>([data!.minCardsCount, data!.maxCardsCount])
 

@@ -4,7 +4,6 @@ import { UniversalButton } from 'common/components/universalButton/UniversalButt
 import React, { useState } from 'react'
 import { useAddPackMutation } from 'features/pack/service'
 
-
 export const AddPackModal = () => {
   const [addPack] = useAddPackMutation()
   const [open, setOpen] = useState<boolean>(false)
@@ -14,20 +13,15 @@ export const AddPackModal = () => {
 
   const addPackHandler = async () => {
     setDisable(true)
-    await addPack({name:valuePack})
+    await addPack({ name: valuePack, private: privatePack })
     setValueCard('')
     setOpen(false)
     setDisable(false)
   }
 
   return (
-    <BaseModal title={'Add New Pack'}
-               open={open}
-               setOpen={setOpen}
-               titleButtonAction={'Add New Pack'}
-               actionCallback={addPackHandler}
-               buttonOpen={<UniversalButton title={'Add New Pack'} width={'175'} />}
-               disable={disable}
+    <BaseModal title={'Add New Pack'} open={open} setOpen={setOpen} titleButtonAction={'Add New Pack'} disable={disable}
+               actionCallback={addPackHandler} buttonOpen={<UniversalButton title={'Add New Pack'} width={'175'} />}
     >
       <>
         <InputCastom label={'Name Pack'} value={valuePack} setValue={setValueCard} />
@@ -36,7 +30,6 @@ export const AddPackModal = () => {
           <span>Private pack</span>
         </div>
       </>
-
     </BaseModal>
   )
 }

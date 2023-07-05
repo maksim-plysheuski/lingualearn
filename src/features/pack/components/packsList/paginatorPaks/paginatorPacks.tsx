@@ -7,7 +7,9 @@ import { pageCountSelect, pagePackSelect } from 'features/pack/service/selectors
 
 export const PaginatorPacks = () => {
   const dispatch = useAppDispatch()
-  const { data, isLoading } = useGetPacksQuery({})
+  const sortPackParams = useAppSelector(state => state.sortPackSlice.packParams)
+
+  const { data } = useGetPacksQuery(sortPackParams)
 
   const pagePack = useAppSelector(pagePackSelect)
   const pageCountPack = useAppSelector(pageCountSelect)
@@ -16,7 +18,6 @@ export const PaginatorPacks = () => {
     dispatch(setPackParams({ page, pageCount: size }))
   }
 
-  if (isLoading) return <></>
   return (
 
     <Paginator pageCount={pageCountPack ?? 4}

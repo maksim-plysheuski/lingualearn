@@ -28,12 +28,12 @@ export const useSearchCards = () => {
   const [searchParams, setSearchParams] = useSearchParams()
   const params = Object.fromEntries(searchParams)
 
-  useEffect(() => {
-    const lastParams: TSearch = {}
-    if (cardsPack_id) lastParams.cardsPack_id = cardsPack_id
-    if (cardQuestion) lastParams.cardQuestion = cardQuestion
-    setSearchParams({ ...lastParams })
-  }, [cardsPack_id, cardQuestion])
+  // useEffect(() => {
+  //   const lastParams: TSearch = {}
+  //   if (cardsPack_id) lastParams.cardsPack_id = cardsPack_id
+  //   if (cardQuestion) lastParams.cardQuestion = cardQuestion
+  //   setSearchParams({ ...lastParams })
+  // }, [cardsPack_id, cardQuestion])
 
   //searchName
   const fetchCardsName = (cardQuestion: string) => {

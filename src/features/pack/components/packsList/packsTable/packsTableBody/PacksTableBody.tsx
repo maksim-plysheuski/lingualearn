@@ -1,13 +1,10 @@
 import { TableBody, TableCell, TableRow } from '@mui/material'
-import { EditPack } from 'features/pack/components/packsList/packsTable/packsTableBody/actionsButtons/editPack/EditPack'
-import {
-  RemovePack
-} from 'features/pack/components/packsList/packsTable/packsTableBody/actionsButtons/removePack/RemovePack'
+import { EditPack } from './actionsButtons/editPack/EditPack'
+import { RemovePack } from './actionsButtons/removePack/RemovePack'
 import { useGetPacksQuery } from 'features/pack/service/pack.slice'
-import {
-  LearnPack
-} from 'features/pack/components/packsList/packsTable/packsTableBody/actionsButtons/learnPack/LearnPack'
+import { LearnPack } from './actionsButtons/learnPack/LearnPack'
 import { useAppSelector } from 'common/hooks'
+import { useNavigate } from 'react-router-dom'
 
 const tableCellStyle = {
   wordWrap: 'break-word',
@@ -18,12 +15,11 @@ const tableCellStyle = {
 }
 
 export const PacksTableBody = () => {
-
+  const navigate = useNavigate()
   const sortPackParams = useAppSelector(state => state.sortPackSlice.packParams)
   const { data } = useGetPacksQuery(sortPackParams)
 
-  const openSelectedPack = (packId: string) => {
-  }
+  const openSelectedPack = (packId: string) => navigate(`/cards/${packId}`)
 
 
   return (

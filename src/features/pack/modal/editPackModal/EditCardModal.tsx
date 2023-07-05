@@ -7,6 +7,7 @@ import DriveFileRenameOutlineIcon from '@mui/icons-material/DriveFileRenameOutli
 import { TPack } from 'features/pack/packApi'
 import { toast } from 'react-toastify'
 import { selectPackId, selectPackName, selectPrivatePack } from 'features/cards/selectors/cards.selector'
+import { useUpdatePackMutation } from 'features/pack/service'
 
 type Props = {
   handleCloseMenu?: () => void
@@ -19,24 +20,18 @@ export const EditPackModal = (props: Props) => {
   const packId = useAppSelector(selectPackId)
   const isPackPrivate = useAppSelector(selectPrivatePack)
 
-  const dispatch = useAppDispatch()
 
+  const [updatePack, {}] = useUpdatePackMutation()
   const [open, setOpen] = useState<boolean>(false)
   const [inputValue, setInputValue] = useState<string>(props.pack?.name || packName)
   const [isPrivatePack, setIsPrivatePack] = useState<boolean>(props.pack?.private || isPackPrivate)
   const [disable, setDisable] = useState<boolean>(false)
 
-  const updatePack = async () => {
-    let payload = {
-      newPack: {
-        _id: props.pack ? props.pack._id : packId,
-        name: inputValue,
-        private: isPrivatePack
-      },
-      needGetPacks: !!props.pack
-    }
+  const updatePackHandler = async () => {
+    let payload = { _id: props.pack ? props.pack._id : packId, name: inputValue, private: isPrivatePack }
+
     setDisable(true)
-    await dispatch(packsThunks.updatePack(payload)).unwrap()
+    await updatePack(payload).unwrap()
       .then(() => toast.info(`Pack has been updated`))
       .catch((err) => toast.error(err.e.response ? err.e.response.data.error : err.e.message))
       .finally(() => {
@@ -48,13 +43,8 @@ export const EditPackModal = (props: Props) => {
     }
   }
   return (
-    <BaseModal title={'Edit Pack'}
-               open={open}
-               setOpen={setOpen}
-               titleButtonAction={'Save Changes'}
-               actionCallback={updatePack}
-               buttonOpen={<DriveFileRenameOutlineIcon />}
-               disable={disable}
+    <BaseModal title={'Edit Pack'} open={open} setOpen={setOpen} titleButtonAction={'Save Changes'}
+               actionCallback={updatePackHandler} buttonOpen={<DriveFileRenameOutlineIcon />} disable={disable}
     >
       <>
         <InputCastom label={'Name Pack'} value={inputValue} setValue={setInputValue} />
@@ -63,7 +53,6 @@ export const EditPackModal = (props: Props) => {
           <span>Private pack</span>
         </div>
       </>
-
     </BaseModal>
   )
 }

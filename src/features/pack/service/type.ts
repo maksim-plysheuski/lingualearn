@@ -1,4 +1,4 @@
-type CardPacksT = {
+export type CardPacksT = {
   _id: string
   user_id: string
   user_name: string
@@ -39,10 +39,8 @@ export type ResponsePack = {
 }
 //add
 export type AddPackT = {
-  name: string
-  deckCover?: string
-  private?: boolean
+  name: string,
+  deckCover?: string,
+  private?: boolean,
 }
-export type ResponseAddPack = {
-  newCardsPack: CardPacksT
-}
+

@@ -32,10 +32,7 @@ export const MenuPacks = () => {
       >
         <MoreVertIcon sx={{ margin: 'auto' }} />
       </div>
-      <Menu anchorEl={anchorEl}
-            id='account-menu'
-            open={open}
-            onClose={handleClose}
+      <Menu anchorEl={anchorEl} id='account-menu' open={open} onClose={handleClose}
             PaperProps={{
               elevation: 0,
               sx: {
@@ -69,12 +66,12 @@ export const MenuPacks = () => {
           <PlayCircleOutlineIcon /> Learn
         </MenuItem>
         <Divider />
-        <MenuItem>
+        <MenuItem >
           <EditPackModal handleCloseMenu={handleClose} /> Edit
         </MenuItem>
         <Divider />
         <MenuItem>
-          <RemovePackModal /> Delete
+          <RemovePackModal nameIcon={'Delete'} />
         </MenuItem>
       </Menu>
     </>
