@@ -19,7 +19,7 @@ import {
 import { useSelector } from 'react-redux'
 import { useDebounce } from 'common/hooks/useDebounce'
 
-export const useSearchPaks = () => {
+export const useSearchPacks = () => {
   const dispatch = useAppDispatch()
   const userId = useAppSelector(state => state.auth.profile._id)
   const packName = useSelector(namePackParamsSelect)

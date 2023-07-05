@@ -12,7 +12,6 @@ import { PaginationCards } from 'features/cards/components/cardsPage/paginationC
 import { selectCards } from 'features/cards/selectors'
 
 export const CardsPage = () => {
-
   const { params } = useSearchCards()
   const cards = useAppSelector(selectCards)
   const dispatch = useAppDispatch()

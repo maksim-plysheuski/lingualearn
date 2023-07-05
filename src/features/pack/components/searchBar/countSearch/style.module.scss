@@ -1,14 +1,26 @@
-@import "common/style/variables";
+@import "src/common/style/variables";
+@import "src/common/style/mixins";
 
 .container {
   display: flex;
   flex-direction: column;
-  margin-left: 25px;
   color: $primaryFontColor;
+  width: 251px;
+
+  label {
+    margin-bottom: 5px;
+    @include text(400, 14px, 24px)
+  }
 
   .countContainer {
     display: flex;
-    align-items: center;
+    justify-content: space-between;
+
+    .sliderContainer {
+      width: 150px;
+      display: flex;
+      align-items: center;
+    }
 
     .count {
       display: flex;
@@ -18,7 +30,9 @@
       height: 36px;
       font-size: 16px;
       border: 1px solid #4C4C4C;
-      background-color: transparent;
+      border-radius: 5px;
+      background-color: $primaryBgColor;
+      cursor: default;
     }
   }
 

@@ -5,31 +5,25 @@ import { useAppSelector } from 'common/hooks'
 import Tooltip from '@mui/material/Tooltip'
 import { EditPackModal } from 'features/pack/components/modal/editPackModal/EditPackModal'
 import { TPack } from 'features/pack/packApi'
+import { tableActionsStyle } from 'common/style/tableStyle'
 
 type Props = {
   pack: TPack
 }
-
-export const iconStyle = {
-  color: 'white',
-  ":disabled": {
-    color: '#323232'
-  }}
-
 
 export const EditPack = (props: Props) => {
   const userId = useAppSelector(state => state.packs.packParams.user_id)
 
   return(
     <>
-      <Tooltip title={userId ? 'Edit' : false}
+      <Tooltip title={userId ? 'Edit pack' : false}
                arrow placement='top'
                TransitionComponent={Zoom}
                TransitionProps={{ timeout: 400 }}>
         <span>
           <IconButton disabled={!userId}
-                      sx={iconStyle}>
-            <EditPackModal  pack={props.pack}/>
+                      sx={tableActionsStyle}>
+            <EditPackModal pack={props.pack} />
         </IconButton>
         </span>
       </Tooltip>

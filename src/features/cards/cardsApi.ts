@@ -6,13 +6,13 @@ export const cardsApi = {
     return instance.get<TGetCardsResponse>('cards/card', { params: arg }).then(res => res.data)
   },
   createCard: (arg: TCreateCardArg) => {
-    return instance.post<TCreateResponse>('cards/card', { card: arg }).then(res => res.data)
+    return instance.post<{ newCard: TCommonCardResponse }>('cards/card', { card: arg }).then(res => res.data)
   },
   deleteCard: (arg: TDeleteArg) => {
-    return instance.delete('cards/card', { params: arg })
+    return instance.delete<{ deletedCard: TCommonCardResponse }>('cards/card', { params: arg }).then(res => res.data)
   },
   updateCard: (arg: TUpdateCardArg) => {
-    return instance.put<TUpdateCardResponse>('cards/card', { card: arg }).then(res => res.data)
+    return instance.put<{ updatedCard: TCommonCardResponse }>('cards/card', { card: arg }).then(res => res.data)
   },
   changeGrade: (arg: TChangeGradeArg) => {
     return instance.put<TChangeGradeResponse>('cards/grade', arg).then(res => res.data)
@@ -56,6 +56,25 @@ export type TCard = {
   questionImg?: string
 }
 
+export type TCommonCardResponse = {
+  _id: string
+  cardsPack_id: string
+  user_id: string
+  answer: string
+  question: string
+  grade: number
+  shots: number
+  comments: string
+  type: string
+  rating: number
+  more_id: string
+  created: string
+  updated: string
+  __v: number
+  answerImg: string
+  questionImg: string
+}
+
 export type TCreateCardArg = {
   cardsPack_id: string
   question?: string
@@ -66,10 +85,6 @@ export type TCreateCardArg = {
   questionImg?: string
   questionVideo?: string
   answerVideo?: string
-}
-
-export type TCreateResponse = {
-  newCard: TCard
 }
 
 export type TDeleteArg = {
@@ -86,9 +101,6 @@ export type TUpdateCardArg = {
   questionImg?: string
 }
 
-export type TUpdateCardResponse = {
-  updatedCard: TCard
-}
 
 export type TChangeGradeArg = {
   grade: number

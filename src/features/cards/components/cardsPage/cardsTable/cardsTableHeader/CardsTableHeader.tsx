@@ -3,48 +3,51 @@ import * as React from 'react'
 import { useState } from 'react'
 import { useSearchCards } from 'features/cards/hooks/useSearchCards'
 import { useSelector } from 'react-redux'
-import { selectWhoseCards } from '../../../../selectors'
+import { tableCellStyle, tableHeaderStyle } from 'common/style/tableStyle'
+import { selectIsMyCard } from 'features/cards/selectors'
 
 export const CardsTableHeader = () => {
   const { fetchSortCard } = useSearchCards()
-  const whoseCards = useSelector(selectWhoseCards)
+  const isMyCard = useSelector(selectIsMyCard)
   const [sortOrder, setSortOrder] = useState<'asc' | 'desc'>('asc')
   const [lastSortedCell, setLastSortedCell] = useState<string>('Last Updated')
   const columnTitles: string[] = ['Question', 'Answer', 'Last Updated', 'Grade']
+  if (isMyCard) columnTitles.push('Actions')
 
-  const handleSortButton = (title: string) => () => {
+  const handleSort = (sortTitle: string) => () => {
     let sortArgTitle
-
-    if (title === 'Question') {
-      sortArgTitle = 'question'
-    } else if (title === 'Answer') {
-      sortArgTitle = 'answer'
-    } else if (title === 'Last Updated') {
-      sortArgTitle = 'updated'
-    } else {
-      sortArgTitle = 'grade'
+    switch (sortTitle) {
+      case 'Question':
+        sortArgTitle = 'question'
+        break
+      case 'Answer':
+        sortArgTitle = 'answer'
+        break
+      case 'Last Updated':
+        sortArgTitle = 'updated'
+        break
+      default:
+        sortArgTitle = 'grade'
+        break
     }
-
     const sortCards = sortOrder === 'asc' ? `0${sortArgTitle}` : `1${sortArgTitle}`
     setSortOrder(sortOrder === 'desc' ? 'asc' : 'desc')
-    setLastSortedCell(title)
+    setLastSortedCell(sortTitle)
     fetchSortCard(sortCards)
   }
 
   return (
-    <TableHead sx={{ backgroundColor: '#333333' }}>
+    <TableHead sx={tableHeaderStyle}>
       <TableRow>
         {columnTitles.map((t, i) =>
-          <TableCell key={i} sx={{ color: 'white', borderBottom: '0' }} onMouseEnter={() => setLastSortedCell(t)}>
+          <TableCell key={i} sx={tableCellStyle} onMouseEnter={() => setLastSortedCell(t)}>
             {t}
-            <TableSortLabel sx={{ '& .MuiTableSortLabel-icon': { color: 'white !important' } }}
-                            active={lastSortedCell === t}
-                            direction={sortOrder}
-                            onClick={handleSortButton(t)}
-            />
-          </TableCell>)
-        }
-        {whoseCards && <TableCell sx={{ borderBottom: '0' }} />}
+            {t !== 'Actions' ? <TableSortLabel
+              sx={{ '& .MuiTableSortLabel-icon': { color: 'white !important' } }}
+              active={lastSortedCell === t}
+              direction={sortOrder}
+              onClick={handleSort(t)} /> : null}
+          </TableCell>)}
       </TableRow>
     </TableHead>
   )

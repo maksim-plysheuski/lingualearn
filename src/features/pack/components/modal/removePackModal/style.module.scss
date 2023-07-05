@@ -1,3 +1,5 @@
-.childrenContainer {
-  padding: 18px 24px 18px 24px
+@import "src/common/style/mixins";
+
+.textContainer {
+  margin: 18px 0 18px 0;
 }
