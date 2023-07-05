@@ -43,10 +43,10 @@ export const CardsTableHeader = () => {
           <TableCell key={i} sx={tableCellStyle} onMouseEnter={() => setLastSortedCell(t)}>
             {t}
             {t !== 'Actions' ? <TableSortLabel
-                sx={{ '& .MuiTableSortLabel-icon': { color: 'white !important' } }}
-                active={lastSortedCell === t}
-                direction={sortOrder}
-                onClick={handleSort(t)} /> : null}
+              sx={{ '& .MuiTableSortLabel-icon': { color: 'white !important' } }}
+              active={lastSortedCell === t}
+              direction={sortOrder}
+              onClick={handleSort(t)} /> : null}
           </TableCell>)}
       </TableRow>
     </TableHead>

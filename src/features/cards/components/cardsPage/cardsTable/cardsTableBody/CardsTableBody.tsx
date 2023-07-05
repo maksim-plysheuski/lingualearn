@@ -45,6 +45,3 @@ export const CardsTableBody = () => {
     </TableBody>
   )
 }
-
-
-

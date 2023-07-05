@@ -2,7 +2,7 @@ import IconButton from '@mui/material/IconButton'
 import * as React from 'react'
 import { Zoom } from '@mui/material'
 import Tooltip from '@mui/material/Tooltip'
-import PlayCircleOutlinedIcon from '@mui/icons-material/PlayCircleOutlined';
+import PlayCircleOutlinedIcon from '@mui/icons-material/PlayCircleOutlined'
 import { FC } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { tableActionsStyle } from 'common/style/tableStyle'
@@ -12,13 +12,13 @@ type Props = {
   packId: string
 }
 
-export const LearnPack: FC<Props> = ({cardsCount, packId}) => {
+export const LearnPack: FC<Props> = ({ cardsCount, packId }) => {
   const navigate = useNavigate()
   const learnPack = () => navigate(`/learn/${packId}`)
 
-  return(
+  return (
     <>
-      <Tooltip title={cardsCount === 0 ? "" : 'Learn cards'}
+      <Tooltip title={cardsCount === 0 ? '' : 'Learn cards'}
                arrow placement='top'
                TransitionComponent={Zoom}
                TransitionProps={{ timeout: 400 }}>

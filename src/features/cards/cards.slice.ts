@@ -3,12 +3,11 @@ import { createAppAsyncThunk } from 'common/utils/createAppAsyncThunk'
 import {
   cardsApi,
   TCard,
-  TChangeGradeArg,
-  TCreateResponse,
+  TChangeGradeArg, TCommonCardResponse,
   TDeleteArg,
   TGetCardsArgs,
   TGetCardsResponse,
-  TUpdateCardArg, TUpdateCardResponse
+  TUpdateCardArg
 } from 'features/cards/cardsApi'
 import { thunkTryCatch } from 'common/utils/thunk-try-catch'
 import { packsThunks } from 'features/pack/packs.slice'
@@ -52,16 +51,17 @@ const fetchCards = createAppAsyncThunk<{ cards: TGetCardsResponse, arg: TGetCard
   return { cards: res, arg, whose }
 })
 
-const removeCard = createAppAsyncThunk<unknown, TDeleteArg>
+const deleteCard = createAppAsyncThunk<{deletedCard: TCommonCardResponse}, TDeleteArg>
 ('cards/removeCard', (arg, thunkAPI) => {
   return thunkTryCatch(thunkAPI, async () => {
     const cardsPack_id = thunkAPI.getState().cards.cardsParams.cardsPack_id
-    await cardsApi.deleteCard({ id: arg.id })
+    const res = await cardsApi.deleteCard({ id: arg.id })
     await thunkAPI.dispatch(cardsThunks.fetchCards({ cardsPack_id }))
-  })
+    return res
+  }, false)
 })
 
-const updateCard = createAppAsyncThunk<TUpdateCardResponse, TUpdateCardArg>
+const updateCard = createAppAsyncThunk<{updatedCard: TCommonCardResponse}, TUpdateCardArg>
 ('cards/changeCard', (arg, thunkAPI) => {
   const cardsPack_id = thunkAPI.getState().cards.cardsParams.cardsPack_id
   return thunkTryCatch(thunkAPI, async () => {
@@ -72,7 +72,7 @@ const updateCard = createAppAsyncThunk<TUpdateCardResponse, TUpdateCardArg>
 })
 
 
-const createCard = createAppAsyncThunk<TCreateResponse, { question?: string, answer?: string, answerImg?: string, questionImg?: string }>
+const createCard = createAppAsyncThunk<{newCard: TCommonCardResponse}, { question?: string, answer?: string, answerImg?: string, questionImg?: string }>
 ('cards/addCard', (arg, thunkAPI) => {
   const cardsPack_id = thunkAPI.getState().cards.cardsParams.cardsPack_id
   return thunkTryCatch(thunkAPI, async () => {
@@ -92,7 +92,7 @@ const changeGrade = createAppAsyncThunk<TCard[], TChangeGradeArg & { packId: str
 
 export const cardsReducer = slice.reducer
 export const cardsAction = slice.actions
-export const cardsThunks = { fetchCards, changeGrade, createCard, updateCard, removeCard }
+export const cardsThunks = { fetchCards, changeGrade, createCard, updateCard, deleteCard }
 
 
 

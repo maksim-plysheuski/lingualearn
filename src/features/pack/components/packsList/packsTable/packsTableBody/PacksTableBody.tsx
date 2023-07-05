@@ -4,17 +4,11 @@ import { cardsThunks } from 'features/cards/cards.slice'
 import { useNavigate } from 'react-router-dom'
 import { paths } from 'common/router/path'
 import * as React from 'react'
-import {
-  LearnPack
-} from 'features/pack/components/packsList/packsTable/packsTableBody/actionsButtons/learnPack/LearnPack'
-import {
-  EditPack
-} from 'features/pack/components/packsList/packsTable/packsTableBody/actionsButtons/editPack/EditPack'
-import {
-  RemovePack
-} from 'features/pack/components/packsList/packsTable/packsTableBody/actionsButtons/removePack/RemovePack'
 import { tableCellHoverStyle, tableCellStyle } from 'common/style/tableStyle'
 import PanoramaOutlinedIcon from '@mui/icons-material/PanoramaOutlined'
+import { LearnPack } from './actionsButtons/learnPack/LearnPack'
+import { EditPack } from './actionsButtons/editPack/EditPack'
+import { RemovePack } from './actionsButtons/removePack/RemovePack'
 
 
 export const PacksTableBody = () => {

@@ -1,8 +1,5 @@
 @import "src/common/style/mixins";
 
-.descriptionMessage {
+.textContainer {
   margin: 18px 0 18px 0;
-  span {
-    @include text(500, 16px, 24px);
-  }
 }

@@ -1,7 +1,7 @@
 import { SxProps, Theme } from '@mui/material/styles'
 
 export const tableHeaderStyle = {
-  backgroundColor: '#333333'
+  backgroundColor: '#333333',
 }
 
 export const tableStyle: SxProps<Theme> = {

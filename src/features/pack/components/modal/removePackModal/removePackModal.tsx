@@ -13,7 +13,6 @@ type Props = {
   packName?: string
 }
 
-
 export const RemovePackModal = (props: Props) => {
   const packName = useAppSelector(selectPackName)
   const packId = useAppSelector(selectPackId)
@@ -47,7 +46,7 @@ export const RemovePackModal = (props: Props) => {
                titleButtonAction={'Delete Pack'}
                isButtonDisabled={disable}
     >
-      <div className={s.descriptionMessage}>
+      <div className={s.textContainer}>
         <span>
           {`Do you really want to remove `}
           <b>{`${props.packName ? props.packName : packName}?`}</b>
