@@ -4,12 +4,12 @@ import Slider from '@mui/material/Slider'
 import s from 'features/pack/components/searchBar/countSearch/style.module.scss'
 
 import { packsThunks } from 'features/pack/packs.slice'
-import { useSearchPaks } from 'features/pack/hook/useSearchPaks'
+import { useSearchPacks } from 'features/pack/hook/useSearchPacks'
 import { sliderStyle } from 'features/pack/components/searchBar/countSearch/style'
 
 export const CountSearch = memo(() => {
 
-  const { setMinMaxCards, maxCardsCount, minCardsCount, max, min, dispatch } = useSearchPaks()
+  const { setMinMaxCards, maxCardsCount, minCardsCount, max, min, dispatch } = useSearchPacks()
 
   const handleChange = (event: Event, newValue: number | number[]) => {
     setMinMaxCards(newValue as number[])

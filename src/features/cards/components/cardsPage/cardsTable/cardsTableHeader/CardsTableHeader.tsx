@@ -4,6 +4,7 @@ import { useState } from 'react'
 import { useSearchCards } from 'features/cards/hooks/useSearchCards'
 import { useSelector } from 'react-redux'
 import { selectWhoseCards } from '../../../../selectors'
+import { tableCellStyle } from 'common/style/tableContainerStyle'
 
 export const CardsTableHeader = () => {
   const { fetchSortCard } = useSearchCards()
@@ -35,7 +36,7 @@ export const CardsTableHeader = () => {
     <TableHead sx={{ backgroundColor: '#333333' }}>
       <TableRow>
         {columnTitles.map((t, i) =>
-          <TableCell key={i} sx={{ color: 'white', borderBottom: '0' }} onMouseEnter={() => setLastSortedCell(t)}>
+          <TableCell key={i} sx={tableCellStyle} onMouseEnter={() => setLastSortedCell(t)}>
             {t}
             <TableSortLabel sx={{ '& .MuiTableSortLabel-icon': { color: 'white !important' } }}
                             active={lastSortedCell === t}

@@ -1,10 +1,10 @@
 import React from 'react'
-import { useSearchPaks } from 'features/pack/hook/useSearchPaks'
+import { useSearchPacks } from 'features/pack/hook/useSearchPacks'
 import { InputSearch } from 'common/components'
 import s from './style.module.scss'
 
 export const NameSearch = () => {
-  const { setPackName, packName } = useSearchPaks()
+  const { setPackName, packName } = useSearchPacks()
 
   const setSearchParamsHandler = (packName: string) => {
     setPackName(packName)

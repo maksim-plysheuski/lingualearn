@@ -9,7 +9,7 @@ export const PacksTableHeader = () => {
   const currentRowsCount = useAppSelector(state => state.packs.packs.pageCount)
   const [sortOrder, setSortOrder] = useState<'asc' | 'desc'>('asc')
   const [lastSortedCell, setLastSortedCell] = useState<string>('Last Updated')
-  const columnTitles: string[] = ['Name', 'Cards', 'Last Updated', 'Created by', 'Actions']
+  const columnTitles: string[] = ['Cover', 'Name', 'Cards', 'Last Updated', 'Created by', 'Actions']
 
   const handleSortButton = (title: string) => () => {
     let sortArgTitle
@@ -34,7 +34,7 @@ export const PacksTableHeader = () => {
   }
 
   return (
-    <TableHead sx={{ backgroundColor: '#333333'}}>
+    <TableHead sx={{ backgroundColor: '#333333', width: '100%'}}>
       <TableRow>
         {columnTitles.map((t, i) =>
           <TableCell key={i}

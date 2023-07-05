@@ -1,10 +1,10 @@
 import React from 'react'
 import s from 'features/pack/components/searchBar/resetButton/style.module.scss'
-import { useSearchPaks } from 'features/pack/hook/useSearchPaks'
+import { useSearchPacks } from 'features/pack/hook/useSearchPacks'
 import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline'
 
 export const ResetButton = () => {
-  const { resetSearchParams } = useSearchPaks()
+  const { resetSearchParams } = useSearchPacks()
   return (
     <div className={s.container}
          onClick={resetSearchParams}

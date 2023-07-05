@@ -3,10 +3,10 @@ import ToggleButtonGroup from '@mui/material/ToggleButtonGroup/ToggleButtonGroup
 import { buttonStyle } from 'features/pack/components/searchBar/buttonsShowPack/style'
 import s from 'features/pack/components/searchBar/buttonsShowPack/style.module.scss'
 import { memo } from 'react'
-import { useSearchPaks } from 'features/pack/hook/useSearchPaks'
+import { useSearchPacks } from 'features/pack/hook/useSearchPacks'
 
 export const ButtonsShowPacks = memo(() => {
-  const { setMyAllCards, paramsCardId, userId } = useSearchPaks()
+  const { setMyAllCards, paramsCardId, userId } = useSearchPacks()
 
   const getPackHandler = (user_id: string) => {
     setMyAllCards(user_id)

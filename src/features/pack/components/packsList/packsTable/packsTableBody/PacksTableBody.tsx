@@ -13,14 +13,9 @@ import {
 import {
   RemovePack
 } from 'features/pack/components/packsList/packsTable/packsTableBody/actionsButtons/removePack/RemovePack'
+import { tableCellStyle } from 'common/style/tableContainerStyle'
+import PanoramaOutlinedIcon from '@mui/icons-material/PanoramaOutlined'
 
-const tableCellStyle = {
-  wordWrap: 'break-word',
-  minWidth: '150px',
-  maxWidth: '200px',
-  color: 'white',
-  borderBottom: '1px solid #333333'
-}
 
 export const PacksTableBody = () => {
   const dispatch = useAppDispatch()
@@ -36,9 +31,14 @@ export const PacksTableBody = () => {
     <TableBody>
       {packs.cardPacks?.map((pack) => (
         <TableRow key={pack._id}>
+          <TableCell sx={{ ...tableCellStyle, maxWidth: '60px' }}>
+            {pack.deckCover
+              ? <img style={{ height: '36px' }} src={pack.deckCover} alt='pack cover' />
+              : <PanoramaOutlinedIcon sx={{ fontSize: '40px', color: '#4C4C4C' }} />
+            }
+          </TableCell>
           <TableCell sx={{
             ...tableCellStyle,
-            paddingLeft: '40px',
             cursor: 'pointer',
             ':hover': { backgroundColor: '#333333' }
           }}

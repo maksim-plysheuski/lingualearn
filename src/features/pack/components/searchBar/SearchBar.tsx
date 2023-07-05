@@ -4,12 +4,12 @@ import { CountSearch } from 'features/pack/components/searchBar/countSearch/Coun
 import s from 'features/pack/components/searchBar/style.module.scss'
 import { NameSearch } from 'features/pack/components/searchBar/nameSearch/NameSearch'
 import { SuperButton } from 'common/components/superButton/SuperButton'
-import { useSearchPaks } from 'features/pack/hook/useSearchPaks'
+import { useSearchPacks } from 'features/pack/hook/useSearchPacks'
 import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline'
 
 
 export const SearchBar = () => {
-  const { resetSearchParams } = useSearchPaks()
+  const { resetSearchParams } = useSearchPacks()
 
   return (
     <div className={s.container}>

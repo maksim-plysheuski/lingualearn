@@ -4,12 +4,12 @@ import s from 'features/pack/components/packsList/style.module.scss'
 import { PageTitleBlock } from 'common/components/pageTitleBlock/PageTitleBlock'
 import { useEffect } from 'react'
 import { packAction, packsThunks } from 'features/pack/packs.slice'
-import { useSearchPaks } from 'features/pack/hook/useSearchPaks'
+import { useSearchPacks } from 'features/pack/hook/useSearchPacks'
 import { PaginatorPacks } from 'features/pack/components/paginatorPaks/paginatorPacks'
 
 
 export const PacksList = () => {
-  const { params, dispatch, packs } = useSearchPaks()
+  const { params, dispatch, packs } = useSearchPacks()
 
   useEffect(() => {
     dispatch(packAction.setPackParams(params))
