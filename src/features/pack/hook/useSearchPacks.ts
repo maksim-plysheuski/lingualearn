@@ -18,10 +18,11 @@ import {
 } from 'features/pack/packSelectors'
 import { useSelector } from 'react-redux'
 import { useDebounce } from 'common/hooks/useDebounce'
+import { profileIdSelect } from 'features/auth/selectors'
 
 export const useSearchPacks = () => {
   const dispatch = useAppDispatch()
-  const userId = useAppSelector(state => state.auth.profile._id)
+  const userId = useAppSelector(profileIdSelect)
   const packName = useSelector(namePackParamsSelect)
   const paramsCardId = useSelector(paramsCardIdSelect)
   const minCardsCount = useSelector(minCardsCountSelect)
