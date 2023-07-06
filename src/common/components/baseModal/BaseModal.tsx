@@ -36,7 +36,9 @@ export const BaseModal = (props: Props) => {
   const { children, buttonOpen, title, open, setOpen, actionCallback, titleButtonAction, disable } = props
 
   const handleOpen = () => setOpen(true)
-  const handleClose = () => setOpen(false)
+  const handleClose = () => {
+    setOpen(false)
+  }
 
   return (
     <div>
@@ -53,8 +55,10 @@ export const BaseModal = (props: Props) => {
           </div>
           <div className={s.containerChildren}>{children}</div>
           <div className={s.buttonContainer}>
-            <button className={s.buttonCancel} onClick={handleClose}>Cancel</button>
-            <button disabled={disable} className={s.buttonAction} onClick={actionCallback}>{titleButtonAction}</button>
+            <button disabled={disable} className={s.buttonCancel} onClick={handleClose}>Cancel</button>
+            <button disabled={disable} className={s.buttonAction} onClick={actionCallback}>
+              {titleButtonAction}
+            </button>
           </div>
         </Box>
       </Modal>

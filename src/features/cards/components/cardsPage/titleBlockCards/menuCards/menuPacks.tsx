@@ -7,13 +7,13 @@ import PlayCircleOutlineIcon from '@mui/icons-material/PlayCircleOutline'
 import { EditPackModal } from 'features/pack/modal/editPackModal/EditCardModal'
 import { RemovePackModal } from 'features/pack/modal/removePackModal/removePackModal'
 import { useNavigate } from 'react-router-dom'
-import { useAppSelector } from 'common/hooks'
-import { selectPackId } from 'features/cards/selectors'
+import { useFetchCards } from 'features/cards/service'
 
 
 export const MenuPacks = () => {
+  const { data } = useFetchCards()
   const navigate = useNavigate()
-  const packId = useAppSelector(selectPackId)
+
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null)
   const open = Boolean(anchorEl)
   const handleClick = (event: React.MouseEvent<HTMLElement>) => {
@@ -62,11 +62,11 @@ export const MenuPacks = () => {
             transformOrigin={{ horizontal: 'right', vertical: 'top' }}
             anchorOrigin={{ horizontal: 'right', vertical: 'bottom' }}
       >
-        <MenuItem onClick={() => navigate(`/learn/${packId}`)}>
+        <MenuItem onClick={() => navigate(`/learn/${data?.packUserId}`)}>
           <PlayCircleOutlineIcon /> Learn
         </MenuItem>
         <Divider />
-        <MenuItem >
+        <MenuItem>
           <EditPackModal handleCloseMenu={handleClose} /> Edit
         </MenuItem>
         <Divider />

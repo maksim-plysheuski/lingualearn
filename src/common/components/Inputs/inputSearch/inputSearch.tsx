@@ -4,7 +4,7 @@ import SearchIcon from '@mui/icons-material/Search'
 
 type Props = {
   valueName: string | undefined
-  searchCallback: (name: string) => void
+  searchCallback: (cardQuestion: string) => void
   disabled?: boolean
 }
 

@@ -3,10 +3,11 @@ import { appReducer } from 'app/app.slice'
 import { authReducer } from 'features/auth/auth.slice'
 import { profileReducer } from 'features/profile/profile.slice'
 import { packsReducer } from 'features/pack/packs.slice'
-import { cardsReducer } from 'features/cards/cards.slice'
 import { packApi } from 'features/pack/service/pack.slice'
 import { setupListeners } from '@reduxjs/toolkit/query'
 import { sortPackSlice } from 'features/pack/service/sortPackSlice'
+import { cardApi } from 'features/cards/service'
+import { paramsCardReducer } from 'features/cards/service/paramsCard.Slice'
 
 export const store = configureStore({
   reducer: {
@@ -14,11 +15,14 @@ export const store = configureStore({
     auth: authReducer,
     profile: profileReducer,
     packs: packsReducer,
-    cards: cardsReducer,
     [packApi.reducerPath]: packApi.reducer,
-    sortPackSlice:sortPackSlice
+    [cardApi.reducerPath]: cardApi.reducer,
+    sortPackSlice: sortPackSlice,
+    paramsCard:paramsCardReducer
   },
-  middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(packApi.middleware)
+  middleware: (getDefaultMiddleware) => getDefaultMiddleware()
+    .concat(packApi.middleware)
+    .concat(cardApi.middleware)
 })
 
 setupListeners(store.dispatch)

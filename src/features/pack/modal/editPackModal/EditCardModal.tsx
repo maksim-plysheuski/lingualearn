@@ -1,12 +1,10 @@
 import { BaseModal } from 'common/components/baseModal/BaseModal'
 import { InputCastom } from 'common/components/baseModal/inputCastom/InputCastom'
-import { useAppDispatch, useAppSelector } from 'common/hooks'
+import { useAppSelector } from 'common/hooks'
 import React, { useState } from 'react'
-import { packsThunks } from '../../packs.slice'
 import DriveFileRenameOutlineIcon from '@mui/icons-material/DriveFileRenameOutline'
 import { TPack } from 'features/pack/packApi'
 import { toast } from 'react-toastify'
-import { selectPackId, selectPackName, selectPrivatePack } from 'features/cards/selectors/cards.selector'
 import { useUpdatePackMutation } from 'features/pack/service'
 
 type Props = {
@@ -16,27 +14,24 @@ type Props = {
 
 
 export const EditPackModal = (props: Props) => {
-  const packName = useAppSelector(selectPackName)
-  const packId = useAppSelector(selectPackId)
-  const isPackPrivate = useAppSelector(selectPrivatePack)
+  const { pack, handleCloseMenu } = props
 
-
-  const [updatePack, {}] = useUpdatePackMutation()
+  const [updatePack, {isLoading}] = useUpdatePackMutation()
   const [open, setOpen] = useState<boolean>(false)
-  const [inputValue, setInputValue] = useState<string>(props.pack?.name || packName)
-  const [isPrivatePack, setIsPrivatePack] = useState<boolean>(props.pack?.private || isPackPrivate)
-  const [disable, setDisable] = useState<boolean>(false)
+
+  const [inputValue, setInputValue] = useState<string>(pack?.name!||'' )
+  const [isPrivatePack, setIsPrivatePack] = useState<boolean>(pack?.private!||false )
+
 
   const updatePackHandler = async () => {
-    let payload = { _id: props.pack ? props.pack._id : packId, name: inputValue, private: isPrivatePack }
+    let payload = { _id:  pack?._id! , name: inputValue, private: isPrivatePack }
 
-    setDisable(true)
+
     await updatePack(payload).unwrap()
       .then(() => toast.info(`Pack has been updated`))
       .catch((err) => toast.error(err.e.response ? err.e.response.data.error : err.e.message))
       .finally(() => {
         setOpen(false)
-        setDisable(false)
       })
     if (props.handleCloseMenu) {
       props.handleCloseMenu()
@@ -44,7 +39,7 @@ export const EditPackModal = (props: Props) => {
   }
   return (
     <BaseModal title={'Edit Pack'} open={open} setOpen={setOpen} titleButtonAction={'Save Changes'}
-               actionCallback={updatePackHandler} buttonOpen={<DriveFileRenameOutlineIcon />} disable={disable}
+               actionCallback={updatePackHandler} buttonOpen={<DriveFileRenameOutlineIcon />} disable={isLoading}
     >
       <>
         <InputCastom label={'Name Pack'} value={inputValue} setValue={setInputValue} />

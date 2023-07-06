@@ -3,8 +3,9 @@ import { EditPack } from './actionsButtons/editPack/EditPack'
 import { RemovePack } from './actionsButtons/removePack/RemovePack'
 import { useGetPacksQuery } from 'features/pack/service/pack.slice'
 import { LearnPack } from './actionsButtons/learnPack/LearnPack'
-import { useAppSelector } from 'common/hooks'
+import { useAppDispatch, useAppSelector } from 'common/hooks'
 import { useNavigate } from 'react-router-dom'
+import { setCardParams } from 'features/cards/service'
 
 const tableCellStyle = {
   wordWrap: 'break-word',
@@ -15,12 +16,15 @@ const tableCellStyle = {
 }
 
 export const PacksTableBody = () => {
+  const dispatch = useAppDispatch()
   const navigate = useNavigate()
   const sortPackParams = useAppSelector(state => state.sortPackSlice.packParams)
   const { data } = useGetPacksQuery(sortPackParams)
 
-  const openSelectedPack = (packId: string) => navigate(`/cards/${packId}`)
-
+  const openSelectedPack = async (cardsPack_id: string) => {
+    await dispatch(setCardParams({ cardsPack_id }))
+    navigate(`/cards/${cardsPack_id}`)
+  }
 
   return (
     <TableBody>

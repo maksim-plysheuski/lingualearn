@@ -1,7 +1,7 @@
 import React from 'react'
 import { TableCell } from '@mui/material'
 import { SxProps } from '@mui/material/styles'
-import s from './style.module.scss'
+import s from 'features/cards/components/cardsPage/cardsTable/cardsTableBody/fieldButtons/style.module.scss'
 import { useAppDispatch } from 'common/hooks'
 import { EditCardsModal } from 'features/cards/components/modal/editCardModal/EditCardModal'
 import { RemoveCardModal } from 'features/cards/components/modal/removeCardModal/removeCardModal'
@@ -25,7 +25,6 @@ export const FieldButtons = (props: Props) => {
 
   }
   return (
-    <TableCell sx={style}>
       <div className={s.iconContainer}>
         <EditCardsModal
           cardId={cardId}
@@ -34,7 +33,6 @@ export const FieldButtons = (props: Props) => {
         />
         <RemoveCardModal cardId={cardId} title={questionValue} />
       </div>
-    </TableCell>
   )
 }
 
