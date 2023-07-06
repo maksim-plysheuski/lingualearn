@@ -6,6 +6,7 @@ import { useAppDispatch, useAppSelector } from 'common/hooks'
 import s from './App.module.scss'
 import { LinearProgress } from '@mui/material'
 import { GlobalError } from 'common/components/globalError/GlobalError'
+import 'react-toastify/dist/ReactToastify.css'
 
 
 function App() {
