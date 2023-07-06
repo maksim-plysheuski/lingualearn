@@ -1,4 +1,4 @@
-import s from 'features/pack/components/modal/common/packBodyModal/styles.module.scss'
+import s from './styles.module.scss'
 import { InputCustom } from 'common/components/baseModal/inputCastom/InputCustom'
 import { ImageBlockModal } from 'common/components/imageBlockModal/ImageBlockModal'
 import { Checkbox } from '@mui/material'

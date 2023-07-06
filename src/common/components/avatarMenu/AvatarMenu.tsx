@@ -19,6 +19,7 @@ export const AvatarMenu = () => {
   const navigate = useNavigate()
   const dispatch = useAppDispatch()
   const userName = useAppSelector(state => state.profile.profile?.name)
+  const profile = useAppSelector(state => state.profile.profile)
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null)
   const open = Boolean(anchorEl)
 
@@ -37,6 +38,29 @@ export const AvatarMenu = () => {
     dispatch(authThunks.logout())
   }
 
+  const style = {
+    '& .MuiPaper-root': {
+      bgcolor: '#171717',
+      border: '1px solid #333333',
+      marginTop: 1,
+      minWidth: 180,
+      color: '#fff',
+      '& .MuiMenu-list': {
+        padding: '4px 0'
+      },
+      '& .MuiMenuItem-root': {
+        '&:hover': {
+          bgcolor: '#333333'
+        },
+        '& .MuiSvgIcon-root': {
+          fontSize: 18,
+          color: '#fff',
+          marginRight: 1
+        }
+      }
+    }
+  }
+
   return (
     <React.Fragment>
       <Box sx={{ display: 'flex', alignItems: 'center', textAlign: 'right' }}>
@@ -52,11 +76,12 @@ export const AvatarMenu = () => {
             aria-haspopup='true'
             aria-expanded={open ? 'true' : undefined}
           >
-            <Avatar sx={{ width: 32, height: 32 }}>M</Avatar>
+            <Avatar sx={{ width: 32, height: 32 }} src={profile?.avatar} />
           </IconButton>
         </Tooltip>
       </Box>
       <Menu
+        sx={style}
         anchorEl={anchorEl}
         id='account-menu'
         open={open}
@@ -92,14 +117,15 @@ export const AvatarMenu = () => {
         anchorOrigin={{ horizontal: 'right', vertical: 'bottom' }}
       >
         <MenuItem onClick={handleProfileButton}>
-          <Avatar /> Profile
+          <Avatar src={profile?.avatar} /> {userName}
+
         </MenuItem>
         <Divider />
         <MenuItem onClick={handleLogoutButton}>
           <ListItemIcon>
             <Logout fontSize='small' />
           </ListItemIcon>
-          Logout
+          Sign Out
         </MenuItem>
       </Menu>
     </React.Fragment>
