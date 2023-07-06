@@ -3,11 +3,12 @@ import * as React from 'react'
 import { useAppSelector } from 'common/hooks'
 import { AddPackModal } from 'features/pack/components/modal/addPackModal/addPackModal'
 import { selectPackUserId } from 'features/cards/selectors'
+import { profileIdSelect } from 'features/auth/selectors'
 
 
 export const PageTitleBlock = () => {
   const packOwnerId = useAppSelector(selectPackUserId)
-  const userId = useAppSelector(state => state.profile.profile?._id)
+  const userId = useAppSelector(profileIdSelect)
 
   return (
     <div className={s.addPackBlock}>
