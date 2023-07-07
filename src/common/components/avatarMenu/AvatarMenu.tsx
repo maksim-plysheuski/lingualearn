@@ -15,6 +15,7 @@ import s from './style.module.scss'
 import PermIdentityOutlinedIcon from '@mui/icons-material/PermIdentityOutlined'
 import { menuStyle, paperStyle } from 'common/components/avatarMenu/style'
 import { selectProfile, selectUserName } from 'features/profile/selectors'
+import FeaturedPlayListOutlinedIcon from '@mui/icons-material/FeaturedPlayListOutlined';
 
 
 export const AvatarMenu = () => {
@@ -28,6 +29,7 @@ export const AvatarMenu = () => {
   const handleClickMenu = (event: React.MouseEvent<HTMLElement>) => setAnchorEl(event.currentTarget)
   const handleCloseMenu = () => setAnchorEl(null)
   const openProfilePage = () => navigate(paths.PROFILE)
+  const openPacksPage = () => navigate(paths.PACKS)
   const logout = () => dispatch(authThunks.logout())
 
   return (
@@ -56,6 +58,12 @@ export const AvatarMenu = () => {
           <ListItemIcon>
             <PermIdentityOutlinedIcon />
           </ListItemIcon>My Profile
+        </MenuItem>
+        <Divider />
+        <MenuItem onClick={openPacksPage}>
+          <ListItemIcon>
+            <FeaturedPlayListOutlinedIcon />
+          </ListItemIcon>Packs List
         </MenuItem>
         <Divider />
         <MenuItem onClick={logout}>

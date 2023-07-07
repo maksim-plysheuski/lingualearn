@@ -11,7 +11,7 @@ import {
   minCardsCountSelect,
   minSelect,
   namePackParamsSelect,
-  packsSelect,
+  cardPacksSelect,
   pageCountSelect,
   pageSelect,
   paramsCardIdSelect
@@ -29,7 +29,7 @@ export const useSearchPacks = () => {
   const maxCardsCount = useSelector(maxCardsCountSelect)
   const min = useSelector(minSelect)
   const max = useSelector(maxSelect)
-  const packs = useSelector(packsSelect)
+  const packs = useSelector(cardPacksSelect)
 
 
 // запись параметров в поисковую строку

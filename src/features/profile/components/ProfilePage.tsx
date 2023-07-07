@@ -4,30 +4,31 @@ import { EditableTitle } from 'common/components/editableTitle/EditableTitle'
 import { SuperButton } from 'common/components/superButton/SuperButton'
 import { authThunks } from 'features/auth/auth.slice'
 import { useAppDispatch, useAppSelector } from 'common/hooks'
-import { BackLink } from 'common/components/backLink/BackLink'
 import { ProfileAva } from './profileAva/ProfileAva'
 import { loadingSelect } from 'app'
+import { selectProfile } from 'features/profile/selectors'
 
 
 export const ProfilePage = () => {
   const dispatch = useAppDispatch()
-  const profile = useAppSelector(state => state.profile.profile)
+  const profile = useAppSelector(selectProfile)
   const isLoading = useAppSelector(loadingSelect)
 
-  const logoutHandler = () => {
-    dispatch(authThunks.logout())
-  }
+  const logoutHandler = () => dispatch(authThunks.logout())
 
   return (
     <div className={s.profilePage}>
-      <BackLink />
-      <div className={s.personalInfoBlock}>
+      <div className={s.profileContainer}>
         <h1>Personal Information</h1>
         <ProfileAva />
-        <EditableTitle userName={profile ? profile.name : 'Username'} />
-        <span className={s.emailSpan}>{profile ? profile.email : 'user@mail.com'}</span>
+        <EditableTitle userName={profile?.name} />
+        <div className={s.infoBlock}>
+          <span>Total public packs: <b>{profile?.publicCardPacksCount}</b></span>
+          <span>Account was created: <b>{profile?.created.slice(0, 10).split('-').reverse().join('.')}</b></span>
+          <span>{profile?.email}</span>
+        </div>
         <SuperButton title={'Log out'} width={'127'} icon={<LogoutIcon />} isGrayColor={true}
-                     onClickCallback={logoutHandler} isLoading={isLoading} />
+                     onClickCallback={logoutHandler} disabled={isLoading} />
       </div>
     </div>
   )
