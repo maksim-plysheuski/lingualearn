@@ -9,12 +9,12 @@
 
   .backLink {
     @include text(400, 15px, 24px);
-    margin-left: 10px;
+    margin-left: 5px;
     text-decoration: none;
     transition: color 250ms ease-in-out;
 
     &:hover {
-      color: #aaaaaa;
+      color: $orangeColor;
     }
   }
 }
