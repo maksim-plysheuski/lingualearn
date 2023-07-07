@@ -15,7 +15,7 @@ import {
   pageCountSelect,
   pageSelect,
   paramsCardIdSelect
-} from 'features/pack/packSelectors'
+} from 'features/pack/selectors'
 import { useSelector } from 'react-redux'
 import { useDebounce } from 'common/hooks/useDebounce'
 import { profileIdSelect } from 'features/auth/selectors'

@@ -14,13 +14,14 @@ import { authThunks } from 'features/auth/auth.slice'
 import s from './style.module.scss'
 import PermIdentityOutlinedIcon from '@mui/icons-material/PermIdentityOutlined'
 import { menuStyle, paperStyle } from 'common/components/avatarMenu/style'
+import { selectProfile, selectUserName } from 'features/profile/selectors'
 
 
 export const AvatarMenu = () => {
   const navigate = useNavigate()
   const dispatch = useAppDispatch()
-  const userName = useAppSelector(state => state.profile.profile?.name)
-  const profile = useAppSelector(state => state.profile.profile)
+  const profile = useAppSelector(selectProfile)
+  const userName = useAppSelector(selectUserName)
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null)
   const open = Boolean(anchorEl)
 
@@ -28,7 +29,6 @@ export const AvatarMenu = () => {
   const handleCloseMenu = () => setAnchorEl(null)
   const openProfilePage = () => navigate(paths.PROFILE)
   const logout = () => dispatch(authThunks.logout())
-
 
   return (
     <>
