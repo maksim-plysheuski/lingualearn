@@ -6,7 +6,7 @@ import { AddCardsModal } from 'features/cards/components/modal/addCardModal/addC
 import { MenuPacks } from 'features/cards/components/cardsPage/menuCards/menuPacks'
 import { useSelector } from 'react-redux'
 import { useAppSelector } from 'common/hooks'
-import { selectPackName } from 'features/cards/selectors/cards.selector'
+import { selectPackName } from 'features/cards/selectors/selectors'
 
 export const TitleBlockCards = () => {
   const isMyPack = useSelector(selectIsMyCard)

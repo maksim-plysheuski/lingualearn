@@ -5,7 +5,7 @@ import { packsThunks } from 'features/pack/packs.slice'
 import DriveFileRenameOutlineIcon from '@mui/icons-material/DriveFileRenameOutline'
 import { TPack } from 'features/pack/packApi'
 import { toast } from 'react-toastify'
-import { selectPackId, selectPackName, selectPrivatePack } from 'features/cards/selectors/cards.selector'
+import { selectPackId, selectPackName, selectPrivatePack } from 'features/cards/selectors/selectors'
 import { PackBodyModal } from 'features/pack/components/modal/common/packBodyModal/PackBodyModal'
 
 type Props = {

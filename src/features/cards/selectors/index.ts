@@ -10,6 +10,6 @@ export {
   selectPage,
   selectPageCount,
   selectCards
-} from 'features/cards/selectors/cards.selector'
+} from 'features/cards/selectors/selectors'
 
 
