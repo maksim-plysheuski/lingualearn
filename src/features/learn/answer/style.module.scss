@@ -1,4 +1,4 @@
-@import "common/style/variables";
+@import "src/common/style/variables";
 
 .answerContainer {
   margin-top: 30px;
@@ -19,7 +19,7 @@
       margin-top: 16px;
     }
 
-    .castomRadio {
+    .customRadio {
       position: relative;
       display: block;
       width: 16px;
@@ -48,7 +48,7 @@
 
     }
 
-    input:checked + .castomRadio::before {
+    input:checked + .customRadio::before {
       transform: translate(-50%, -50%) scale(1);
     }
 

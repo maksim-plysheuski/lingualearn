@@ -49,7 +49,7 @@ export const ImageBlockModal: FC<Props> = ({ coverTitle, coverImage, setCoverIma
                            marginTop={'24px'}
                            marginLeft={'10px'}
                            isGrayColor={true}
-                           onClickCallback={() => setCoverImage('')}
+                           onClick={() => setCoverImage('')}
                            icon={<DeleteOutlineIcon />}
               />
             </div>

@@ -28,7 +28,7 @@ export const ProfilePage = () => {
           <span>{profile?.email}</span>
         </div>
         <SuperButton title={'Log out'} width={'127'} icon={<LogoutIcon />} isGrayColor={true}
-                     onClickCallback={logoutHandler} disabled={isLoading} />
+                     onClick={logoutHandler} disabled={isLoading} />
       </div>
     </div>
   )

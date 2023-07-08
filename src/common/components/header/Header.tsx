@@ -21,7 +21,7 @@ export const Header = () => {
           <span>Lingualearn</span>
         </Link>
         {isLoggedIn ? <AvatarMenu /> :
-          <SuperButton title='Sign Up' width={'100px'} onClickCallback={singUpCallback} disabled={false} />}
+          <SuperButton title='Sign Up' width={'100px'} onClick={singUpCallback} disabled={false} />}
       </div>
     </header>
   )
