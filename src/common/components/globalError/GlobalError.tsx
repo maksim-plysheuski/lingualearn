@@ -2,10 +2,11 @@ import { useAppDispatch, useAppSelector } from "common/hooks";
 import { useEffect } from "react";
 import { appActions } from 'app/components/app.slice'
 import { toast, ToastContainer } from 'react-toastify'
+import { errorSelect } from 'app'
 
 
 export const GlobalError = () => {
-  const error = useAppSelector((state) => state.app.error);
+  const error = useAppSelector(errorSelect);
   const dispatch = useAppDispatch();
 
   if (error !== null) {

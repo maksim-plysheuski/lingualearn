@@ -7,12 +7,13 @@ import s from './App.module.scss'
 import { LinearProgress } from '@mui/material'
 import { GlobalError } from 'common/components/globalError/GlobalError'
 import 'react-toastify/dist/ReactToastify.css'
+import { initializedSelect, loadingSelect } from 'app/selectors'
 
 
 function App() {
   const dispatch = useAppDispatch()
-  const isAppInitialized = useAppSelector(state => state.app.isAppInitialized)
-  const isLoading = useAppSelector(state => state.app.isLoading)
+  const isAppInitialized = useAppSelector(initializedSelect)
+  const isLoading = useAppSelector(loadingSelect)
 
   const lineProgressSx = { position: 'absolute', top: '60px', width: '100%', bgcolor: '#664400' }
 
