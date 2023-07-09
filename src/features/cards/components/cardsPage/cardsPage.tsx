@@ -1,4 +1,4 @@
-import s from 'features/cards/components/cardsPage/style.module.scss'
+import s from './style.module.scss'
 import { useAppDispatch, useAppSelector } from 'common/hooks'
 import { BackLink } from 'common/components/backLink/BackLink'
 import * as React from 'react'
@@ -10,6 +10,7 @@ import { InputSearchCards } from 'features/cards/components/cardsPage/inputSearc
 import { CardsTable } from 'features/cards/components/cardsPage/cardsTable/CardsTable'
 import { PaginationCards } from 'features/cards/components/cardsPage/paginationCards/paginationCards'
 import { selectCards } from 'features/cards/selectors'
+import { EmptyCardsPack } from 'features/cards/components/cardsPage/emptyCardsPack/EmptyCardsPack'
 
 export const CardsPage = () => {
   const { params } = useSearchCards()
@@ -25,10 +26,14 @@ export const CardsPage = () => {
   return (
     <div className={s.packsList}>
       <BackLink />
-      <TitleBlockCards />
-      <InputSearchCards />
-      {cards.length === 0 ? <h1>карточек не найдено </h1> : <CardsTable />}
-      <PaginationCards />
+      {cards.length
+        ? <>
+          <TitleBlockCards />
+          <InputSearchCards />
+          <CardsTable />
+          <PaginationCards />
+        </>
+        : <EmptyCardsPack />}
     </div>
   )
 }
