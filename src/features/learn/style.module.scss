@@ -27,8 +27,12 @@
     }
 
     .question {
-      @include text(700, 16px, 24px);
+      @include text(400, 16px, 24px);
       word-break: break-all;
+      span {
+        font-weight: 700;
+      }
+
     }
     .attemptsCount {
       color: $dark100;

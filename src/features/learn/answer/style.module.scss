@@ -1,4 +1,5 @@
 @import "src/common/style/variables";
+@import "src/common/style/mixins";
 
 .answerContainer {
   margin-top: 30px;
@@ -9,6 +10,10 @@
 
   .answer {
     word-break: break-word;
+
+    span {
+      @include text(700, 16px, 24px);
+    }
   }
 
   .formGroup {
@@ -17,6 +22,7 @@
 
     .rate {
       margin-top: 16px;
+      @include text(700, 16px, 24px);
     }
 
     .customRadio {
@@ -24,7 +30,7 @@
       display: block;
       width: 16px;
       height: 16px;
-      background-color: #FFFFFF;
+      background-color: $dark700;
       border: 2px solid $pinkColor;
       border-radius: 50%;
       margin-right: 6px;
@@ -43,9 +49,12 @@
       }
 
       &:hover {
-        box-shadow: 0 0 4px 1px $pinkColor;
+        box-shadow: 0 0 0 10px $dark500;
       }
 
+      &:active {
+        box-shadow: 0 0 0 10px #382766;
+      }
     }
 
     input:checked + .customRadio::before {
@@ -56,23 +65,11 @@
       display: flex;
       align-items: center;
       cursor: pointer;
-    }
+      margin: 12px 0 0 10px;
 
-  }
-
-  .button {
-    width: 100%;
-    height: 36px;
-    border-radius: 4px;
-    background-color: $pinkColor;
-    color: $primaryFontColor;
-    outline: none;
-    border: none;
-    margin-top: 26px;
-    cursor: pointer;
-
-    &:disabled{
-      opacity: 0.5;
+      .options {
+        margin-left: 12px;
+      }
     }
   }
 }

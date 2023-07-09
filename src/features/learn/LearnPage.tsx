@@ -56,7 +56,7 @@ export const LearnPage = () => {
       <h2 className={s.title}>Learn: {packName}</h2>
       <div className={s.questionContainer}>
         <div className={s.question}>
-          <span>Question:</span> {card.question}<br />
+          <span>Question:</span> {card.question}
         </div>
         <span className={s.attemptsCount}>Count of attempts to answer that question: <b>{card.shots}</b></span>
       </div>

@@ -8,7 +8,7 @@ type Props = {
   setGrade: (grade: number) => void
   nextAnswer: () => void
 }
-const arrMenu = ['Did not know', 'Forgot', 'A lot of thought', 'Сonfused', 'Knew the answer']
+const arrMenu = ['Did not know', 'Forgot', 'A lot of thoughts', 'Confused', 'Knew the answer']
 
 export const Answer = (props: Props) => {
   const { setGrade, grade, answer, nextAnswer } = props
@@ -23,7 +23,8 @@ export const Answer = (props: Props) => {
                value={index + 1}
                onChange={(e) => setGrade(+e.currentTarget.value)} />
         <span className={s.customRadio}></span>
-        {res}
+        <span className={s.options}>{res}</span>
+
       </label>
     )
   })
