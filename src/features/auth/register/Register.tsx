@@ -4,11 +4,10 @@ import * as yup from 'yup'
 import { yupResolver } from '@hookform/resolvers/yup'
 import { Link, useNavigate } from 'react-router-dom'
 import { authThunks } from 'features/auth/auth.slice'
-import { InputEmail, InputPassword } from 'common/components'
+import { InputEmail, InputPassword, SuperButton } from 'common/components'
 import { registerSchema } from 'features/auth/register/registerSchema'
 import { useAppDispatch, useAppSelector } from 'common/hooks'
 import { paths } from 'common/router/path'
-import { SuperButton } from 'common/components/superButton/SuperButton'
 import { loadingSelect } from 'app'
 
 

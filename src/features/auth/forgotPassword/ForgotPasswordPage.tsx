@@ -2,7 +2,6 @@ import s from './style.module.scss'
 import { FormControl } from '@mui/material'
 import { InputEmail } from 'common/components/Inputs/InputEmail'
 import { Link } from 'react-router-dom'
-import { SuperButton } from 'common/components/superButton/SuperButton'
 import { SubmitHandler, useForm } from 'react-hook-form'
 import * as yup from 'yup'
 import { yupResolver } from '@hookform/resolvers/yup'
@@ -14,6 +13,7 @@ import { CheckEmailPage } from 'features/auth/checkEmail/CheckEmailPage'
 import { emailMessage } from 'features/auth/forgotPassword/emailMessage'
 import { useAppSelector } from 'common/hooks'
 import { loadingSelect } from 'app'
+import { SuperButton } from 'common/components'
 
 type InputType = yup.InferType<typeof emailSchema>
 

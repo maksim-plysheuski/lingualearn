@@ -1,1 +1,1 @@
-export { errorSelect, initializedSelect, loadingSelect } from 'app/selectors'
+export * from 'app/selectors'

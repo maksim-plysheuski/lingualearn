@@ -1,6 +1,6 @@
+import { SuperButton } from 'common/components'
 import React from 'react'
 import s from './style.module.scss'
-import { SuperButton } from 'common/components/superButton/SuperButton'
 
 type Props = {
   answer: string

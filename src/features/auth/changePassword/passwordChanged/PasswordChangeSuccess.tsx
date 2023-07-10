@@ -2,8 +2,8 @@ import React from 'react'
 import s from 'features/auth/changePassword/passwordChanged/style.module.scss'
 import { useNavigate } from 'react-router-dom'
 import CheckCircleOutlineIcon from '@mui/icons-material/CheckCircleOutline'
-import { SuperButton } from 'common/components/superButton/SuperButton'
 import { paths } from 'common/router/path'
+import { SuperButton } from 'common/components'
 
 
 export const PasswordChangeSuccess = () => {

@@ -1,12 +1,12 @@
 import LogoutIcon from '@mui/icons-material/Logout'
 import s from './ProfilePage.module.scss'
 import { EditableTitle } from 'common/components/editableTitle/EditableTitle'
-import { SuperButton } from 'common/components/superButton/SuperButton'
 import { authThunks } from 'features/auth/auth.slice'
 import { useAppDispatch, useAppSelector } from 'common/hooks'
 import { ProfileAva } from './profileAva/ProfileAva'
 import { loadingSelect } from 'app'
 import { selectProfile } from 'features/profile/selectors'
+import { SuperButton } from 'common/components'
 
 
 export const ProfilePage = () => {
@@ -27,8 +27,8 @@ export const ProfilePage = () => {
           <span>Account was created: <b>{profile?.created.slice(0, 10).split('-').reverse().join('.')}</b></span>
           <span>{profile?.email}</span>
         </div>
-        <SuperButton title={'Log out'} width={'127'} icon={<LogoutIcon />} isGrayColor={true}
-                     onClick={logoutHandler} disabled={isLoading} />
+        <SuperButton title={'Log out'} width={'127'} icon={<LogoutIcon />}
+                     isGrayColor={true} onClick={logoutHandler} disabled={isLoading} />
       </div>
     </div>
   )

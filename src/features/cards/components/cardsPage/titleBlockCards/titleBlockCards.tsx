@@ -1,5 +1,4 @@
 import React from 'react'
-import { SuperButton } from 'common/components/superButton/SuperButton'
 import s from './style.module.scss'
 import { selectIsMyCard, selectPackId } from 'features/cards/selectors'
 import { AddCardsModal } from 'features/cards/components/modal/addCardModal/addCardModal/AddCardsModal'
@@ -8,6 +7,7 @@ import { useSelector } from 'react-redux'
 import { useAppSelector } from 'common/hooks'
 import { selectPackName } from 'features/cards/selectors/selectors'
 import { useNavigate } from 'react-router-dom'
+import { SuperButton } from 'common/components'
 
 export const TitleBlockCards = () => {
   const isMyPack = useSelector(selectIsMyCard)

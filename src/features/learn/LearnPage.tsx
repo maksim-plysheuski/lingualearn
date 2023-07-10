@@ -7,8 +7,7 @@ import { useParams } from 'react-router-dom'
 import s from './style.module.scss'
 import { TCard } from 'features/cards/cardsApi'
 import { Answer } from 'features/learn/answer/answer'
-import { SuperButton } from 'common/components/superButton/SuperButton'
-
+import { SuperButton } from 'common/components'
 
 export const LearnPage = () => {
   const { id } = useParams<{ id: string }>()
@@ -21,11 +20,7 @@ export const LearnPage = () => {
   const [grade, setGrade] = useState<number | null>(null)
 
   const nextAnswer = async () => {
-    const payload = {
-      card_id: card?._id!,
-      grade: grade!,
-      packId: card?.cardsPack_id!
-    }
+    const payload = { card_id: card?._id!, grade: grade!, packId: card?.cardsPack_id! }
     await dispatch(cardsThunks.changeGrade(payload))
       .unwrap()
       .then(res => {
@@ -47,9 +42,7 @@ export const LearnPage = () => {
     }
   }, [])
 
-  if (!card) {
-    return <></>
-  }
+  if (!card) return <></>
 
   return (
     <div className={s.learnContainer}>
