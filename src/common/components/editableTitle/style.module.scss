@@ -1,18 +1,13 @@
 @import "src/common/style/mixins";
 
-.spanUserName {
+.spanContainer {
   @include text(500, 20px, 24px);
   display: flex;
   align-items: center;
-  margin-top: 41px;
+  margin-top: 45px;
 }
 
-.inputUserName {
-  @include text(500, 16px, 24px);
-
-  p {
-    position: absolute;
-    top: 50px;
-  }
+p {
+  position: absolute;
+  top: 55px;
 }
-

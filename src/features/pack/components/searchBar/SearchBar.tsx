@@ -19,7 +19,7 @@ export const SearchBar = () => {
       <SuperButton title={'Clear Filter'}
                    width={'144'}
                    isGrayColor={true}
-                   onClickCallback={resetSearchParams}
+                   onClick={resetSearchParams}
                    icon={<DeleteOutlineIcon />} />
     </div>
   )

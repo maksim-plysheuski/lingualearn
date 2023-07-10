@@ -1,34 +1,34 @@
 @import "src/common/style/mixins";
+@import "src/common/style/variables";
 
 .profilePage {
   display: flex;
   flex-direction: column;
   align-items: center;
 
-  .personalInfoBlock {
+  .profileContainer {
     display: flex;
     flex-direction: column;
     align-items: center;
-    width: 413px;
-    height: 408px;
+    width: 420px;
+    height: 477px;
     border: 1px solid $dark500;
-    background-color: $secondaryBgColor;
+    background-color: $dark700;
     border-radius: 2px;
     margin-top: 80px;
 
     h1 {
-      @include text(600, 22px, 27px);
-      margin-top: 27px;
+      @include text(700, 24px, 36px);
+      color: $primaryFontColor;
+      margin: 25px 0 30px 0;
     }
-
-    .userPhotoContainer {
-      margin-top: 30px;
-    }
-
-    .emailSpan {
+    .infoBlock {
+      margin: 40px 0 30px 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
       @include text(400, 14px, 24px);
-      margin: 40px 0 25px 0;
-      opacity: 0.5;
+      color: $dark100;
+      }
     }
   }
-}

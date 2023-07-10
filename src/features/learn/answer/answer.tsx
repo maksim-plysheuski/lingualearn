@@ -1,5 +1,6 @@
 import React from 'react'
 import s from './style.module.scss'
+import { SuperButton } from 'common/components/superButton/SuperButton'
 
 type Props = {
   answer: string
@@ -7,7 +8,7 @@ type Props = {
   setGrade: (grade: number) => void
   nextAnswer: () => void
 }
-const arrMenu = ['Did not know', 'Forgot', 'A lot of thought', 'Сonfused', 'Knew the answer']
+const arrMenu = ['Did not know', 'Forgot', 'A lot of thoughts', 'Confused', 'Knew the answer']
 
 export const Answer = (props: Props) => {
   const { setGrade, grade, answer, nextAnswer } = props
@@ -21,8 +22,9 @@ export const Answer = (props: Props) => {
                hidden
                value={index + 1}
                onChange={(e) => setGrade(+e.currentTarget.value)} />
-        <span className={s.castomRadio}></span>
-        {res}
+        <span className={s.customRadio}></span>
+        <span className={s.options}>{res}</span>
+
       </label>
     )
   })
@@ -35,7 +37,7 @@ export const Answer = (props: Props) => {
       <div className={s.formGroup}>
         <span className={s.rate}>Rate yourself:</span>{radioSlice}
       </div>
-      <button onClick={nextAnswer} disabled={grade === null} className={s.button}>Next Question</button>
+      <SuperButton title='Next Question' marginTop={'29px'} onClick={nextAnswer} disabled={grade === null} />
     </div>
   )
 }

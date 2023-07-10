@@ -9,12 +9,13 @@ import PanoramaOutlinedIcon from '@mui/icons-material/PanoramaOutlined'
 import { EditPack } from './actionsButtons/editPack/EditPack'
 import { RemovePack } from './actionsButtons/removePack/RemovePack'
 import { LearnPack } from './actionsButtons/learnPack/LearnPack'
+import { packsSelect } from 'features/pack/selectors'
 
 
 export const PacksTableBody = () => {
   const dispatch = useAppDispatch()
   const navigate = useNavigate()
-  const packs = useAppSelector(state => state.packs.packs)
+  const packs = useAppSelector(packsSelect)
 
 
   const openSelectedPack = (packId: string) => {

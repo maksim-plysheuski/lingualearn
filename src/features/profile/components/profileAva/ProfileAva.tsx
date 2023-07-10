@@ -1,18 +1,17 @@
 import React, { ChangeEvent, useState } from 'react'
 import s from 'features/profile/components/ProfilePage.module.scss'
 import { Avatar, Badge, IconButton } from '@mui/material'
-import LocalSeeOutlinedIcon from '@mui/icons-material/LocalSeeOutlined'
+import PhotoCameraOutlinedIcon from '@mui/icons-material/PhotoCameraOutlined'
 import { useAppDispatch, useAppSelector } from 'common/hooks'
 import { convertFileToBase64 } from 'common/utils'
 import defAva from 'features/profile/components/imegs/defAva.png'
-import { AvatarSx, IconButtonSx } from 'features/profile/components/profileAva/style'
+import { AvatarSx, IconButtonSx, iconSx } from 'features/profile/components/profileAva/style'
 import { profileThunks } from 'features/profile/profile.slice'
 import { toast } from 'react-toastify'
 
 export const ProfileAva = () => {
   const dispatch = useAppDispatch()
   const profile = useAppSelector(state => state.profile.profile)
-
   const [ava, setAva] = useState(profile?.avatar)
   const [isAvaBroken, setIsAvaBroken] = useState(false)
 
@@ -25,17 +24,17 @@ export const ProfileAva = () => {
           dispatch(profileThunks.changeUserProfile({ avatar: file64 }))
             .unwrap()
             .then(res => setAva(res.avatar))
-            .catch(err => toast.error('пошел на хуй шкутник'))
+            .catch(() => toast.error('Image size is too large'))
         })
       } else {
-        console.error('Error: ', 'Файл слишком большого размера')
+        toast.error('Image size is too large')
       }
     }
   }
 
   const errorHandler = () => {
     setIsAvaBroken(true)
-    alert('Кривая картинка')
+    toast.error('Invalid image')
   }
 
   return (
@@ -44,11 +43,9 @@ export const ProfileAva = () => {
              anchorOrigin={{ vertical: 'bottom', horizontal: 'right' }}
              badgeContent={
                <IconButton component={'label'} disableRipple={true} sx={IconButtonSx}>
-                 <LocalSeeOutlinedIcon sx={{ fontSize: '16px', color: '#FFF' }} />
+                 <PhotoCameraOutlinedIcon sx={iconSx} />
                  <input type={'file'} hidden accept='image/*' onChange={uploadHandler} />
-               </IconButton>
-             }
-      >
+               </IconButton>}>
         <Avatar onError={errorHandler} alt='user avatar' src={isAvaBroken ? defAva : ava} sx={AvatarSx} />
       </Badge>
     </div>

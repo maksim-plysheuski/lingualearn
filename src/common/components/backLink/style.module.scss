@@ -2,19 +2,19 @@
 @import "src/common/style/mixins";
 
 .backLinkContainer {
-  margin-top: 24px;
+  margin: 24px 0 0 -4px;
   align-self: flex-start;
   display: flex;
   align-items: center;
 
   .backLink {
     @include text(400, 15px, 24px);
-    margin-left: 10px;
+    margin-left: 5px;
     text-decoration: none;
     transition: color 250ms ease-in-out;
 
     &:hover {
-      color: #aaaaaa;
+      color: $orangeColor;
     }
   }
 }

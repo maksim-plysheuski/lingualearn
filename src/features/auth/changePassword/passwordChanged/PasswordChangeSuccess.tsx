@@ -20,7 +20,7 @@ export const PasswordChangeSuccess = () => {
           {`Password has been changed!`}
           <p> Please login to your account again</p>
         </span>
-        <SuperButton title={'Login'} onClickCallback={() => navigate(paths.LOGIN)} marginTop={'55px'} />
+        <SuperButton title={'Login'} onClick={() => navigate(paths.LOGIN)} marginTop={'55px'} />
       </div>
     </div>
   )

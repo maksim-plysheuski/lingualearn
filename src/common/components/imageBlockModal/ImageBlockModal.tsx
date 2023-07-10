@@ -1,4 +1,4 @@
-import s from 'common/components/imageBlockModal/styles.module.scss'
+import s from './styles.module.scss'
 import { SuperButton } from 'common/components/superButton/SuperButton'
 import React, { ChangeEvent, FC } from 'react'
 import { convertFileToBase64 } from 'common/utils'
@@ -49,7 +49,7 @@ export const ImageBlockModal: FC<Props> = ({ coverTitle, coverImage, setCoverIma
                            marginTop={'24px'}
                            marginLeft={'10px'}
                            isGrayColor={true}
-                           onClickCallback={() => setCoverImage('')}
+                           onClick={() => setCoverImage('')}
                            icon={<DeleteOutlineIcon />}
               />
             </div>

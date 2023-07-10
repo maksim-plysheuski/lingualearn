@@ -32,7 +32,7 @@
 
   input:-webkit-autofill,
   input:-webkit-autofill:active {
-    -webkit-box-shadow: 0 0 0 30px $secondaryBgColor inset !important;
+    -webkit-box-shadow: 0 0 0 30px $dark700 inset !important;
     -webkit-text-fill-color: white !important;
   }
 }

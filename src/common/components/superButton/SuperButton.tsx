@@ -5,7 +5,7 @@ import LoadingButton from '@mui/lab/LoadingButton'
 type PropsType = {
   title?: string
   type?: 'button'
-  onClickCallback?: () => void
+  onClick?: () => void
   disabled?: boolean
   isLoading?: boolean
   isSpan?: boolean
@@ -21,7 +21,7 @@ type PropsType = {
 export const SuperButton: React.FC<PropsType> = (
   {
     title,
-    onClickCallback,
+    onClick,
     type,
     width,
     height,
@@ -84,7 +84,7 @@ export const SuperButton: React.FC<PropsType> = (
         : <Button sx={isGrayColor ? secondaryStyle : primaryStyle}
                   component={isSpan ? 'span' : 'button'}
                   disabled={disabled ? disabled : false}
-                  onClick={onClickCallback}
+                  onClick={onClick}
                   type={type ? type : 'submit'}
                   startIcon={icon}
         >

@@ -11,11 +11,11 @@ import {
   minCardsCountSelect,
   minSelect,
   namePackParamsSelect,
-  packsSelect,
+  cardPacksSelect,
   pageCountSelect,
   pageSelect,
   paramsCardIdSelect
-} from 'features/pack/packSelectors'
+} from 'features/pack/selectors'
 import { useSelector } from 'react-redux'
 import { useDebounce } from 'common/hooks/useDebounce'
 import { profileIdSelect } from 'features/auth/selectors'
@@ -29,7 +29,7 @@ export const useSearchPacks = () => {
   const maxCardsCount = useSelector(maxCardsCountSelect)
   const min = useSelector(minSelect)
   const max = useSelector(maxSelect)
-  const packs = useSelector(packsSelect)
+  const packs = useSelector(cardPacksSelect)
 
 
 // запись параметров в поисковую строку

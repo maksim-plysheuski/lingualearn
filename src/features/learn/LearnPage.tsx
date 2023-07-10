@@ -7,6 +7,7 @@ import { useParams } from 'react-router-dom'
 import s from './style.module.scss'
 import { TCard } from 'features/cards/cardsApi'
 import { Answer } from 'features/learn/answer/answer'
+import { SuperButton } from 'common/components/superButton/SuperButton'
 
 
 export const LearnPage = () => {
@@ -28,9 +29,9 @@ export const LearnPage = () => {
     await dispatch(cardsThunks.changeGrade(payload))
       .unwrap()
       .then(res => {
-      setShowAnswer(false)
-      setCard(getCard(res))
-    })
+        setShowAnswer(false)
+        setCard(getCard(res))
+      })
   }
 
   useEffect(() => {
@@ -52,14 +53,14 @@ export const LearnPage = () => {
 
   return (
     <div className={s.learnContainer}>
-      <h2 className={s.title}>Learn: '{packName}'</h2>
+      <h2 className={s.title}>Learn: {packName}</h2>
       <div className={s.questionContainer}>
         <div className={s.question}>
           <span>Question:</span> {card.question}
         </div>
-        <p>Количество попыток ответов на вопрос: {card.shots}</p>
+        <span className={s.attemptsCount}>Count of attempts to answer that question: <b>{card.shots}</b></span>
       </div>
-      {!showAnswer && <button className={s.button} onClick={() => setShowAnswer(true)}>Show Answer</button>}
+      {!showAnswer && <SuperButton title={'Show Answer'} marginTop={'41px'} onClick={() => setShowAnswer(true)} />}
       {showAnswer && <Answer setGrade={setGrade} grade={grade} answer={card.answer} nextAnswer={nextAnswer} />}
     </div>
   )

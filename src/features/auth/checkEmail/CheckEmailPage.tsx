@@ -21,7 +21,7 @@ export const CheckEmailPage = (props: Props) => {
         </div>
         <span>{`We’ve sent an Email with instructions to ${props.email}`}</span>
         <SuperButton title={'Back to login'}
-                     onClickCallback={() => navigate(paths.LOGIN)}
+                     onClick={() => navigate(paths.LOGIN)}
                      width={'347'}
                      marginTop={'70px'}
         />
