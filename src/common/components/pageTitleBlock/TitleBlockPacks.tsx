@@ -1,5 +1,4 @@
 import s from './style.module.scss'
-import * as React from 'react'
 import { AddPackModal } from 'features/pack/components/modal/addPackModal/addPackModal'
 
 

@@ -1,7 +1,6 @@
 import { IconButton, TextField } from '@mui/material'
 import { FC, useState } from 'react'
 import BorderColorOutlinedIcon from '@mui/icons-material/BorderColorOutlined'
-import { SuperButton } from 'common/components/superButton/SuperButton'
 import { profileThunks } from 'features/profile/profile.slice'
 import { useAppDispatch } from 'common/hooks'
 import s from './style.module.scss'
@@ -10,6 +9,7 @@ import { yupResolver } from '@hookform/resolvers/yup'
 import * as yup from 'yup'
 import { userNameSchema } from 'features/profile/components/userNameSchema'
 import { editNameIconSx, inputStyle } from 'common/components/editableTitle/style'
+import { SuperButton } from '../superButton/SuperButton'
 
 type Props = {
   userName: string | undefined

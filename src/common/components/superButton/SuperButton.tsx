@@ -2,7 +2,7 @@ import { Button, CircularProgress } from '@mui/material'
 import React, { ReactNode } from 'react'
 import LoadingButton from '@mui/lab/LoadingButton'
 
-type PropsType = {
+type Props = {
   title?: string
   type?: 'button'
   onClick?: () => void
@@ -18,23 +18,12 @@ type PropsType = {
   icon?: ReactNode
 }
 
-export const SuperButton: React.FC<PropsType> = (
-  {
-    title,
-    onClick,
-    type,
-    width,
-    height,
-    fontSize,
-    marginTop,
-    marginLeft,
-    isSpan,
-    isGrayColor,
-    isLoading,
-    disabled,
-    icon
-  }
-) => {
+export const SuperButton = (props: Props) => {
+  const {
+    title, onClick, type, width, height,
+    fontSize, marginTop, marginLeft, isSpan,
+    isGrayColor, isLoading, disabled, icon
+  } = props
 
   const baseBntStyle = {
     width: width ? `${width}px` : '100%',

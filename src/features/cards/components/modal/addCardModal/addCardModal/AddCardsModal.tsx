@@ -1,12 +1,12 @@
 import React, { useState } from 'react'
 import { BaseModal } from 'common/components/baseModal/BaseModal'
 import { QuestionSelectType } from 'features/cards/components/modal/addCardModal/select/SelectTextImg'
-import { SuperButton } from 'common/components/superButton/SuperButton'
 import { useAppDispatch, useAppSelector } from 'common/hooks'
 import { cardsThunks } from 'features/cards/cards.slice'
 import { toast } from 'react-toastify'
 import { loadingSelect } from 'app'
 import { CardsBodyModal } from 'features/cards/components/modal/common/cardsBodyModal/CardsBodyModal'
+import { SuperButton } from 'common/components'
 
 
 export const AddCardsModal = () => {

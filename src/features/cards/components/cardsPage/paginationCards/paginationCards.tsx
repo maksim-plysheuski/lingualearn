@@ -1,7 +1,7 @@
 import React from 'react'
-import { Paginator } from 'common/components/paginator/Paginator'
 import { useSearchCards } from 'features/cards/hooks/useSearchCards'
 import s from 'features/cards/components/cardsPage/paginationCards/style.module.scss'
+import { Paginator } from 'common/components'
 
 export const PaginationCards = () => {
   const { page, cardsTotalCount, pageCount, fetchPageNewCards } = useSearchCards()

@@ -1,11 +1,11 @@
 import { BaseModal } from 'common/components/baseModal/BaseModal'
-import { SuperButton } from 'common/components/superButton/SuperButton'
 import { useAppDispatch, useAppSelector } from 'common/hooks'
 import React, { useState } from 'react'
 import { packsThunks } from 'features/pack/packs.slice'
 import { toast } from 'react-toastify'
 import { PackBodyModal } from 'features/pack/components/modal/common/packBodyModal/PackBodyModal'
 import { loadingSelect } from 'app'
+import { SuperButton } from 'common/components'
 
 
 export const AddPackModal = () => {

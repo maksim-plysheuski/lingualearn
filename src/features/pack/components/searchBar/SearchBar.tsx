@@ -3,9 +3,9 @@ import { ButtonsShowPacks } from './buttonsShowPack/ButtonsShowPacks'
 import { CountSearch } from './countSearch/CountSearch'
 import s from './style.module.scss'
 import { NameSearch } from './nameSearch/NameSearch'
-import { SuperButton } from 'common/components/superButton/SuperButton'
 import { useSearchPacks } from 'features/pack/hook/useSearchPacks'
 import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline'
+import { SuperButton } from 'common/components'
 
 
 export const SearchBar = () => {

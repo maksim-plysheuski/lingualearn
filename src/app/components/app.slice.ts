@@ -10,8 +10,6 @@ const appInitialState = {
   users: []
 }
 
-// type InitialStateType = typeof appInitialState
-
 const slice = createSlice({
   name: 'app',
   initialState: appInitialState,

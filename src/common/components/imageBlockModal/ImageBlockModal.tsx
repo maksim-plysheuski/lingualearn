@@ -1,11 +1,11 @@
 import s from './styles.module.scss'
-import { SuperButton } from 'common/components/superButton/SuperButton'
 import React, { ChangeEvent, FC } from 'react'
 import { convertFileToBase64 } from 'common/utils'
 import { toast } from 'react-toastify'
 import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline'
 import PhotoOutlinedIcon from '@mui/icons-material/PhotoOutlined'
 import PanoramaOutlinedIcon from '@mui/icons-material/PanoramaOutlined'
+import { SuperButton } from '../superButton/SuperButton'
 
 type Props = {
   coverTitle?: string
