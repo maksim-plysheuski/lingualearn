@@ -1,6 +1,6 @@
 import React from 'react'
-import { Paginator } from 'common/components/paginator/Paginator'
 import { useSearchPacks } from 'features/pack/hook/useSearchPacks'
+import { Paginator } from 'common/components'
 
 export const PaginatorPacks = () => {
   const { pageSize, page, cardPacksTotalCount, getNewPage } = useSearchPacks()
