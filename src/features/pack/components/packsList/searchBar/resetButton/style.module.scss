@@ -1,0 +1,21 @@
+@import "src/common/style/variables";
+
+.container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 144px;
+  height: 36px;
+  background-color: $borderColor;
+  border-radius: 4px;
+  cursor: pointer;
+  color: #fff;
+
+  & :hover {
+    box-shadow: 0 2px 10px rgba(109, 109, 109, 0.25);
+  }
+
+  .icon {
+    width: 20px;
+  }
+}

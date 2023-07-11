@@ -11,7 +11,7 @@ export type CardsT = {
 }
 
 export type FetchCardType = {
-  cardsPack_id?: string
+  cardsPack_id: string
   cardAnswer?: string
   cardQuestion?: string
   min?: number

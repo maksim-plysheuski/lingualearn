@@ -9,6 +9,6 @@ export const paths = {
   CHECK_EMAIL: '/auth/check-email',
   PROFILE: '/profile',
   PACKS: '/packs',
-  CARDS: '/cards/:id',
-  LEARN: 'learn/:id'
+  CARDS: '/cards/:packId',
+  LEARN: 'learn/:packId'
 } as const

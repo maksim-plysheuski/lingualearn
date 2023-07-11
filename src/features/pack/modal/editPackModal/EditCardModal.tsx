@@ -1,20 +1,19 @@
-import { BaseModal } from 'common/components/baseModal/BaseModal'
-import { InputCastom } from 'common/components/baseModal/inputCastom/InputCastom'
-import { useAppSelector } from 'common/hooks'
-import React, { useState } from 'react'
+import {BaseModal} from 'common/components/baseModal/BaseModal'
+import {InputCastom} from 'common/components/baseModal/inputCastom/InputCastom'
+import React, {useState} from 'react'
 import DriveFileRenameOutlineIcon from '@mui/icons-material/DriveFileRenameOutline'
-import { TPack } from 'features/pack/packApi'
-import { toast } from 'react-toastify'
-import { useUpdatePackMutation } from 'features/pack/service'
+import {toast} from 'react-toastify'
+import {useUpdatePackMutation} from 'features/pack/service'
+import {CardPacksT} from "features/pack/service/type";
 
 type Props = {
   handleCloseMenu?: () => void
-  pack?: TPack
+  pack?: CardPacksT
 }
 
 
 export const EditPackModal = (props: Props) => {
-  const { pack, handleCloseMenu } = props
+  const { pack } = props
 
   const [updatePack, {isLoading}] = useUpdatePackMutation()
   const [open, setOpen] = useState<boolean>(false)

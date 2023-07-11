@@ -11,17 +11,14 @@ import { useFetchCards } from 'features/cards/service'
 
 
 export const MenuPacks = () => {
-  const { data } = useFetchCards()
+  const { packId } = useFetchCards()
   const navigate = useNavigate()
 
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null)
   const open = Boolean(anchorEl)
-  const handleClick = (event: React.MouseEvent<HTMLElement>) => {
-    setAnchorEl(event.currentTarget)
-  }
-  const handleClose = () => {
-    setAnchorEl(null)
-  }
+  const handleClick = (event: React.MouseEvent<HTMLElement>) => setAnchorEl(event.currentTarget)
+
+  const handleClose = () => setAnchorEl(null)
 
   return (
     <>
@@ -62,7 +59,7 @@ export const MenuPacks = () => {
             transformOrigin={{ horizontal: 'right', vertical: 'top' }}
             anchorOrigin={{ horizontal: 'right', vertical: 'bottom' }}
       >
-        <MenuItem onClick={() => navigate(`/learn/${data?.packUserId}`)}>
+        <MenuItem onClick={() => navigate(`/learn/${packId}`)}>
           <PlayCircleOutlineIcon /> Learn
         </MenuItem>
         <Divider />
