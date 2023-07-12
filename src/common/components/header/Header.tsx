@@ -19,7 +19,7 @@ export const Header = () => {
       <div className={s.headerContainer}>
         <Link to={isLoggedIn ? paths.PACKS : '/'} className={s.logoBlock}>
           <StyleOutlinedIcon sx={{ color: '#e66300' }} fontSize={'large'} />
-          <span>Lingualearn</span>
+          <span>LinguaLearn</span>
         </Link>
         {isLoggedIn ? <AvatarMenu /> :
           <SuperButton title='Sign Up' width={'100px'} onClick={singUpCallback} disabled={false} />}
