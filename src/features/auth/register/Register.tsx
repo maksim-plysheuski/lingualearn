@@ -7,7 +7,7 @@ import { authThunks } from 'features/auth/auth.slice'
 import { InputEmail, InputPassword, SuperButton } from 'common/components'
 import { registerSchema } from 'features/auth/register/registerSchema'
 import { useAppDispatch, useAppSelector } from 'common/hooks'
-import { paths } from 'common/router/path'
+import { paths } from 'common/router'
 import { loadingSelect } from 'app'
 
 

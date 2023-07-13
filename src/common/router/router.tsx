@@ -7,13 +7,13 @@ import { ForgotPasswordPage } from 'features/auth/forgotPassword/ForgotPasswordP
 import { ChangePasswordPage } from 'features/auth/changePassword/ChangePasswordPage'
 import React from 'react'
 import { paths } from 'common/router/path'
-import { PrivateLayout } from 'common/router/PrivateRoute'
 import { PacksList } from 'features/pack/components/packsList/PacksList'
 import { CheckEmailPage } from 'features/auth/checkEmail/CheckEmailPage'
-import { NotPrivateLayout } from 'common/router/NotPrivateRoute'
 import { CardsPage } from 'features/cards/components/cardsPage/cardsPage'
 import { PasswordChangeSuccess } from 'features/auth/changePassword/passwordChanged/PasswordChangeSuccess'
 import { LearnPage } from 'features/learn/LearnPage'
+import { NotPrivateLayout } from './NotPrivateRoute'
+import { PrivateLayout } from './PrivateRoute'
 
 export const router = createHashRouter([
   {

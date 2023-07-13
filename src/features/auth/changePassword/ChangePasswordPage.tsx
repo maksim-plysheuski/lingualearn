@@ -8,7 +8,7 @@ import { authThunks } from 'features/auth/auth.slice'
 import { InputPassword, SuperButton } from 'common/components'
 import { passwordSchema } from 'features/auth/changePassword/passwordSchema'
 import { useAppDispatch, useAppSelector } from 'common/hooks'
-import { paths } from 'common/router/path'
+import { paths } from 'common/router'
 import { loadingSelect } from 'app'
 
 

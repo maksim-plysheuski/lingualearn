@@ -1,7 +1,7 @@
 import s from './style.module.scss'
 import ArrowBackIcon from '@mui/icons-material/ArrowBack'
 import { Link } from 'react-router-dom'
-import { paths } from 'common/router/path'
+import { paths } from 'common/router'
 import { useAppDispatch } from 'common/hooks'
 import { cardsAction } from 'features/cards/cards.slice'
 

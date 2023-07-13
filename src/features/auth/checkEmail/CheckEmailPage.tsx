@@ -1,7 +1,7 @@
 import s from 'features/auth/checkEmail/style.module.scss'
 import ForwardToInboxIcon from '@mui/icons-material/ForwardToInbox'
 import { useNavigate } from 'react-router-dom'
-import { paths } from 'common/router/path'
+import { paths } from 'common/router'
 import { SuperButton } from 'common/components'
 
 type Props = {
