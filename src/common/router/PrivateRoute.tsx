@@ -1,4 +1,4 @@
-import { paths } from 'common/router/path'
+import { paths } from 'common/router'
 import { useAppSelector } from 'common/hooks'
 import React from 'react'
 import { Navigate, Outlet } from 'react-router-dom'
