@@ -1,16 +1,18 @@
 import LogoutIcon from '@mui/icons-material/Logout'
-import s from 'features/profile/components/ProfilePage.module.scss'
+import s from 'features/profile/components/profile/components/ProfilePage.module.scss'
 import { EditableTitle } from 'common/components/editableTitle/EditableTitle'
 import { UniversalButton } from 'common/components/universalButton/UniversalButton'
-import { authThunks } from 'features/auth/auth.slice'
+import { authThunks } from 'features/profile/profile.slice'
 import { useAppDispatch, useAppSelector } from 'common/hooks'
 import { BackLink } from 'common/components/backLink/BackLink'
-import { ProfileAva } from './profileAva/ProfileAva'
+import { ProfileAva } from 'features/profile/components/profile/components/profileAva/ProfileAva'
+import { userEmailSelect, userNameSelect } from 'features/profile/select/profile.select'
 
 
 export const ProfilePage = () => {
   const dispatch = useAppDispatch()
-  const profile = useAppSelector(state => state.profile.profile)
+  const userEmail = useAppSelector(userEmailSelect)
+  const userName = useAppSelector(userNameSelect)
 
   const logoutHandler = () => {
     dispatch(authThunks.logout())
@@ -22,8 +24,8 @@ export const ProfilePage = () => {
       <div className={s.personalInfoBlock}>
         <h1>Personal Information</h1>
         <ProfileAva />
-        <EditableTitle userName={profile ? profile.name : 'Username'} />
-        <span className={s.emailSpan}>{profile ? profile.email : 'user@mail.com'}</span>
+        <EditableTitle userName={userName ? userName : 'Username'} />
+        <span className={s.emailSpan}>{userEmail ? userEmail : 'user@mail.com'}</span>
         <UniversalButton title={'Log out'} width={'127'} icon={<LogoutIcon />} onClickCallback={logoutHandler} />
       </div>
     </div>

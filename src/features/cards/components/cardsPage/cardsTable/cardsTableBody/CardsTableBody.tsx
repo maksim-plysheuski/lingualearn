@@ -5,6 +5,7 @@ import Rating from '@mui/material/Rating'
 import StarBorderIcon from '@mui/icons-material/StarBorder'
 import { useFetchCards } from 'features/cards/service'
 import { FieldButtons } from 'features/cards/components/cardsPage/cardsTable/cardsTableBody/fieldButtons/FieldButtons'
+import { userIdSelect } from 'features/profile'
 
 export const tableCellStyle = {
   wordWrap: 'break-word',
@@ -18,7 +19,7 @@ export const tableCellStyle = {
 
 export const CardsTableBody = () => {
 
-  const userId = useAppSelector(state => state.auth.profile._id)
+  const userId = useAppSelector(userIdSelect)
   const { data } = useFetchCards()
 
   const show = userId === data?.packUserId

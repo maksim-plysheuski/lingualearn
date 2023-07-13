@@ -11,14 +11,15 @@ import Tooltip from '@mui/material/Tooltip'
 import Logout from '@mui/icons-material/Logout'
 import { useAppDispatch, useAppSelector } from 'common/hooks'
 import { useNavigate } from 'react-router-dom'
-import { paths } from 'common/router/path'
-import { authThunks } from 'features/auth/auth.slice'
+import { path } from 'common/router/path'
+import { authThunks } from 'features/profile/profile.slice'
+import { userNameSelect } from 'features/profile'
 
 
 export const AvatarMenu = () => {
   const navigate = useNavigate()
   const dispatch = useAppDispatch()
-  const userName = useAppSelector(state => state.profile.profile?.name)
+  const userName = useAppSelector(userNameSelect)
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null)
   const open = Boolean(anchorEl)
 
@@ -30,7 +31,7 @@ export const AvatarMenu = () => {
   }
 
   const handleProfileButton = () => {
-    navigate(paths.PROFILE)
+    navigate(path.PROFILE)
   }
 
   const handleLogoutButton = () => {

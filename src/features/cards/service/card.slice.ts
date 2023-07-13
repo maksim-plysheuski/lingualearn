@@ -13,11 +13,8 @@ export const cardApi = createApi({
     return {
       fetchCards: build.query<FetchResponseCardsT, FetchCardType>({
         query: (params) => ({ url: baseEndpoint, params }),
-        providesTags: ['cards']
-      }),
-      fetchAllCards: build.query<FetchResponseCardsT, FetchCardType>({
-        query: (params) => ({ url: baseEndpoint, params }),
-        providesTags: ['allCards']
+        providesTags: (result) => result ?
+          [...result.cards.map(card => ({ type: 'cards' as const, id: card._id })), 'cards'] : ['cards']
       }),
       addCard: build.mutation<{ newCard: CardsT }, AddCardT>({
         query: (arg) => ({ method: 'POST', url: baseEndpoint, body: { card: arg } }),
@@ -25,16 +22,22 @@ export const cardApi = createApi({
       }),
       changeCard: build.mutation<{ updatedCard: CardsT }, ChangeCardT>({
         query: (arg) => ({ method: 'PUT', url: baseEndpoint, body: { card: arg } }),
-        invalidatesTags: ['cards']
-      }),
-      changeGradeCard: build.mutation<{ updatedGrade: CardsT }, { grade: number, card_id: string, packId: string }>({
-        query: (arg) => ({ method: 'PUT', url: '/cards/grade', body: arg }),
-        invalidatesTags: ['allCards']
+        invalidatesTags: (result, error, arg) => [{ type: 'cards', id: arg._id }]
       }),
       removeCard: build.mutation<{ deletedCard: CardsT }, { id: string }>({
         query: (params) => ({ method: 'DELETE', url: baseEndpoint, params }),
         invalidatesTags: ['cards']
+      }),
+
+      fetchAllCards: build.query<FetchResponseCardsT, FetchCardType>({
+        query: (params) => ({ url: baseEndpoint, params }),
+        providesTags: ['allCards']
+      }),
+      changeGradeCard: build.mutation<{ updatedGrade: CardsT }, { grade: number, card_id: string, packId: string }>({
+        query: (arg) => ({ method: 'PUT', url: '/cards/grade', body: arg }),
+        invalidatesTags: ['allCards']
       })
+
     }
   }
 })

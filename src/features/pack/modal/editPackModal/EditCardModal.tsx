@@ -4,7 +4,7 @@ import React, {useState} from 'react'
 import DriveFileRenameOutlineIcon from '@mui/icons-material/DriveFileRenameOutline'
 import {toast} from 'react-toastify'
 import {useUpdatePackMutation} from 'features/pack/service'
-import {CardPacksT} from "features/pack/service/type";
+import {CardPacksT} from "features/pack/service/packSlice.type";
 
 type Props = {
   handleCloseMenu?: () => void

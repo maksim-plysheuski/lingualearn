@@ -1,39 +1,90 @@
 import { createSlice } from '@reduxjs/toolkit'
-import { ProfileType } from 'features/auth/auth.api'
+import {
+  ArgLoginType,
+  ArgRegisterType,
+  profileApi,
+  ProfileType,
+  TChangeUser,
+  TNewPassword
+} from 'features/profile/profile.api'
 import { createAppAsyncThunk } from 'common/utils/createAppAsyncThunk'
-import { profileApi, TChangeUser } from 'features/profile/profile.api'
-import { authThunks } from 'features/auth/auth.slice'
-import { thunkTryCatch } from 'common/utils'
+import { thunkTryCatch } from 'common/utils/thunk-try-catch'
 
 
 const slice = createSlice({
   name: 'profile',
   initialState: {
-    profile: null as ProfileType | null
+    isLoggedIn: false as boolean,
+    profile: {} as ProfileType
   },
   reducers: {},
   extraReducers: builder => {
     builder
-      .addCase(authThunks.authMe.fulfilled, (state, action) => {
+      .addCase(authMe.fulfilled, (state, action) => {
+        state.isLoggedIn = action.payload.isLoggedIn
         state.profile = action.payload.profile
+      })
+      .addCase(login.fulfilled, (state, action) => {
+        state.isLoggedIn = action.payload.isLoggedIn
+      })
+      .addCase(logout.fulfilled, (state, action) => {
+        state.isLoggedIn = action.payload.isLoggedIn
       })
   }
 })
 
-
-const changeUserProfile = createAppAsyncThunk<{ name: string, avatar?: string }, TChangeUser>
+const changeProfile = createAppAsyncThunk<unknown, TChangeUser>
 ('profile/changeUser', (arg, thunkAPI) => {
   return thunkTryCatch(thunkAPI, async () => {
-    const res = await profileApi.changeUserProfile(arg)
-    return { name: res.name, avatar: res.avatar }
+    await profileApi.changeUserProfile(arg)
+    thunkAPI.dispatch(authMe())
   })
+})
 
+const authMe = createAppAsyncThunk<{ profile: ProfileType, isLoggedIn: boolean }>
+('profile/me', (arg, thunkAPI) => {
+  return thunkTryCatch(thunkAPI, async () => {
+    const res = await profileApi.authMe()
+    return { profile: res, isLoggedIn: true }
+  })
+})
 
+const login = createAppAsyncThunk<{ isLoggedIn: boolean }, ArgLoginType>
+('profile/login', (arg, thunkAPI) => {
+  return thunkTryCatch(thunkAPI, async () => {
+    await profileApi.login(arg)
+    await thunkAPI.dispatch(authMe())
+    return { isLoggedIn: true }
+  }, false)
+})
+
+const logout = createAppAsyncThunk<{ isLoggedIn: boolean }>
+('profile/logout', (arg, thunkAPI) => {
+  return thunkTryCatch(thunkAPI, async () => {
+    await profileApi.logout()
+    return { isLoggedIn: false }
+  })
+})
+
+const register = createAppAsyncThunk<boolean, ArgRegisterType>
+('profile/register', (arg, thunkAPI) => {
+  return thunkTryCatch(thunkAPI, async () => {
+    await profileApi.register(arg)
+    return true
+  })
+})
+
+const setNewPassword = createAppAsyncThunk<void, TNewPassword>
+('profile/newPassword', (arg, thunkAPI) => {
+  return thunkTryCatch(thunkAPI, async () => {
+    await profileApi.setNewPassword({ password: arg.password, resetPasswordToken: arg.resetPasswordToken })
+  })
 })
 
 
-export const profileReducer = slice.reducer
-export const profileThunks = {  changeUserProfile }
+export const authReducer = slice.reducer
+export const authThunks = { changeProfile, authMe, register, login, logout, setNewPassword }
+
 
 
 

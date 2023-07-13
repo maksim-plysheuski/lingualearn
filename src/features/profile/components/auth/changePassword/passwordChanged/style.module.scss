@@ -1,17 +1,17 @@
-@import "src/common/style/variables";
-@import "src/common/style/mixins";
+@import "common/style/variables";
+@import "common/style/mixins";
 
 .checkEmailPage {
   display: flex;
   justify-content: center;
 
   .container {
+    width: 420px;
+    height: 384px;
     margin-top: 100px;
     background: $secondaryBgColor;
     border: 1px solid $grayColor;
     border-radius: 2px;
-    width: 420px;
-    height: 408px;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -21,29 +21,20 @@
       margin-top: 33px;
     }
 
-    p {
-      position: absolute;
-      left: -15px;
-      top: 35px;
-    }
-
     .iconContainer {
-      width: 96px;
-      height: 96px;
-      background: rgba(161, 54, 255, 0.05);
-      border: 1px solid $pinkColor;
-      border-radius: 50%;
+      width: 115px;
+      height: 115px;
       display: flex;
       justify-content: center;
-      align-items: center;
-      margin-top: 27px;
+      margin-top: 20px;
     }
 
-    span {
+    .helperText {
       @include text(400, 15px, 24px);
+      width: 85%;
       text-align: center;
       opacity: 0.5;
-      margin-top: 27px;
+      margin-top: 5px;
     }
   }
 }

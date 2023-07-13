@@ -1,4 +1,4 @@
-import s from 'features/auth/forgotPassword/style.module.scss'
+import s from 'features/profile/components/auth/forgotPassword/style.module.scss'
 import { FormControl } from '@mui/material'
 import { InputEmail } from 'common/components/Inputs/InputEmail'
 import { Link } from 'react-router-dom'
@@ -6,12 +6,12 @@ import { UniversalButton } from 'common/components/universalButton/UniversalButt
 import { SubmitHandler, useForm } from 'react-hook-form'
 import * as yup from 'yup'
 import { yupResolver } from '@hookform/resolvers/yup'
-import { forgotPasswordApi } from 'features/auth/forgotPassword/forgotPassword.api'
-import { emailSchema } from 'features/auth/forgotPassword/emailSchema'
-import { paths } from 'common/router/path'
+import { forgotPasswordApi } from 'features/profile/components/auth/forgotPassword/forgotPassword.api'
+import { emailSchema } from 'features/profile/components/auth/forgotPassword/emailSchema'
+import { path } from 'common/router/path'
 import { useState } from 'react'
-import { CheckEmailPage } from 'features/auth/checkEmail/CheckEmailPage'
-import { emailMessage } from 'features/auth/forgotPassword/emailMessage'
+import { CheckEmailPage } from 'features/profile/components/auth/checkEmail/CheckEmailPage'
+import { emailMessage } from 'features/profile/components/auth/forgotPassword/emailMessage'
 
 type InputType = yup.InferType<typeof emailSchema>
 
@@ -52,7 +52,7 @@ export const ForgotPasswordPage = () => {
           </FormControl>
         </form>
         <p className={s.descriptionText}>Did you remember your password?</p>
-        <Link className={s.link} to={paths.LOGIN}>Try logging in</Link>
+        <Link className={s.link} to={path.LOGIN}>Try logging in</Link>
       </div>
     </div>
   )

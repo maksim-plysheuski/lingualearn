@@ -5,6 +5,7 @@ import Tooltip from '@mui/material/Tooltip'
 import { RemovePackModal } from 'features/pack/modal/removePackModal/removePackModal'
 import { iconStyle } from 'features/pack/components/packsList/packsTableBody/actionsButtons/editPack/EditPack'
 import { FC } from 'react'
+import { userIdSelect } from 'features/profile'
 
 
 type Props = {
@@ -13,7 +14,7 @@ type Props = {
 }
 
 export const RemovePack: FC<Props> = ({ packName, packId }) => {
-  const userId = useAppSelector(state => state.auth.profile._id)
+  const userId = useAppSelector(userIdSelect)
 
   return (
     <>

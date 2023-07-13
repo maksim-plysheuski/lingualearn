@@ -1,5 +1,5 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
-import { FetchPackT } from 'features/pack/service/type'
+import { FetchPackT } from 'features/pack/service/packSlice.type'
 
 export const slice = createSlice({
   name: 'sortPackSlice',

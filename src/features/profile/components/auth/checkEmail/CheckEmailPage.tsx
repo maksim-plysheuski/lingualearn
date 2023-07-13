@@ -1,8 +1,8 @@
-import s from 'features/auth/checkEmail/style.module.scss'
+import s from 'features/profile/components/auth/checkEmail/style.module.scss'
 import { UniversalButton } from 'common/components/universalButton/UniversalButton'
 import ForwardToInboxIcon from '@mui/icons-material/ForwardToInbox'
 import { useNavigate } from 'react-router-dom'
-import { paths } from 'common/router/path'
+import { path } from 'common/router/path'
 
 type Props = {
   email?: string
@@ -21,7 +21,7 @@ export const CheckEmailPage = (props: Props) => {
         </div>
         <span>{`We’ve sent an Email with instructions to ${props.email}`}</span>
         <UniversalButton title={'Back to login'}
-                         onClickCallback={() => navigate(paths.LOGIN)}
+                         onClickCallback={() => navigate(path.LOGIN)}
                          width={'347'}
                          marginTop={'70px'} />
       </div>

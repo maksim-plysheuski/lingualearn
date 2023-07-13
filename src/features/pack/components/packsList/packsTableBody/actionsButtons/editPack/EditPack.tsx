@@ -3,7 +3,8 @@ import { Zoom } from '@mui/material'
 import { useAppSelector } from 'common/hooks'
 import Tooltip from '@mui/material/Tooltip'
 import { EditPackModal } from 'features/pack/modal/editPackModal/EditCardModal'
-import { CardPacksT } from 'features/pack/service/type'
+import { CardPacksT } from 'features/pack/service/packSlice.type'
+import { userIdSelect } from 'features/profile'
 
 type Props = {
   pack: CardPacksT
@@ -18,7 +19,7 @@ export const iconStyle = {
 
 
 export const EditPack = (props: Props) => {
-  const userId = useAppSelector(state => state.auth.profile._id)
+  const userId = useAppSelector(userIdSelect)
 
   return (
     <>

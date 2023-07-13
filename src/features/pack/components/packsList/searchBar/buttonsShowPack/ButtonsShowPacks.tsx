@@ -6,11 +6,12 @@ import { memo } from 'react'
 import { useAppDispatch, useAppSelector } from 'common/hooks'
 import { setPackParams } from 'features/pack/service/sortPackSlice'
 import { user_idSelect } from 'features/pack/service'
+import { userIdSelect } from 'features/profile'
 
 export const ButtonsShowPacks = memo(() => {
   const dispatch = useAppDispatch()
   const user_id = useAppSelector(user_idSelect)
-  const userId = useAppSelector(state => state.auth.profile._id)
+  const userId = useAppSelector(userIdSelect)
 
   const getPackHandler = (user_id: string) => dispatch(setPackParams({ user_id: user_id === '' ? undefined : user_id }))
 

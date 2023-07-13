@@ -3,7 +3,7 @@ import { Paginator } from 'common/components/paginator/Paginator'
 import { useGetPacksQuery } from 'features/pack/service/pack.slice'
 import { useAppDispatch, useAppSelector } from 'common/hooks'
 import { setPackParams } from 'features/pack/service/sortPackSlice'
-import { pageCountSelect, pagePackSelect } from 'features/pack/service/selectors'
+import { pageCountSelect, pagePackSelect } from 'features/pack/service/pack.selectors'
 
 export const PaginatorPacks = () => {
   const dispatch = useAppDispatch()

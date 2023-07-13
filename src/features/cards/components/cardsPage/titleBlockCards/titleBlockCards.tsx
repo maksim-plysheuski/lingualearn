@@ -5,10 +5,11 @@ import { AddCardsModal } from 'features/cards/components/modal/addCard/addCardMo
 import { MenuPacks } from 'features/cards/components/cardsPage/titleBlockCards/menuCards/menuPacks'
 import { useAppSelector } from 'common/hooks'
 import { useFetchCards } from 'features/cards/service'
+import { userIdSelect } from 'features/profile'
 
 
 export const TitleBlockCards = () => {
-  const userId = useAppSelector(state => state.auth.profile._id)
+  const userId = useAppSelector(userIdSelect)
 
   const { data } = useFetchCards()
   const show = userId === data?.packUserId

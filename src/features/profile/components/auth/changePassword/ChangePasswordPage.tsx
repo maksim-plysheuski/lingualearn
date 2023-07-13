@@ -1,15 +1,15 @@
 import React from 'react'
-import s from 'features/auth/changePassword/style.module.scss'
+import s from 'features/profile/components/auth/changePassword/style.module.scss'
 import * as yup from 'yup'
 import { SubmitHandler, useForm } from 'react-hook-form'
 import { yupResolver } from '@hookform/resolvers/yup'
 import { useNavigate, useParams } from 'react-router-dom'
-import { authThunks } from 'features/auth/auth.slice'
+import { authThunks } from 'features/profile/profile.slice'
 import { InputPassword } from 'common/components'
-import { passwordSchema } from 'features/auth/changePassword/passwordSchema'
+import { passwordSchema } from 'features/profile/components/auth/changePassword/passwordSchema'
 import { useAppDispatch } from 'common/hooks'
 import { UniversalButton } from 'common/components/universalButton/UniversalButton'
-import { paths } from 'common/router/path'
+import { path } from 'common/router/path'
 
 
 type Type = yup.InferType<typeof passwordSchema>
@@ -31,7 +31,7 @@ export const ChangePasswordPage = () => {
 
   const onSubmit: SubmitHandler<Type> = ({ password }) => {
     if (token) dispatch(authThunks.setNewPassword({ password, resetPasswordToken: token }))
-      .then(() => navigate(paths.PASSWORD_CHANGED))
+      .then(() => navigate(path.PASSWORD_CHANGED))
   }
 
   const isButtonDisabled = getFieldState('password').invalid

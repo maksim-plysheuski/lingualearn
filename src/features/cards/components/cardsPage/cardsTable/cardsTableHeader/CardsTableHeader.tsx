@@ -3,6 +3,7 @@ import * as React from 'react'
 import { useState } from 'react'
 import { useAppDispatch, useAppSelector } from 'common/hooks'
 import { setCardParams, useFetchCards } from 'features/cards/service'
+import { userIdSelect } from 'features/profile'
 
 
 const columnTitles: string[] = ['Question', 'Answer', 'Last Updated', 'Grade']
@@ -13,7 +14,7 @@ export const CardsTableHeader = () => {
   const [lastSortedCell, setLastSortedCell] = useState<string>('Last Updated')
 
 
-  const userId = useAppSelector(state => state.auth.profile._id)
+  const userId = useAppSelector(userIdSelect)
 
   const { data } = useFetchCards()
   const show = userId === data?.packUserId

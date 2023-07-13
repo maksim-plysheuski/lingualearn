@@ -1,14 +1,13 @@
-export const paths = {
+export const path = {
   MAIN: '/',
-  AUTH: '/auth',
-  LOGIN: '/auth/login',
-  REGISTER: '/auth/register',
-  SET_NEW_PASSWORD: '/auth/set-new-password/:token',
-  PASSWORD_CHANGED: '/auth/set-new-password/password-changed',
-  FORGOT_PASSWORD: '/auth/forgot',
-  CHECK_EMAIL: '/auth/check-email',
   PROFILE: '/profile',
   PACKS: '/packs',
   CARDS: '/cards/:packId',
-  LEARN: 'learn/:packId'
+  LEARN: '/learn/:packId',
+  LOGIN: '/login',
+  REGISTER: '/register',
+  SET_NEW_PASSWORD: '/set-new-password/:token',
+  PASSWORD_CHANGED: '/set-new-password/password-changed',
+  FORGOT_PASSWORD: '/forgot',
+  CHECK_EMAIL: '/check-email'
 } as const

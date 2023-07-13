@@ -1,5 +1,5 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
-import { FetchCardType, ParamsCardType } from 'features/cards/service/type'
+import { FetchCardType, ParamsCardType } from 'features/cards/service/cardsSlice.type'
 
 export const paramsCardSlice = createSlice({
   name: 'ParamsCardSlice',

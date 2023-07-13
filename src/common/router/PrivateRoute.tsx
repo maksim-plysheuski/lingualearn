@@ -1,10 +1,10 @@
-import { paths } from 'common/router/path'
-import { useAppSelector } from 'common/hooks'
-import React from 'react'
+import { path } from 'common/router'
 import { Navigate, Outlet } from 'react-router-dom'
+import { useAppSelector } from 'common/hooks'
+import { isLoggedInSelect } from 'features/profile'
 
 export const PrivateLayout = () => {
-  const isAuth = useAppSelector(state => state.auth.isLoggedIn)
+  const isLoggedIn = useAppSelector(isLoggedInSelect)
 
-  return isAuth ? <Outlet /> : <Navigate to={paths.LOGIN} />
+  return isLoggedIn ? <Outlet /> : <Navigate to={path.LOGIN} />
 }

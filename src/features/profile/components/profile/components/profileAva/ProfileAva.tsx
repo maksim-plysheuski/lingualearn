@@ -1,19 +1,19 @@
 import React, { ChangeEvent, useState } from 'react'
-import s from 'features/profile/components/ProfilePage.module.scss'
+import s from 'features/profile/components/profile/components/ProfilePage.module.scss'
 import { Avatar, Badge, IconButton } from '@mui/material'
 import LocalSeeOutlinedIcon from '@mui/icons-material/LocalSeeOutlined'
 import { useAppDispatch, useAppSelector } from 'common/hooks'
 import { convertFileToBase64 } from 'common/utils'
-import defAva from 'features/profile/components/imegs/defAva.png'
-import { AvatarSx, IconButtonSx } from 'features/profile/components/profileAva/style'
-import { profileThunks } from 'features/profile/profile.slice'
+import defAva from 'features/profile/components/profile/components/imegs/defAva.png'
+import { AvatarSx, IconButtonSx } from 'features/profile/components/profile/components/profileAva/style'
 import { toast } from 'react-toastify'
+import { authThunks } from 'features/profile/profile.slice'
 
 export const ProfileAva = () => {
   const dispatch = useAppDispatch()
-  const profile = useAppSelector(state => state.profile.profile)
+  const profile = useAppSelector(state => state.authProfile.profile)
 
-  const [ava, setAva] = useState(profile?.avatar)
+  const [ava, setAva] = useState(profile.avatar)
   const [isAvaBroken, setIsAvaBroken] = useState(false)
 
 
@@ -22,9 +22,9 @@ export const ProfileAva = () => {
       const file = e.target.files[0]
       if (file.size < 4000000) {
         convertFileToBase64(file, async (file64: string) => {
-          dispatch(profileThunks.changeUserProfile({ avatar: file64 }))
+          dispatch(authThunks.changeProfile({ avatar: file64 }))
             .unwrap()
-            .then(res => setAva(res.avatar))
+            .then(res => toast.success('lj,fktyf'))
             .catch(err => toast.error('пошел на хуй шкутник'))
         })
       } else {
