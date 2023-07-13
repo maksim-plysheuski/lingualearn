@@ -13,13 +13,14 @@ import { useAppDispatch, useAppSelector } from 'common/hooks'
 import { useNavigate } from 'react-router-dom'
 import { path } from 'common/router/path'
 import { authThunks } from 'features/profile/profile.slice'
-import { userNameSelect } from 'features/profile'
-
+import { userAvatarSelect, userNameSelect } from 'features/profile'
+import defAva from 'features/profile/components/profile/components/imegs/defAva.png'
 
 export const AvatarMenu = () => {
   const navigate = useNavigate()
   const dispatch = useAppDispatch()
   const userName = useAppSelector(userNameSelect)
+  const userAvatar = useAppSelector(userAvatarSelect)
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null)
   const open = Boolean(anchorEl)
 
@@ -53,16 +54,12 @@ export const AvatarMenu = () => {
             aria-haspopup='true'
             aria-expanded={open ? 'true' : undefined}
           >
-            <Avatar sx={{ width: 32, height: 32 }}>M</Avatar>
+            <Avatar sx={{ width: 32, height: 32 }} src={userAvatar||defAva} />
           </IconButton>
         </Tooltip>
       </Box>
       <Menu
-        anchorEl={anchorEl}
-        id='account-menu'
-        open={open}
-        onClose={handleClose}
-        onClick={handleClose}
+        anchorEl={anchorEl} id='account-menu' open={open} onClose={handleClose} onClick={handleClose}
         PaperProps={{
           elevation: 0,
           sx: {
@@ -93,7 +90,7 @@ export const AvatarMenu = () => {
         anchorOrigin={{ horizontal: 'right', vertical: 'bottom' }}
       >
         <MenuItem onClick={handleProfileButton}>
-          <Avatar /> Profile
+          <Avatar src={userAvatar||defAva}/> Profile
         </MenuItem>
         <Divider />
         <MenuItem onClick={handleLogoutButton}>

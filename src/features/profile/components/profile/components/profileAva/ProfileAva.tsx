@@ -8,12 +8,13 @@ import defAva from 'features/profile/components/profile/components/imegs/defAva.
 import { AvatarSx, IconButtonSx } from 'features/profile/components/profile/components/profileAva/style'
 import { toast } from 'react-toastify'
 import { authThunks } from 'features/profile/profile.slice'
+import { userAvatarSelect } from 'features/profile/select/profile.select'
 
 export const ProfileAva = () => {
   const dispatch = useAppDispatch()
-  const profile = useAppSelector(state => state.authProfile.profile)
+  const userAvatar = useAppSelector(userAvatarSelect)
 
-  const [ava, setAva] = useState(profile.avatar)
+
   const [isAvaBroken, setIsAvaBroken] = useState(false)
 
 
@@ -49,7 +50,7 @@ export const ProfileAva = () => {
                </IconButton>
              }
       >
-        <Avatar onError={errorHandler} alt='user avatar' src={isAvaBroken ? defAva : ava} sx={AvatarSx} />
+        <Avatar onError={errorHandler} alt='user avatar' src={isAvaBroken ? defAva : userAvatar} sx={AvatarSx} />
       </Badge>
     </div>
   )
