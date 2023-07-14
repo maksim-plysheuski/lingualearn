@@ -8,11 +8,12 @@ import defAva from 'features/profile/components/imegs/defAva.png'
 import { AvatarSx, IconButtonSx, iconSx } from 'features/profile/components/profileAva/style'
 import { profileThunks } from 'features/profile/profile.slice'
 import { toast } from 'react-toastify'
+import {selectUserAva} from "features/profile/selectors/selectors";
 
 export const ProfileAva = () => {
   const dispatch = useAppDispatch()
-  const profile = useAppSelector(state => state.profile.profile)
-  const [ava, setAva] = useState(profile?.avatar)
+  const avatar = useAppSelector(selectUserAva)
+  const [ava, setAva] = useState(avatar)
   const [isAvaBroken, setIsAvaBroken] = useState(false)
 
 
