@@ -12,8 +12,8 @@
     margin-top: 100px;
     flex-direction: column;
     align-items: center;
-    background: $secondaryBgColor;
-    border: 1px solid $grayColor;
+    background: $dark700;
+    border: 1px solid $dark500;
     border-radius: 2px;
 
     h1 {
@@ -41,7 +41,7 @@
         transition: color 250ms ease-in-out;
 
         &:hover {
-          color: #366EFF;
+          color: $blueColor;
         }
       }
 
@@ -75,7 +75,7 @@
 
   input:-webkit-autofill,
   input:-webkit-autofill:active {
-    -webkit-box-shadow: 0 0 0 30px $secondaryBgColor inset !important;
+    -webkit-box-shadow: 0 0 0 30px $dark700 inset !important;
     -webkit-text-fill-color: white !important;
   }
 }

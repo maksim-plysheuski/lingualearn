@@ -5,7 +5,7 @@
   width: 100%;
 
   & label {
-    color: $borderColor;
+    color: $dark300;
   }
 
   .select {
@@ -14,7 +14,7 @@
     width: 100%;
     height: 36px;
     color: #FFFFFF;
-    border: 1px solid #4C4C4C;
+    border: 1px solid $dark300;
     border-radius: 2px;
     padding: 6px 12px;
     font-size: 16px;

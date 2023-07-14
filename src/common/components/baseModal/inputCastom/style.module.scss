@@ -2,7 +2,7 @@
 
 .inputContainer {
   width: 100%;
-  color: $borderColor;
+  color: $dark300;
 
   .input {
     width: 100%;
@@ -10,7 +10,7 @@
     line-height: 24px;
     height: 36px;
     outline: none;
-    border: 1px solid $borderColor;
+    border: 1px solid $dark300;
     border-radius: 2px;
     background-color: transparent;
     color: $primaryFontColor;

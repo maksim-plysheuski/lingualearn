@@ -4,7 +4,7 @@
   margin-top: 80px;
   width: 420px;
   color: $primaryFontColor;
-  background-color: $grayColor;
+  background-color: $dark500;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -24,7 +24,7 @@
     overflow: hidden;
 
     & p {
-      color: $borderColor;
+      color: $dark300;
     }
 
     .question {
