@@ -7,7 +7,7 @@ import s from './style.module.scss'
 import { SubmitHandler, useForm } from 'react-hook-form'
 import { yupResolver } from '@hookform/resolvers/yup'
 import * as yup from 'yup'
-import { userNameSchema } from 'features/profile/components/userNameSchema'
+import { userNameSchema } from 'features/profile/components/validateShema/userNameSchema'
 import { editNameIconSx, inputStyle } from 'common/components/editableTitle/style'
 import { SuperButton } from '../superButton/SuperButton'
 

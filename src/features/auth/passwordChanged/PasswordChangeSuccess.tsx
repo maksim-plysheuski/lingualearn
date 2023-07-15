@@ -1,5 +1,5 @@
 import React from 'react'
-import s from 'features/auth/changePassword/passwordChanged/style.module.scss'
+import s from 'features/auth/passwordChanged/style.module.scss'
 import { useNavigate } from 'react-router-dom'
 import CheckCircleOutlineIcon from '@mui/icons-material/CheckCircleOutline'
 import { paths } from 'common/router'
