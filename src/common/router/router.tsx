@@ -7,14 +7,12 @@ import { CardsPage } from 'features/cards/components/cardsPage/cardsPage'
 import { LearnPage } from 'features/learn/LearnPage'
 import { NotPrivateLayout } from './NotPrivateRoute'
 import { PrivateLayout } from './PrivateRoute'
-import {
-  ChangePasswordPage,
-  CheckEmailPage,
-  ForgotPasswordPage,
-  Login,
-  PasswordChangeSuccess,
-  Register
-} from 'features/auth'
+import { Login } from 'features/auth/login/Login'
+import { Register } from 'features/auth/register/Register'
+import { ForgotPasswordPage } from 'features/auth/forgotPassword/ForgotPasswordPage'
+import { CheckEmailPage } from 'features/auth/checkEmail/CheckEmailPage'
+import { ChangePasswordPage } from 'features/auth/changePassword/ChangePasswordPage'
+import { PasswordChangeSuccess } from 'features/auth/passwordChanged/PasswordChangeSuccess'
 
 export const router = createHashRouter([
   {

@@ -40,10 +40,8 @@ export const Register = () => {
         <form className={s.form} onSubmit={handleSubmit(onSubmit)}>
           <InputEmail errorMessage={errors.email?.message} register={register('email')} />
           <InputPassword errorMessage={errors.password?.message} register={register('password')} />
-          <InputPassword errorMessage={errors.passwordConfirmation?.message}
-                         register={register('passwordConfirmation')} />
-          <SuperButton title={'Sign Up'} isLoading={isLoading} disabled={isButtonDisabled}
-                       marginTop={'78px'} />
+          <InputPassword errorMessage={errors.passConfirmation?.message} register={register('passConfirmation')} />
+          <SuperButton title={'Sign Up'} isLoading={isLoading} disabled={isButtonDisabled} marginTop={'78px'} />
         </form>
         <span className={s.helpText}>Already have an account?</span>
         <Link className={s.link} to={paths.LOGIN}>Sign In</Link>

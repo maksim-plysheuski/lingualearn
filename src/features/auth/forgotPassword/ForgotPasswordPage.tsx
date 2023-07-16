@@ -13,7 +13,7 @@ import { emailMessage } from 'features/auth/forgotPassword/emailMessage'
 import { useAppSelector } from 'common/hooks'
 import { loadingSelect } from 'app'
 import { SuperButton } from 'common/components'
-import {CheckEmailPage} from "features/auth";
+import { CheckEmailPage } from 'features/auth/checkEmail/CheckEmailPage'
 
 type InputType = yup.InferType<typeof emailSchema>
 
