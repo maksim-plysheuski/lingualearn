@@ -1,7 +1,7 @@
 import LogoutIcon from '@mui/icons-material/Logout'
 import s from './ProfilePage.module.scss'
 import { EditableTitle } from 'common/components/editableTitle/EditableTitle'
-import { authThunks } from 'features/auth/auth.slice'
+import { authThunks } from 'features/auth'
 import { useAppDispatch, useAppSelector } from 'common/hooks'
 import { ProfileAva } from './profileAva/ProfileAva'
 import { loadingSelect } from 'app'

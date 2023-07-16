@@ -1,5 +1,4 @@
 import { useEffect } from 'react'
-import { authThunks } from 'features/auth/auth.slice'
 import { Header } from 'common/components/header/Header'
 import { Outlet } from 'react-router-dom'
 import { useAppDispatch, useAppSelector } from 'common/hooks'
@@ -8,6 +7,7 @@ import { LinearProgress } from '@mui/material'
 import { GlobalError } from 'common/components/globalError/GlobalError'
 import 'react-toastify/dist/ReactToastify.css'
 import { initializedSelect, loadingSelect } from 'app/selectors'
+import { authThunks } from 'features/auth'
 
 
 function App() {

@@ -9,11 +9,11 @@ import { forgotPasswordApi } from 'features/auth/forgotPassword/forgotPassword.a
 import { emailSchema } from 'features/auth/forgotPassword/emailSchema'
 import { paths } from 'common/router'
 import { useState } from 'react'
-import { CheckEmailPage } from 'features/auth/checkEmail/CheckEmailPage'
 import { emailMessage } from 'features/auth/forgotPassword/emailMessage'
 import { useAppSelector } from 'common/hooks'
 import { loadingSelect } from 'app'
 import { SuperButton } from 'common/components'
+import {CheckEmailPage} from "features/auth";
 
 type InputType = yup.InferType<typeof emailSchema>
 

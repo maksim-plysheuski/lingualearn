@@ -2,8 +2,8 @@ import { createSlice } from '@reduxjs/toolkit'
 import { ProfileType } from 'features/auth/auth.api'
 import { createAppAsyncThunk } from 'common/utils/createAppAsyncThunk'
 import { profileApi, TChangeUser } from 'features/profile/profile.api'
-import { authThunks } from 'features/auth/auth.slice'
 import { thunkTryCatch } from 'common/utils'
+import { authThunks } from 'features/auth'
 
 
 const slice = createSlice({
@@ -33,7 +33,7 @@ const changeUserProfile = createAppAsyncThunk<{ name: string, avatar?: string },
 
 
 export const profileReducer = slice.reducer
-export const profileThunks = {  changeUserProfile }
+export const profileThunks = { changeUserProfile }
 
 
 
