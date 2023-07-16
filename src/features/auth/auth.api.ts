@@ -42,9 +42,7 @@ export type ArgLoginType = {
 
 export type ArgRegisterType = Omit<ArgLoginType, 'rememberMe'>
 
-export type RegisterResponseType = {
-  addedUser: Omit<ProfileType, 'token' | 'tokenDeathTime'>
-}
+export type RegisterResponseType = { addedUser: Omit<ProfileType, 'token' | 'tokenDeathTime'> }
 
 export type ProfileType = {
   _id: string;

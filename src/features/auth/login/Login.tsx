@@ -1,8 +1,7 @@
-import { useForm, SubmitHandler } from 'react-hook-form'
+import { SubmitHandler, useForm } from 'react-hook-form'
 import { Checkbox, FormControl } from '@mui/material'
 import s from './styles.module.scss'
 import { Link } from 'react-router-dom'
-import { authThunks } from 'features/auth/auth.slice'
 import { yupResolver } from '@hookform/resolvers/yup'
 import * as yup from 'yup'
 import { InputEmail, InputPassword, SuperButton } from 'common/components'
@@ -10,8 +9,8 @@ import { loginSchema } from 'features/auth/login/loginSchema'
 import { useAppDispatch, useAppSelector } from 'common/hooks'
 import { paths } from 'common/router'
 import { toast } from 'react-toastify'
-import * as React from 'react'
 import { loadingSelect } from 'app'
+import { authThunks } from '../auth.slice'
 
 
 type InputsType = yup.InferType<typeof loginSchema>

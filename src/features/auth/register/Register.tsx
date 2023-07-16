@@ -3,12 +3,12 @@ import { SubmitHandler, useForm } from 'react-hook-form'
 import * as yup from 'yup'
 import { yupResolver } from '@hookform/resolvers/yup'
 import { Link, useNavigate } from 'react-router-dom'
-import { authThunks } from 'features/auth/auth.slice'
 import { InputEmail, InputPassword, SuperButton } from 'common/components'
 import { registerSchema } from 'features/auth/register/registerSchema'
 import { useAppDispatch, useAppSelector } from 'common/hooks'
 import { paths } from 'common/router'
 import { loadingSelect } from 'app'
+import { authThunks } from 'features/auth'
 
 
 type Type = yup.InferType<typeof registerSchema>
@@ -40,8 +40,7 @@ export const Register = () => {
         <form className={s.form} onSubmit={handleSubmit(onSubmit)}>
           <InputEmail errorMessage={errors.email?.message} register={register('email')} />
           <InputPassword errorMessage={errors.password?.message} register={register('password')} />
-          <InputPassword errorMessage={errors.passwordConfirmation?.message}
-                         register={register('passwordConfirmation')} />
+          <InputPassword errorMessage={errors.passConfirmation?.message} register={register('passConfirmation')} />
           <SuperButton title={'Sign Up'} isLoading={isLoading} disabled={isButtonDisabled} marginTop={'78px'} />
         </form>
         <span className={s.helpText}>Already have an account?</span>

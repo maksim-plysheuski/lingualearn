@@ -1,6 +1,6 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
-import { authThunks } from 'features/auth/auth.slice'
 import { AxiosError, isAxiosError } from 'axios'
+import { authThunks } from 'features/auth'
 
 
 const appInitialState = {

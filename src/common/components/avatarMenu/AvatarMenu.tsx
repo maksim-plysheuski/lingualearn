@@ -9,13 +9,13 @@ import Tooltip from '@mui/material/Tooltip'
 import Logout from '@mui/icons-material/Logout'
 import { useAppDispatch, useAppSelector } from 'common/hooks'
 import { useNavigate } from 'react-router-dom'
-import { authThunks } from 'features/auth/auth.slice'
 import s from './style.module.scss'
 import PermIdentityOutlinedIcon from '@mui/icons-material/PermIdentityOutlined'
 import { menuStyle, paperStyle } from 'common/components/avatarMenu/style'
 import { selectProfile, selectUserName } from 'features/profile/selectors'
-import FeaturedPlayListOutlinedIcon from '@mui/icons-material/FeaturedPlayListOutlined';
+import FeaturedPlayListOutlinedIcon from '@mui/icons-material/FeaturedPlayListOutlined'
 import { paths } from 'common/router'
+import { authThunks } from 'features/auth'
 
 
 export const AvatarMenu = () => {
