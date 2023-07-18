@@ -19,7 +19,6 @@ export const PaginatorPacks = () => {
   }
 
   return (
-
     <Paginator pageCount={pageCountPack ?? 4}
                page={pagePack ?? 1}
                totalCount={data!.cardPacksTotalCount}
