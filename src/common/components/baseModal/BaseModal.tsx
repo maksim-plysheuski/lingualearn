@@ -4,6 +4,7 @@ import React, { ReactNode } from 'react'
 import CloseIcon from '@mui/icons-material/Close'
 import s from './style.module.scss'
 import { SxProps, Theme } from '@mui/material/styles'
+import { SuperButton } from 'common/components/superButton/SuperButton'
 
 const style: SxProps<Theme> = {
   position: 'absolute' as 'absolute',
@@ -51,14 +52,12 @@ export const BaseModal = (props: Props) => {
         <Box sx={style}>
           <div className={s.titleContainer}>
             <span>{title}</span>
-            <CloseIcon sx={{ cursor: 'pointer' }} onClick={handleClose} />
+            <CloseIcon sx={{ cursor: 'pointer', '&:hover': {color: '#808080'}}} onClick={handleClose} />
           </div>
           <div className={s.containerChildren}>{children}</div>
           <div className={s.buttonContainer}>
-            <button disabled={disable} className={s.buttonCancel} onClick={handleClose}>Cancel</button>
-            <button disabled={disable} className={s.buttonAction} onClick={actionCallback}>
-              {titleButtonAction}
-            </button>
+            <SuperButton title={'Cancel'} onClick={handleClose} isGrayColor={true} width={'100'} />
+            <SuperButton title={titleButtonAction} onClick={actionCallback} width={'148'} disabled={disable} />
           </div>
         </Box>
       </Modal>
