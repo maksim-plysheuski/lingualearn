@@ -53,7 +53,9 @@ export const PacksTableBody = () => {
             {pack.name}
           </TableCell>
           <TableCell sx={tableCellStyle}>{pack.cardsCount}</TableCell>
-          <TableCell sx={tableCellStyle}>{pack.updated.slice(0, 10).replaceAll('-', '.')}</TableCell>
+          <TableCell sx={tableCellStyle}>
+            {pack.updated.slice(0, 10).split('-').reverse().join('.')}
+          </TableCell>
           <TableCell sx={tableCellStyle}>{pack.user_name}</TableCell>
           <TableCell sx={tableCellStyle}>
             <LearnPack cardsCount={pack.cardsCount} packId={pack._id} />
