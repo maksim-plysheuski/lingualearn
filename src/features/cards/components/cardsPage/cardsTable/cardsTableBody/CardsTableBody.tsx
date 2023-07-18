@@ -9,12 +9,11 @@ import { userIdSelect } from 'features/profile'
 
 export const tableCellStyle = {
   wordWrap: 'break-word',
-  minWidth: '100px',
-  maxWidth: '300px',
+  maxWidth: '250px',
   color: 'white',
   borderBottom: '1px solid #333333',
-  height: '36px',
-  padding: '2px 0 2px 24px'
+  padding: '6px 24px 6px 24px',
+  height: '55px'
 }
 
 export const CardsTableBody = () => {
@@ -38,9 +37,7 @@ export const CardsTableBody = () => {
                       emptyIcon={<StarBorderIcon sx={{ color: '#faaf00' }} />}
               />
             </TableCell>
-            <TableCell sx={tableCellStyle}>
-              {show && <FieldButtons cardId={card._id} questionValue={card.question} answerValue={card.answer} />}
-            </TableCell>
+            {show && <FieldButtons cardId={card._id} questionValue={card.question} answerValue={card.answer} />}
           </TableRow>
         )
       })}

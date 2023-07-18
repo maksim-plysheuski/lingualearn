@@ -4,20 +4,19 @@ import { useState } from 'react'
 import { useAppDispatch, useAppSelector } from 'common/hooks'
 import { setCardParams, useFetchCards } from 'features/cards/service'
 import { userIdSelect } from 'features/profile'
+import { tableCellStyle } from 'features/cards/components/cardsPage/cardsTable/cardsTableBody/CardsTableBody'
 
-
-const columnTitles: string[] = ['Question', 'Answer', 'Last Updated', 'Grade']
 
 export const CardsTableHeader = () => {
+  const columnTitles: string[] = ['Question', 'Answer', 'Last Updated', 'Grade']
   const dispatch = useAppDispatch()
   const [sortOrder, setSortOrder] = useState<'asc' | 'desc'>('asc')
   const [lastSortedCell, setLastSortedCell] = useState<string>('Last Updated')
-
-
   const userId = useAppSelector(userIdSelect)
-
   const { data } = useFetchCards()
   const show = userId === data?.packUserId
+  if (show) columnTitles.push('Actions')
+
 
   const handleSortButton = (title: string) => () => {
     let sortArgTitle
@@ -41,16 +40,15 @@ export const CardsTableHeader = () => {
     <TableHead sx={{ backgroundColor: '#333333' }}>
       <TableRow>
         {columnTitles.map((t, i) =>
-          <TableCell key={i} sx={{ color: 'white', borderBottom: '0' }} onMouseEnter={() => setLastSortedCell(t)}>
+          <TableCell key={i} sx={tableCellStyle} onMouseEnter={() => setLastSortedCell(t)}>
             {t}
-            <TableSortLabel sx={{ '& .MuiTableSortLabel-icon': { color: 'white !important' } }}
-                            active={lastSortedCell === t}
-                            direction={sortOrder}
-                            onClick={handleSortButton(t)}
-            />
+            {t !== 'Actions' ? <TableSortLabel
+              sx={{ '& .MuiTableSortLabel-icon': { color: 'white !important' } }}
+              active={lastSortedCell === t}
+              direction={sortOrder}
+              onClick={handleSortButton(t)} /> : null}
           </TableCell>)
         }
-        {show && <TableCell sx={{ borderBottom: '0' }} />}
       </TableRow>
     </TableHead>
   )

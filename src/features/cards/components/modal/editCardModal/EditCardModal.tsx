@@ -30,7 +30,7 @@ export const EditCardsModal = (props: Props) => {
     return (
         <>
             <BaseModal
-                buttonOpen={<DriveFileRenameOutlineIcon fontSize={'small'} sx={{cursor: 'pointer'}}/>}
+                buttonOpen={<DriveFileRenameOutlineIcon />}
                 title={'Edit Pack'}
                 open={open}
                 setOpen={setOpen}

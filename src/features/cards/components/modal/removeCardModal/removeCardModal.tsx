@@ -18,7 +18,7 @@ export const RemoveCardModal = (props: Props) => {
 
     return (
         <>
-            <BaseModal buttonOpen={<DeleteOutlineIcon fontSize={'small'} sx={{cursor: 'pointer'}}/>}
+            <BaseModal buttonOpen={<DeleteOutlineIcon />}
                        title={'Delete Pack'} open={open} setOpen={setOpen} actionCallback={editCards}
                        titleButtonAction={'Delete Pack'} disable={isLoading}
             >

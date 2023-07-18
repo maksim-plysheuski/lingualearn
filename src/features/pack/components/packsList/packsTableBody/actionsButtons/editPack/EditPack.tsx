@@ -27,7 +27,7 @@ export const EditPack = (props: Props) => {
 
   return (
     <>
-      <Tooltip title={userId ? 'Edit' : false} arrow placement='top' TransitionComponent={Zoom}
+      <Tooltip title={userId ? 'Edit pack' : false} arrow placement='top' TransitionComponent={Zoom}
                TransitionProps={{ timeout: 400 }}>
         <span>
           <IconButton disabled={!userId} sx={iconStyle}>

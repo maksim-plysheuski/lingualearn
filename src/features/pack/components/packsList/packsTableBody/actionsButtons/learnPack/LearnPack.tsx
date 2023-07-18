@@ -19,7 +19,7 @@ export const LearnPack: FC<Props> = ({ cardsCount, packId }) => {
 
   return (
     <>
-      <Tooltip title={cardsCount === 0 ? '' : 'Learn'} arrow placement='top' TransitionComponent={Zoom}
+      <Tooltip title={cardsCount === 0 ? '' : 'Learn pack'} arrow placement='top' TransitionComponent={Zoom}
                TransitionProps={{ timeout: 400 }}>
         <span>
           <IconButton disabled={cardsCount === 0} onClick={learnPack} sx={iconStyle}>

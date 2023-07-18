@@ -6,6 +6,7 @@ import { InputSearchCards } from './inputSearchCards/inputSearchCards'
 import React from 'react'
 import { CardsTable } from 'features/cards/components/cardsPage/cardsTable/CardsTable'
 import { PaginationCards } from 'features/cards/components/cardsPage/paginationCards/paginationCards'
+import { EmptyCardsPack } from 'features/cards/components/cardsPage/emptyCardsPack/EmptyCardsPack'
 
 export const CardsPage = () => {
   const { data, isLoading } = useFetchCards()
@@ -14,10 +15,15 @@ export const CardsPage = () => {
   return (
     <div className={s.packsList}>
       <BackLink />
-      <TitleBlockCards />
-      <InputSearchCards />
-      {data?.cards.length === 0 ?
-        <h1 style={{ color: '#fff' }}>карточек не найдено </h1> : <><CardsTable /><PaginationCards /></>}
+      {data?.cards.length
+        ? <>
+          <TitleBlockCards />
+          <InputSearchCards />
+          <CardsTable />
+          <PaginationCards />
+        </>
+        : <EmptyCardsPack />
+      }
     </div>
   )
 }
