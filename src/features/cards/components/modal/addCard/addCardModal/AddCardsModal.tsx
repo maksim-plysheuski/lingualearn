@@ -3,7 +3,7 @@ import { BaseModal } from 'common/components/baseModal/BaseModal'
 import { SelectTextImg, SelectType } from 'features/cards/components/modal/addCard/select/SelectTextImg'
 import { InputCastom } from 'common/components/baseModal/inputCastom/InputCastom'
 import s from 'features/cards/components/modal/addCard/addCardModal/style.module.scss'
-import { UniversalButton } from 'common/components/universalButton/UniversalButton'
+import { SuperButton } from 'common/components/superButton/SuperButton'
 import { useAddCardMutation } from 'features/cards/service/card.slice'
 import { useAppSelector } from 'common/hooks'
 
@@ -27,7 +27,7 @@ export const AddCardsModal = () => {
   return (
     <>
       <BaseModal
-        titleButtonAction={'Add New Card'} buttonOpen={<UniversalButton width={'184'} title={'Add New Card'} />}
+        titleButtonAction={'Add New Card'} buttonOpen={<SuperButton width={'184'} title={'Add New Card'} />}
         title={'Add New Card'} open={open} setOpen={setOpen} actionCallback={createNewCards} disable={isLoading}
       >
         <div className={s.newCardContainer}>

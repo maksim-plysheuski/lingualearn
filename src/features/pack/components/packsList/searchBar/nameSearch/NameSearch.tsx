@@ -1,6 +1,6 @@
 import React, { useCallback } from 'react'
 import { InputSearch } from 'common/components'
-import s from 'features/pack/components/packsList/searchBar/nameSearch/style.module.scss'
+import s from './style.module.scss'
 import { useAppDispatch, useAppSelector } from 'common/hooks'
 import { setPackParams } from 'features/pack/service/sortPackSlice'
 import { packNameSelect } from 'features/pack/service'

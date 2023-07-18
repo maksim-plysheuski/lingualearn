@@ -1,7 +1,7 @@
 import ToggleButton from '@mui/material/ToggleButton/ToggleButton'
 import ToggleButtonGroup from '@mui/material/ToggleButtonGroup/ToggleButtonGroup'
 import { buttonStyle } from 'features/pack/components/packsList/searchBar/buttonsShowPack/style'
-import s from 'features/pack/components/packsList/searchBar/buttonsShowPack/style.module.scss'
+import s from './style.module.scss'
 import { memo } from 'react'
 import { useAppDispatch, useAppSelector } from 'common/hooks'
 import { setPackParams } from 'features/pack/service/sortPackSlice'

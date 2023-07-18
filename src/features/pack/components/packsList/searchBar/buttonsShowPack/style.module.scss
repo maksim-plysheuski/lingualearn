@@ -1,9 +1,12 @@
-@import "../../../../../../common/style/variables";
+@import "src/common/style/variables";
+@import "src/common/style/mixins";
 
 .container {
   display: flex;
   flex-direction: column;
-  margin-left: 24px;
-  color: $primaryFontColor;
 
+  label {
+    margin-bottom: 5px;
+    @include text(400, 14px, 24px)
+  }
 }

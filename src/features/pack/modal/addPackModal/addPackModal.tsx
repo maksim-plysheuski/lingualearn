@@ -1,6 +1,6 @@
 import { BaseModal } from 'common/components/baseModal/BaseModal'
 import { InputCastom } from 'common/components/baseModal/inputCastom/InputCastom'
-import { UniversalButton } from 'common/components/universalButton/UniversalButton'
+import { SuperButton } from 'common/components/superButton/SuperButton'
 import React, { useState } from 'react'
 import { useAddPackMutation } from 'features/pack/service'
 
@@ -21,7 +21,7 @@ export const AddPackModal = () => {
 
   return (
     <BaseModal title={'Add New Pack'} open={open} setOpen={setOpen} titleButtonAction={'Add New Pack'} disable={disable}
-               actionCallback={addPackHandler} buttonOpen={<UniversalButton title={'Add New Pack'} width={'175'} />}
+               actionCallback={addPackHandler} buttonOpen={<SuperButton title={'Add New Pack'} width={'175'} />}
     >
       <>
         <InputCastom label={'Name Pack'} value={valuePack} setValue={setValueCard} />

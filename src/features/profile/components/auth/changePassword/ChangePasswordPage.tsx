@@ -8,7 +8,7 @@ import { authThunks } from 'features/profile/profile.slice'
 import { InputPassword } from 'common/components'
 import { passwordSchema } from 'features/profile/components/auth/changePassword/passwordSchema'
 import { useAppDispatch } from 'common/hooks'
-import { UniversalButton } from 'common/components/universalButton/UniversalButton'
+import { SuperButton } from 'common/components/superButton/SuperButton'
 import { path } from 'common/router/path'
 
 
@@ -44,8 +44,8 @@ export const ChangePasswordPage = () => {
           <InputPassword errorMessage={errors.password?.message}
                          register={register('password')} />
           <span className={s.helperText}>Create new password and we will send you further instructions to email</span>
-          <UniversalButton title={'Change password'}
-                           disabled={isButtonDisabled} marginTop={'65px'} />
+          <SuperButton title={'Change password'}
+                       disabled={isButtonDisabled} marginTop={'65px'} />
         </form>
       </div>
     </div>

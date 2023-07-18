@@ -1,7 +1,7 @@
 import LogoutIcon from '@mui/icons-material/Logout'
 import s from 'features/profile/components/profile/components/ProfilePage.module.scss'
 import { EditableTitle } from 'common/components/editableTitle/EditableTitle'
-import { UniversalButton } from 'common/components/universalButton/UniversalButton'
+import { SuperButton } from 'common/components/superButton/SuperButton'
 import { authThunks } from 'features/profile/profile.slice'
 import { useAppDispatch, useAppSelector } from 'common/hooks'
 import { BackLink } from 'common/components/backLink/BackLink'
@@ -26,7 +26,7 @@ export const ProfilePage = () => {
         <ProfileAva />
         <EditableTitle userName={userName ? userName : 'Username'} />
         <span className={s.emailSpan}>{userEmail ? userEmail : 'user@mail.com'}</span>
-        <UniversalButton title={'Log out'} width={'127'} icon={<LogoutIcon />} onClickCallback={logoutHandler} />
+        <SuperButton title={'Log out'} width={'127'} icon={<LogoutIcon />} onClick={logoutHandler} />
       </div>
     </div>
   )

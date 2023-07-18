@@ -8,7 +8,7 @@ import { InputEmail, InputPassword } from 'common/components'
 import { registerSchema } from 'features/profile/components/auth/register/registerSchema'
 import { useAppDispatch } from 'common/hooks'
 import { path } from 'common/router/path'
-import { UniversalButton } from 'common/components/universalButton/UniversalButton'
+import { SuperButton } from 'common/components/superButton/SuperButton'
 
 
 type Type = yup.InferType<typeof registerSchema>
@@ -40,7 +40,7 @@ export const Register = () => {
           <InputEmail errorMessage={email?.message} register={register('email')} />
           <InputPassword errorMessage={password?.message} register={register('password')} />
           <InputPassword errorMessage={passwordConfirmation?.message} register={register('passwordConfirmation')} />
-          <UniversalButton title={'Sign Up'} disabled={isButtonDisabled} marginTop={'78px'} />
+          <SuperButton title={'Sign Up'} disabled={isButtonDisabled} marginTop={'78px'} />
         </form>
         <span className={s.helpText}>Already have an account?</span>
         <Link className={s.link} to={path.LOGIN}>Sign In</Link>

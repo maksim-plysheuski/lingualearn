@@ -1,5 +1,5 @@
 import s from 'features/profile/components/auth/checkEmail/style.module.scss'
-import { UniversalButton } from 'common/components/universalButton/UniversalButton'
+import { SuperButton } from 'common/components/superButton/SuperButton'
 import ForwardToInboxIcon from '@mui/icons-material/ForwardToInbox'
 import { useNavigate } from 'react-router-dom'
 import { path } from 'common/router/path'
@@ -20,10 +20,10 @@ export const CheckEmailPage = (props: Props) => {
           <ForwardToInboxIcon color={'secondary'} sx={{ fontSize: '45px' }} />
         </div>
         <span>{`We’ve sent an Email with instructions to ${props.email}`}</span>
-        <UniversalButton title={'Back to login'}
-                         onClickCallback={() => navigate(path.LOGIN)}
-                         width={'347'}
-                         marginTop={'70px'} />
+        <SuperButton title={'Back to login'}
+                     onClick={() => navigate(path.LOGIN)}
+                     width={'347'}
+                     marginTop={'70px'} />
       </div>
     </div>
   )

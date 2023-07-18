@@ -1,7 +1,6 @@
 import {memo, useEffect, useState} from 'react'
-import Box from '@mui/material/Box'
 import Slider from '@mui/material/Slider'
-import s from 'features/pack/components/packsList/searchBar/countSearch/style.module.scss'
+import s from './style.module.scss'
 import {sliderStyle} from 'features/pack/components/packsList/searchBar/countSearch/style'
 import {useAppDispatch, useAppSelector} from 'common/hooks'
 import {setPackParams} from 'features/pack/service/sortPackSlice'
@@ -30,11 +29,7 @@ export const CountSearch = memo(() => {
       <label htmlFor='CountLabel'>Number of cards</label>
       <div className={s.countContainer} id={'CountLabel'}>
         <div className={s.count}>{data!.minCardsCount}</div>
-        <Box sx={{
-          width: '155px',
-          marginLeft: '12px',
-          marginRight: '12px'
-        }}>
+        <div className={s.sliderContainer}>
           <Slider sx={sliderStyle}
                   max={data!.maxCardsCount}
                   min={data!.minCardsCount}
@@ -43,7 +38,7 @@ export const CountSearch = memo(() => {
                   onChange={handleChange}
                   onChangeCommitted={onChangeCommittedHandler}
           />
-        </Box>
+        </div>
         <div className={s.count}>{data!.maxCardsCount}</div>
       </div>
     </div>
