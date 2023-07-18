@@ -40,7 +40,6 @@ export const router = createHashRouter([
           { path: path.PASSWORD_CHANGED, element: <PasswordChangeSuccess /> }
         ]
       }
-
     ]
   }
 ])

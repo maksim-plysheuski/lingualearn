@@ -4,6 +4,7 @@ import { Answer } from 'features/learn/answer/answer'
 import { CardsT, useChangeGradeCardMutation } from 'features/cards/service'
 import { getCard } from 'features/learn/getRandomCard'
 import { useFetchAllCards } from 'features/learn/useFetchAllCards'
+import { SuperButton } from 'common/components/superButton/SuperButton'
 
 
 export const LearnPage = () => {
@@ -19,19 +20,22 @@ export const LearnPage = () => {
     setShowAnswer(false)
     changeGrade({ card_id: card?._id!, grade: grade!, packId: packId! })
   }
-  useEffect(() => setCard(getCard(data!.cards)), [data!.cards])
+  const set = data!.cards
+  useEffect(() => {
+    setCard(getCard(set))
+  }, [set])
 
-  if (isLoading || isFetching) return <h1></h1>
+  if (isLoading || isFetching) return null
 
   return (
     <div className={s.learnContainer}>
       <h2 className={s.title}>Learn: '{data!.packName}'</h2>
       <div className={s.questionContainer}>
         <div className={s.question}><span>Question:</span> {card?.question}</div>
-        <p>Количество попыток ответов на вопрос: {card?.shots}</p>
+        <span className={s.attemptsCount}>Count of attempts to answer that question: <b>{card.shots}</b></span>
       </div>
-      {!showAnswer && <button className={s.button} onClick={() => setShowAnswer(true)}>Show Answer</button>}
-      {showAnswer && <Answer setGrade={setGrade} grade={grade} answer={'card.answer'} nextAnswer={nextAnswer} />}
+      {!showAnswer && <SuperButton title={'Show Answer'} marginTop={'41px'} onClick={() => setShowAnswer(true)} />}
+      {showAnswer && <Answer setGrade={setGrade} grade={grade} answer={card?.answer} nextAnswer={nextAnswer} />}
     </div>
   )
 }
