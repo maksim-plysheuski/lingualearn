@@ -13,7 +13,11 @@ type Props = {
 export const iconStyle = {
   color: 'white',
   ':disabled': {
-    color: '#323232'
+    color: '#333333'
+  },
+  '&:hover': {
+    color: '#e66300',
+    transition: '300ms ease-in-out',
   }
 }
 
