@@ -6,13 +6,24 @@ import { useAppDispatch } from 'common/hooks'
 import { useNavigate } from 'react-router-dom'
 import { setCardParams } from 'features/cards/service'
 import { useGetPack } from 'features/pack/service/useGetPack'
+import PanoramaOutlinedIcon from '@mui/icons-material/PanoramaOutlined'
 
 const tableCellStyle = {
   wordWrap: 'break-word',
-  minWidth: '150px',
-  maxWidth: '200px',
+  maxWidth: '250px',
   color: 'white',
-  borderBottom: '1px solid #333333'
+  borderBottom: '1px solid #333333',
+  padding: '6px 24px 6px 24px',
+  height: '55px'
+}
+
+const tableCellHoverStyle = {
+  ...tableCellStyle,
+  cursor: 'pointer',
+  ':hover': {
+    backgroundColor: '#333333',
+    transition: '300ms ease-in-out',
+  }
 }
 
 export const PacksTableBody = () => {
@@ -30,12 +41,13 @@ export const PacksTableBody = () => {
     <TableBody>
       {data!.cardPacks?.map((pack: any) => (
         <TableRow key={pack._id}>
-          <TableCell sx={{
-            ...tableCellStyle,
-            paddingLeft: '40px',
-            cursor: 'pointer',
-            ':hover': { backgroundColor: '#333333' }
-          }}
+          <TableCell sx={{ ...tableCellStyle, maxWidth: '60px' }}>
+            {pack.deckCover
+              ? <img style={{ height: '36px' }} src={pack.deckCover} alt={'cover'} />
+              : <PanoramaOutlinedIcon sx={{ fontSize: '40px', color: '#4C4C4C' }} />
+            }
+          </TableCell>
+          <TableCell sx={tableCellHoverStyle}
                      onClick={() => openSelectedPack(pack._id)}
           >
             {pack.name}

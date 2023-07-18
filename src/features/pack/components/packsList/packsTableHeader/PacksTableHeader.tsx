@@ -1,30 +1,42 @@
 import {TableCell, TableHead, TableRow, TableSortLabel} from '@mui/material'
 import {useState} from 'react'
-import {useAppDispatch} from 'common/hooks'
+import { useAppDispatch, useAppSelector } from 'common/hooks'
 import {setPackParams} from "features/pack/service/sortPackSlice";
 
 export const PacksTableHeader = () => {
   const dispatch = useAppDispatch()
-
+  const currentRowsCount = useAppSelector(state => state.paramsCard.pageCount)
   const [sortOrder, setSortOrder] = useState<'asc' | 'desc'>('asc')
   const [lastSortedCell, setLastSortedCell] = useState<string>('Last Updated')
-  const columnTitles: string[] = ['Name', 'Cards', 'Last Updated', 'Created by', 'Actions']
+  const columnTitles: string[] = ['Cover', 'Name', 'Cards', 'Last Updated', 'Created by', 'Actions']
+
+  const tableCellStyle = {
+    wordWrap: 'break-word',
+    maxWidth: '250px',
+    color: 'white',
+    borderBottom: '1px solid #333333',
+    padding: '6px 24px 6px 24px',
+    height: '55px'
+  }
 
   const handleSortButton = (title: string) => () => {
     let sortArgTitle
-
-    if (title === 'Cards') {
-      sortArgTitle = 'cardsCount'
-    } else if (title === 'Last Updated') {
-      sortArgTitle = 'updated'
-    } else {
-      sortArgTitle = 'name'
+    switch (title) {
+      case 'Cards':
+        sortArgTitle = 'cardsCount'
+        break
+      case 'Last Updated':
+        sortArgTitle = 'updated'
+        break
+      default:
+        sortArgTitle = 'name'
+        break
     }
     const payload = {
       sortPacks: sortOrder === 'asc'
         ? `0${sortArgTitle}`
         : `1${sortArgTitle}`,
-      pageCount: 4
+      pageCount: currentRowsCount ? currentRowsCount : 4
     }
     setSortOrder(sortOrder === 'desc' ? 'asc' : 'desc')
     setLastSortedCell(title)
@@ -37,7 +49,7 @@ export const PacksTableHeader = () => {
       <TableRow>
         {columnTitles.map((t, i) =>
           <TableCell key={i}
-                     sx={{color: 'white', borderBottom: '0'}}
+                     sx={tableCellStyle}
                      onMouseEnter={() => setLastSortedCell(t)}>
             {t}
             {t === 'Name' || t === 'Cards' || t === 'Last Updated' ?
