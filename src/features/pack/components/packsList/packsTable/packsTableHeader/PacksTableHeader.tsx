@@ -3,7 +3,7 @@ import * as React from 'react'
 import { useState } from 'react'
 import { useAppDispatch, useAppSelector } from 'common/hooks'
 import { packsThunks } from 'features/pack/packs.slice'
-import { tableCellStyle, tableHeaderStyle } from 'common/style/tableStyle'
+import { tableCellSx, tableHeaderSx } from 'common/style/tableStyles'
 
 export const PacksTableHeader = () => {
   const dispatch = useAppDispatch()
@@ -37,10 +37,10 @@ export const PacksTableHeader = () => {
   }
 
   return (
-    <TableHead sx={tableHeaderStyle}>
+    <TableHead sx={tableHeaderSx}>
       <TableRow>
         {columnTitles.map((t, i) =>
-          <TableCell key={i} sx={tableCellStyle} onMouseEnter={() => setLastSortedCell(t)}>
+          <TableCell key={i} sx={tableCellSx} onMouseEnter={() => setLastSortedCell(t)}>
             {t}
             {t === 'Name' || t === 'Cards' || t === 'Last Updated' ?
               <TableSortLabel

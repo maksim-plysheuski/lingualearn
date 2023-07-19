@@ -1,10 +1,10 @@
 import { SxProps, Theme } from '@mui/material/styles'
 
-export const tableHeaderStyle = {
+export const tableHeaderSx = {
   backgroundColor: '#333333',
 }
 
-export const tableStyle: SxProps<Theme> = {
+export const tableSx: SxProps<Theme> = {
   marginTop: '36px',
   maxWidth: 1008,
   backgroundColor: 'black',
@@ -13,7 +13,7 @@ export const tableStyle: SxProps<Theme> = {
   border: '0px 1px 0px 1px'
 }
 
-export const tableCellStyle: SxProps<Theme> = {
+export const tableCellSx: SxProps<Theme> = {
   wordWrap: 'break-word',
   maxWidth: '250px',
   color: 'white',
@@ -22,8 +22,8 @@ export const tableCellStyle: SxProps<Theme> = {
   height: '55px'
 }
 
-export const tableCellHoverStyle: SxProps<Theme> = {
-  ...tableCellStyle,
+export const tableCellHoverSx: SxProps<Theme> = {
+  ...tableCellSx,
   cursor: 'pointer',
   ':hover': {
     backgroundColor: '#333333',
@@ -31,7 +31,7 @@ export const tableCellHoverStyle: SxProps<Theme> = {
   }
 }
 
-export const tableActionsStyle: SxProps<Theme> = {
+export const tableIconSx: SxProps<Theme> = {
   color: 'white',
   ':disabled': {
     color: '#333333'

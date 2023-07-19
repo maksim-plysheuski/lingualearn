@@ -9,6 +9,9 @@ import { RemovePackModal } from 'features/pack/components/modal/removePackModal/
 import { useNavigate } from 'react-router-dom'
 import { useAppSelector } from 'common/hooks'
 import { selectPackId } from 'features/cards/selectors'
+import { menuStyle, paperStyle } from 'common/components/avatarMenu/style'
+import IconButton from '@mui/material/IconButton'
+import { tableIconSx } from 'common/style/tableStyles'
 
 
 export const MenuPacks = () => {
@@ -25,43 +28,12 @@ export const MenuPacks = () => {
 
   return (
     <>
-      <div onClick={handleClick}
-           aria-controls={open ? 'account-menu' : undefined}
-           aria-haspopup='true'
-           aria-expanded={open ? 'true' : undefined}
-      >
-        <MoreVertIcon sx={{ margin: 'auto' }} />
-      </div>
-      <Menu anchorEl={anchorEl}
-            id='account-menu'
-            open={open}
-            onClose={handleClose}
-            PaperProps={{
-              elevation: 0,
-              sx: {
-                overflow: 'visible',
-                filter: 'drop-shadow(0px 2px 8px rgba(0,0,0,0.32))',
-                mt: 1.5,
-                width: '120px',
-                backgroundColor: '#171717',
-                color: '#fff',
-                '&:before': {
-                  content: '""',
-                  display: 'block',
-                  position: 'absolute',
-                  top: 0,
-                  right: 8,
-                  width: 10,
-                  height: 10,
-                  bgcolor: '#171717',
-                  transform: 'translateY(-50%) rotate(45deg)',
-                  zIndex: 0
-                },
-                '& .css-kk1bwy-MuiButtonBase-root-MuiMenuItem-root+.MuiDivider-root': {
-                  backgroundColor: '#333333'
-                }
-              }
-            }}
+      <IconButton onClick={handleClick} sx={{...tableIconSx, padding: 0}}>
+        <MoreVertIcon  sx={{ ml: 1,  border: `2px solid white`, borderRadius: 50 }} />
+      </IconButton>
+
+      <Menu sx={menuStyle} anchorEl={anchorEl} id='account-menu'
+            open={open} onClose={handleClose} PaperProps={paperStyle}
             transformOrigin={{ horizontal: 'right', vertical: 'top' }}
             anchorOrigin={{ horizontal: 'right', vertical: 'bottom' }}
       >
@@ -73,7 +45,7 @@ export const MenuPacks = () => {
           <EditPackModal handleCloseMenu={handleClose} /> Edit
         </MenuItem>
         <Divider />
-        <MenuItem>
+        <MenuItem >
           <RemovePackModal /> Delete
         </MenuItem>
       </Menu>

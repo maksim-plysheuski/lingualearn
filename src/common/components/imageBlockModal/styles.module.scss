@@ -13,9 +13,10 @@
   }
 
   img {
-    width: 100%;
+    width: fit-content;
     max-height: 130px;
     object-fit: contain;
+    border-radius: 5px;
   }
 
   .buttonContainer {

@@ -6,7 +6,7 @@ import Rating from '@mui/material/Rating'
 import StarBorderIcon from '@mui/icons-material/StarBorder'
 import { FieldButtons } from './fieldButtons/FieldButtons'
 import { useSelector } from 'react-redux'
-import { tableCellHoverStyle, tableCellStyle } from 'common/style/tableStyle'
+import { tableCellHoverSx, tableCellSx } from 'common/style/tableStyles'
 
 
 export const CardsTableBody = () => {
@@ -19,18 +19,18 @@ export const CardsTableBody = () => {
         const dataUpdate = card.updated.slice(0, 10).split('-').reverse().join('.')
         return (
           <TableRow key={card._id}>
-            <TableCell sx={tableCellHoverStyle}>
+            <TableCell sx={tableCellHoverSx}>
               {card.questionImg
                 ? <img style={{ height: '36px' }} src={card.questionImg} alt={'cover'} />
                 : card.question}
             </TableCell>
-            <TableCell sx={tableCellHoverStyle}>
+            <TableCell sx={tableCellHoverSx}>
               {card.answerImg
                 ? <img style={{ height: '36px' }} src={card.answerImg} alt={'cover'} />
                 : card.answer}
             </TableCell>
-            <TableCell sx={tableCellStyle}>{dataUpdate}</TableCell>
-            <TableCell sx={tableCellStyle}>
+            <TableCell sx={tableCellSx}>{dataUpdate}</TableCell>
+            <TableCell sx={tableCellSx}>
               <Rating value={card.grade} readOnly precision={0.5}
                       emptyIcon={<StarBorderIcon sx={{ color: '#faaf00' }} />} />
             </TableCell>

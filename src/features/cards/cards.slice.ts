@@ -38,6 +38,8 @@ const slice = createSlice({
             })
             .addCase(packsThunks.updatePack.fulfilled, (state, action) => {
                 state.cards.packName = action.payload.updatedCardsPack.name
+                state.cards.packDeckCover = action.payload.updatedCardsPack.deckCover
+                state.cards.packPrivate = action.payload.updatedCardsPack.private
             })
     }
 })

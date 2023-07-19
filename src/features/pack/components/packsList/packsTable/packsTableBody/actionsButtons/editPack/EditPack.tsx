@@ -5,7 +5,7 @@ import { useAppSelector } from 'common/hooks'
 import Tooltip from '@mui/material/Tooltip'
 import { EditPackModal } from 'features/pack/components/modal/editPackModal/EditPackModal'
 import { TPack } from 'features/pack/packApi'
-import { tableActionsStyle } from 'common/style/tableStyle'
+import { tableIconSx } from 'common/style/tableStyles'
 
 type Props = {
   pack: TPack
@@ -22,7 +22,7 @@ export const EditPack = (props: Props) => {
                TransitionProps={{ timeout: 400 }}>
         <span>
           <IconButton disabled={!userId}
-                      sx={tableActionsStyle}>
+                      sx={tableIconSx}>
             <EditPackModal pack={props.pack} />
         </IconButton>
         </span>

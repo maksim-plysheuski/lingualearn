@@ -9,5 +9,7 @@ export const selectPackUserId = (state: RootState) => state.cards.cards.packUser
 export const selectPrivatePack = (state: RootState) => state.cards.cards.packPrivate
 export const selectPackId = (state: RootState) => state.cards.cardsParams.cardsPack_id
 export const selectCardQuestion = (state: RootState) => state.cards.cardsParams.cardQuestion
+export const selectCardPackCover = (state: RootState) => state.cards.cards.packDeckCover
+export const selectPackCreated = (state: RootState) => state.cards.cards.packCreated
 export const selectIsMyCard = (state: RootState) => state.cards.whose
 

@@ -40,6 +40,8 @@ export type TGetCardsResponse = {
   pageCount: number
   packUserId: string
   packName: string
+  packDeckCover: string
+  packCreated: string
 }
 
 export type TCard = {

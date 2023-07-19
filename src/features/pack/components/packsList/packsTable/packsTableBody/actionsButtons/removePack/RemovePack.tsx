@@ -5,7 +5,7 @@ import { useAppSelector } from 'common/hooks'
 import Tooltip from '@mui/material/Tooltip'
 import { RemovePackModal } from 'features/pack/components/modal/removePackModal/removePackModal'
 import { FC } from 'react'
-import { tableActionsStyle } from 'common/style/tableStyle'
+import { tableIconSx } from 'common/style/tableStyles'
 
 
 type Props = {
@@ -24,7 +24,7 @@ export const RemovePack: FC<Props> = ({packId, packName}) => {
                TransitionProps={{ timeout: 400 }}>
           <span>
         <IconButton disabled={!userId}
-                    sx={tableActionsStyle}>
+                    sx={tableIconSx}>
             <RemovePackModal packName={packName} packId={packId} />
         </IconButton>
           </span>

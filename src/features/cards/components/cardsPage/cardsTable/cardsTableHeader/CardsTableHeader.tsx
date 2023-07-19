@@ -3,7 +3,7 @@ import * as React from 'react'
 import { useState } from 'react'
 import { useSearchCards } from 'features/cards/hooks/useSearchCards'
 import { useSelector } from 'react-redux'
-import { tableCellStyle, tableHeaderStyle } from 'common/style/tableStyle'
+import { tableCellSx, tableHeaderSx } from 'common/style/tableStyles'
 import { selectIsMyCard } from 'features/cards/selectors'
 
 export const CardsTableHeader = () => {
@@ -37,10 +37,10 @@ export const CardsTableHeader = () => {
   }
 
   return (
-    <TableHead sx={tableHeaderStyle}>
+    <TableHead sx={tableHeaderSx}>
       <TableRow>
         {columnTitles.map((t, i) =>
-          <TableCell key={i} sx={tableCellStyle} onMouseEnter={() => setLastSortedCell(t)}>
+          <TableCell key={i} sx={tableCellSx} onMouseEnter={() => setLastSortedCell(t)}>
             {t}
             {t !== 'Actions' ? <TableSortLabel
               sx={{ '& .MuiTableSortLabel-icon': { color: 'white !important' } }}

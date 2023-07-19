@@ -5,20 +5,46 @@
   width: 100%;
   margin-top: 34px;
   display: flex;
-  justify-content: space-between;
-  align-items: self-end;
+  flex-direction: column;
 
 
   .titleContainer {
     display: flex;
     align-items: self-end;
+    justify-content: space-between;
     color: #fff;
     gap: 6px;
 
+    .titleMenu {
+      display: flex;
+    }
   }
 
+  img {
+    margin-top: 15px;
+    border-radius: 5px;
+    max-width: 125px;
+  }
+}
+
+h3 {
+  @include text(600, 22px, 35px);
+  color: $dark100;
+  margin-top: 10px;
+
+}
+
+.info {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+
+
+
   span {
-    @include text(600, 28px, 35px);
+    @include text(600, 16px, 22px);
     color: $dark300
   }
+
+
 }

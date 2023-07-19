@@ -2,11 +2,11 @@ import { Paper, Table, TableContainer } from '@mui/material'
 import * as React from 'react'
 import { CardsTableHeader } from 'features/cards/components/cardsPage/cardsTable/cardsTableHeader/CardsTableHeader'
 import { CardsTableBody } from 'features/cards/components/cardsPage/cardsTable/cardsTableBody/CardsTableBody'
-import { tableStyle } from 'common/style/tableStyle'
+import { tableSx } from 'common/style/tableStyles'
 
 export const CardsTable = () => {
   return (
-    <TableContainer sx={tableStyle} component={Paper}>
+    <TableContainer sx={tableSx} component={Paper}>
       <Table>
         <CardsTableHeader />
         <CardsTableBody />

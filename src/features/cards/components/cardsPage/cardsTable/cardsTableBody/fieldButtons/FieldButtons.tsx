@@ -2,7 +2,7 @@ import React from 'react'
 import { TableCell, Zoom } from '@mui/material'
 import { EditCardsModal } from 'features/cards/components/modal/editCardModal/EditCardModal'
 import { RemoveCardModal } from 'features/cards/components/modal/removeCardModal/removeCardModal'
-import { tableActionsStyle, tableCellStyle } from 'common/style/tableStyle'
+import { tableIconSx, tableCellSx } from 'common/style/tableStyles'
 import IconButton from '@mui/material/IconButton'
 import Tooltip from '@mui/material/Tooltip'
 
@@ -18,13 +18,13 @@ export const FieldButtons = (props: Props) => {
   const { answerValue, questionValue, questionImg, answerImg, cardId } = props
 
   return (
-    <TableCell sx={tableCellStyle}>
+    <TableCell sx={tableCellSx}>
         <Tooltip title={'Edit card'}
                  arrow placement='top'
                  TransitionComponent={Zoom}
                  TransitionProps={{ timeout: 400 }}>
         <span>
-          <IconButton sx={tableActionsStyle}>
+          <IconButton sx={tableIconSx}>
             <EditCardsModal
               cardId={cardId}
               questionValue={questionValue}
@@ -40,7 +40,7 @@ export const FieldButtons = (props: Props) => {
                  TransitionComponent={Zoom}
                  TransitionProps={{ timeout: 400 }}>
         <span>
-          <IconButton sx={tableActionsStyle}>
+          <IconButton sx={tableIconSx}>
             <RemoveCardModal cardId={cardId} title={questionValue} />
         </IconButton>
         </span>

@@ -22,14 +22,13 @@ export const menuStyle = {
       ml: 2
     },
     '& .MuiMenuItem-root': {
-      mt: 1.2,
-      fontSize: 15,
       '&:hover': {
         bgcolor: '#333333'
       },
       '& .MuiSvgIcon-root': {
         color: '#fff',
-        fontSize: 22
+        fontSize: 22,
+        mr: 1
       }
     }
   }

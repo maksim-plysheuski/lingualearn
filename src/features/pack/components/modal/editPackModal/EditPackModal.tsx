@@ -5,7 +5,12 @@ import { packsThunks } from 'features/pack/packs.slice'
 import DriveFileRenameOutlineIcon from '@mui/icons-material/DriveFileRenameOutline'
 import { TPack } from 'features/pack/packApi'
 import { toast } from 'react-toastify'
-import { selectPackId, selectPackName, selectPrivatePack } from 'features/cards/selectors/selectors'
+import {
+  selectCardPackCover,
+  selectPackId,
+  selectPackName,
+  selectPrivatePack
+} from 'features/cards/selectors/selectors'
 import { PackBodyModal } from 'features/pack/components/modal/common/packBodyModal/PackBodyModal'
 
 type Props = {
@@ -18,12 +23,13 @@ export const EditPackModal = (props: Props) => {
   const packName = useAppSelector(selectPackName)
   const packId = useAppSelector(selectPackId)
   const isPackPrivate = useAppSelector(selectPrivatePack)
+  const cardPackCover = useAppSelector(selectCardPackCover)
 
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false)
   const [inputValue, setInputValue] = useState<string>(props.pack?.name || packName)
-  const [isPrivatePack, setIsPrivatePack] = useState<boolean>(props.pack?.private || isPackPrivate)
+  const [isPrivatePack, setIsPrivatePack] = useState<boolean>(props.pack?.private ||  isPackPrivate)
   const [isButtonDisabled, setIsButtonDisabled] = useState<boolean>(false)
-  const [packCover, setPackCover] = useState<string>(props.pack?.deckCover || '')
+  const [packCover, setPackCover] = useState<string>(props.pack?.deckCover || cardPackCover || '')
 
   const updatePack = async () => {
     let payload = {
