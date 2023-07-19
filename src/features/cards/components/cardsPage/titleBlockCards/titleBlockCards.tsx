@@ -37,7 +37,7 @@ export const TitleBlockCards = () => {
           : <h2>Friend’s Pack</h2>}
         {isMyPack ? <AddCardsModal /> : <SuperButton width={'184'} title={'Learn Pack'} onClick={learnPack} />}
       </div>
-      <div>
+      <div className={s.infoContainer}>
         <h3>{packName}</h3>
         <div className={s.info}>
         {packCover
