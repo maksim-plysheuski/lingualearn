@@ -35,6 +35,7 @@ export type ParamsCardType = {
 export type FetchResponseCardsT = {
   cards: CardsT[],
   cardsTotalCount: number
+  packDeckCover: string
   maxGrade: number
   minGrade: number
   packCreated: string

@@ -13,8 +13,7 @@ export const AddPackModal = () => {
 
 
   const addPackHandler = async () => {
-
-    await addPack({ name: packName, private: isPrivatePack })
+    await addPack({ name: packName, private: isPrivatePack, deckCover: packCover })
     setPackName('')
     setIsModalOpen(false)
   }

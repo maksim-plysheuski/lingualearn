@@ -17,12 +17,13 @@ export const iconStyle = {
   },
   '&:hover': {
     color: '#e66300',
-    transition: '300ms ease-in-out',
+    transition: '300ms ease-in-out'
   }
 }
 
 
 export const EditPack = (props: Props) => {
+  const { pack } = props
   const userId = useAppSelector(userIdSelect)
 
   return (
@@ -31,7 +32,7 @@ export const EditPack = (props: Props) => {
                TransitionProps={{ timeout: 400 }}>
         <span>
           <IconButton disabled={!userId} sx={iconStyle}>
-            <EditPackModal pack={props.pack} />
+            <EditPackModal pack={pack} />
         </IconButton>
         </span>
       </Tooltip>

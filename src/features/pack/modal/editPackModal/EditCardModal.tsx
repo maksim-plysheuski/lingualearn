@@ -1,10 +1,11 @@
-import {BaseModal} from 'common/components/modals/baseModal/BaseModal'
-import React, {useState} from 'react'
+import { BaseModal } from 'common/components/modals/baseModal/BaseModal'
+import React, { useState } from 'react'
 import DriveFileRenameOutlineIcon from '@mui/icons-material/DriveFileRenameOutline'
-import {toast} from 'react-toastify'
-import {useUpdatePackMutation} from 'features/pack/service'
-import {CardPacksT} from "features/pack/service/packSlice.type";
-import { InputCustom } from 'common/components/modals/baseModal/inputCastom/InputCastom'
+import { toast } from 'react-toastify'
+import { useUpdatePackMutation } from 'features/pack/service'
+import { CardPacksT } from 'features/pack/service/packSlice.type'
+import { PackBodyModal } from 'features/pack/modal/commonPackModal/CommonPackModal'
+import { useFetchCards } from 'features/cards/service'
 
 type Props = {
   handleCloseMenu?: () => void
@@ -15,38 +16,38 @@ type Props = {
 export const EditPackModal = (props: Props) => {
   const { pack } = props
 
-  const [updatePack, {isLoading}] = useUpdatePackMutation()
-  const [open, setOpen] = useState<boolean>(false)
+  const { data: cards, packId } = useFetchCards()
+  const [updatePack, { isLoading }] = useUpdatePackMutation()
 
-  const [inputValue, setInputValue] = useState<string>(pack?.name!||'' )
-  const [isPrivatePack, setIsPrivatePack] = useState<boolean>(pack?.private!||false )
+  const [isModalOpen, setIsModalOpen] = useState<boolean>(false)
+  const [inputValue, setInputValue] = useState<string>(pack?.name! ?? cards?.packName)
+  const [isPrivatePack, setIsPrivatePack] = useState<boolean>(pack?.private! ?? cards?.packPrivate)
+  const [packCover, setPackCover] = useState<string>(pack?.deckCover! ?? cards?.packDeckCover)
 
 
   const updatePackHandler = async () => {
-    let payload = { _id:  pack?._id! , name: inputValue, private: isPrivatePack }
-
-
+    let payload = { _id: pack?._id! ?? packId, name: inputValue, private: isPrivatePack, deckCover: packCover }
     await updatePack(payload).unwrap()
       .then(() => toast.info(`Pack has been updated`))
       .catch((err) => toast.error(err.e.response ? err.e.response.data.error : err.e.message))
       .finally(() => {
-        setOpen(false)
+        setIsModalOpen(false)
       })
     if (props.handleCloseMenu) {
       props.handleCloseMenu()
     }
   }
   return (
-    <BaseModal title={'Edit Pack'} open={open} setOpen={setOpen} titleButtonAction={'Save Changes'}
-               actionCallback={updatePackHandler} buttonOpen={<DriveFileRenameOutlineIcon />} isButtonDisabled={isLoading}
+    <BaseModal title={'Edit Pack'} open={isModalOpen} setOpen={setIsModalOpen} titleButtonAction={'Save Changes'}
+               actionCallback={updatePackHandler} buttonOpen={<DriveFileRenameOutlineIcon />}
+               isButtonDisabled={isLoading}
     >
-      <>
-        <InputCustom label={'Name Pack'} value={inputValue} setValue={setInputValue} />
-        <div>
-          <input type='checkbox' checked={isPrivatePack} onChange={() => setIsPrivatePack(state => !state)} />
-          <span>Private pack</span>
-        </div>
-      </>
+      <PackBodyModal packValue={inputValue}
+                     packCover={packCover}
+                     isPrivatePack={isPrivatePack}
+                     setPackValue={setInputValue}
+                     setPackCover={setPackCover}
+                     setIsPrivate={setIsPrivatePack} />
     </BaseModal>
   )
 }

@@ -20,7 +20,12 @@ export const packApi = createApi({
         query: (params) => ({ method: 'DELETE', url: baseEndpoint, params: { id: params.id } }),
         invalidatesTags: ['Packs']
       }),
-      updatePack: build.mutation<{ updatedCardsPack: CardPacksT }, { _id: string, name: string, private: boolean }>({
+      updatePack: build.mutation<{ updatedCardsPack: CardPacksT }, {
+        _id: string,
+        name?: string,
+        private?: boolean,
+        deckCover?: string
+      }>({
         query: (arg) => ({ method: 'PUT', url: baseEndpoint, body: { cardsPack: arg } }),
         invalidatesTags: ['Packs']
       })
