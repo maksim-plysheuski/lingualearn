@@ -1,10 +1,10 @@
 import React, {useState} from 'react'
-import {BaseModal} from 'common/components/baseModal/BaseModal'
+import {BaseModal} from 'common/components/modals/baseModal/BaseModal'
 import {SelectTextImg, SelectType} from 'features/cards/components/modal/addCard/select/SelectTextImg'
-import {InputCastom} from 'common/components/baseModal/inputCastom/InputCastom'
 import s from './style.module.scss'
 import DriveFileRenameOutlineIcon from '@mui/icons-material/DriveFileRenameOutline'
 import {useChangeCardMutation} from 'features/cards/service/card.slice'
+import { InputCustom } from 'common/components/modals/baseModal/inputCastom/InputCastom'
 
 type Props = {
     cardId: string
@@ -36,13 +36,13 @@ export const EditCardsModal = (props: Props) => {
                 setOpen={setOpen}
                 actionCallback={editCards}
                 titleButtonAction={'Save Changes'}
-                disable={isLoading}
+                isButtonDisabled={isLoading}
             >
                 <div className={s.newCardContainer}>
                     <SelectTextImg select={select} setSelect={setSelect}/>
                     <div className={s.input}>
-                        <InputCastom label={'Question'} value={question} setValue={setQuestion}/>
-                        <InputCastom label={'Answer'} value={answer} setValue={setAnswer}/>
+                        <InputCustom label={'Question'} value={question} setValue={setQuestion}/>
+                        <InputCustom label={'Answer'} value={answer} setValue={setAnswer}/>
                     </div>
                 </div>
             </BaseModal>

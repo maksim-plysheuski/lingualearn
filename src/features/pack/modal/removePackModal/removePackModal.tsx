@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { BaseModal } from 'common/components/baseModal/BaseModal'
+import { BaseModal } from 'common/components/modals/baseModal/BaseModal'
 import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline'
 import { useNavigate, useParams } from 'react-router-dom'
 import s from './style.module.scss'
@@ -35,7 +35,7 @@ export const RemovePackModal = (props: Props) => {
 
   return (
     <BaseModal title={'Delete Pack'} open={open} setOpen={setOpen} buttonOpen={<><DeleteOutlineIcon />{nameIcon}</>}
-               actionCallback={removePackHandler} titleButtonAction={'Delete Pack'} disable={disable}>
+               actionCallback={removePackHandler} titleButtonAction={'Delete Pack'} isButtonDisabled={disable}>
       <div
         className={s.childrenContainer}>{`Do you really want to remove ${props.packName}? All cards will be deleted.`}
       </div>

@@ -1,0 +1,15 @@
+@import "src/common/style/mixins";
+
+.packNameBlock {
+  margin-top: 23px;
+
+  .checkBoxContainer {
+    margin-top: 25px;
+    display: flex;
+    align-items: center;
+
+    span {
+      @include text(400, 15px, 24px);
+    }
+  }
+}

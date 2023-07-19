@@ -1,10 +1,10 @@
-import {BaseModal} from 'common/components/baseModal/BaseModal'
-import {InputCastom} from 'common/components/baseModal/inputCastom/InputCastom'
+import {BaseModal} from 'common/components/modals/baseModal/BaseModal'
 import React, {useState} from 'react'
 import DriveFileRenameOutlineIcon from '@mui/icons-material/DriveFileRenameOutline'
 import {toast} from 'react-toastify'
 import {useUpdatePackMutation} from 'features/pack/service'
 import {CardPacksT} from "features/pack/service/packSlice.type";
+import { InputCustom } from 'common/components/modals/baseModal/inputCastom/InputCastom'
 
 type Props = {
   handleCloseMenu?: () => void
@@ -38,10 +38,10 @@ export const EditPackModal = (props: Props) => {
   }
   return (
     <BaseModal title={'Edit Pack'} open={open} setOpen={setOpen} titleButtonAction={'Save Changes'}
-               actionCallback={updatePackHandler} buttonOpen={<DriveFileRenameOutlineIcon />} disable={isLoading}
+               actionCallback={updatePackHandler} buttonOpen={<DriveFileRenameOutlineIcon />} isButtonDisabled={isLoading}
     >
       <>
-        <InputCastom label={'Name Pack'} value={inputValue} setValue={setInputValue} />
+        <InputCustom label={'Name Pack'} value={inputValue} setValue={setInputValue} />
         <div>
           <input type='checkbox' checked={isPrivatePack} onChange={() => setIsPrivatePack(state => !state)} />
           <span>Private pack</span>

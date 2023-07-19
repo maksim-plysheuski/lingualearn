@@ -1,35 +1,38 @@
-import { BaseModal } from 'common/components/baseModal/BaseModal'
-import { InputCastom } from 'common/components/baseModal/inputCastom/InputCastom'
+import { BaseModal } from 'common/components/modals/baseModal/BaseModal'
 import { SuperButton } from 'common/components/superButton/SuperButton'
 import React, { useState } from 'react'
 import { useAddPackMutation } from 'features/pack/service'
+import { PackBodyModal } from 'features/pack/modal/commonPackModal/CommonPackModal'
 
 export const AddPackModal = () => {
-  const [addPack] = useAddPackMutation()
-  const [open, setOpen] = useState<boolean>(false)
-  const [valuePack, setValueCard] = useState<string>('')
-  const [privatePack, setPrivatePack] = useState<boolean>(false)
-  const [disable, setDisable] = useState<boolean>(false)
+  const [addPack, { isLoading }] = useAddPackMutation()
+  const [isModalOpen, setIsModalOpen] = useState<boolean>(false)
+  const [packCover, setPackCover] = useState<string>('')
+  const [packName, setPackName] = useState<string>('')
+  const [isPrivatePack, setIsPrivatePack] = useState<boolean>(false)
+
 
   const addPackHandler = async () => {
-    setDisable(true)
-    await addPack({ name: valuePack, private: privatePack })
-    setValueCard('')
-    setOpen(false)
-    setDisable(false)
+
+    await addPack({ name: packName, private: isPrivatePack })
+    setPackName('')
+    setIsModalOpen(false)
   }
 
   return (
-    <BaseModal title={'Add New Pack'} open={open} setOpen={setOpen} titleButtonAction={'Add New Pack'} disable={disable}
-               actionCallback={addPackHandler} buttonOpen={<SuperButton title={'Add New Pack'} width={'175'} />}
+    <BaseModal title={'Add New Pack'} open={isModalOpen}
+               setOpen={setIsModalOpen}
+               titleButtonAction={'Add New Pack'}
+               isButtonDisabled={isLoading}
+               actionCallback={addPackHandler}
+               buttonOpen={<SuperButton title={'Add New Pack'} width={'175'} />}
     >
-      <>
-        <InputCastom label={'Name Pack'} value={valuePack} setValue={setValueCard} />
-        <div>
-          <input type='checkbox' checked={privatePack} onClick={() => setPrivatePack(state => !state)} />
-          <span>Private pack</span>
-        </div>
-      </>
+      <PackBodyModal packValue={packName}
+                     packCover={packCover}
+                     isPrivatePack={isPrivatePack}
+                     setPackValue={setPackName}
+                     setPackCover={setPackCover}
+                     setIsPrivate={setIsPrivatePack} />
     </BaseModal>
   )
 }
