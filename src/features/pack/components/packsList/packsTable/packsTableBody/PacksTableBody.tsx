@@ -10,17 +10,23 @@ import { EditPack } from './actionsButtons/editPack/EditPack'
 import { RemovePack } from './actionsButtons/removePack/RemovePack'
 import { LearnPack } from './actionsButtons/learnPack/LearnPack'
 import { packsSelect } from 'features/pack/selectors'
+import { toast } from 'react-toastify'
+import { selectUserId } from 'features/profile/selectors/selectors'
 
 
 export const PacksTableBody = () => {
   const dispatch = useAppDispatch()
   const navigate = useNavigate()
   const packs = useAppSelector(packsSelect)
+  const userId = useAppSelector(selectUserId)
 
-
-  const openSelectedPack = (packId: string) => {
-    dispatch(cardsThunks.fetchCards({ cardsPack_id: packId }))
-    navigate(paths.CARDS)
+  const openSelectedPack = (packId: string, packUserId: string, cardsCount: number) => {
+    if (packUserId === userId || cardsCount) {
+      dispatch(cardsThunks.fetchCards({ cardsPack_id: packId }))
+      navigate(paths.CARDS)
+      return
+    }
+    toast.info('This pack is empty')
   }
 
   return (
@@ -34,7 +40,7 @@ export const PacksTableBody = () => {
             }
           </TableCell>
           <TableCell sx={tableCellHoverStyle}
-                     onClick={() => openSelectedPack(pack._id)}
+                     onClick={() => openSelectedPack(pack._id, pack.user_id, pack.cardsCount)}
           >
             {pack.name}
           </TableCell>
