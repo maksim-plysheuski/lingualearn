@@ -2,7 +2,7 @@ import Box from '@mui/material/Box'
 import Modal from '@mui/material/Modal'
 import React, { ReactNode } from 'react'
 import CloseIcon from '@mui/icons-material/Close'
-import s from './style.module.scss'
+import s from 'common/components/modals/baseModal/style.module.scss'
 import { SxProps, Theme } from '@mui/material/styles'
 import { SuperButton } from 'common/components/superButton/SuperButton'
 
@@ -30,16 +30,14 @@ type Props = {
   titleButtonAction: string
   setOpen: (open: boolean) => void
   actionCallback: () => void
-  disable: boolean
+  isButtonDisabled: boolean
 }
 
 export const BaseModal = (props: Props) => {
-  const { children, buttonOpen, title, open, setOpen, actionCallback, titleButtonAction, disable } = props
+  const { children, buttonOpen, title, open, setOpen, actionCallback, titleButtonAction, isButtonDisabled } = props
 
   const handleOpen = () => setOpen(true)
-  const handleClose = () => {
-    setOpen(false)
-  }
+  const handleClose = () => setOpen(false)
 
   return (
     <div>
@@ -57,7 +55,7 @@ export const BaseModal = (props: Props) => {
           <div className={s.containerChildren}>{children}</div>
           <div className={s.buttonContainer}>
             <SuperButton title={'Cancel'} onClick={handleClose} isGrayColor={true} width={'100'} />
-            <SuperButton title={titleButtonAction} onClick={actionCallback} width={'148'} disabled={disable} />
+            <SuperButton title={titleButtonAction} onClick={actionCallback} width={'148'} disabled={isButtonDisabled} />
           </div>
         </Box>
       </Modal>
