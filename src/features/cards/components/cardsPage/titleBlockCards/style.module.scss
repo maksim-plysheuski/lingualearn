@@ -7,7 +7,6 @@
   display: flex;
   flex-direction: column;
 
-
   .titleContainer {
     display: flex;
     align-items: self-end;
@@ -19,8 +18,6 @@
       display: flex;
     }
   }
-
-
 }
 
 h3 {
@@ -38,6 +35,7 @@ h3 {
   align-items: center;
   border-radius: 5px;
   padding: 5px;
+
   img {
     align-self: center;
     border-radius: 5px;
@@ -49,8 +47,5 @@ h3 {
     @include text(600, 14px, 22px);
     color: $dark300;
     align-self: flex-start;
-
   }
-
-
 }
