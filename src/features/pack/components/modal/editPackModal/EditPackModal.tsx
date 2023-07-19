@@ -27,7 +27,7 @@ export const EditPackModal = (props: Props) => {
 
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false)
   const [inputValue, setInputValue] = useState<string>(props.pack?.name || packName)
-  const [isPrivatePack, setIsPrivatePack] = useState<boolean>(props.pack?.private ||  isPackPrivate)
+  const [isPrivatePack, setIsPrivatePack] = useState<boolean>(props.pack?.private || isPackPrivate)
   const [isButtonDisabled, setIsButtonDisabled] = useState<boolean>(false)
   const [packCover, setPackCover] = useState<string>(props.pack?.deckCover || cardPackCover || '')
 
@@ -44,7 +44,7 @@ export const EditPackModal = (props: Props) => {
     setIsButtonDisabled(true)
     await dispatch(packsThunks.updatePack(payload)).unwrap()
       .then(() => toast.info(`Pack has been successfully updated`))
-      .catch((err) => toast.error(err.e.response ? err.e.response.data.error : err.e.message))
+      .catch((err) => toast.error(err.e.response ? err.e.response.statusText : err.e.message))
       .finally(() => {
         setIsModalOpen(false)
         setIsButtonDisabled(false)

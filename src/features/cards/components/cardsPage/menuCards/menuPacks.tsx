@@ -28,8 +28,8 @@ export const MenuPacks = () => {
 
   return (
     <>
-      <IconButton onClick={handleClick} sx={{...tableIconSx, padding: 0}}>
-        <MoreVertIcon  sx={{ ml: 1,  border: `2px solid white`, borderRadius: 50 }} />
+      <IconButton onClick={handleClick} sx={{ ...tableIconSx, padding: 0 }}>
+        <MoreVertIcon sx={{ ml: 1, border: `2px solid white`, borderRadius: 50 }} />
       </IconButton>
 
       <Menu sx={menuStyle} anchorEl={anchorEl} id='account-menu'
@@ -45,7 +45,7 @@ export const MenuPacks = () => {
           <EditPackModal handleCloseMenu={handleClose} /> Edit
         </MenuItem>
         <Divider />
-        <MenuItem >
+        <MenuItem>
           <RemovePackModal /> Delete
         </MenuItem>
       </Menu>

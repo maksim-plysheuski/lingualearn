@@ -20,7 +20,7 @@ export const AddPackModal = () => {
     const newPack = { name: packName, private: isPrivatePack, deckCover: packCover }
     await dispatch(packsThunks.createPack(newPack)).unwrap()
       .then((res) => toast.info(`New pack ${res.newCardsPack.name} has been created`))
-      .catch((err) => toast.error(err.e.response ? err.e.response.data.error : err.e.message))
+      .catch((err) => toast.error(err.e.response ? err.e.response.statusText : err.e.message))
       .finally(() => {
         setIsModalOpen(false)
         setPackName('')
