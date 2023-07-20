@@ -10,6 +10,7 @@ import { useAppDispatch, useAppSelector } from 'common/hooks'
 import { paths } from 'common/router'
 import { loadingSelect } from 'app'
 import { authThunks } from '../auth.slice'
+import { toast } from 'react-toastify'
 
 
 type Type = yup.InferType<typeof passwordSchema>
@@ -32,7 +33,11 @@ export const ChangePasswordPage = () => {
 
   const onSubmit: SubmitHandler<Type> = ({ password }) => {
     if (token) dispatch(authThunks.setNewPassword({ password, resetPasswordToken: token }))
-      .then(() => navigate(paths.PASSWORD_CHANGED))
+      .unwrap()
+      .then(() => {
+        navigate(paths.LOGIN)
+        toast.success('Password has been changed')
+      })
   }
 
   const isButtonDisabled = getFieldState('password').invalid
