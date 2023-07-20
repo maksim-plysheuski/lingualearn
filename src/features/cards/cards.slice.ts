@@ -1,10 +1,9 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 import { createAppAsyncThunk } from 'common/utils/createAppAsyncThunk'
 import {
-  cardsApi,
-  TCard,
-  TChangeGradeArg, TCommonCardResponse,
-  TDeleteArg,
+  cardsApi, TCard,
+  TChangeGradeArg,
+  TDeleteCardArg,
   TGetCardsArgs,
   TGetCardsResponse,
   TUpdateCardArg
@@ -53,7 +52,7 @@ const fetchCards = createAppAsyncThunk<{ cards: TGetCardsResponse, arg: TGetCard
   return { cards: res, arg, whose }
 })
 
-const deleteCard = createAppAsyncThunk<{ deletedCard: TCommonCardResponse }, TDeleteArg>
+const deleteCard = createAppAsyncThunk<{ deletedCard: TCard }, TDeleteCardArg>
 ('cards/removeCard', (arg, thunkAPI) => {
   return thunkTryCatch(thunkAPI, async () => {
     const cardsPack_id = thunkAPI.getState().cards.cardsParams.cardsPack_id
@@ -63,7 +62,7 @@ const deleteCard = createAppAsyncThunk<{ deletedCard: TCommonCardResponse }, TDe
   }, false)
 })
 
-const updateCard = createAppAsyncThunk<{ updatedCard: TCommonCardResponse }, TUpdateCardArg>
+const updateCard = createAppAsyncThunk<{ updatedCard: TCard }, TUpdateCardArg>
 ('cards/changeCard', (arg, thunkAPI) => {
   const cardsPack_id = thunkAPI.getState().cards.cardsParams.cardsPack_id
   return thunkTryCatch(thunkAPI, async () => {
@@ -73,7 +72,7 @@ const updateCard = createAppAsyncThunk<{ updatedCard: TCommonCardResponse }, TUp
   }, false)
 })
 
-const createCard = createAppAsyncThunk<{ newCard: TCommonCardResponse }, {
+const createCard = createAppAsyncThunk<{ newCard: TCard }, {
   question?: string,
   answer?: string,
   answerImg?: string,

@@ -10,7 +10,6 @@ export const CountSearch = memo(() => {
   const { setMinMaxCards, maxCardsCount, minCardsCount, max, min, dispatch } = useSearchPacks()
   const handleChange = (event: Event, newValue: number | number[]) => {
     setMinMaxCards(newValue as number[])
-    debugger
   }
 
   const onChangeCommittedHandler = () => dispatch(packsThunks.getPacks({}))

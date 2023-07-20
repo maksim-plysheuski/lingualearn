@@ -1,20 +1,31 @@
 import { instance } from 'common/api/common.api'
-import { ProfileType } from 'features/auth/auth.api'
 
 export const profileApi = {
-  changeUserProfile: (arg: TChangeUser) => {
-    return instance.put<TUpdatedUser>('auth/me', arg).then(res => res.data.updatedUser)
+  updateUserProfile: (arg: TUpdateUserArg) => {
+    return instance.put<TUpdateUserResponse>('auth/me', arg).then(res => res.data)
   }
 }
 
-// Types
-export type TUpdatedUser = {
-  updatedUser: ProfileType
-  token: string
-  tokenDeathTime: number
-}
-export type TChangeUser = {
-  name?: string
+export type TProfile = {
+  _id: string;
+  email: string;
+  rememberMe: boolean;
+  isAdmin: boolean;
+  name: string;
+  verified: boolean;
+  publicCardPacksCount: number;
+  created: string;
+  updated: string;
+  __v: number;
   avatar?: string
+  error?: string
+  token: string;
+  tokenDeathTime: number;
 }
+
+export type TUpdateUserArg =  { name?: string, avatar?: string }
+export type TUpdateUserResponse = Pick<TProfile, 'token' | 'tokenDeathTime'> & { updatedUser: TProfile }
+
+
+
 

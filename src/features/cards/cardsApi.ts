@@ -6,17 +6,27 @@ export const cardsApi = {
     return instance.get<TGetCardsResponse>('cards/card', { params: arg }).then(res => res.data)
   },
   createCard: (arg: TCreateCardArg) => {
-    return instance.post<{ newCard: TCommonCardResponse }>('cards/card', { card: arg }).then(res => res.data)
+    return instance.post<{ newCard: TCard }>('cards/card', { card: arg }).then(res => res.data)
   },
-  deleteCard: (arg: TDeleteArg) => {
-    return instance.delete<{ deletedCard: TCommonCardResponse }>('cards/card', { params: arg }).then(res => res.data)
+  deleteCard: (arg: TDeleteCardArg) => {
+    return instance.delete<{ deletedCard: TCard }>('cards/card', { params: arg }).then(res => res.data)
   },
   updateCard: (arg: TUpdateCardArg) => {
-    return instance.put<{ updatedCard: TCommonCardResponse }>('cards/card', { card: arg }).then(res => res.data)
+    return instance.put<{ updatedCard: TCard }>('cards/card', { card: arg }).then(res => res.data)
   },
   changeGrade: (arg: TChangeGradeArg) => {
     return instance.put<TChangeGradeResponse>('cards/grade', arg).then(res => res.data)
   }
+}
+
+//Arguments types
+type TCommonArg = {
+  question?: string
+  answer?: string
+  grade?: number
+  shots?: number
+  answerImg?: string
+  questionImg?: string
 }
 
 export type TGetCardsArgs = {
@@ -28,6 +38,26 @@ export type TGetCardsArgs = {
   page?: number
   pageCount?: number
   sortCards?: string
+}
+
+export type TCreateCardArg = TCommonArg & { cardsPack_id: string }
+export type TUpdateCardArg = TCommonArg & { _id: string }
+export type TDeleteCardArg = { id: string }
+export type TChangeGradeArg = { grade: number, card_id: string }
+
+//Response types
+export type TCard = {
+  answer: string
+  question: string
+  cardsPack_id: string
+  grade: number
+  shots: number
+  user_id: string
+  created: string
+  updated: string
+  _id: string
+  answerImg?: string
+  questionImg?: string
 }
 
 export type TGetCardsResponse = {
@@ -44,86 +74,6 @@ export type TGetCardsResponse = {
   packCreated: string
 }
 
-export type TCard = {
-  answer: string
-  question: string
-  cardsPack_id: string
-  grade: number
-  shots: number
-  user_id: string
-  created: string
-  updated: string
-  _id: string
-  answerImg?: string
-  questionImg?: string
-}
-
-export type TCommonCardResponse = {
-  _id: string
-  cardsPack_id: string
-  user_id: string
-  answer: string
-  question: string
-  grade: number
-  shots: number
-  comments: string
-  type: string
-  rating: number
-  more_id: string
-  created: string
-  updated: string
-  __v: number
-  answerImg: string
-  questionImg: string
-}
-
-export type TCreateCardArg = {
-  cardsPack_id: string
-  question?: string
-  answer?: string
-  grade?: number
-  shots?: number
-  answerImg?: string
-  questionImg?: string
-  questionVideo?: string
-  answerVideo?: string
-}
-
-export type TDeleteArg = {
-  id: string
-}
-
-export type TUpdateCardArg = {
-  _id: string
-  question?: string
-  answer?: string
-  grade?: number | null
-  shots?: number
-  answerImg?: string
-  questionImg?: string
-}
-
-
-export type TChangeGradeArg = {
-  grade: number
-  card_id: string
-}
-
 export type TChangeGradeResponse = {
-  updatedGrade: {
-    _id: string
-    cardsPack_id: string
-    card_id: string
-    user_id: string
-    grade: number
-    shots: number
-  }
+  updatedGrade: Pick<TCard, '_id' | 'cardsPack_id' | 'user_id' | 'grade' | 'shots'> & { card_id: string }
 }
-
-
-
-
-
-
-
-

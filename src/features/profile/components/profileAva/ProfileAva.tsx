@@ -24,7 +24,7 @@ export const ProfileAva = () => {
         convertFileToBase64(file, async (file64: string) => {
           dispatch(profileThunks.changeUserProfile({ avatar: file64 }))
             .unwrap()
-            .then(res => setAva(res.avatar))
+            .then(res => setAva(res.updatedUser.avatar))
             .catch(() => toast.error('Image size is too large'))
         })
       } else {

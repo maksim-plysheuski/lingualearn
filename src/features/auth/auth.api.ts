@@ -1,63 +1,41 @@
 import { instance } from 'common/api/common.api'
+import { TProfile } from 'features/profile/profile.api'
 
 export const authApi = {
   authMe: () => {
-    return instance.post<ProfileType>('auth/me').then(res => res.data)
+    return instance.post<TProfile>('auth/me').then(res => res.data)
   },
-  register: (arg: ArgRegisterType) => {
-    return instance.post<RegisterResponseType>('auth/register', arg)
+  register: (arg: TRegisterArg) => {
+    return instance.post<TRegisterResponse>('auth/register', arg)
   },
-  login: (arg: ArgLoginType) => {
-    return instance.post<ProfileType>('auth/login', arg)
+  login: (arg: TLoginArg) => {
+    return instance.post<TProfile>('auth/login', arg)
   },
   logout: () => {
     return instance.delete('auth/me')
   },
-  forgotPassword: (arg: TForgot) => {
-    return instance.post('auth/forgot', arg)
+  forgotPassword: (arg: TForgotArg) => {
+    return instance.post<TForgotResponse>('auth/forgot', arg)
   },
-  setNewPassword: (arg: TNewPassword) => {
+  setNewPassword: (arg: TNewPasswordArg) => {
     return instance.post('auth/set-new-password', arg)
   }
-
-
 }
 
-// Types
-export type TNewPassword = {
-  password: string
-  resetPasswordToken: string
-}
-export type TForgot = {
-  email: string
-  from?: string
-  message: string
-}
-
-export type ArgLoginType = {
+//Arguments types
+type TCommonArgs = {
   email: string
   password: string
-  rememberMe: boolean
 }
 
-export type ArgRegisterType = Omit<ArgLoginType, 'rememberMe'>
+export type TLoginArg = TCommonArgs & { rememberMe: boolean }
+export type TRegisterArg = TCommonArgs
+export type TNewPasswordArg = Pick<TCommonArgs, 'password'> & { resetPasswordToken: string }
+export type TForgotArg = Pick<TCommonArgs, 'email'> & { from?: string, message: string }
 
-export type RegisterResponseType = { addedUser: Omit<ProfileType, 'token' | 'tokenDeathTime'> }
+//Response types
+export type TForgotResponse = { info: string, error?: string }
+export type TRegisterResponse = { addedUser: Omit<TProfile, 'token' | 'tokenDeathTime'> }
 
-export type ProfileType = {
-  _id: string;
-  email: string;
-  rememberMe: boolean;
-  isAdmin: boolean;
-  name: string;
-  verified: boolean;
-  publicCardPacksCount: number;
-  created: string;
-  updated: string;
-  __v: number;
-  token: string;
-  tokenDeathTime: number;
-  avatar?: string
-  error?: string
-}
+
 

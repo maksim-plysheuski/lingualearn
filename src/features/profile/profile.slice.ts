@@ -1,7 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit'
-import { ProfileType } from 'features/auth/auth.api'
 import { createAppAsyncThunk } from 'common/utils/createAppAsyncThunk'
-import { profileApi, TChangeUser } from 'features/profile/profile.api'
+import { profileApi, TProfile, TUpdateUserArg } from 'features/profile/profile.api'
 import { thunkTryCatch } from 'common/utils'
 import { authThunks } from 'features/auth'
 
@@ -9,7 +8,7 @@ import { authThunks } from 'features/auth'
 const slice = createSlice({
   name: 'profile',
   initialState: {
-    profile: null as ProfileType | null
+    profile: null as TProfile | null
   },
   reducers: {},
   extraReducers: builder => {
@@ -17,18 +16,17 @@ const slice = createSlice({
       .addCase(authThunks.authMe.fulfilled, (state, action) => {
         state.profile = action.payload.profile
       })
+      .addCase(profileThunks.changeUserProfile.fulfilled, (state, action) => {
+        state.profile = action.payload.updatedUser
+      })
   }
 })
 
-
-const changeUserProfile = createAppAsyncThunk<{ name: string, avatar?: string }, TChangeUser>
+const changeUserProfile = createAppAsyncThunk<{ updatedUser: TProfile }, TUpdateUserArg>
 ('profile/changeUser', (arg, thunkAPI) => {
   return thunkTryCatch(thunkAPI, async () => {
-    const res = await profileApi.changeUserProfile(arg)
-    return { name: res.name, avatar: res.avatar }
+    return await profileApi.updateUserProfile(arg)
   })
-
-
 })
 
 

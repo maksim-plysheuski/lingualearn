@@ -5,20 +5,21 @@ import { Link } from 'react-router-dom'
 import { SubmitHandler, useForm } from 'react-hook-form'
 import * as yup from 'yup'
 import { yupResolver } from '@hookform/resolvers/yup'
-import { forgotPasswordApi } from 'features/auth/forgotPassword/forgotPassword.api'
 import { emailSchema } from 'features/auth/forgotPassword/emailSchema'
 import { paths } from 'common/router'
 import { useState } from 'react'
 import { emailMessage } from 'features/auth/forgotPassword/emailMessage'
-import { useAppSelector } from 'common/hooks'
+import { useAppDispatch, useAppSelector } from 'common/hooks'
 import { loadingSelect } from 'app'
 import { SuperButton } from 'common/components'
 import { CheckEmailPage } from 'features/auth/checkEmail/CheckEmailPage'
+import { authThunks } from 'features/auth/auth.slice'
 
 type InputType = yup.InferType<typeof emailSchema>
 
 export const ForgotPasswordPage = () => {
   const [showCheckEmail, setShowCheckEmail] = useState<boolean>(false)
+  const dispatch = useAppDispatch()
   const isLoading = useAppSelector(loadingSelect)
   const { register, handleSubmit, formState: { errors }, getFieldState, getValues } = useForm<InputType>({
     mode: 'onTouched',
@@ -26,12 +27,8 @@ export const ForgotPasswordPage = () => {
   })
 
   const onFormSubmit: SubmitHandler<InputType> = (data: InputType) => {
-    const payload = {
-      email: data.email,
-      message: emailMessage()
-    }
-    forgotPasswordApi.sendEmail(payload).then(() => setShowCheckEmail(true))
-  }
+    const payload = { email: data.email, message: emailMessage() }
+    dispatch(authThunks.restorePassword(payload)).then(() => setShowCheckEmail(true))}
 
   const isButtonDisabled = getFieldState('email').invalid
 

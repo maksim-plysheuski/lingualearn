@@ -5,95 +5,73 @@ export const packApi = {
     return instance.get<TPacksResponse>('cards/pack', { params: { ...args } })
   },
   createPack: (cardsPack: TCreatePackArg) => {
-    return instance.post<TCreatePackResponse>('cards/pack ', { cardsPack }).then(res => res.data)
+    return instance.post<{ newCardsPack: TPack }>('cards/pack ', { cardsPack }).then(res => res.data)
   },
   deletePack: (arg: TDeletePackArg) => {
-    return instance.delete<TDeletePackResponse>(`/cards/pack?id=${arg.id}`)
+    return instance.delete<{ deletedCardsPack: TPack }>(`/cards/pack?id=${arg.id}`).then(res => res.data)
   },
   updatePack: (cardsPack: TUpdatePackArg) => {
-    return instance.put<TUpdatePackResponse>('/cards/pack', { cardsPack }).then(res => res.data)
+    return instance.put<{ updatedCardsPack: TPack }>('/cards/pack', { cardsPack }).then(res => res.data)
   }
 }
 
 
-export type TUpdatePackResponse = {
-  updatedCardsPack: TPack
-}
-
-export type TUpdatePackArg = {
-  _id: string
-  name: string
-  private?: boolean
-  deckCover?: string
-}
-
-export type  TDeletePackArg = {
-  id: string
-}
-
-export type TDeletePackResponse = {
-  deletedCardsPack: TPack,
-  token: string,
-  tokenDeathTime: number
-}
-
-export type TCreatePackResponse = {
-  newCardsPack: TPack,
-  token: string,
-  tokenDeathTime: number
-}
-export type TCreatePackArg = {
-  name: string
-  deckCover?: string
-  private?: boolean
-}
-export type TPacksResponse = {
-  cardPacks: TPack[]
-  cardPacksTotalCount: number
-  maxCardsCount: number
-  minCardsCount: number
-  page: number
-  pageCount: number
-}
+//Response types
 export type TPack = {
-  _id: string,
-  user_id: string,
-  user_name: string,
-  name: string,
-  private: boolean,
-  path: string,
-  grade: number,
-  shots: number,
-  cardsCount: number,
-  type: string,
-  deckCover: string,
-  rating: number,
-  more_id: string,
-  created: string,
-  updated: string,
-  __v: number
+  _id: string;
+  user_id: string;
+  user_name: string;
+  name: string;
+  private: boolean;
+  path: string;
+  grade: number;
+  shots: number;
+  cardsCount: number;
+  type: string;
+  deckCover: string;
+  rating: number;
+  more_id: string;
+  created: string;
+  updated: string;
+  __v: number;
+};
+
+export type TPacksResponse = {
+  cardPacks: TPack[];
+  cardPacksTotalCount: number;
+  maxCardsCount: number;
+  minCardsCount: number;
+  page: number;
+  pageCount: number;
+  token: string;
+  tokenDeathTime: number;
 }
 
-
+//Arguments types
 export type TGetPacksArg = {
-  packName?: string
-  min?: number
-  max?: number
-  sortPacks?: string
-  page?: number
-  pageCount?: number
-  user_id?: string
-  block?: boolean
+  packName?: string;
+  min?: number;
+  max?: number;
+  sortPacks?: string;
+  page?: number;
+  pageCount?: number;
+  user_id?: string;
+  block?: boolean;
 }
 
-export type PackArgs = {
-  packName?: string
-  min?: string
-  max?: string
-  // sortPacks: string
-  // page: number
-  // pageCount: number
-  user_id?: string
-  // block: boolean
+export type PackArgs = Pick<TGetPacksArg, 'packName' | 'user_id'> & {
+  min?: string;
+  max?: string;
 }
+
+export type TCreatePackArg = {
+  name: string;
+  deckCover?: string;
+  private?: boolean;
+}
+
+export type TUpdatePackArg = Pick<TCreatePackArg, 'name' | 'deckCover'| 'private'> & { _id: string }
+export type TDeletePackArg = { id: string }
+
+
 

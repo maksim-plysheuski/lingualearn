@@ -1,11 +1,11 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 import {
   packApi,
-  TCreatePackArg, TCreatePackResponse,
-  TDeletePackArg, TDeletePackResponse,
-  TGetPacksArg,
+  TCreatePackArg,
+  TDeletePackArg,
+  TGetPacksArg, TPack,
   TPacksResponse,
-  TUpdatePackArg, TUpdatePackResponse
+  TUpdatePackArg
 } from 'features/pack/packApi'
 import { createAppAsyncThunk } from 'common/utils/createAppAsyncThunk'
 import { thunkTryCatch } from 'common/utils/thunk-try-catch'
@@ -49,7 +49,7 @@ const slice = createSlice({
         state.packs = {
           ...state.packs,
           cardPacks: state.packs.cardPacks.filter(pack =>
-            pack._id !== action.payload.pack.deletedCardsPack._id
+            pack._id !== action.payload.deletedCardsPack._id
               ? { ...pack } : false)
         }
       })
@@ -66,15 +66,14 @@ const getPacks = createAppAsyncThunk<{ packs: TPacksResponse, arg: TGetPacksArg 
   })
 })
 
-const deletePack = createAppAsyncThunk<{ pack: TDeletePackResponse }, TDeletePackArg>
+const deletePack = createAppAsyncThunk<{ deletedCardsPack: TPack }, TDeletePackArg>
 ('packs/deletePack', async (arg, thunkAPI) => {
   return thunkTryCatch(thunkAPI, async () => {
-    const res = await packApi.deletePack(arg)
-    return { pack: res.data }
+    return await packApi.deletePack(arg)
   }, false)
 })
 
-const createPack = createAppAsyncThunk<TCreatePackResponse, TCreatePackArg>
+const createPack = createAppAsyncThunk<{ newCardsPack: TPack }, TCreatePackArg>
 ('packs/createPack', (arg, thunkAPI) => {
   const { dispatch } = thunkAPI
   return thunkTryCatch(thunkAPI, async () => {
@@ -84,8 +83,7 @@ const createPack = createAppAsyncThunk<TCreatePackResponse, TCreatePackArg>
   }, false)
 })
 
-
-const updatePack = createAppAsyncThunk<TUpdatePackResponse, { newPack: TUpdatePackArg, needGetPacks: boolean }>
+const updatePack = createAppAsyncThunk<{ updatedCardsPack: TPack }, { newPack: TUpdatePackArg, needGetPacks: boolean }>
 ('packs/updatePack', (arg, thunkAPI) => {
   const { dispatch } = thunkAPI
   return thunkTryCatch(thunkAPI, async () => {

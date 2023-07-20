@@ -29,7 +29,7 @@ export const RemovePackModal = (props: Props) => {
     setDisable(true)
 
     await dispatch(packsThunks.deletePack(payload)).unwrap()
-      .then((res) => toast.info(`Pack ${res.pack.deletedCardsPack.name} has been removed`))
+      .then((res) => toast.info(`Pack ${res.deletedCardsPack.name} has been removed`))
       .catch((err) => toast.error(err.e.response ? err.e.response.data.error : err.e.message))
       .finally(() => {
         navigate('/packs')
