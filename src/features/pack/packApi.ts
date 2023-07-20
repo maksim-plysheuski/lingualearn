@@ -4,14 +4,14 @@ export const packApi = {
   getPacks: (args: TGetPacksArg = {}) => {
     return instance.get<TPacksResponse>('cards/pack', { params: { ...args } })
   },
-  createPack: (cardsPack: TCreatePackArg) => {
-    return instance.post<{ newCardsPack: TPack }>('cards/pack ', { cardsPack }).then(res => res.data)
+  createPack: (arg: TCreatePackArg) => {
+    return instance.post<{ newCardsPack: TPack }>('cards/pack ', { cardsPack: arg }).then(res => res.data)
   },
   deletePack: (arg: TDeletePackArg) => {
     return instance.delete<{ deletedCardsPack: TPack }>(`/cards/pack?id=${arg.id}`).then(res => res.data)
   },
-  updatePack: (cardsPack: TUpdatePackArg) => {
-    return instance.put<{ updatedCardsPack: TPack }>('/cards/pack', { cardsPack }).then(res => res.data)
+  updatePack: (arg: TUpdatePackArg) => {
+    return instance.put<{ updatedCardsPack: TPack }>('/cards/pack', { cardsPack: arg }).then(res => res.data)
   }
 }
 
@@ -70,7 +70,7 @@ export type TCreatePackArg = {
   private?: boolean;
 }
 
-export type TUpdatePackArg = Pick<TCreatePackArg, 'name' | 'deckCover'| 'private'> & { _id: string }
+export type TUpdatePackArg = Pick<TCreatePackArg, 'name' | 'deckCover' | 'private'> & { _id: string }
 export type TDeletePackArg = { id: string }
 
 
