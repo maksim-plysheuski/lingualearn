@@ -1,3 +1,4 @@
+export { GlobalError } from 'common/components/globalError/GlobalError'
 export { TitleBlockPacks } from 'common/components/pageTitleBlock/TitleBlockPacks'
 export { Paginator } from 'common/components/paginator/Paginator'
 export { SuperButton } from 'common/components/superButton/SuperButton'

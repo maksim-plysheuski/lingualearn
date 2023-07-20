@@ -4,10 +4,10 @@ import { Outlet } from 'react-router-dom'
 import { useAppDispatch, useAppSelector } from 'common/hooks'
 import s from './App.module.scss'
 import { LinearProgress } from '@mui/material'
-import { GlobalError } from 'common/components/globalError/GlobalError'
 import 'react-toastify/dist/ReactToastify.css'
 import { initializedSelect, loadingSelect } from 'app/selectors'
 import { authThunks } from 'features/auth'
+import { GlobalError } from 'common/components'
 
 
 function App() {
