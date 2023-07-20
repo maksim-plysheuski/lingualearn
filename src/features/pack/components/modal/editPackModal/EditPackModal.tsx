@@ -16,6 +16,7 @@ import { PackBodyModal } from 'features/pack/components/modal/common/packBodyMod
 type Props = {
   handleCloseMenu?: () => void
   pack?: TPack
+  nameIcon?: string
 }
 
 export const EditPackModal = (props: Props) => {
@@ -60,7 +61,7 @@ export const EditPackModal = (props: Props) => {
                isButtonDisabled={isButtonDisabled}
                setOpen={setIsModalOpen}
                actionCallback={updatePack}
-               buttonOpen={<DriveFileRenameOutlineIcon />}
+               buttonOpen={<><DriveFileRenameOutlineIcon />{props.nameIcon}</>}
 
     >
       <PackBodyModal packValue={inputValue}

@@ -11,6 +11,7 @@ import { toast } from 'react-toastify'
 type Props = {
   packId?: string
   packName?: string
+  nameIcon?: string
 }
 
 export const RemovePackModal = (props: Props) => {
@@ -41,7 +42,7 @@ export const RemovePackModal = (props: Props) => {
     <BaseModal title={'Delete Pack'}
                open={open}
                setOpen={setOpen}
-               buttonOpen={<DeleteOutlineIcon />}
+               buttonOpen={<><DeleteOutlineIcon />{props.nameIcon}</>}
                actionCallback={removePackHandler}
                titleButtonAction={'Delete Pack'}
                isButtonDisabled={disable}

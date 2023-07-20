@@ -42,11 +42,11 @@ export const MenuPacks = () => {
         </MenuItem>
         <Divider />
         <MenuItem>
-          <EditPackModal handleCloseMenu={handleClose} /> Edit
+          <EditPackModal nameIcon={'Edit'} handleCloseMenu={handleClose} />
         </MenuItem>
         <Divider />
         <MenuItem>
-          <RemovePackModal /> Delete
+          <RemovePackModal nameIcon={'Delete'} />
         </MenuItem>
       </Menu>
     </>

@@ -22,8 +22,8 @@ export const menuStyle = {
       ml: 2
     },
     '& .MuiMenuItem-root': {
-      mt: 1.2,
-      fontSize: 15,
+      mt: 1,
+      fontSize: 16,
       '&:hover': {
         bgcolor: '#333333'
       },

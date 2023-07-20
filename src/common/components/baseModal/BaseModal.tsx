@@ -41,7 +41,7 @@ export const BaseModal = (props: Props) => {
   const handleClose = () => setOpen(false)
 
   return (
-    <div>
+    <>
       <div onClick={handleOpen}>{buttonOpen}</div>
       <Modal open={open}
              onClose={handleClose}
@@ -51,7 +51,7 @@ export const BaseModal = (props: Props) => {
         <Box sx={style}>
           <div className={s.titleContainer}>
             <span>{title}</span>
-            <CloseIcon sx={{ cursor: 'pointer', '&:hover': {color: '#808080'}}} onClick={handleClose} />
+            <CloseIcon sx={{ cursor: 'pointer', '&:hover': { color: '#808080' } }} onClick={handleClose} />
           </div>
           <div className={s.containerChildren}>{children}</div>
           <div className={s.buttonContainer}>
@@ -60,7 +60,7 @@ export const BaseModal = (props: Props) => {
           </div>
         </Box>
       </Modal>
-    </div>
+    </>
   )
 }
 

@@ -40,7 +40,7 @@ export const RemoveCardModal = (props: Props) => {
         <div className={s.textContainer}>
           <span>
             {`Do you really want to remove `}
-            {title !== 'no question' ? <b>${title}?</b> : 'this card?'}
+            {title !== 'no question' ? <b>{title}?</b> : 'this card?'}
           </span>
           <p>Card will be deleted.</p>
         </div>

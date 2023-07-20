@@ -12,7 +12,6 @@ import { Register } from 'features/auth/register/Register'
 import { ForgotPasswordPage } from 'features/auth/forgotPassword/ForgotPasswordPage'
 import { CheckEmailPage } from 'features/auth/checkEmail/CheckEmailPage'
 import { ChangePasswordPage } from 'features/auth/changePassword/ChangePasswordPage'
-import { PasswordChangeSuccess } from 'features/auth/passwordChanged/PasswordChangeSuccess'
 
 export const router = createHashRouter([
   {
@@ -65,10 +64,6 @@ export const router = createHashRouter([
           {
             path: paths.SET_NEW_PASSWORD,
             element: <ChangePasswordPage />
-          },
-          {
-            path: paths.PASSWORD_CHANGED,
-            element: <PasswordChangeSuccess />
           }
         ]
       }
