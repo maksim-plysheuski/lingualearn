@@ -11,9 +11,11 @@ type Props = TextFieldProps & {
 export const InputEmail: FC<Props> = ({ errorMessage, register, ...resProps }) => {
   return (
     <>
-      <span style={{ marginTop: '24px', color: "rgba(128, 128, 128, 1)", fontSize: '14px'
-      }}>Email</span>
+      <label htmlFor='email' style={{ marginTop: '24px', color: "rgba(128, 128, 128, 1)", fontSize: '14px'
+      }}>Email</label>
       <TextField type={'text'}
+                 id={'email'}
+                 autoComplete={'email'}
                  sx={inputStyle}
                  error={!!errorMessage}
                  helperText={errorMessage}

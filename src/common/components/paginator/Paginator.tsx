@@ -38,6 +38,7 @@ export const Paginator = (props: Props) => {
           sx={{ ...selectorStyle, width: '60px', ml: 1, mr: 1 }}
           value={pageCount ? String(pageCount) : '4'}
           onChange={selectHandler}
+          name={'packs-selector'}
           MenuProps={{ sx: selectOptionsStyle }}
         >
           <MenuItem value={'4'}>4</MenuItem>

@@ -7,7 +7,7 @@
   color: $primaryFontColor;
   width: 251px;
 
-  label {
+  span {
     margin-bottom: 5px;
     @include text(400, 14px, 24px)
   }

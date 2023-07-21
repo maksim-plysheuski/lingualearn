@@ -30,7 +30,7 @@ export const PackBodyModal: FC<Props> = (
       <div className={s.packNameBlock}>
         <InputCustom label={'Name Pack'} value={packValue} setValue={setPackValue} />
         <div className={s.checkBoxContainer}>
-          <Checkbox checked={isPrivatePack} onClick={() => setIsPrivate(!isPrivatePack)} />
+          <Checkbox id='checkbox-modal' checked={isPrivatePack} onClick={() => setIsPrivate(!isPrivatePack)} />
           <span>Private pack</span>
         </div>
       </div>

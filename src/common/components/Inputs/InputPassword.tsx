@@ -16,9 +16,11 @@ export const InputPassword: FC<Props> = ({ errorMessage, register, ...restProps 
   const [showPassword, setShowPassword] = useState<boolean>(false)
   return (
     <>
-      <span style={{ marginTop: '24px', color: "rgba(128, 128, 128, 1)", fontSize: '14px' }}>Password</span>
+      <label htmlFor='password' style={{ marginTop: '24px', color: "rgba(128, 128, 128, 1)", fontSize: '14px' }}>Password</label>
       <TextField type={showPassword ? 'text' : 'password'}
                  sx={inputStyle}
+                 id={'password'}
+                 autoComplete={'new-password'}
                  error={!!errorMessage}
                  helperText={errorMessage}
                  {...register}

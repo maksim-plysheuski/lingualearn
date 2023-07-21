@@ -16,7 +16,7 @@ export const CountSearch = memo(() => {
 
   return (
     <div className={s.container}>
-      <label htmlFor='CountLabel'>Number of cards</label>
+      <span>Number of cards</span>
       <div className={s.countContainer} id={'CountLabel'}>
         <div className={s.count}>{minCardsCount}</div>
         <div className={s.sliderContainer}>

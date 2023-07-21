@@ -45,6 +45,7 @@ export const EditableTitle: FC<Props> = ({ userName }) => {
                      label={'Nickname'}
                      sx={{ ...inputStyle, marginTop: '36px' }}
                      defaultValue={userName}
+                     autoComplete='off'
                      {...register('userName')}
                      error={!!errors.userName?.message}
                      helperText={errors.userName?.message}

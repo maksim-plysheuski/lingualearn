@@ -42,7 +42,7 @@ export const ForgotPasswordPage = () => {
         <h1>Forgot your password?</h1>
         <form onSubmit={handleSubmit(onFormSubmit)}>
           <FormControl className={s.form}>
-            <InputEmail register={register('email')} errorMessage={errors.email?.message} />
+            <InputEmail register={register('email')} errorMessage={errors.email?.message}  />
             <span className={s.descriptionText}>
               Enter your address and we will send you further instructions
             </span>

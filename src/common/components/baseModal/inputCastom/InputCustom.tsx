@@ -16,8 +16,10 @@ export const InputCustom = (props: Props) => {
 
   return (
     <div className={s.inputContainer}>
-      <label htmlFor='InputCustom'>{label}</label>
-      <input id='InputCustom'
+      <label htmlFor={label}>{label}</label>
+      <input id={label}
+             aria-label={`Enter ${label}`}
+             type='text'
              value={value}
              onChange={setValueHandler}
              className={s.input}

@@ -28,7 +28,9 @@ export const InputSearch = ({ searchCallback, valueName }: Props) => {
       <input className={s.input}
              value={value}
              onChange={onChangeHandler}
-             placeholder={'Input search'}
+             placeholder='Input search'
+             id='input-search'
+             autoComplete='off'
       />
     </div>
   )
