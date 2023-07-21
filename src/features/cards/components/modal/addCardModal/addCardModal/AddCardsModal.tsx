@@ -4,14 +4,14 @@ import { QuestionSelectType } from 'features/cards/components/modal/addCardModal
 import { useAppDispatch, useAppSelector } from 'common/hooks'
 import { cardsThunks } from 'features/cards/cards.slice'
 import { toast } from 'react-toastify'
-import { loadingSelect } from 'app'
+import { selectIsAppLoading } from 'app'
 import { CardsBodyModal } from 'features/cards/components/modal/common/cardsBodyModal/CardsBodyModal'
 import { SuperButton } from 'common/components'
 
 
 export const AddCardsModal = () => {
   const dispatch = useAppDispatch()
-  const isLoading = useAppSelector(loadingSelect)
+  const isLoading = useAppSelector(selectIsAppLoading)
   const [isModalOpen, setIsModalOpen] = useState(false)
   const [selectValue, setSelectValue] = useState<QuestionSelectType>('Text')
   const [question, setQuestion] = useState<string>('')

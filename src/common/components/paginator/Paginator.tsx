@@ -35,7 +35,7 @@ export const Paginator = (props: Props) => {
       <div>
         <span>Show</span>
         <Select
-          sx={{ ...selectorStyle, width: '60px', ml: 1, mr: 1 }}
+          sx={{ ...selectorStyle, width: '75px', ml: 1, mr: 1 }}
           value={pageCount ? String(pageCount) : '4'}
           onChange={selectHandler}
           name={'packs-selector'}

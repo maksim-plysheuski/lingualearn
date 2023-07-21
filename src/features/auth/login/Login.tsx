@@ -9,7 +9,7 @@ import { loginSchema } from 'features/auth/login/loginSchema'
 import { useAppDispatch, useAppSelector } from 'common/hooks'
 import { paths } from 'common/router'
 import { toast } from 'react-toastify'
-import { loadingSelect } from 'app'
+import { selectIsAppLoading } from 'app'
 import { authThunks } from '../auth.slice'
 
 
@@ -17,7 +17,7 @@ type InputsType = yup.InferType<typeof loginSchema>
 
 export const Login = () => {
   const dispatch = useAppDispatch()
-  const isLoading = useAppSelector(loadingSelect)
+  const isLoading = useAppSelector(selectIsAppLoading)
 
   const { register, handleSubmit, formState: { errors }, getFieldState } = useForm<InputsType>({
     mode: 'onTouched',

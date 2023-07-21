@@ -3,7 +3,7 @@ import * as React from 'react'
 import { useState } from 'react'
 import { useSearchCards } from 'features/cards/hooks/useSearchCards'
 import { useSelector } from 'react-redux'
-import { tableCellSx, tableHeaderSx } from 'common/style/tableStyles'
+import { tableCellSx, tableHeaderSx } from 'features/pack/components/packsList/packsTable/tableStyles'
 import { selectIsMyCard } from 'features/cards/selectors'
 
 export const CardsTableHeader = () => {

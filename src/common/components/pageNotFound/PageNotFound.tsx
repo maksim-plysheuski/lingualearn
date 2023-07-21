@@ -9,13 +9,13 @@ import { Header } from 'common/components/header/Header'
 export const PageNotFound = () => {
   const navigate = useNavigate()
   return (
-    <div>
+    <>
       <Header />
       <div className={s.pageContainer}>
         <img src={notFoundImage} alt='Page not found' />
         <span>Sorry! Page not found!</span>
         <SuperButton title={'Back to home page'} width={'177'} onClick={() => navigate(paths.PACKS)} />
       </div>
-    </div>
+    </>
   )
 }

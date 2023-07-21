@@ -7,7 +7,7 @@ import { InputEmail, InputPassword, SuperButton } from 'common/components'
 import { registerSchema } from 'features/auth/register/registerSchema'
 import { useAppDispatch, useAppSelector } from 'common/hooks'
 import { paths } from 'common/router'
-import { loadingSelect } from 'app'
+import { selectIsAppLoading } from 'app'
 import { authThunks } from 'features/auth'
 
 
@@ -16,7 +16,7 @@ type Type = yup.InferType<typeof registerSchema>
 
 export const Register = () => {
   const dispatch = useAppDispatch()
-  const isLoading = useAppSelector(loadingSelect)
+  const isLoading = useAppSelector(selectIsAppLoading)
   const navigate = useNavigate()
   const { register, handleSubmit, formState: { errors }, getFieldState } = useForm<Type>({
     mode: 'onTouched',

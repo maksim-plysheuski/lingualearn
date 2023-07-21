@@ -5,7 +5,7 @@ import DriveFileRenameOutlineIcon from '@mui/icons-material/DriveFileRenameOutli
 import { cardsThunks } from '../../../cards.slice'
 import { useAppDispatch, useAppSelector } from 'common/hooks'
 import { CardsBodyModal } from 'features/cards/components/modal/common/cardsBodyModal/CardsBodyModal'
-import { loadingSelect } from 'app'
+import { selectIsAppLoading } from 'app'
 import { toast } from 'react-toastify'
 
 type Props = {
@@ -20,7 +20,7 @@ export const EditCardsModal = (props: Props) => {
   const { questionValue, answerValue, questionImgValue, answerImgValue, cardId } = props
 
   const dispatch = useAppDispatch()
-  const isLoading = useAppSelector(loadingSelect)
+  const isLoading = useAppSelector(selectIsAppLoading)
   const [isModalOpen, setIsModalOpen] = useState(false)
   const [selectValue, setSelectValue] = useState<QuestionSelectType>(answerImgValue ? 'Picture' : 'Text')
   const [question, setQuestion] = useState<string>(questionValue)

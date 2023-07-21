@@ -3,7 +3,7 @@ import { IconButton, InputAdornment } from '@mui/material'
 import { Visibility, VisibilityOff } from '@mui/icons-material'
 import TextField, { TextFieldProps } from '@mui/material/TextField/TextField'
 import { UseFormRegisterReturn } from 'react-hook-form/dist/types/form'
-import { inputStyle } from 'common/components/Inputs/InputText'
+import { inputStyle } from 'common/components/Inputs/style'
 
 
 type Props = TextFieldProps & {

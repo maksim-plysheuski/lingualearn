@@ -10,7 +10,7 @@ import { paths } from 'common/router'
 import { useState } from 'react'
 import { emailMessage } from 'features/auth/forgotPassword/emailMessage'
 import { useAppDispatch, useAppSelector } from 'common/hooks'
-import { loadingSelect } from 'app'
+import { selectIsAppLoading } from 'app'
 import { SuperButton } from 'common/components'
 import { CheckEmailPage } from 'features/auth/checkEmail/CheckEmailPage'
 import { authThunks } from 'features/auth/auth.slice'
@@ -20,7 +20,7 @@ type InputType = yup.InferType<typeof emailSchema>
 export const ForgotPasswordPage = () => {
   const [showCheckEmail, setShowCheckEmail] = useState<boolean>(false)
   const dispatch = useAppDispatch()
-  const isLoading = useAppSelector(loadingSelect)
+  const isLoading = useAppSelector(selectIsAppLoading)
   const { register, handleSubmit, formState: { errors }, getFieldState, getValues } = useForm<InputType>({
     mode: 'onTouched',
     resolver: yupResolver(emailSchema)

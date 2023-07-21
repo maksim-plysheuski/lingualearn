@@ -5,7 +5,7 @@ import { useAppSelector } from 'common/hooks'
 import Tooltip from '@mui/material/Tooltip'
 import { RemovePackModal } from 'features/pack/components/modal/removePackModal/removePackModal'
 import { FC } from 'react'
-import { tableIconSx } from 'common/style/tableStyles'
+import { tableIconSx } from 'features/pack/components/packsList/packsTable/tableStyles'
 import { selectUserId } from 'features/profile/selectors/selectors'
 
 

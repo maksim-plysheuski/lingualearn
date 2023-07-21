@@ -1,7 +1,7 @@
 import React, { FC } from 'react'
 import TextField, { TextFieldProps } from '@mui/material/TextField/TextField'
 import { UseFormRegisterReturn } from 'react-hook-form/dist/types/form'
-import { inputStyle } from 'common/components/Inputs/InputText'
+import { inputStyle } from 'common/components/Inputs/style'
 
 type Props = TextFieldProps & {
   errorMessage: string | undefined

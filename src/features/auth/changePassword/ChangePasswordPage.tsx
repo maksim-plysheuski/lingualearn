@@ -8,7 +8,7 @@ import { InputPassword, SuperButton } from 'common/components'
 import { passwordSchema } from 'features/auth/changePassword/passwordSchema'
 import { useAppDispatch, useAppSelector } from 'common/hooks'
 import { paths } from 'common/router'
-import { loadingSelect } from 'app'
+import { selectIsAppLoading } from 'app'
 import { authThunks } from '../auth.slice'
 import { toast } from 'react-toastify'
 
@@ -17,7 +17,7 @@ type Type = yup.InferType<typeof passwordSchema>
 
 export const ChangePasswordPage = () => {
   const navigate = useNavigate()
-  const isLoading = useAppSelector(loadingSelect)
+  const isLoading = useAppSelector(selectIsAppLoading)
 
   const {
     register,

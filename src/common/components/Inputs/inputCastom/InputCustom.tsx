@@ -1,5 +1,5 @@
 import React, { ChangeEvent } from 'react'
-import s from './style.module.scss'
+import s from 'common/components/Inputs/inputCastom/style.module.scss'
 
 type Props = {
   label: string

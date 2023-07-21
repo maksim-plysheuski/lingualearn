@@ -11,7 +11,7 @@ import { useAppSelector } from 'common/hooks'
 import { selectPackId } from 'features/cards/selectors'
 import { menuStyle, paperStyle } from 'common/components/header/avatarMenu/style'
 import IconButton from '@mui/material/IconButton'
-import { tableIconSx } from 'common/style/tableStyles'
+import { tableIconSx } from 'features/pack/components/packsList/packsTable/tableStyles'
 
 
 export const MenuPacks = () => {

@@ -4,13 +4,13 @@ import React, { useState } from 'react'
 import { packsThunks } from 'features/pack/packs.slice'
 import { toast } from 'react-toastify'
 import { PackBodyModal } from 'features/pack/components/modal/common/packBodyModal/PackBodyModal'
-import { loadingSelect } from 'app'
+import { selectIsAppLoading } from 'app'
 import { SuperButton } from 'common/components'
 
 
 export const AddPackModal = () => {
   const dispatch = useAppDispatch()
-  const isLoading = useAppSelector(loadingSelect)
+  const isLoading = useAppSelector(selectIsAppLoading)
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false)
   const [packCover, setPackCover] = useState<string>('')
   const [packName, setPackName] = useState<string>('')

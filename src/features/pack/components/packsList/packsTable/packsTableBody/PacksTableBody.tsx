@@ -4,7 +4,7 @@ import { cardsThunks } from 'features/cards/cards.slice'
 import { useNavigate } from 'react-router-dom'
 import { paths } from 'common/router'
 import * as React from 'react'
-import { tableCellHoverSx, tableCellSx } from 'common/style/tableStyles'
+import { tableCellHoverSx, tableCellSx } from 'features/pack/components/packsList/packsTable/tableStyles'
 import PanoramaOutlinedIcon from '@mui/icons-material/PanoramaOutlined'
 import { EditPack } from './actionsButtons/editPack/EditPack'
 import { RemovePack } from './actionsButtons/removePack/RemovePack'
@@ -33,14 +33,13 @@ export const PacksTableBody = () => {
     <TableBody>
       {packs.cardPacks?.map((pack) => (
         <TableRow key={pack._id}>
-          <TableCell sx={{ ...tableCellSx, maxWidth: '60px' }}>
+          <TableCell sx={{ ...tableCellSx, width: '60px' }}>
             {pack.deckCover
               ? <img style={{ height: '36px', borderRadius: '3px' }} src={pack.deckCover} alt={'cover'} />
               : <PanoramaOutlinedIcon sx={{ fontSize: '40px', color: '#4C4C4C' }} />
             }
           </TableCell>
-          <TableCell sx={tableCellHoverSx}
-                     onClick={() => openSelectedPack(pack._id, pack.user_id, pack.cardsCount)}
+          <TableCell sx={tableCellHoverSx} onClick={() => openSelectedPack(pack._id, pack.user_id, pack.cardsCount)}
           >
             {pack.name}
           </TableCell>
