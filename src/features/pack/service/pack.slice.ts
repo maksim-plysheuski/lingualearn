@@ -1,5 +1,5 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
-import { AddPackT, CardPacksT, FetchPackT, ResponsePack } from 'features/pack/service/packSlice.type'
+import { CardPacksT, FetchPackT, ResponsePack } from 'features/pack/service/packSlice.type'
 
 const baseEndpoint = 'cards/pack'
 export const packApi = createApi({
