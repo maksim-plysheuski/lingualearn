@@ -1,13 +1,11 @@
 import { useEffect } from 'react'
-import { Header } from 'common/components'
+import { GlobalError, Header } from 'common/components'
 import { Outlet } from 'react-router-dom'
 import { useAppDispatch, useAppSelector } from 'common/hooks'
 import s from './App.module.scss'
-import { LinearProgress } from '@mui/material'
 import 'react-toastify/dist/ReactToastify.css'
-import { initializedSelect, loadingSelect } from 'app/selectors'
+import { initializedSelect } from 'app/selectors'
 import { authThunks } from 'features/auth'
-import { GlobalError } from 'common/components'
 import { LinearProgressColors } from 'common/components/lineProgress/LineProgress'
 
 
