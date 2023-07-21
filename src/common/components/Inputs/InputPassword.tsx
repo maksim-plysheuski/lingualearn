@@ -9,17 +9,18 @@ import { inputStyle } from 'common/components/Inputs/InputText'
 type Props = TextFieldProps & {
   errorMessage: string | undefined
   register: UseFormRegisterReturn
+  idAttribute?: string
 }
 
 
-export const InputPassword: FC<Props> = ({ errorMessage, register, ...restProps }) => {
+export const InputPassword: FC<Props> = ({ errorMessage, register, idAttribute, ...restProps }) => {
   const [showPassword, setShowPassword] = useState<boolean>(false)
   return (
     <>
       <label htmlFor='password' style={{ marginTop: '24px', color: "rgba(128, 128, 128, 1)", fontSize: '14px' }}>Password</label>
       <TextField type={showPassword ? 'text' : 'password'}
                  sx={inputStyle}
-                 id={'password'}
+                 id={idAttribute ? idAttribute : 'password'}
                  autoComplete={'new-password'}
                  error={!!errorMessage}
                  helperText={errorMessage}

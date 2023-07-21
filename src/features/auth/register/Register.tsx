@@ -40,7 +40,7 @@ export const Register = () => {
         <form className={s.form} onSubmit={handleSubmit(onSubmit)}>
           <InputEmail errorMessage={errors.email?.message} register={register('email')} />
           <InputPassword errorMessage={errors.password?.message} register={register('password')} />
-          <InputPassword errorMessage={errors.passConfirmation?.message} register={register('passConfirmation')} />
+          <InputPassword errorMessage={errors.passConfirmation?.message} register={register('passConfirmation')} idAttribute={'passwordConfirm'} />
           <SuperButton title={'Sign Up'} isLoading={isLoading} disabled={isButtonDisabled} marginTop={'78px'} />
         </form>
         <span className={s.helpText}>Already have an account?</span>

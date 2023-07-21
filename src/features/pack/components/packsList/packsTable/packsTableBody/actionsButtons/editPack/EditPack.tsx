@@ -6,13 +6,14 @@ import Tooltip from '@mui/material/Tooltip'
 import { EditPackModal } from 'features/pack/components/modal/editPackModal/EditPackModal'
 import { TPack } from 'features/pack/packApi'
 import { tableIconSx } from 'common/style/tableStyles'
+import { selectUserId } from 'features/profile/selectors/selectors'
 
 type Props = {
   pack: TPack
 }
 
 export const EditPack = (props: Props) => {
-  const userId = useAppSelector(state => state.packs.packParams.user_id)
+  const userId = useAppSelector(selectUserId)
 
   return(
     <>

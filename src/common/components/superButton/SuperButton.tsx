@@ -1,5 +1,5 @@
 import { Button, CircularProgress } from '@mui/material'
-import React, { ReactNode } from 'react'
+import React, { memo, ReactNode } from 'react'
 import LoadingButton from '@mui/lab/LoadingButton'
 
 type Props = {
@@ -18,7 +18,7 @@ type Props = {
   icon?: ReactNode
 }
 
-export const SuperButton = (props: Props) => {
+export const SuperButton = memo((props: Props) => {
   const {
     title, onClick, type, width, height,
     fontSize, marginTop, marginLeft, isSpan,
@@ -81,4 +81,4 @@ export const SuperButton = (props: Props) => {
         </Button>}
     </>
   )
-}
+})
