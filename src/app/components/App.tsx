@@ -1,5 +1,5 @@
 import { useEffect } from 'react'
-import { Header } from 'common/components/header/Header'
+import { Header } from 'common/components'
 import { Outlet } from 'react-router-dom'
 import { useAppDispatch, useAppSelector } from 'common/hooks'
 import s from './App.module.scss'
@@ -8,14 +8,12 @@ import 'react-toastify/dist/ReactToastify.css'
 import { initializedSelect, loadingSelect } from 'app/selectors'
 import { authThunks } from 'features/auth'
 import { GlobalError } from 'common/components'
+import { LinearProgressColors } from 'common/components/lineProgress/LineProgress'
 
 
 function App() {
   const dispatch = useAppDispatch()
   const isAppInitialized = useAppSelector(initializedSelect)
-  const isLoading = useAppSelector(loadingSelect)
-
-  const lineProgressSx = { position: 'absolute', top: '60px', width: '100%', bgcolor: '#664400' }
 
   useEffect(() => {
     dispatch(authThunks.authMe())
@@ -27,7 +25,7 @@ function App() {
       <div className={s.Content}>
         <GlobalError />
         {isAppInitialized && <Outlet />}
-        {isLoading && <LinearProgress sx={lineProgressSx} color={'warning'} />}
+        <LinearProgressColors />
       </div>
     </div>
   )

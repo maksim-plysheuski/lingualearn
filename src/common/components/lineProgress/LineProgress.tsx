@@ -1,11 +1,14 @@
-import Stack from "@mui/material/Stack/Stack";
+import Stack from '@mui/material/Stack/Stack'
 import LinearProgress from '@mui/material/LinearProgress/LinearProgress'
+import { useAppSelector } from 'common/hooks'
+import { loadingSelect } from 'app'
 
-
-export default function LinearProgressColors() {
+const lineProgressSx = { position: 'absolute', top: '60px', width: '100%', bgcolor: '#664400' }
+export const LinearProgressColors = () => {
+  const isLoading = useAppSelector(loadingSelect)
   return (
-    <Stack spacing={2} sx={{ flex: 1 }}>
-      <LinearProgress variant={'determinate'} />
-    </Stack>
-  );
+    <>
+      {isLoading && <LinearProgress sx={lineProgressSx} color={'warning'} />}
+    </>
+  )
 }
