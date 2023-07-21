@@ -2,7 +2,7 @@ import s from 'common/components/header/Header.module.scss'
 
 import { Link, useNavigate } from 'react-router-dom'
 import React, { useCallback } from 'react'
-import { AvatarMenu } from 'common/components/avatarMenu/AvatarMenu'
+import { AvatarMenu } from 'common/components/header/avatarMenu/AvatarMenu'
 import { useAppSelector } from 'common/hooks'
 import { paths } from 'common/router'
 import StyleOutlinedIcon from '@mui/icons-material/StyleOutlined'

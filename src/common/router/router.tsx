@@ -12,11 +12,13 @@ import { Register } from 'features/auth/register/Register'
 import { ForgotPasswordPage } from 'features/auth/forgotPassword/ForgotPasswordPage'
 import { CheckEmailPage } from 'features/auth/checkEmail/CheckEmailPage'
 import { ChangePasswordPage } from 'features/auth/changePassword/ChangePasswordPage'
+import { PageNotFound } from 'common/components/pageNotFound/PageNotFound'
 
 export const router = createHashRouter([
   {
     path: paths.MAIN,
     element: <App />,
+    errorElement: <PageNotFound />,
     children: [
       {
         path: paths.MAIN,
