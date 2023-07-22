@@ -6,7 +6,7 @@ import { useSearchPacks } from 'features/pack/hook/useSearchPacks'
 import { PaginatorPacks } from 'features/pack/components/paginatorPaks/paginatorPacks'
 import { TitleBlockPacks } from 'common/components'
 import { PacksTable } from 'features/pack/components/packsList/packsTable/PacksTable'
-import { SkeletonTable } from 'common/components/skeletonTable/SkeletonTable'
+import { SkeletonPacksList } from 'common/components/skeletonPacksList/SkeletonPacksList'
 
 
 export const PacksList = () => {
@@ -18,7 +18,7 @@ export const PacksList = () => {
   }, [])
 
   if (!packs) {
-    return <SkeletonTable rows={4} cells={6} />
+    return <SkeletonPacksList />
   }
 
   return (
