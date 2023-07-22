@@ -1,6 +1,5 @@
-export { Header } from 'common/components/header/Header'
+export { AppHeader } from 'common/components/appHeader/AppHeader'
 export { GlobalError } from 'common/components/globalError/GlobalError'
-export { TitleBlockPacks } from 'common/components/pageTitleBlock/TitleBlockPacks'
 export { TitleBlockPacks } from 'features/pack/components/packsList/titleBlockPacks/titleBlockPacks'
 export { Paginator } from 'common/components/paginator/Paginator'
 export { SuperButton } from 'common/components/superButton/SuperButton'
