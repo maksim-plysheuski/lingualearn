@@ -1,0 +1,36 @@
+@import "../../../style/variables";
+@import "../../../style/mixins";
+
+.headerAvaContainer {
+  display: flex;
+  align-items: center;
+  text-align: right;
+
+  span {
+    @include text(700, 16px, 24px);
+    margin-right: 6px;
+  }
+}
+
+.userInfoContainer {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  margin: 6px 16px 16px 0;
+
+  &:hover {
+    cursor: default;
+  }
+
+  .userInfo {
+    margin-left: 3px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+
+    span {
+      font-size: 12px;
+      color: $dark100;
+    }
+  }
+}

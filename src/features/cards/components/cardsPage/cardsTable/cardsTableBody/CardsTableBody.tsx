@@ -6,7 +6,7 @@ import Rating from '@mui/material/Rating'
 import StarBorderIcon from '@mui/icons-material/StarBorder'
 import { FieldButtons } from './fieldButtons/FieldButtons'
 import { useSelector } from 'react-redux'
-import { tableCellHoverSx, tableCellSx } from 'common/style/tableStyles'
+import { tableCellHoverSx, tableCellSx } from 'features/pack/components/packsList/packsTable/tableStyles'
 
 
 export const CardsTableBody = () => {

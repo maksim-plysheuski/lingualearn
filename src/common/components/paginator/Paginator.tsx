@@ -1,6 +1,6 @@
 import { Pagination, Select, SelectChangeEvent } from '@mui/material'
 import MenuItem from '@mui/material/MenuItem'
-import s from 'common/components/paginator/style.module.scss'
+import s from './style.module.scss'
 import { ChangeEvent } from 'react'
 import { paginatorStyle, selectOptionsStyle, selectorStyle } from 'common/components/paginator/style'
 
@@ -35,9 +35,10 @@ export const Paginator = (props: Props) => {
       <div>
         <span>Show</span>
         <Select
-          sx={{ ...selectorStyle, width: '60px', ml: 1, mr: 1 }}
+          sx={{ ...selectorStyle, width: '75px', ml: 1, mr: 1 }}
           value={pageCount ? String(pageCount) : '4'}
           onChange={selectHandler}
+          name={'packs-selector'}
           MenuProps={{ sx: selectOptionsStyle }}
         >
           <MenuItem value={'4'}>4</MenuItem>

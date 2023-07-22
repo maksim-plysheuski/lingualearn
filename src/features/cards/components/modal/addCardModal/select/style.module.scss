@@ -1,10 +1,10 @@
-@import "../../../../../../common/style/variables";
+@import "src/common/style/variables";
 
 .selectContainer {
   margin-top: 24px;
   width: 100%;
 
-  label {
+  span {
     color: $dark100;
     font-size: 14px;
     font-weight: 400;

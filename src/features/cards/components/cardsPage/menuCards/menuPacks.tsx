@@ -9,9 +9,9 @@ import { RemovePackModal } from 'features/pack/components/modal/removePackModal/
 import { useNavigate } from 'react-router-dom'
 import { useAppSelector } from 'common/hooks'
 import { selectPackId } from 'features/cards/selectors'
-import { menuStyle, paperStyle } from 'common/components/avatarMenu/style'
+import { menuStyle, paperStyle } from 'common/components/appHeader/avatarMenu/style'
 import IconButton from '@mui/material/IconButton'
-import { tableIconSx } from 'common/style/tableStyles'
+import { tableIconSx } from 'features/pack/components/packsList/packsTable/tableStyles'
 
 
 export const MenuPacks = () => {

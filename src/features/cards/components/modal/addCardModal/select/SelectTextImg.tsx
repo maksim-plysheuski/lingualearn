@@ -18,8 +18,8 @@ export const SelectTextImg = (props: Props) => {
   }
   return (
     <div className={s.selectContainer}>
-      <label htmlFor='select-format'>Choose a question format</label>
-      <Select id='select-format'
+      <span>Choose a question format</span>
+      <Select name='select-format'
               sx={{ ...selectorStyle, marginTop: '2px' }}
               value={select}
               onChange={handleChange}

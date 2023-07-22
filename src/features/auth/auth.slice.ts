@@ -31,7 +31,7 @@ const authMe = createAppAsyncThunk<{ profile: TProfile, isLoggedIn: boolean }>('
   return await thunkTryCatch(thunkAPI, async () => {
     const res = await authApi.authMe()
     return { profile: res, isLoggedIn: true }
-  })
+  }, false)
 })
 
 const login = createAppAsyncThunk<{ isLoggedIn: boolean }, TLoginArg>

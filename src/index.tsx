@@ -16,5 +16,4 @@ root.render(
   </Provider>
 )
 
-
 reportWebVitals()

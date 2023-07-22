@@ -1,0 +1,13 @@
+@import "src/common/style/mixins";
+
+.pageContainer {
+  height: 80vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  span {
+    padding: 25px 0 25px 0;
+    @include text(400, 26px, 32px);
+  }
+}

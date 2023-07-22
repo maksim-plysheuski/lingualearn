@@ -1,10 +1,9 @@
 import React, { ChangeEvent, useState } from 'react'
-import s from 'features/profile/components/ProfilePage.module.scss'
 import { Avatar, Badge, IconButton } from '@mui/material'
 import PhotoCameraOutlinedIcon from '@mui/icons-material/PhotoCameraOutlined'
 import { useAppDispatch, useAppSelector } from 'common/hooks'
 import { convertFileToBase64 } from 'common/utils'
-import defAva from 'features/profile/components/imegs/defAva.png'
+import defAva from 'features/profile/components/img/defAva.png'
 import { AvatarSx, IconButtonSx, iconSx } from 'features/profile/components/profileAva/style'
 import { profileThunks } from 'features/profile/profile.slice'
 import { toast } from 'react-toastify'
@@ -39,7 +38,6 @@ export const ProfileAva = () => {
   }
 
   return (
-    <div className={s.userPhotoContainer}>
       <Badge overlap={'circular'}
              anchorOrigin={{ vertical: 'bottom', horizontal: 'right' }}
              badgeContent={
@@ -49,7 +47,6 @@ export const ProfileAva = () => {
                </IconButton>}>
         <Avatar onError={errorHandler} alt='user avatar' src={isAvaBroken ? defAva : ava} sx={AvatarSx} />
       </Badge>
-    </div>
   )
 }
 

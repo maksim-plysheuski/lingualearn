@@ -4,15 +4,15 @@ import { EditableTitle } from 'common/components/editableTitle/EditableTitle'
 import { authThunks } from 'features/auth'
 import { useAppDispatch, useAppSelector } from 'common/hooks'
 import { ProfileAva } from './profileAva/ProfileAva'
-import { loadingSelect } from 'app'
-import { selectProfile } from 'features/profile/selectors'
+import { selectIsAppLoading } from 'app'
+import { selectUserProfile } from 'features/profile/selectors'
 import { SuperButton } from 'common/components'
 
 
 export const ProfilePage = () => {
   const dispatch = useAppDispatch()
-  const profile = useAppSelector(selectProfile)
-  const isLoading = useAppSelector(loadingSelect)
+  const profile = useAppSelector(selectUserProfile)
+  const isLoading = useAppSelector(selectIsAppLoading)
 
   const logoutHandler = () => dispatch(authThunks.logout())
 

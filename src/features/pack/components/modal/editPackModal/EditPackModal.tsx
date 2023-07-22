@@ -28,7 +28,7 @@ export const EditPackModal = (props: Props) => {
 
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false)
   const [inputValue, setInputValue] = useState<string>(props.pack?.name || packName)
-  const [isPrivatePack, setIsPrivatePack] = useState<boolean>(props.pack?.private || isPackPrivate)
+  const [isPrivatePack, setIsPrivatePack] = useState<boolean>(props.pack?.private || isPackPrivate || false)
   const [isButtonDisabled, setIsButtonDisabled] = useState<boolean>(false)
   const [packCover, setPackCover] = useState<string>(props.pack?.deckCover || cardPackCover || '')
 

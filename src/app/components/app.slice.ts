@@ -7,7 +7,6 @@ const appInitialState = {
   error: null as string | null,
   isLoading: false,
   isAppInitialized: false,
-  users: []
 }
 
 const slice = createSlice({

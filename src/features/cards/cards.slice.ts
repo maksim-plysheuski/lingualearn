@@ -16,7 +16,7 @@ const slice = createSlice({
   initialState: {
     cards: {} as TGetCardsResponse,
     cardsParams: {} as TGetCardsArgs,
-    whose: null as boolean | null
+    isMyCards: null as boolean | null
   },
   reducers: {
     setCardsParams: (state, action: PayloadAction<TGetCardsArgs>) => {
@@ -25,14 +25,14 @@ const slice = createSlice({
     resetCards: (state) => {
       state.cards = {} as TGetCardsResponse
       state.cardsParams = {} as TGetCardsArgs
-      state.whose = null
+      state.isMyCards = null
     }
   },
   extraReducers: builder => {
     builder
       .addCase(fetchCards.fulfilled, (state, action) => {
         state.cards = action.payload.cards
-        state.whose = action.payload.whose
+        state.isMyCards = action.payload.isMyCards
         state.cardsParams = { ...state.cardsParams, ...action.payload.arg }
       })
       .addCase(packsThunks.updatePack.fulfilled, (state, action) => {
@@ -43,13 +43,13 @@ const slice = createSlice({
   }
 })
 
-const fetchCards = createAppAsyncThunk<{ cards: TGetCardsResponse, arg: TGetCardsArgs, whose: boolean }, TGetCardsArgs>
+const fetchCards = createAppAsyncThunk<{ cards: TGetCardsResponse, arg: TGetCardsArgs, isMyCards: boolean }, TGetCardsArgs>
 ('cards/getCards', async (arg, { getState }) => {
   const params = getState().cards.cardsParams
   const _id = getState().auth.profile._id
   const res = await cardsApi.getCards({ ...params, ...arg })
-  const whose = res.packUserId === _id
-  return { cards: res, arg, whose }
+  const isMyCards = res.packUserId === _id
+  return { cards: res, arg, isMyCards }
 })
 
 const deleteCard = createAppAsyncThunk<{ deletedCard: TCard }, TDeleteCardArg>

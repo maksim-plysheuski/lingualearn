@@ -2,7 +2,7 @@ import React from 'react'
 import { TableCell, Zoom } from '@mui/material'
 import { EditCardsModal } from 'features/cards/components/modal/editCardModal/EditCardModal'
 import { RemoveCardModal } from 'features/cards/components/modal/removeCardModal/removeCardModal'
-import { tableIconSx, tableCellSx } from 'common/style/tableStyles'
+import { tableIconSx, tableCellSx } from 'features/pack/components/packsList/packsTable/tableStyles'
 import IconButton from '@mui/material/IconButton'
 import Tooltip from '@mui/material/Tooltip'
 

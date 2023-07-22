@@ -4,7 +4,7 @@ import React, { ReactNode } from 'react'
 import CloseIcon from '@mui/icons-material/Close'
 import s from './style.module.scss'
 import { SxProps, Theme } from '@mui/material/styles'
-import { SuperButton } from '../superButton/SuperButton'
+import { SuperButton } from 'common/components/superButton/SuperButton'
 
 
 const style: SxProps<Theme> = {
