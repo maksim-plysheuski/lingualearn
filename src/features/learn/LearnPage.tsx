@@ -6,7 +6,7 @@ import { cardsAction, cardsThunks } from 'features/cards/cards.slice'
 import { useParams } from 'react-router-dom'
 import s from './style.module.scss'
 import { TCard } from 'features/cards/cardsApi'
-import { Answer } from 'features/learn/answer/answer'
+import { Answer } from './answer/answer'
 import { SuperButton } from 'common/components'
 
 export const LearnPage = () => {
