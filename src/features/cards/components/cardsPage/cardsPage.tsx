@@ -11,6 +11,7 @@ import { CardsTable } from 'features/cards/components/cardsPage/cardsTable/Cards
 import { PaginationCards } from 'features/cards/components/cardsPage/paginationCards/paginationCards'
 import { selectCards } from 'features/cards/selectors'
 import { EmptyCardsPack } from 'features/cards/components/cardsPage/emptyCardsPack/EmptyCardsPack'
+import { SkeletonPacksList } from 'common/components/skeletonPacksList/SkeletonPacksList'
 
 export const CardsPage = () => {
   const { params } = useSearchCards()
@@ -22,7 +23,7 @@ export const CardsPage = () => {
     dispatch(cardsThunks.fetchCards({ cardsPack_id: params.cardsPack_id, ...params }))
   }, [])
 
-  if (!cards) return <h1>loading</h1>
+  if (!cards) return <SkeletonPacksList/>
   return (
     <div className={s.packsList}>
       <BackLink />
