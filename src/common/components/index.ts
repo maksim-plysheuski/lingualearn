@@ -1,4 +1,4 @@
-export { TitleBlockPacks } from 'common/components/pageTitleBlock/TitleBlockPacks'
+export { TitleBlockPacks } from 'features/pack/components/packsList/titleBlockPacks/titleBlockPacks'
 export { Paginator } from 'common/components/paginator/Paginator'
 export { SuperButton } from 'common/components/superButton/SuperButton'
 export { InputSearch } from 'common/components/Inputs/inputSearch/inputSearch'

@@ -1,6 +1,6 @@
 import { Pagination, Select, SelectChangeEvent } from '@mui/material'
 import MenuItem from '@mui/material/MenuItem'
-import s from 'common/components/paginator/style.module.scss'
+import s from './style.module.scss'
 import { ChangeEvent } from 'react'
 import { paginatorStyle, selectOptionsStyle, selectorStyle } from 'common/components/paginator/style'
 

@@ -9,7 +9,7 @@ import { yupResolver } from '@hookform/resolvers/yup'
 import * as yup from 'yup'
 import { userNameSchema } from 'features/profile/components/validateShema/userNameSchema'
 import { editNameIconSx, inputStyle } from 'common/components/editableTitle/style'
-import { SuperButton } from '../superButton/SuperButton'
+import { SuperButton } from 'common/components/superButton/SuperButton'
 
 type Props = {
   userName: string | undefined

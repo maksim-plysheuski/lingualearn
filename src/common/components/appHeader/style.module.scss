@@ -1,0 +1,45 @@
+@import "../../style/variables";
+
+.header {
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 60px;
+  width: 100%;
+  display: flex;
+  background-color: #171717;
+  border-bottom: 1px solid #333333;
+  z-index: 99;
+  justify-content: center;
+
+  .headerContainer {
+    width: 80%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    .logoBlock {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      text-decoration: none;
+
+      img {
+        height: 35px;
+      }
+
+      span {
+        color: $primaryFontColor;
+        margin-left: 10px;
+        font-family: Cambria, sans-serif;
+        font-size: 20px;
+        font-weight: 800;
+        transition: color 250ms ease-in-out;
+
+        &:hover {
+          color: $orangeColor;
+        }
+      }
+    }
+  }
+}

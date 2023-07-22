@@ -1,5 +1,5 @@
 import { useEffect } from 'react'
-import { Header } from 'common/components/header/Header'
+import { AppHeader } from 'common/components/appHeader/AppHeader'
 import { Outlet } from 'react-router-dom'
 import { useAppDispatch, useAppSelector } from 'common/hooks'
 import s from './App.module.scss'
@@ -23,7 +23,7 @@ function App() {
 
   return (
     <div className={s.App}>
-      <Header />
+      <AppHeader />
       <div className={s.Content}>
         <GlobalError />
         {isAppInitialized && <Outlet />}

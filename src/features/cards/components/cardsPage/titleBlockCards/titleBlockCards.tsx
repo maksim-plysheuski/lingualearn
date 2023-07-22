@@ -43,9 +43,9 @@ export const TitleBlockCards = () => {
         {packCover
           ? <img src={packCover} alt='pack image' />
           : <PanoramaOutlinedIcon sx={{ fontSize: '95px', color: '#e66300', p: 0, m: 0 }} />}
-          <span>{`Cards count: ${cardsTotalCount}`}</span>
+          <span>{`Total cards: ${cardsTotalCount}`}</span>
+          {isMyPack && <span>{isPrivatePack ? 'Private Pack' : 'Public pack'}</span>}
           <span>{`Created: ${packCreatedDate.slice(0, 10).split('-').reverse().join('.')}`}</span>
-          {isMyPack && <span>Privacy: {isPrivatePack ? 'Private Pack' : 'Public pack'}</span>}
         </div>
       </div>
     </div>

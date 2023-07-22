@@ -1,0 +1,12 @@
+@import "../../../../../../common/style/variables";
+@import "../../../../../../common/style/mixins";
+
+.container {
+  display: flex;
+  flex-direction: column;
+
+  span {
+    margin-bottom: 5px;
+    @include text(400, 14px, 24px)
+  }
+}
