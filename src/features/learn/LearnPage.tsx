@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from 'react'
-import { getCard } from 'features/learn/getRandomCard'
+import { getCard } from './getRandomCard'
 import { useAppDispatch, useAppSelector } from 'common/hooks'
 import { selectCards, selectPackName } from 'features/cards/selectors'
 import { cardsAction, cardsThunks } from 'features/cards/cards.slice'
 import { useParams } from 'react-router-dom'
 import s from './style.module.scss'
 import { TCard } from 'features/cards/cardsApi'
-import { Answer } from './answer/answer'
+import { Answer } from './answer'
 import { SuperButton } from 'common/components'
 
 export const LearnPage = () => {
