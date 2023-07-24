@@ -12,7 +12,7 @@ import { emailMessage } from './emailMessage'
 import { useAppDispatch, useAppSelector } from 'common/hooks'
 import { selectIsAppLoading } from 'app'
 import { SuperButton } from 'common/components'
-import { CheckEmailPage } from 'features/auth/components/checkEmail/CheckEmailPage'
+import { CheckEmailPage } from '../checkEmail/CheckEmailPage'
 import { authThunks } from 'features/auth/auth.slice'
 
 type InputType = yup.InferType<typeof emailSchema>
@@ -28,7 +28,8 @@ export const ForgotPasswordPage = () => {
 
   const onFormSubmit: SubmitHandler<InputType> = (data: InputType) => {
     const payload = { email: data.email, message: emailMessage() }
-    dispatch(authThunks.restorePassword(payload)).then(() => setShowCheckEmail(true))}
+    dispatch(authThunks.restorePassword(payload)).then(() => setShowCheckEmail(true))
+  }
 
   const isButtonDisabled = getFieldState('email').invalid
 
@@ -42,7 +43,7 @@ export const ForgotPasswordPage = () => {
         <h1>Forgot your password?</h1>
         <form onSubmit={handleSubmit(onFormSubmit)}>
           <FormControl className={s.form}>
-            <InputEmail register={register('email')} errorMessage={errors.email?.message}  />
+            <InputEmail register={register('email')} errorMessage={errors.email?.message} />
             <span className={s.descriptionText}>
               Enter your address and we will send you further instructions
             </span>
