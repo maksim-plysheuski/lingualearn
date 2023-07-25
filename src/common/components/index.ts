@@ -1,3 +1,5 @@
+export { ProfilePage } from 'features/profile/components/ProfilePage'
+export { PageNotFound } from 'common/components/pageNotFound/PageNotFound'
 export { AppHeader } from 'common/components/appHeader/AppHeader'
 export { GlobalError } from 'common/components/globalError/GlobalError'
 export { TitleBlockPacks } from 'features/pack/components/packsList/titleBlockPacks/titleBlockPacks'

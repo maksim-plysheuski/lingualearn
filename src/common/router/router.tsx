@@ -1,6 +1,6 @@
 import { createHashRouter } from 'react-router-dom'
 import App from 'app/components/App'
-import { ProfilePage } from 'features/profile/components/ProfilePage'
+import { ProfilePage } from 'common/components'
 import { paths } from 'common/router/path'
 import { PacksList } from 'features/pack/components/packsList/PacksList'
 import { CardsPage } from 'features/cards/components/cardsPage/cardsPage'
@@ -11,8 +11,8 @@ import { Login } from 'features/auth/components'
 import { Register } from 'features/auth/components'
 import { ForgotPasswordPage } from 'features/auth/components'
 import { CheckEmailPage } from 'features/auth/components'
-import { ChangePasswordPage } from 'features/auth/components/changePassword/ChangePasswordPage'
-import { PageNotFound } from 'common/components/pageNotFound/PageNotFound'
+import { ChangePasswordPage } from 'features/auth/components'
+import { PageNotFound } from 'common/components'
 
 export const router = createHashRouter([
   {
