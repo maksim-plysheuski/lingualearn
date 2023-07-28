@@ -1,11 +1,13 @@
 import { PacksTableHeader } from 'features/pack/components/packsList/packsTable/packsTableHeader/PacksTableHeader'
 import * as React from 'react'
 import s from './style.module.scss'
-import { TableSkeleton } from 'common/components/skeletonPreloaders/TableSkeleton'
-import { PaginatorSkeleton } from 'common/components/skeletonPreloaders/PaginatorSkeleton'
-import { SearchBarSkeleton } from 'common/components/skeletonPreloaders/SearchBarSkeleton'
-import { SelectorSkeleton } from 'common/components/skeletonPreloaders/SelectorSceleton'
-import { TitleBlockSkeleton } from 'common/components/skeletonPreloaders/TitleBlockSkeleton'
+import {
+  TableSkeleton,
+  PaginatorSkeleton,
+  SearchBarSkeleton,
+  SelectorSkeleton,
+  TitleBlockSkeleton
+} from 'common/components/skeletonPreloaders'
 
 
 export const SkeletonPacksList = () => {
