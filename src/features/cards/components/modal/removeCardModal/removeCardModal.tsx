@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { BaseModal } from 'common/components/baseModal/BaseModal'
+import { BaseModal } from 'common/components'
 import s from './style.module.scss'
 import { useAppDispatch } from 'common/hooks'
 import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline'

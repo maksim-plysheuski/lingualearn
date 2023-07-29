@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { BaseModal } from 'common/components/baseModal/BaseModal'
+import { BaseModal } from 'common/components'
 import { QuestionSelectType } from 'features/cards/components/modal/addCardModal/select/SelectTextImg'
 import { useAppDispatch, useAppSelector } from 'common/hooks'
 import { cardsThunks } from 'features/cards/cards.slice'

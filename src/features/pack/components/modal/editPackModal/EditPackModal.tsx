@@ -1,4 +1,4 @@
-import { BaseModal } from 'common/components/baseModal/BaseModal'
+import { BaseModal } from 'common/components'
 import { useAppDispatch, useAppSelector } from 'common/hooks'
 import React, { useState } from 'react'
 import { packsThunks } from 'features/pack/packs.slice'
