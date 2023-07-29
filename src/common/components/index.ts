@@ -1,3 +1,5 @@
+export { BaseModal } from 'common/components/baseModal/BaseModal'
+export { EditableTitle } from 'common/components/editableTitle/EditableTitle'
 export { ImageBlockModal } from 'common/components/imageBlockModal/ImageBlockModal'
 export { LinearProgressColors } from 'common/components/lineProgress/LineProgress'
 export { ProfilePage } from 'features/profile/components/ProfilePage'
