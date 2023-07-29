@@ -7,7 +7,7 @@ import { GlobalError } from 'common/components/globalError/GlobalError'
 import 'react-toastify/dist/ReactToastify.css'
 import { selectIsAppInitialized } from 'app/selectors'
 import { authThunks } from 'features/auth'
-import { LinearProgressColors } from 'common/components/lineProgress/LineProgress'
+import { LinearProgressColors } from 'common/components'
 
 
 function App() {

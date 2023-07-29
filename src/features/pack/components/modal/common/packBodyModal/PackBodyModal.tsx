@@ -1,6 +1,6 @@
 import s from './styles.module.scss'
 import { InputCustom } from 'common/components/Inputs/inputCastom/InputCustom'
-import { ImageBlockModal } from 'common/components/imageBlockModal/ImageBlockModal'
+import { ImageBlockModal } from 'common/components'
 import { Checkbox } from '@mui/material'
 import React, { FC } from 'react'
 

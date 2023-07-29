@@ -1,7 +1,7 @@
 import { QuestionSelectType, SelectTextImg } from 'features/cards/components/modal/addCardModal/select/SelectTextImg'
 import s from './style.module.scss'
 import { InputCustom } from 'common/components/Inputs/inputCastom/InputCustom'
-import { ImageBlockModal } from 'common/components/imageBlockModal/ImageBlockModal'
+import { ImageBlockModal } from 'common/components'
 import React from 'react'
 
 type Type = {
