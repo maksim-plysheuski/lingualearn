@@ -1,4 +1,4 @@
-import { instance } from 'common/api/common.api'
+import { instance } from 'common'
 
 export const packApi = {
   getPacks: (args: TGetPacksArg = {}) => {

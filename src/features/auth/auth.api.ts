@@ -1,4 +1,4 @@
-import { instance } from 'common/api/common.api'
+import { instance } from 'common'
 import { TProfile } from 'features/profile/profile.api'
 
 export const authApi = {

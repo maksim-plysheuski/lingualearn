@@ -1,4 +1,4 @@
-import { instance } from 'common/api/common.api'
+import { instance } from 'common'
 
 export const profileApi = {
   updateUserProfile: (arg: TUpdateUserArg) => {
