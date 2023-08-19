@@ -5,7 +5,7 @@ export const packApi = {
     return instance.get<TPacksResponse>('cards/pack', { params: { ...args } })
   },
   createPack: (arg: TCreatePackArg) => {
-    return instance.post<{ newCardsPack: TPack }>('cards/pack ', { cardsPack: arg }).then(res => res.data)
+    return instance.post<{ newCardsPack: TPack }>('cards/pack', { cardsPack: arg }).then(res => res.data)
   },
   deletePack: (arg: TDeletePackArg) => {
     return instance.delete<{ deletedCardsPack: TPack }>(`/cards/pack?id=${arg.id}`).then(res => res.data)

@@ -1,26 +1,25 @@
 import { BaseModal } from 'common/components'
-import { useAppDispatch, useAppSelector } from 'common/hooks'
+import { useAppSelector } from 'common/hooks'
 import React, { useState } from 'react'
-import { packsThunks } from 'features/pack/service/packs.slice'
 import { toast } from 'react-toastify'
 import { PackBodyModal } from 'features/pack/components/modal/common/packBodyModal/PackBodyModal'
 import { selectIsAppLoading } from 'app'
 import { SuperButton } from 'common/components'
+import { useCreatePackMutation } from 'features/pack/service/packs.api'
 
 
 export const AddPackModal = () => {
-  const dispatch = useAppDispatch()
   const isLoading = useAppSelector(selectIsAppLoading)
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false)
   const [packCover, setPackCover] = useState<string>('')
   const [packName, setPackName] = useState<string>('')
   const [isPrivatePack, setIsPrivatePack] = useState<boolean>(false)
+  const [createPack] = useCreatePackMutation()
 
   const addPackHandler = async () => {
-    const newPack = { name: packName, private: isPrivatePack, deckCover: packCover }
-    await dispatch(packsThunks.createPack(newPack)).unwrap()
+    createPack({ name: packName, private: isPrivatePack, deckCover: packCover }).unwrap()
       .then((res) => toast.info(`New pack ${res.newCardsPack.name} has been created`))
-      .catch((err) => toast.error(err.e.response ? err.e.response.statusText : err.e.message))
+      .catch((err) => toast.error(err.data.error))
       .finally(() => {
         setIsModalOpen(false)
         setPackName('')

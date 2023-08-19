@@ -5,7 +5,6 @@ import { PacksTableBody } from 'features/pack/components/packsList/packsTable/pa
 import { tableSx } from 'features/pack/components/packsList/packsTable/tableStyles'
 
 
-
 export const PacksTable = () => {
   return (
     <TableContainer sx={tableSx} component={Paper}>

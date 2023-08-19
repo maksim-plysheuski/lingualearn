@@ -9,16 +9,17 @@ import PanoramaOutlinedIcon from '@mui/icons-material/PanoramaOutlined'
 import { EditPack } from './actionsButtons/editPack/EditPack'
 import { RemovePack } from './actionsButtons/removePack/RemovePack'
 import { LearnPack } from './actionsButtons/learnPack/LearnPack'
-import { packsSelect } from 'features/pack/selectors'
 import { toast } from 'react-toastify'
 import { selectUserId } from 'features/profile/selectors/selectors'
+import { useGetPacksQuery } from 'features/pack/service/packs.api'
 
 
 export const PacksTableBody = () => {
   const dispatch = useAppDispatch()
   const navigate = useNavigate()
-  const packs = useAppSelector(packsSelect)
   const userId = useAppSelector(selectUserId)
+
+  const {data} = useGetPacksQuery({})
 
   const openSelectedPack = (packId: string, packUserId: string, cardsCount: number) => {
     if (packUserId === userId || cardsCount) {
@@ -31,7 +32,7 @@ export const PacksTableBody = () => {
 
   return (
     <TableBody>
-      {packs.cardPacks?.map((pack) => (
+      {data?.cardPacks.map((pack) => (
         <TableRow key={pack._id}>
           <TableCell sx={{ ...tableCellSx, width: '60px' }}>
             {pack.deckCover
