@@ -6,6 +6,7 @@ import { TCreatePackArg, TGetPacksArg, TPacksResponse } from 'features/pack/serv
 export const packsApi = createApi({
   reducerPath: 'packsApi',
   baseQuery: fetchBaseQuery({ baseUrl: baseURL, credentials: "include" }),
+  tagTypes: ['cards'],
 
   endpoints: (build) => {
     return {
@@ -16,7 +17,8 @@ export const packsApi = createApi({
             url: 'cards/pack',
             params: args
           }
-        }
+        },
+        providesTags: ['cards']
       }),
       createPack: build.mutation<any, TCreatePackArg>({
         query: (cardsPack) => {
@@ -27,9 +29,9 @@ export const packsApi = createApi({
               cardsPack,
             },
           }
-        }
+        },
+        invalidatesTags: ['cards']
       }),
-
     }
   }
 })
