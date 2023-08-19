@@ -1,9 +1,9 @@
 import { BaseModal } from 'common/components'
 import { useAppDispatch, useAppSelector } from 'common/hooks'
 import React, { useState } from 'react'
-import { packsThunks } from 'features/pack/packs.slice'
+import { packsThunks } from 'features/pack/service/packs.slice'
 import DriveFileRenameOutlineIcon from '@mui/icons-material/DriveFileRenameOutline'
-import { TPack } from 'features/pack/packApi'
+import { TPack } from 'features/pack/service/packApi'
 import { toast } from 'react-toastify'
 import {
   selectCardPackCover,

@@ -9,7 +9,7 @@ import {
   TUpdateCardArg
 } from 'features/cards/cardsApi'
 import { thunkTryCatch } from 'common/utils/thunk-try-catch'
-import { packsThunks } from 'features/pack/packs.slice'
+import { packsThunks } from 'features/pack/service/packs.slice'
 
 const slice = createSlice({
   name: 'cards',

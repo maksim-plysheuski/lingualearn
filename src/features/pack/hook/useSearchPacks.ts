@@ -1,8 +1,8 @@
 import { useAppDispatch, useAppSelector } from 'common/hooks'
 import { useSearchParams } from 'react-router-dom'
 import { useCallback, useEffect, useState } from 'react'
-import { PackArgs } from 'features/pack/packApi'
-import { packAction, packsThunks } from 'features/pack/packs.slice'
+import { PackArgs } from 'features/pack/service/packApi'
+import { packAction, packsThunks } from 'features/pack/service/packs.slice'
 
 import {
   cardPacksTotalCountSelect,

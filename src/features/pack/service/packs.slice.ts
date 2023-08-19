@@ -6,7 +6,7 @@ import {
   TGetPacksArg, TPack,
   TPacksResponse,
   TUpdatePackArg
-} from 'features/pack/packApi'
+} from 'features/pack/service/packApi'
 import { createAppAsyncThunk } from 'common/utils/createAppAsyncThunk'
 import { thunkTryCatch } from 'common/utils/thunk-try-catch'
 

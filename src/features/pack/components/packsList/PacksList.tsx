@@ -1,7 +1,7 @@
 import { SearchBar } from './searchBar/SearchBar'
 import s from './style.module.scss'
 import { useEffect } from 'react'
-import { packAction, packsThunks } from 'features/pack/packs.slice'
+import { packAction, packsThunks } from 'features/pack/service/packs.slice'
 import { useSearchPacks } from 'features/pack/hook/useSearchPacks'
 import { PaginatorPacks } from './paginatorPacks/paginatorPacks'
 import { TitleBlockPacks } from 'common/components'

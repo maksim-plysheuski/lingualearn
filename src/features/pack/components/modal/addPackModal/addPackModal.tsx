@@ -1,7 +1,7 @@
 import { BaseModal } from 'common/components'
 import { useAppDispatch, useAppSelector } from 'common/hooks'
 import React, { useState } from 'react'
-import { packsThunks } from 'features/pack/packs.slice'
+import { packsThunks } from 'features/pack/service/packs.slice'
 import { toast } from 'react-toastify'
 import { PackBodyModal } from 'features/pack/components/modal/common/packBodyModal/PackBodyModal'
 import { selectIsAppLoading } from 'app'
