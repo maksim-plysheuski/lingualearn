@@ -7,10 +7,14 @@ import { PaginatorPacks } from './paginatorPacks/paginatorPacks'
 import { TitleBlockPacks } from 'common/components'
 import { PacksTable } from './packsTable/PacksTable'
 import { SkeletonPacksList } from './skeletonPacksList/SkeletonPacksList'
+import { useGetPacksQuery } from 'features/pack/service/packs.api'
 
 
 export const PacksList = () => {
   const { params, dispatch, packs } = useSearchPacks()
+
+
+  const { data, error, isLoading } = useGetPacksQuery({});
 
   useEffect(() => {
     dispatch(packAction.setPackParams(params))

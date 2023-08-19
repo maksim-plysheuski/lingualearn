@@ -1,21 +1,20 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
 import { baseURL } from 'common/api/common.api'
+import { TGetPacksArg } from 'features/pack/service/packApi'
 
 
-export const cardsApi = createApi({
-  reducerPath: 'cardsApi',
+export const packsApi = createApi({
+  reducerPath: 'packsApi',
   baseQuery: fetchBaseQuery({ baseUrl: baseURL, credentials: "include" }),
 
   endpoints: (build) => {
     return {
-      getCards: build.query<any, string>({
-        query: (packId) => {
+      getPacks: build.query<any, any>({
+        query: (args: TGetPacksArg = {}) => {
           return {
             method: 'GET',
-            url: 'cards/card',
-            params: {
-              cardsPack_id: packId
-            }
+            url: 'cards/pack',
+            params: {...args}
           }
         }
       })
@@ -23,4 +22,4 @@ export const cardsApi = createApi({
   }
 })
 
-export const { useGetCardsQuery } = cardsApi
+export const { useGetPacksQuery  } = packsApi

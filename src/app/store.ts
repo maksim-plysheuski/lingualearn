@@ -6,6 +6,7 @@ import { cardsReducer } from 'features/cards/cards.slice'
 import {authReducer} from "features/auth";
 import { cardsApi } from 'features/cards/service/cards.api'
 import { setupListeners } from '@reduxjs/toolkit/query'
+import { packsApi } from 'features/pack/service/packs.api'
 
 export const store = configureStore({
   reducer: {
@@ -14,9 +15,13 @@ export const store = configureStore({
     profile: profileReducer,
     packs: packsReducer,
     cards: cardsReducer,
-    [cardsApi.reducerPath]: cardsApi.reducer
+    [cardsApi.reducerPath]: cardsApi.reducer,
+    [packsApi.reducerPath]: packsApi.reducer
   },
-  middleware: getDefaultMiddleware => getDefaultMiddleware().concat(cardsApi.middleware),
+  middleware: getDefaultMiddleware => getDefaultMiddleware()
+    .concat(cardsApi.middleware)
+    .concat(packsApi.middleware)
+  ,
 })
 
 setupListeners(store.dispatch)

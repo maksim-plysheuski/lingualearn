@@ -23,7 +23,8 @@ export const CardsPage = () => {
     dispatch(cardsThunks.fetchCards({ cardsPack_id: params.cardsPack_id, ...params }))
   }, [])
 
-  if (!cards) return <SkeletonCardsPage/>
+
+  if (!cards) return <SkeletonCardsPage />
   return (
     <div className={s.packsList}>
       <BackLink />
