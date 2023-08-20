@@ -1,13 +1,12 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
 import { baseURL } from 'common/api/common.api'
-import { TCreatePackArg, TGetPacksArg, TPacksResponse } from 'features/pack/service/packApi'
+import { TCreatePackArg, TGetPacksArg, TPack, TPacksResponse, TUpdatePackArg } from 'features/pack/service/packApi'
 
 
 export const packsApi = createApi({
   reducerPath: 'packsApi',
-  baseQuery: fetchBaseQuery({ baseUrl: baseURL, credentials: "include" }),
-  tagTypes: ['cards'],
-
+  baseQuery: fetchBaseQuery({ baseUrl: baseURL, credentials: 'include' }),
+  tagTypes: ['fetchCards'],
   endpoints: (build) => {
     return {
       getPacks: build.query<TPacksResponse, TGetPacksArg>({
@@ -18,22 +17,46 @@ export const packsApi = createApi({
             params: args
           }
         },
-        providesTags: ['cards']
+        providesTags: ['fetchCards']
       }),
-      createPack: build.mutation<any, TCreatePackArg>({
+      createPack: build.mutation<{ newCardsPack: TPack }, TCreatePackArg>({
         query: (cardsPack) => {
           return {
             method: 'POST',
             url: 'cards/pack',
             body: {
-              cardsPack,
-            },
+              cardsPack
+            }
           }
         },
-        invalidatesTags: ['cards']
+        invalidatesTags: ['fetchCards']
       }),
+      updatePack: build.mutation<{ newCardsPack: TPack }, TUpdatePackArg>({
+        query: (cardsPack) => {
+          return {
+            method: 'PUT',
+            url: 'cards/pack',
+            body: {
+              cardsPack
+            }
+          }
+        },
+        invalidatesTags: ['fetchCards']
+      }),
+      deletePack: build.mutation<{ deletedCardsPack: TPack }, string>({
+        query: (packId) => {
+          return {
+            method: 'DELETE',
+            url: `cards/pack`,
+            params: {
+              id: packId
+            }
+          }
+        },
+        invalidatesTags: ['fetchCards']
+      })
     }
   }
 })
 
-export const { useGetPacksQuery, useCreatePackMutation  } = packsApi
+export const { useGetPacksQuery, useCreatePackMutation, useUpdatePackMutation, useDeletePackMutation } = packsApi

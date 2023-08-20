@@ -1,7 +1,6 @@
 import { BaseModal } from 'common/components'
-import { useAppDispatch, useAppSelector } from 'common/hooks'
+import { useAppSelector } from 'common/hooks'
 import React, { useState } from 'react'
-import { packsThunks } from 'features/pack/service/packs.slice'
 import DriveFileRenameOutlineIcon from '@mui/icons-material/DriveFileRenameOutline'
 import { TPack } from 'features/pack/service/packApi'
 import { toast } from 'react-toastify'
@@ -12,6 +11,7 @@ import {
   selectPrivatePack
 } from 'features/cards/selectors/selectors'
 import { PackBodyModal } from 'features/pack/components/modal/common/packBodyModal/PackBodyModal'
+import { useUpdatePackMutation } from 'features/pack/service/packs.api'
 
 type Props = {
   handleCloseMenu?: () => void
@@ -20,7 +20,6 @@ type Props = {
 }
 
 export const EditPackModal = (props: Props) => {
-  const dispatch = useAppDispatch()
   const packName = useAppSelector(selectPackName)
   const packId = useAppSelector(selectPackId)
   const isPackPrivate = useAppSelector(selectPrivatePack)
@@ -31,19 +30,17 @@ export const EditPackModal = (props: Props) => {
   const [isPrivatePack, setIsPrivatePack] = useState<boolean>(props.pack?.private || isPackPrivate || false)
   const [isButtonDisabled, setIsButtonDisabled] = useState<boolean>(false)
   const [packCover, setPackCover] = useState<string>(props.pack?.deckCover || cardPackCover || '')
+  const [updatePack] = useUpdatePackMutation()
 
-  const updatePack = async () => {
-    let payload = {
-      newPack: {
-        _id: props.pack ? props.pack._id : packId,
-        name: inputValue,
-        private: isPrivatePack,
-        deckCover: packCover
-      },
-      needGetPacks: !!props.pack
+  const updatePackHandler = async () => {
+    let newPack = {
+      _id: props.pack ? props.pack._id : packId,
+      name: inputValue,
+      private: isPrivatePack,
+      deckCover: packCover
     }
     setIsButtonDisabled(true)
-    await dispatch(packsThunks.updatePack(payload)).unwrap()
+    updatePack(newPack).unwrap()
       .then(() => toast.info(`Pack has been successfully updated`))
       .catch((err) => toast.error(err.e.response ? err.e.response.statusText : err.e.message))
       .finally(() => {
@@ -60,7 +57,7 @@ export const EditPackModal = (props: Props) => {
                open={isModalOpen}
                isButtonDisabled={isButtonDisabled}
                setOpen={setIsModalOpen}
-               actionCallback={updatePack}
+               actionCallback={updatePackHandler}
                buttonOpen={<><DriveFileRenameOutlineIcon />{props.nameIcon}</>}
 
     >
