@@ -1,7 +1,7 @@
 import { memo } from 'react'
 import Slider from '@mui/material/Slider'
 import s from 'features/pack/components/packsList/searchBar/countSearch/style.module.scss'
-import { packsThunks } from 'features/pack/service/packs.slice'
+import { packsThunks } from 'features/pack/service/packsSlice'
 import { useSearchPacks } from 'features/pack/hook/useSearchPacks'
 import { sliderStyle } from 'features/pack/components/packsList/searchBar/countSearch/style'
 

@@ -1,6 +1,6 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
 import { baseURL } from 'common/api/common.api'
-import { TCreatePackArg, TGetPacksArg, TPack, TPacksResponse, TUpdatePackArg } from 'features/pack/service/packApi'
+import { TCreatePackArg, FetchPacksArgType, TPack, TPacksResponse, TUpdatePackArg } from 'features/pack/service/packsTypes'
 
 
 export const packsApi = createApi({
@@ -9,7 +9,7 @@ export const packsApi = createApi({
   tagTypes: ['fetchCards'],
   endpoints: (build) => {
     return {
-      getPacks: build.query<TPacksResponse, TGetPacksArg>({
+      getPacks: build.query<TPacksResponse, FetchPacksArgType>({
         query: (args) => {
           return {
             method: 'GET',
@@ -17,7 +17,8 @@ export const packsApi = createApi({
             params: args
           }
         },
-        providesTags: ['fetchCards']
+        providesTags: ['fetchCards'],
+        
       }),
       createPack: build.mutation<{ newCardsPack: TPack }, TCreatePackArg>({
         query: (cardsPack) => {
@@ -59,4 +60,4 @@ export const packsApi = createApi({
   }
 })
 
-export const { useGetPacksQuery, useCreatePackMutation, useUpdatePackMutation, useDeletePackMutation } = packsApi
+export const { useGetPacksQuery, useCreatePackMutation, useUpdatePackMutation, useDeletePackMutation , useLazyGetPacksQuery} = packsApi

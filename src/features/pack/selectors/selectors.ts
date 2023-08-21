@@ -1,10 +1,10 @@
 import { RootState } from 'app/store'
 
 //packParams
-export const namePackParamsSelect = (state: RootState) => state.packs.packParams.packName
-export const paramsCardIdSelect = (state: RootState) => state.packs.packParams.user_id
-export const minSelect = (state: RootState) => state.packs.packParams.min
-export const maxSelect = (state: RootState) => state.packs.packParams.max
+export const namePackParamsSelect = (state: RootState) => state.packsParams.packParams.packName
+export const paramsCardIdSelect = (state: RootState) => state.packsParams.packParams.user_id
+export const minSelect = (state: RootState) => state.packsParams.packParams.min
+export const maxSelect = (state: RootState) => state.packsParams.packParams.max
 
 //packs
 export const minCardsCountSelect = (state: RootState) => state.packs.packs.minCardsCount

@@ -1,8 +1,7 @@
 import { useAppDispatch, useAppSelector } from 'common/hooks'
 import { useSearchParams } from 'react-router-dom'
 import { useCallback, useEffect, useState } from 'react'
-import { PackArgs } from 'features/pack/service/packApi'
-import { packAction, packsThunks } from 'features/pack/service/packs.slice'
+import { packsThunks } from 'features/pack/service/packsSlice'
 
 import {
   cardPacksTotalCountSelect,
@@ -19,6 +18,7 @@ import {
 import { useSelector } from 'react-redux'
 import { useDebounce } from 'common/hooks/useDebounce'
 import { profileIdSelect } from 'features/auth/selectors'
+import { PackArgs } from 'features/pack/service/packsTypes'
 
 export const useSearchPacks = () => {
   const dispatch = useAppDispatch()
@@ -54,19 +54,19 @@ export const useSearchPacks = () => {
   }, [debounceName])
 
   const setPackName = useCallback((packName: string) => {
-    dispatch(packAction.setPackParams({ packName }))
+    /*dispatch(packAction.setPackParams({ packName }))*/
     setName(packName)
   }, [])
 
   //чьи карточки
   const setMyAllCards = useCallback((user_id: string) => {
-    dispatch(packAction.setPackParams({ user_id }))
+    /*dispatch(packAction.setPackParams({ user_id }))*/
     dispatch(packsThunks.getPacks({ user_id }))
   }, [])
 
   //количество карточек
   const setMinMaxCards = useCallback((minMax: number[]) => {
-    dispatch(packAction.setPackParams({ min: minMax[0], max: minMax[1] }))
+  /*  dispatch(packAction.setPackParams({ min: minMax[0], max: minMax[1] }))*/
   }, [])
 
   //сброс поисковых настроек

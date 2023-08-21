@@ -4,9 +4,9 @@ import { Zoom } from '@mui/material'
 import { useAppSelector } from 'common/hooks'
 import Tooltip from '@mui/material/Tooltip'
 import { EditPackModal } from 'features/pack/components/modal/editPackModal/EditPackModal'
-import { TPack } from 'features/pack/service/packApi'
 import { tableIconSx } from 'features/pack/components/packsList/packsTable/tableStyles'
 import { selectUserId } from 'features/profile/selectors/selectors'
+import { TPack } from 'features/pack/service/packsTypes'
 
 type Props = {
   pack: TPack

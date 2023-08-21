@@ -1,77 +1,8 @@
 import { instance } from 'common'
+import { FetchPacksArgType, TPacksResponse } from 'features/pack/service/packsTypes'
 
 export const packApi = {
-  getPacks: (args: TGetPacksArg = {}) => {
-    return instance.get<TPacksResponse>('cards/pack', { params: { ...args } })
+  getPacks: (args: FetchPacksArgType = {}) => {
+    return instance.get<TPacksResponse>('cards/pack', { params: { ...args }})
   },
-  createPack: (arg: TCreatePackArg) => {
-    return instance.post<{ newCardsPack: TPack }>('cards/pack', { cardsPack: arg }).then(res => res.data)
-  },
-  deletePack: (arg: TDeletePackArg) => {
-    return instance.delete<{ deletedCardsPack: TPack }>(`/cards/pack?id=${arg.id}`).then(res => res.data)
-  },
-  updatePack: (arg: TUpdatePackArg) => {
-    return instance.put<{ updatedCardsPack: TPack }>('/cards/pack', { cardsPack: arg }).then(res => res.data)
-  }
 }
-
-
-//Response types
-export type TPack = {
-  _id: string;
-  user_id: string;
-  user_name: string;
-  name: string;
-  private: boolean;
-  path: string;
-  grade: number;
-  shots: number;
-  cardsCount: number;
-  type: string;
-  deckCover: string;
-  rating: number;
-  more_id: string;
-  created: string;
-  updated: string;
-  __v: number;
-};
-
-export type TPacksResponse = {
-  cardPacks: TPack[];
-  cardPacksTotalCount: number;
-  maxCardsCount: number;
-  minCardsCount: number;
-  page: number;
-  pageCount: number;
-  token: string;
-  tokenDeathTime: number;
-}
-
-//Arguments types
-export type TGetPacksArg = {
-  packName?: string;
-  min?: number;
-  max?: number;
-  sortPacks?: string;
-  page?: number;
-  pageCount?: number;
-  user_id?: string;
-  block?: boolean;
-}
-
-export type PackArgs = Pick<TGetPacksArg, 'packName' | 'user_id'> & {
-  min?: string;
-  max?: string;
-}
-
-export type TCreatePackArg = {
-  name: string;
-  deckCover?: string;
-  private?: boolean;
-}
-
-export type TUpdatePackArg = Pick<TCreatePackArg, 'name' | 'deckCover' | 'private'> & { _id: string }
-export type TDeletePackArg = { id: string }
-
-
-

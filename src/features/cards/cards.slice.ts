@@ -9,7 +9,6 @@ import {
   TUpdateCardArg
 } from 'features/cards/cardsApi'
 import { thunkTryCatch } from 'common/utils/thunk-try-catch'
-import { packsThunks } from 'features/pack/service/packs.slice'
 
 const slice = createSlice({
   name: 'cards',
@@ -35,11 +34,11 @@ const slice = createSlice({
         state.isMyCards = action.payload.isMyCards
         state.cardsParams = { ...state.cardsParams, ...action.payload.arg }
       })
-      .addCase(packsThunks.updatePack.fulfilled, (state, action) => {
+      /*.addCase(packsThunks.updatePack.fulfilled, (state, action) => {
         state.cards.packName = action.payload.updatedCardsPack.name
         state.cards.packDeckCover = action.payload.updatedCardsPack.deckCover
         state.cards.packPrivate = action.payload.updatedCardsPack.private
-      })
+      })*/
   }
 })
 

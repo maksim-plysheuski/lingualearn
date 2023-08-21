@@ -11,15 +11,13 @@ import { RemovePack } from './actionsButtons/removePack/RemovePack'
 import { LearnPack } from './actionsButtons/learnPack/LearnPack'
 import { toast } from 'react-toastify'
 import { selectUserId } from 'features/profile/selectors/selectors'
-import { useGetPacksQuery } from 'features/pack/service/packs.api'
-
+import { useGetPacks } from 'features/pack/hook/useGetPacks'
 
 export const PacksTableBody = () => {
   const dispatch = useAppDispatch()
   const navigate = useNavigate()
   const userId = useAppSelector(selectUserId)
-
-  const {data} = useGetPacksQuery({})
+  const {data} = useGetPacks()
 
   const openSelectedPack = (packId: string, packUserId: string, cardsCount: number) => {
     if (packUserId === userId || cardsCount) {

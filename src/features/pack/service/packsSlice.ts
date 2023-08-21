@@ -1,33 +1,26 @@
-import { createSlice, PayloadAction } from '@reduxjs/toolkit'
-import {
-  packApi,
-  TGetPacksArg, TPack,
-  TPacksResponse,
-  TUpdatePackArg
-} from 'features/pack/service/packApi'
+import { createSlice } from '@reduxjs/toolkit'
+import { packApi } from 'features/pack/service/packApi'
 import { createAppAsyncThunk } from 'common/utils/createAppAsyncThunk'
 import { thunkTryCatch } from 'common/utils/thunk-try-catch'
+import { FetchPacksArgType, TPacksResponse } from 'features/pack/service/packsTypes'
 
 
 const slice = createSlice({
   name: 'packs',
   initialState: {
     packs: {} as TPacksResponse,
-    packParams: {} as TGetPacksArg
   },
-  reducers: {
-    setPackParams: (state, action: PayloadAction<TGetPacksArg>) => {
-      state.packParams = { ...state.packParams, ...action.payload }
-    }
-  },
+  reducers: {},
+  extraReducers: builder => {
+
+  }
 })
 
-
-const getPacks = createAppAsyncThunk<{ packs: TPacksResponse, arg: TGetPacksArg }, TGetPacksArg>
+const getPacks = createAppAsyncThunk<{ packs: TPacksResponse, arg: FetchPacksArgType }, FetchPacksArgType>
 ('packs/getPacks', async (arg, thunkAPI) => {
   return thunkTryCatch(thunkAPI, async () => {
-    const params = thunkAPI.getState().packs.packParams
-    const res = await packApi.getPacks({ ...params, ...arg })
+    /*const params = thunkAPI.getState().packs.packParams*/
+    const res = await packApi.getPacks({ ...arg })
     return { packs: res.data, arg }
   })
 })
@@ -49,7 +42,7 @@ const getPacks = createAppAsyncThunk<{ packs: TPacksResponse, arg: TGetPacksArg 
   }, false)
 })*/
 
-const updatePack = createAppAsyncThunk<{ updatedCardsPack: TPack }, { newPack: TUpdatePackArg, needGetPacks: boolean }>
+/*const updatePack = createAppAsyncThunk<{ updatedCardsPack: TPack }, { newPack: TUpdatePackArg, needGetPacks: boolean }>
 ('packs/updatePack', (arg, thunkAPI) => {
   const { dispatch } = thunkAPI
   return thunkTryCatch(thunkAPI, async () => {
@@ -59,12 +52,12 @@ const updatePack = createAppAsyncThunk<{ updatedCardsPack: TPack }, { newPack: T
     }
     return res
   }, false)
-})
+})*/
 
 
 export const packsReducer = slice.reducer
 export const packAction = slice.actions
-export const packsThunks = { getPacks, updatePack }
+export const packsThunks = { getPacks }
 
 
 

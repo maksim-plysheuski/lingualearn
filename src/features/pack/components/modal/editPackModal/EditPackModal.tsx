@@ -2,16 +2,11 @@ import { BaseModal } from 'common/components'
 import { useAppSelector } from 'common/hooks'
 import React, { useState } from 'react'
 import DriveFileRenameOutlineIcon from '@mui/icons-material/DriveFileRenameOutline'
-import { TPack } from 'features/pack/service/packApi'
 import { toast } from 'react-toastify'
-import {
-  selectCardPackCover,
-  selectPackId,
-  selectPackName,
-  selectPrivatePack
-} from 'features/cards/selectors/selectors'
+import { selectCardPackCover, selectPackId, selectPackName, selectPrivatePack } from 'features/cards/selectors/selectors'
 import { PackBodyModal } from 'features/pack/components/modal/common/packBodyModal/PackBodyModal'
-import { useUpdatePackMutation } from 'features/pack/service/packs.api'
+import { useUpdatePackMutation } from 'features/pack/service/packsApi'
+import { TPack } from 'features/pack/service/packsTypes'
 
 type Props = {
   handleCloseMenu?: () => void
