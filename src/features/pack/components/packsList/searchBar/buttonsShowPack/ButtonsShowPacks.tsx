@@ -15,7 +15,7 @@ export const ButtonsShowPacks = memo(() => {
   const userId = useAppSelector(selectUserId)
   const isLoading = useAppSelector(selectIsAppLoading)
 
-  const getPackHandler = (user_id: string) => dispatch(setPackParams({user_id}))
+  const getPackHandler = (user_id: string) => dispatch(setPackParams({ user_id }))
 
   return (
     <div className={s.container}>

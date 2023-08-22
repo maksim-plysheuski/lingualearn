@@ -34,6 +34,7 @@ export const useSearchPacks = () => {
 // запись параметров в поисковую строку
   const [searchParams, setSearchParams] = useSearchParams()
   const params = Object.fromEntries(searchParams)
+
   useEffect(() => {
     const lastParams: PackArgs = {}
     if (userIdParams || userIdParams === '') lastParams.user_id = userIdParams

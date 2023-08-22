@@ -3,21 +3,16 @@ import s from './style.module.scss'
 import { PaginatorPacks } from './paginatorPacks/paginatorPacks'
 import { TitleBlockPacks } from 'common/components'
 import { PacksTable } from './packsTable/PacksTable'
-
+import { useGetPacks } from 'features/pack/hook/useGetPacks'
+import { SkeletonPacksList } from 'features/pack/components/packsList/skeletonPacksList/SkeletonPacksList'
 
 
 export const PacksList = () => {
-  /*
-  const { params, dispatch, packs } = useSearchPacks()
+  const { isLoading } = useGetPacks()
 
-useEffect(() => {
-   dispatch(packAction.setPackParams(params))
-   dispatch(packsThunks.getPacks({}))
- }, [])*/
-
-  /*if (!packs) {
+  if (isLoading) {
     return <SkeletonPacksList />
-  }*/
+  }
 
   return (
     <div className={s.packsList}>
