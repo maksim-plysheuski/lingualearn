@@ -45,7 +45,7 @@ const slice = createSlice({
 const fetchCards = createAppAsyncThunk<{ cards: TGetCardsResponse, arg: TGetCardsArgs, isMyCards: boolean }, TGetCardsArgs>
 ('cards/getCards', async (arg, { getState }) => {
   const params = getState().cards.cardsParams
-  const _id = getState().auth.profile._id
+  const _id = getState().profile.userProfileData._id
   const res = await cardsApi.getCards({ ...params, ...arg })
   const isMyCards = res.packUserId === _id
   return { cards: res, arg, isMyCards }

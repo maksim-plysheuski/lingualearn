@@ -2,34 +2,33 @@ import { useAppDispatch, useAppSelector } from 'common/hooks'
 import { useSearchParams } from 'react-router-dom'
 import { useCallback, useEffect, useState } from 'react'
 import { packsThunks } from 'features/pack/service/packsSlice'
-
 import {
   cardPacksTotalCountSelect,
-  maxCardsCountSelect,
-  maxSelect,
-  minCardsCountSelect,
-  minSelect,
-  namePackParamsSelect,
-  cardPacksSelect,
+  SelectMaxCardsCount,
+  SelectMaxPacksParam,
+  SelectMinCardsCount,
+  SelectMinPacksParam,
+  selectPackNameParam,
+  SelectCardPacks,
   pageCountSelect,
   pageSelect,
-  paramsCardIdSelect
+  selectUserIdParam
 } from 'features/pack/selectors'
 import { useSelector } from 'react-redux'
 import { useDebounce } from 'common/hooks/useDebounce'
-import { profileIdSelect } from 'features/auth/selectors'
 import { PackArgs } from 'features/pack/service/packsTypes'
+import { selectUserId } from 'features/profile/selectors/selectors'
 
 export const useSearchPacks = () => {
   const dispatch = useAppDispatch()
-  const userId = useAppSelector(profileIdSelect)
-  const packName = useSelector(namePackParamsSelect)
-  const paramsCardId = useSelector(paramsCardIdSelect)
-  const minCardsCount = useSelector(minCardsCountSelect)
-  const maxCardsCount = useSelector(maxCardsCountSelect)
-  const min = useSelector(minSelect)
-  const max = useSelector(maxSelect)
-  const packs = useSelector(cardPacksSelect)
+  const userId = useAppSelector(selectUserId)
+  const packName = useSelector(selectPackNameParam)
+  const userIdParams = useSelector(selectUserIdParam)
+  const minCardsCount = useSelector(SelectMinCardsCount)
+  const maxCardsCount = useSelector(SelectMaxCardsCount)
+  const min = useSelector(SelectMinPacksParam)
+  const max = useSelector(SelectMaxPacksParam)
+  const packs = useSelector(SelectCardPacks)
 
 
 // запись параметров в поисковую строку
@@ -37,12 +36,12 @@ export const useSearchPacks = () => {
   const params = Object.fromEntries(searchParams)
   useEffect(() => {
     const lastParams: PackArgs = {}
-    if (paramsCardId || paramsCardId === '') lastParams.user_id = paramsCardId
+    if (userIdParams || userIdParams === '') lastParams.user_id = userIdParams
     if (packName || packName === '') lastParams.packName = packName
     if (min || min === 0) lastParams.min = min.toString()
     if (max || max === 0) lastParams.max = max.toString()
     setSearchParams({ ...lastParams })
-  }, [paramsCardId, packName, min, max])
+  }, [userIdParams, packName, min, max])
 
 //поиск по имени
   const [name, setName] = useState<string>()
@@ -58,11 +57,6 @@ export const useSearchPacks = () => {
     setName(packName)
   }, [])
 
-  //чьи карточки
-  const setMyAllCards = useCallback((user_id: string) => {
-    /*dispatch(packAction.setPackParams({ user_id }))*/
-    dispatch(packsThunks.getPacks({ user_id }))
-  }, [])
 
   //количество карточек
   const setMinMaxCards = useCallback((minMax: number[]) => {
@@ -102,8 +96,7 @@ export const useSearchPacks = () => {
     minCardsCount,
     setMinMaxCards,
     userId,
-    paramsCardId,
-    setMyAllCards,
+    paramsCardId: userIdParams,
     params,
     setPackName,
     packName,

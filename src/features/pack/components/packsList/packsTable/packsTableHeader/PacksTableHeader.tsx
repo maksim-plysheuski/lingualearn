@@ -3,7 +3,7 @@ import * as React from 'react'
 import { useState } from 'react'
 import { useAppDispatch, useAppSelector } from 'common/hooks'
 import { tableCellSx, tableHeaderSx } from 'features/pack/components/packsList/packsTable/tableStyles'
-import { packParamsActions } from 'features/pack/service/packsParams.slice'
+import { setPackParams } from 'features/pack/service/packsParams.slice'
 
 export const PacksTableHeader = () => {
   const dispatch = useAppDispatch()
@@ -25,19 +25,15 @@ export const PacksTableHeader = () => {
         sortArgTitle = 'name'
         break
     }
-
-
     const payload = {
       sortPacks: sortOrder === 'asc'
         ? `0${sortArgTitle}`
         : `1${sortArgTitle}`,
       pageCount: currentRowsCount
     }
-
-    dispatch(packParamsActions.setPackParams(payload))
+    dispatch(setPackParams(payload))
     setSortOrder(sortOrder === 'desc' ? 'asc' : 'desc')
     setLastSortedCell(sortTitle)
-
   }
 
   return (

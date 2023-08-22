@@ -9,14 +9,12 @@ const slice = createSlice({
   name: 'auth',
   initialState: {
     isLoggedIn: false as boolean,
-    profile: {} as TProfile
   },
   reducers: {},
   extraReducers: builder => {
     builder
       .addCase(authMe.fulfilled, (state, action) => {
         state.isLoggedIn = action.payload.isLoggedIn
-        state.profile = action.payload.profile
       })
       .addCase(login.fulfilled, (state, action) => {
         state.isLoggedIn = action.payload.isLoggedIn

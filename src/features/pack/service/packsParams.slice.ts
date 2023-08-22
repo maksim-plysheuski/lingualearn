@@ -15,4 +15,4 @@ const slice = createSlice({
 })
 
 export const packsParamsReducer = slice.reducer
-export const packParamsActions = slice.actions
+export const setPackParams = slice.actions.setPackParams

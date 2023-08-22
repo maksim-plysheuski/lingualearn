@@ -8,16 +8,16 @@ import { authThunks } from 'features/auth'
 const slice = createSlice({
   name: 'profile',
   initialState: {
-    profile: null as TProfile | null
+    userProfileData: {} as TProfile
   },
   reducers: {},
   extraReducers: builder => {
     builder
       .addCase(authThunks.authMe.fulfilled, (state, action) => {
-        state.profile = action.payload.profile
+        state.userProfileData = action.payload.profile
       })
       .addCase(profileThunks.changeUserProfile.fulfilled, (state, action) => {
-        state.profile = action.payload.updatedUser
+        state.userProfileData = action.payload.updatedUser
       })
   }
 })
