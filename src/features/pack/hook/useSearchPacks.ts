@@ -64,15 +64,7 @@ export const useSearchPacks = () => {
   /*  dispatch(packAction.setPackParams({ min: minMax[0], max: minMax[1] }))*/
   }, [])
 
-  //сброс поисковых настроек
-  const resetSearchParams = () => {
-    dispatch(packsThunks.getPacks({
-      packName: undefined,
-      user_id: '',
-      min: undefined,
-      max: undefined
-    }))
-  }
+
   //для пагинации
   const pageSize = useSelector(pageCountSelect)
   //количество страниц
@@ -90,7 +82,6 @@ export const useSearchPacks = () => {
     pageSize,
     page,
     packs,
-    resetSearchParams,
     max,
     min,
     maxCardsCount,

@@ -10,9 +10,9 @@ const slice = createSlice({
   reducers: {
     setPackParams: (state, action: PayloadAction<FetchPacksArgType>) => {
       state.packParams = { ...state.packParams, ...action.payload }
-    }
+    },
   }
 })
 
 export const packsParamsReducer = slice.reducer
-export const setPackParams = slice.actions.setPackParams
+export const { setPackParams } = slice.actions

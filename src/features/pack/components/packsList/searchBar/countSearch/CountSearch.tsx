@@ -1,4 +1,4 @@
-import { memo, useState } from 'react'
+import { memo, useEffect, useState } from 'react'
 import Slider from '@mui/material/Slider'
 import s from './style.module.scss'
 import { sliderStyle } from 'features/pack/components/packsList/searchBar/countSearch/style'
@@ -9,11 +9,16 @@ import { setPackParams } from 'features/pack/service/packsParams.slice'
 
 export const CountSearch = memo(() => {
   const dispatch = useAppDispatch()
+  const { data } = useGetPacks()
   const minParam = useAppSelector(SelectMinPacksParam)
   const maxParam = useAppSelector(SelectMaxPacksParam)
-  const { data } = useGetPacks()
+  const [value, setValue] = useState<number[]>([data!.minCardsCount, data!.maxCardsCount])
 
-  const [value, setValue] = useState<number[]>([minParam ? minParam : data!.minCardsCount, maxParam ? maxParam : data!.maxCardsCount])
+  useEffect(() => {
+    if (!minParam && !maxParam) {
+      setValue([data!.minCardsCount!, data!.maxCardsCount!])
+    }
+  }, [minParam, maxParam])
 
   const handleChange = (event: Event, newValue: number | number[]) => setValue(newValue as number [])
 
@@ -31,8 +36,7 @@ export const CountSearch = memo(() => {
                   valueLabelDisplay='auto'
                   value={value}
                   onChange={handleChange}
-                  onChangeCommitted={onChangeCommittedHandler}
-          />
+                  onChangeCommitted={onChangeCommittedHandler} />
         </div>
         <div className={s.count}>{data?.maxCardsCount}</div>
       </div>

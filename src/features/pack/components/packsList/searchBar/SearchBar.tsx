@@ -3,13 +3,17 @@ import { ButtonsShowPacks } from 'features/pack/components/packsList/searchBar/b
 import { CountSearch } from 'features/pack/components/packsList/searchBar/countSearch/CountSearch'
 import s from './style.module.scss'
 import { NameSearch } from 'features/pack/components/packsList/searchBar/nameSearch/NameSearch'
-import { useSearchPacks } from 'features/pack/hook/useSearchPacks'
 import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline'
 import { SuperButton } from 'common/components'
+import { useAppDispatch } from 'common/hooks'
+import { setPackParams } from 'features/pack/service/packsParams.slice'
 
 
 export const SearchBar = () => {
-  const { resetSearchParams } = useSearchPacks()
+  const dispatch = useAppDispatch()
+  const resetParams = { max: 0, min: 0, packName: '', sortPacks: '', user_id: '' }
+  const clearSearchFilter = () => dispatch(setPackParams(resetParams))
+
   return (
     <div className={s.container}>
       <NameSearch />
@@ -18,7 +22,7 @@ export const SearchBar = () => {
       <SuperButton title={'Clear Filter'}
                    width={'144'}
                    isGrayColor={true}
-                   onClick={resetSearchParams}
+                   onClick={clearSearchFilter}
                    icon={<DeleteOutlineIcon />} />
     </div>
   )
