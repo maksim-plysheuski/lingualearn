@@ -54,7 +54,6 @@ export const useSearchPacks = () => {
   }, [debounceName])
 
   const setPackName = useCallback((packName: string) => {
-    /*dispatch(packAction.setPackParams({ packName }))*/
     setName(packName)
   }, [])
 
