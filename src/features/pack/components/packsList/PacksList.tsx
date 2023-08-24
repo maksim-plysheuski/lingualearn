@@ -10,9 +10,7 @@ import { SkeletonPacksList } from 'features/pack/components/packsList/skeletonPa
 export const PacksList = () => {
   const { isLoading } = useGetPacks()
 
-  if (isLoading) {
-    return <SkeletonPacksList />
-  }
+  if (isLoading) return <SkeletonPacksList />
 
   return (
     <div className={s.packsList}>

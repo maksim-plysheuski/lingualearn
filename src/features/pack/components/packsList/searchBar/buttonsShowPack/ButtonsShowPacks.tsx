@@ -3,28 +3,19 @@ import ToggleButtonGroup from '@mui/material/ToggleButtonGroup/ToggleButtonGroup
 import { buttonStyle } from './style'
 import s from './style.module.scss'
 import { memo } from 'react'
-import { useAppDispatch, useAppSelector } from 'common/hooks'
-import { selectIsAppLoading } from 'app'
-import { selectUserId } from 'features/profile/selectors/selectors'
-import { setPackParams } from 'features/pack/service/packsParams.slice'
-import { selectUserIdParam } from 'features/pack/selectors'
+import { useSortPacks } from 'features/pack/hook/useSortPacks'
 
 export const ButtonsShowPacks = memo(() => {
-  const dispatch = useAppDispatch()
-  const userIdParam = useAppSelector(selectUserIdParam)
-  const userId = useAppSelector(selectUserId)
-  const isLoading = useAppSelector(selectIsAppLoading)
-
-  const getPackHandler = (user_id: string) => dispatch(setPackParams({ user_id }))
+  const {userId, userIdParam, getPacksHandler, isAppLoading} = useSortPacks()
 
   return (
     <div className={s.container}>
       <span>Show packs cards</span>
-      <ToggleButtonGroup id={'IdButtonGroup'} exclusive value={userIdParam ? userIdParam : ''} disabled={isLoading}>
-        <ToggleButton value={userId} sx={buttonStyle} onClick={() => getPackHandler(userId)}>
+      <ToggleButtonGroup id={'IdButtonGroup'} exclusive value={userIdParam ? userIdParam : ''} disabled={isAppLoading}>
+        <ToggleButton value={userId} sx={buttonStyle} onClick={() => getPacksHandler(userId)}>
           My
         </ToggleButton>
-        <ToggleButton value={''} sx={buttonStyle} onClick={() => getPackHandler('')}>
+        <ToggleButton value={''} sx={buttonStyle} onClick={() => getPacksHandler('')}>
           All
         </ToggleButton>
       </ToggleButtonGroup>

@@ -13,14 +13,9 @@ type Props = {
 
 export const Paginator = (props: Props) => {
   const { pageCount, totalCount, page, getNewPage } = props
-  const paginationHandler = (event: ChangeEvent<unknown>, page: number) => {
-    getNewPage(page, pageCount)
-  }
 
-  const selectHandler = (event: SelectChangeEvent) => {
-    const size = +event.target.value
-    getNewPage(page, size)
-  }
+  const paginationHandler = (event: ChangeEvent<unknown>, page: number) => getNewPage(page, pageCount)
+  const selectHandler = (event: SelectChangeEvent) => getNewPage(page, +event.target.value)
 
   return (
     <div className={s.container}>

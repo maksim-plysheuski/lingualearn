@@ -1,59 +1,73 @@
 import { useAppDispatch, useAppSelector } from 'common/hooks'
 import { useCallback, useEffect, useState } from 'react'
-import { packsThunks } from 'features/pack/service/packsSlice'
 import {
-  cardPacksTotalCountSelect,
-  pageCountSelect,
-  pageSelect, SelectMaxPacksParam, SelectMinPacksParam, selectPackNameParam
+  SelectMaxPacksParam,
+  SelectMinPacksParam,
+  selectPackNameParam,
+  selectUserIdParam
 } from 'features/pack/selectors'
-import { useSelector } from 'react-redux'
 import { useDebounce } from 'common/hooks/useDebounce'
 import { setPackParams } from 'features/pack/service/packsParams.slice'
 import { useGetPacks } from 'features/pack/hook/useGetPacks'
+import { selectUserId } from 'features/profile/selectors/selectors'
+import { selectIsAppLoading } from 'app'
 
 export const useSortPacks = () => {
   const dispatch = useAppDispatch()
   const minParam = useAppSelector(SelectMinPacksParam)
   const maxParam = useAppSelector(SelectMaxPacksParam)
   const packNameParam = useAppSelector(selectPackNameParam)
-  const { data: packs } = useGetPacks()
-  const [searchPackName, setSearchPackName] = useState<string>("")
-  const [sliderValue, setSliderValue] = useState<number[]>([packs!.minCardsCount, packs!.maxCardsCount])
 
-//sort packs by name
-  const debounceName = useDebounce(searchPackName)
+  /**
+   * Sort packs by inputted name / send request with delay using useDebounce hook
+   */
+  const [searchPackName, setSearchPackName] = useState<string>('')
+  const debounceName = useDebounce(searchPackName, 800)
   useEffect(() => {
     if (debounceName === undefined) return
-    dispatch(setPackParams({packName: debounceName}))
+    dispatch(setPackParams({ packName: debounceName }))
   }, [debounceName])
 
 
-  //sort packs by cards count
+  /**
+   * Sort packs by count of cards
+   */
+  const { data: packs } = useGetPacks()
+  const [sliderValue, setSliderValue] = useState<number[]>([packs!.minCardsCount, packs!.maxCardsCount])
+
   useEffect(() => {
     if (!minParam && !maxParam) {
       setSliderValue([packs!.minCardsCount!, packs!.maxCardsCount!])
     }
   }, [minParam, maxParam])
 
-
   const onChangeCommittedHandler = useCallback(() => {
     dispatch(setPackParams({ min: sliderValue[0], max: sliderValue[1] }))
   }, [sliderValue])
 
 
-  //для пагинации
-  const pageSize = useSelector(pageCountSelect)
-  //количество страниц
-  const cardPacksTotalCount = useSelector(cardPacksTotalCountSelect)
-  //текущая страница
-  const page = useSelector(pageSelect)
+  /**
+   * Toggle buttons show all or my packs
+   */
+  const userIdParam = useAppSelector(selectUserIdParam)
+  const userId = useAppSelector(selectUserId)
+  const isAppLoading = useAppSelector(selectIsAppLoading)
 
-  const getNewPage = (page: number, size: number) => {
-    dispatch(packsThunks.getPacks({ page, pageCount: size }))
-  }
+  const getPacksHandler = (user_id: string) => dispatch(setPackParams({ user_id }))
+
+
+  /**
+   * Pagination
+   */
+  const getNewPage = (page: number, size: number) => dispatch(setPackParams({ page, pageCount: size }))
+
 
   return {
     getNewPage,
+    userId,
+    getPacksHandler,
+    isAppLoading,
+    userIdParam,
     dispatch,
     packNameParam,
     onChangeCommittedHandler,
@@ -61,10 +75,7 @@ export const useSortPacks = () => {
     setSliderValue,
     sliderValue,
     packs,
-    cardPacksTotalCount,
-    pageSize,
-    page,
-    setSearchPackName,
+    setSearchPackName
   }
 }
 

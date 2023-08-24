@@ -3,14 +3,11 @@ import { useSortPacks } from 'features/pack/hook/useSortPacks'
 import { Paginator } from 'common/components'
 
 export const PaginatorPacks = () => {
-  const { pageSize, page, cardPacksTotalCount, getNewPage } = useSortPacks()
+  const { getNewPage, packs } = useSortPacks()
 
-  return (
-    <Paginator pageCount={pageSize}
-               page={page}
-               totalCount={cardPacksTotalCount}
-               getNewPage={getNewPage}
-    />
-  )
+  return <Paginator pageCount={packs?.pageCount!}
+                    page={packs?.page!}
+                    totalCount={packs?.cardPacksTotalCount!}
+                    getNewPage={getNewPage} />
 }
 

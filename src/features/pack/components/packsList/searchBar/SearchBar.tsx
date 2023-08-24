@@ -1,8 +1,8 @@
 import React from 'react'
-import { ButtonsShowPacks } from 'features/pack/components/packsList/searchBar/buttonsShowPack/ButtonsShowPacks'
-import { CountSearch } from 'features/pack/components/packsList/searchBar/countSearch/CountSearch'
+import { ButtonsShowPacks } from './buttonsShowPack/ButtonsShowPacks'
+import { CountSearch } from './countSearch/CountSearch'
 import s from './style.module.scss'
-import { NameSearch } from 'features/pack/components/packsList/searchBar/nameSearch/NameSearch'
+import { NameSearch } from './nameSearch/NameSearch'
 import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline'
 import { SuperButton } from 'common/components'
 import { useAppDispatch } from 'common/hooks'
@@ -11,8 +11,8 @@ import { setPackParams } from 'features/pack/service/packsParams.slice'
 
 export const SearchBar = () => {
   const dispatch = useAppDispatch()
-  const resetParams = { max: 0, min: 0, packName: '', sortPacks: '', user_id: '' }
-  const clearSearchFilter = () => dispatch(setPackParams(resetParams))
+  const params = { max: 0, min: 0, packName: '', sortPacks: '', user_id: '' }
+  const clearSearchFilter = () => dispatch(setPackParams(params))
 
   return (
     <div className={s.container}>
