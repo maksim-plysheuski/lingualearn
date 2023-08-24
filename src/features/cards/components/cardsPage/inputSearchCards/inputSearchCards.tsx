@@ -8,7 +8,7 @@ export const InputSearchCards = () => {
 
   return (
     <div className={s.inputContainer}>
-      <InputSearch valueName={cardQuestion} searchCallback={fetchCardsName} />
+      <InputSearch valueName={cardQuestion} searchNameCallback={fetchCardsName} />
     </div>
   )
 }

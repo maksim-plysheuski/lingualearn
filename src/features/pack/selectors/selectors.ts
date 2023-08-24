@@ -1,6 +1,6 @@
 import { RootState } from 'app/store'
 
-//params
+//packs params
 export const selectPackNameParam = (state: RootState) => state.packsParams.packParams.packName
 export const selectUserIdParam = (state: RootState) => state.packsParams.packParams.user_id
 export const SelectMinPacksParam = (state: RootState) => state.packsParams.packParams.min

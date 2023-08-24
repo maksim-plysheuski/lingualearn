@@ -1,34 +1,25 @@
-import React, { useCallback, useEffect, useState } from 'react'
+import React, { useCallback, useEffect } from 'react'
 import { InputSearch } from 'common/components'
 import s from './style.module.scss'
-import { useDebounce } from 'common/hooks/useDebounce'
-import { useAppDispatch, useAppSelector } from 'common/hooks'
-import { setPackParams } from 'features/pack/service/packsParams.slice'
-import { selectPackNameParam } from 'features/pack/selectors'
+import { useSortPacks } from 'features/pack/hook/useSortPacks'
 
 export const NameSearch = () => {
-  const dispatch = useAppDispatch()
-  const searchPackName = useAppSelector(selectPackNameParam)
-
-  const [name, setName] = useState<string>()
-  const debounceName = useDebounce(name)
+  const { searchPackName, setSearchPackName, packNameParam } = useSortPacks()
 
   useEffect(() => {
-    if (debounceName === undefined) return
-    dispatch(setPackParams({packName: debounceName}))
-  }, [debounceName])
-
+    if (!packNameParam && searchPackName) {
+      setSearchPackName('')
+    }
+  }, [packNameParam])
 
   const setParamsHandler = useCallback((packName: string) => {
-    setName(packName)
-  }, [searchPackName])
-
+    setSearchPackName(packName)
+  }, [packNameParam])
 
   return (
-    <div className={s.container} >
-      <InputSearch searchCallback={setParamsHandler}
-                   valueName={searchPackName}
-      />
+    <div className={s.container}>
+      <InputSearch searchNameCallback={setParamsHandler}
+                   valueName={searchPackName} />
     </div>
 
   )

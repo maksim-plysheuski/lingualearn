@@ -1,9 +1,9 @@
 import React from 'react'
-import { useSearchPacks } from 'features/pack/hook/useSearchPacks'
+import { useSortPacks } from 'features/pack/hook/useSortPacks'
 import { Paginator } from 'common/components'
 
 export const PaginatorPacks = () => {
-  const { pageSize, page, cardPacksTotalCount, getNewPage } = useSearchPacks()
+  const { pageSize, page, cardPacksTotalCount, getNewPage } = useSortPacks()
 
   return (
     <Paginator pageCount={pageSize}
