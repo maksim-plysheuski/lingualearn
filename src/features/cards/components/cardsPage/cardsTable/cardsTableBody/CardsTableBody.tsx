@@ -1,21 +1,33 @@
 import { TableBody, TableCell, TableRow } from '@mui/material'
-import { useAppSelector } from 'common/hooks'
-import { selectCards, selectIsMyCard } from 'features/cards/selectors'
-import React from 'react'
+import { selectIsMyCard } from 'features/cards/selectors'
+import React, { useEffect } from 'react'
 import Rating from '@mui/material/Rating'
 import StarBorderIcon from '@mui/icons-material/StarBorder'
 import { FieldButtons } from './fieldButtons/FieldButtons'
 import { useSelector } from 'react-redux'
 import { tableCellHoverSx, tableCellSx } from 'features/pack/components/packsList/packsTable/tableStyles'
+import { useGetCards } from 'features/cards/hooks/useGetCards'
+import { useParams } from 'react-router-dom'
+import { setCardsParams } from 'features/cards/service/cards.params.slice'
+import { useAppDispatch } from 'common/hooks'
 
 
 export const CardsTableBody = () => {
-  const cards = useAppSelector(selectCards)
+  const dispatch = useAppDispatch()
   const isMyCard = useSelector(selectIsMyCard)
+  const { data } = useGetCards()
+  const { cardsPack_id } = useParams<{ cardsPack_id: string }>()
+
+  useEffect(() => {
+    if (cardsPack_id) {
+      dispatch(setCardsParams({ cardsPack_id }))
+    }
+  }, [])
+
 
   return (
     <TableBody>
-      {cards?.map((card) => {
+      {data?.cards.map((card) => {
         const dataUpdate = card.updated.slice(0, 10).split('-').reverse().join('.')
         return (
           <TableRow key={card._id}>

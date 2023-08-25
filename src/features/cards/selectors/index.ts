@@ -7,7 +7,8 @@ export {
   selectCardsTotalCount,
   selectPage,
   selectPageCount,
-  selectCards
+  selectCards,
+  selectCardsParams
 } from 'features/cards/selectors/selectors'
 
 

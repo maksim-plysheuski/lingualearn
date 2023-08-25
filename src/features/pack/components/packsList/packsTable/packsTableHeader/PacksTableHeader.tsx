@@ -3,11 +3,12 @@ import * as React from 'react'
 import { useState } from 'react'
 import { useAppDispatch, useAppSelector } from 'common/hooks'
 import { tableCellSx, tableHeaderSx } from 'features/pack/components/packsList/packsTable/tableStyles'
-import { setPackParams } from 'features/pack/service/packsParams.slice'
+import { setPackParams } from 'features/pack/service/packs.params.slice'
+import { SelectPageCountPacksParam } from 'features/pack/selectors'
 
 export const PacksTableHeader = () => {
   const dispatch = useAppDispatch()
-  const currentRowsCount = useAppSelector(state => state.packs.packs.pageCount)
+  const currentRowsCount = useAppSelector(SelectPageCountPacksParam)
   const [sortOrder, setSortOrder] = useState<'asc' | 'desc'>('asc')
   const [lastSortedCell, setLastSortedCell] = useState<string>('Last Updated')
   const columnTitles: string[] = ['Cover', 'Name', 'Cards', 'Last Updated', 'Created by', 'Actions']
@@ -29,7 +30,7 @@ export const PacksTableHeader = () => {
       sortPacks: sortOrder === 'asc'
         ? `0${sortArgTitle}`
         : `1${sortArgTitle}`,
-      pageCount: currentRowsCount
+      pageCount: currentRowsCount ? currentRowsCount : 4
     }
     dispatch(setPackParams(payload))
     setSortOrder(sortOrder === 'desc' ? 'asc' : 'desc')

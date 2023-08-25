@@ -35,7 +35,7 @@ export const LearnPage = () => {
       return
     }
     if (id) {
-      dispatch(cardsThunks.fetchCards({ cardsPack_id: id })).unwrap().then(res => setCard(getCard(res.cards.cards)))
+     /* dispatch(cardsThunks.fetchCards({ cardsPack_id: id })).unwrap().then(res => setCard(getCard(res.cards.cards)))*/
     }
     return () => {
       dispatch(cardsAction.resetCards())

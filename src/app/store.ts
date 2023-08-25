@@ -1,29 +1,29 @@
 import { configureStore, ThunkAction, Action } from '@reduxjs/toolkit'
+import { authReducer } from 'features/auth'
 import { appReducer } from 'app/components/app.slice'
-import { profileReducer } from 'features/profile/profile.slice'
-import { packsReducer } from 'features/pack/service/packsSlice'
-import { cardsReducer } from 'features/cards/cards.slice'
-import {authReducer} from "features/auth";
-import { cardsApi } from 'features/cards/service/cards.api'
 import { setupListeners } from '@reduxjs/toolkit/query'
-import { packsApi } from 'features/pack/service/packsApi'
-import { packsParamsReducer } from 'features/pack/service/packsParams.slice'
+import { cardsReducer } from 'features/cards/cards.slice'
+import { cardsParamsReducer } from 'features/cards/service/cards.params.slice'
+import { packsParamsReducer } from 'features/pack/service/packs.params.slice'
+import { packsApi } from 'features/pack/service'
+import { cardsApi } from 'features/cards/service/cards.api'
+import { profileReducer } from 'features/profile/profile.slice'
+
 
 export const store = configureStore({
   reducer: {
     app: appReducer,
     auth: authReducer,
     profile: profileReducer,
-    packs: packsReducer,
     cards: cardsReducer,
     packsParams: packsParamsReducer,
+    cardsParams: cardsParamsReducer,
     [cardsApi.reducerPath]: cardsApi.reducer,
     [packsApi.reducerPath]: packsApi.reducer
   },
   middleware: getDefaultMiddleware => getDefaultMiddleware()
     .concat(cardsApi.middleware)
     .concat(packsApi.middleware)
-  ,
 })
 
 setupListeners(store.dispatch)

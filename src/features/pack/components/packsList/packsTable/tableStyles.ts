@@ -15,10 +15,10 @@ export const tableSx: SxProps<Theme> = {
 
 export const tableCellSx: SxProps<Theme> = {
   wordWrap: 'break-word',
-  maxWidth: '250px',
+  maxWidth: '200px',
   color: 'white',
   borderBottom: '1px solid #333333',
-  padding: '6px 24px 6px 24px',
+  padding: '5px 5px 5px 35px',
   height: '55px'
 }
 

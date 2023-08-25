@@ -1,6 +1,6 @@
 import { useAppDispatch, useAppSelector } from 'common/hooks'
 import { useEffect } from 'react'
-import { useSearchParams } from 'react-router-dom'
+import { useParams, useSearchParams } from 'react-router-dom'
 import { cardsThunks } from 'features/cards/cards.slice'
 import {
   selectCardQuestion,
@@ -10,9 +10,10 @@ import {
   selectPage,
   selectPageCount
 } from 'features/cards/selectors'
+import { setCardsParams } from 'features/cards/service/cards.params.slice'
 
 type TSearch = {
-  cardsPack_id?: string
+  id?: string
   cardQuestion?: string
 }
 
@@ -22,30 +23,36 @@ export const useSearchCards = () => {
   const cardsTotalCount = useAppSelector(selectCardsTotalCount)
   const pageCount = useAppSelector(selectPageCount)
   const cards = useAppSelector(selectCards)
-  const cardsPack_id = useAppSelector(selectPackId)
+  /*const cardsPack_id = useAppSelector(selectPackId)*/
   const cardQuestion = useAppSelector(selectCardQuestion)
 
   const [searchParams, setSearchParams] = useSearchParams()
   const params = Object.fromEntries(searchParams)
 
-  useEffect(() => {
+
+  const { cardsPack_id } = useParams<{ cardsPack_id: string }>()
+
+
+
+
+  /*useEffect(() => {
     const lastParams: TSearch = {}
-    if (cardsPack_id) lastParams.cardsPack_id = cardsPack_id
+    if (cardsPack_id) lastParams.id = cardsPack_id
     if (cardQuestion) lastParams.cardQuestion = cardQuestion
     setSearchParams({ ...lastParams })
-  }, [cardsPack_id, cardQuestion])
+  }, [cardsPack_id, cardQuestion])*/
 
   //searchName
   const fetchCardsName = (cardQuestion: string) => {
-      dispatch(cardsThunks.fetchCards({ cardsPack_id, cardQuestion }))
+    /*  dispatch(cardsThunks.fetchCards({ cardsPack_id, cardQuestion }))*/
   }
   //fetchPageNewCards
   const fetchPageNewCards = (page: number, pageCount: number) => {
-    dispatch(cardsThunks.fetchCards({ cardsPack_id, page, pageCount }))
+    /* dispatch(cardsThunks.fetchCards({ cardsPack_id, page, pageCount }))*/
   }
   //fetchSortCard
   const fetchSortCard = (sortCards: string) => {
-    dispatch(cardsThunks.fetchCards({ cardsPack_id, sortCards }))
+    /*dispatch(cardsThunks.fetchCards({ cardsPack_id, sortCards }))*/
   }
 
   return {

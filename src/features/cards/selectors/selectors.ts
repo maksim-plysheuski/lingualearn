@@ -12,3 +12,4 @@ export const selectCardQuestion = (state: RootState) => state.cards.cardsParams.
 export const selectCardPackCover = (state: RootState) => state.cards.cards.packDeckCover
 export const selectPackCreated = (state: RootState) => state.cards.cards.packCreated
 export const selectIsMyCard = (state: RootState) => state.cards.isMyCards
+export const selectCardsParams = (state: RootState) => state.cardsParams.cardsParams

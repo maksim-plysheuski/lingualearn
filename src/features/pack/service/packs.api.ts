@@ -1,12 +1,12 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
 import { baseURL } from 'common/api/common.api'
-import { TCreatePackArg, FetchPacksArgType, TPack, TPacksResponse, TUpdatePackArg } from 'features/pack/service/packsTypes'
+import { TCreatePackArg, FetchPacksArgType, TPack, TPacksResponse, TUpdatePackArg } from 'features/pack/service/packs.types'
 
 
 export const packsApi = createApi({
   reducerPath: 'packsApi',
   baseQuery: fetchBaseQuery({ baseUrl: baseURL, credentials: 'include' }),
-  tagTypes: ['fetchCards'],
+  tagTypes: ['Packs'],
   endpoints: (build) => {
     return {
       getPacks: build.query<TPacksResponse, FetchPacksArgType>({
@@ -17,7 +17,7 @@ export const packsApi = createApi({
             params: args
           }
         },
-        providesTags: ['fetchCards'],
+        providesTags: ['Packs'],
         
       }),
       createPack: build.mutation<{ newCardsPack: TPack }, TCreatePackArg>({
@@ -30,7 +30,7 @@ export const packsApi = createApi({
             }
           }
         },
-        invalidatesTags: ['fetchCards']
+        invalidatesTags: ['Packs']
       }),
       updatePack: build.mutation<{ newCardsPack: TPack }, TUpdatePackArg>({
         query: (cardsPack) => {
@@ -42,7 +42,7 @@ export const packsApi = createApi({
             }
           }
         },
-        invalidatesTags: ['fetchCards']
+        invalidatesTags: ['Packs']
       }),
       deletePack: build.mutation<{ deletedCardsPack: TPack }, string>({
         query: (packId) => {
@@ -54,10 +54,10 @@ export const packsApi = createApi({
             }
           }
         },
-        invalidatesTags: ['fetchCards']
+        invalidatesTags: ['Packs']
       })
     }
   }
 })
 
-export const { useGetPacksQuery, useCreatePackMutation, useUpdatePackMutation, useDeletePackMutation , useLazyGetPacksQuery} = packsApi
+export const { useGetPacksQuery, useCreatePackMutation, useUpdatePackMutation, useDeletePackMutation } = packsApi

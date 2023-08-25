@@ -5,7 +5,7 @@ import { toast } from 'react-toastify'
 import { PackBodyModal } from 'features/pack/components/modal/common/packBodyModal/PackBodyModal'
 import { selectIsAppLoading } from 'app'
 import { SuperButton } from 'common/components'
-import { useCreatePackMutation } from 'features/pack/service/packsApi'
+import { useCreatePackMutation } from 'features/pack/service/packs.api'
 
 
 export const AddPackModal = () => {

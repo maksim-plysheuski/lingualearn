@@ -28,12 +28,12 @@ const slice = createSlice({
     }
   },
   extraReducers: builder => {
-    builder
-      .addCase(fetchCards.fulfilled, (state, action) => {
+
+      /*.addCase(fetchCards.fulfilled, (state, action) => {
         state.cards = action.payload.cards
         state.isMyCards = action.payload.isMyCards
         state.cardsParams = { ...state.cardsParams, ...action.payload.arg }
-      })
+      })*/
       /*.addCase(packsThunks.updatePack.fulfilled, (state, action) => {
         state.cards.packName = action.payload.updatedCardsPack.name
         state.cards.packDeckCover = action.payload.updatedCardsPack.deckCover
@@ -42,21 +42,20 @@ const slice = createSlice({
   }
 })
 
-const fetchCards = createAppAsyncThunk<{ cards: TGetCardsResponse, arg: TGetCardsArgs, isMyCards: boolean }, TGetCardsArgs>
+/*const fetchCards = createAppAsyncThunk<{ cards: TGetCardsResponse, arg: TGetCardsArgs, isMyCards: boolean }, TGetCardsArgs>
 ('cards/getCards', async (arg, { getState }) => {
   const params = getState().cards.cardsParams
   const _id = getState().profile.userProfileData._id
   const res = await cardsApi.getCards({ ...params, ...arg })
   const isMyCards = res.packUserId === _id
   return { cards: res, arg, isMyCards }
-})
+})*/
 
 const deleteCard = createAppAsyncThunk<{ deletedCard: TCard }, TDeleteCardArg>
 ('cards/removeCard', (arg, thunkAPI) => {
   return thunkTryCatch(thunkAPI, async () => {
     const cardsPack_id = thunkAPI.getState().cards.cardsParams.cardsPack_id
     const res = await cardsApi.deleteCard({ id: arg.id })
-    await thunkAPI.dispatch(cardsThunks.fetchCards({ cardsPack_id }))
     return res
   }, false)
 })
@@ -66,7 +65,7 @@ const updateCard = createAppAsyncThunk<{ updatedCard: TCard }, TUpdateCardArg>
   const cardsPack_id = thunkAPI.getState().cards.cardsParams.cardsPack_id
   return thunkTryCatch(thunkAPI, async () => {
     const res = await cardsApi.updateCard(arg)
-    await thunkAPI.dispatch(cardsThunks.fetchCards({ cardsPack_id }))
+
     return res
   }, false)
 })
@@ -81,7 +80,6 @@ const createCard = createAppAsyncThunk<{ newCard: TCard }, {
   const cardsPack_id = thunkAPI.getState().cards.cardsParams.cardsPack_id
   return thunkTryCatch(thunkAPI, async () => {
     const res = await cardsApi.createCard({ cardsPack_id, ...arg })
-    await thunkAPI.dispatch(cardsThunks.fetchCards({ cardsPack_id }))
     return res
   }, false)
 })
@@ -96,7 +94,7 @@ const changeGrade = createAppAsyncThunk<TCard[], TChangeGradeArg & { packId: str
 
 export const cardsReducer = slice.reducer
 export const cardsAction = slice.actions
-export const cardsThunks = { fetchCards, changeGrade, createCard, updateCard, deleteCard }
+export const cardsThunks = {  changeGrade, createCard, updateCard, deleteCard }
 
 
 

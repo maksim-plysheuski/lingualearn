@@ -55,4 +55,3 @@ export type TCreatePackArg = {
 }
 
 export type TUpdatePackArg = Pick<TCreatePackArg, 'name' | 'deckCover' | 'private'> & { _id: string }
-export type TDeletePackArg = { id: string }

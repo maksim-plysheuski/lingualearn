@@ -1,5 +1,5 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
-import { FetchPacksArgType } from 'features/pack/service/packsTypes'
+import { FetchPacksArgType } from 'features/pack/service/packs.types'
 
 
 const slice = createSlice({

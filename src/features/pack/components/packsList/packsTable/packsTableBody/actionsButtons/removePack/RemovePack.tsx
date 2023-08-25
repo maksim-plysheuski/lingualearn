@@ -12,19 +12,20 @@ import { selectUserId } from 'features/profile/selectors/selectors'
 type Props = {
   packId: string
   packName?: string
+  packUserId?: string
 }
 
-export const RemovePack: FC<Props> = ({packId, packName}) => {
-  const userId = useAppSelector(selectUserId)
+export const RemovePack: FC<Props> = ({packId, packName, packUserId}) => {
+  const profileUserId = useAppSelector(selectUserId)
 
   return (
     <>
-      <Tooltip title={userId ? 'Delete pack' : false}
+      <Tooltip title={profileUserId ? 'Delete pack' : false}
                arrow placement='top'
                TransitionComponent={Zoom}
                TransitionProps={{ timeout: 400 }}>
           <span>
-        <IconButton disabled={!userId}
+        <IconButton disabled={packUserId !== profileUserId}
                     sx={tableIconSx}>
             <RemovePackModal packName={packName} packId={packId} />
         </IconButton>

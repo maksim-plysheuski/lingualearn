@@ -4,7 +4,7 @@ import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline'
 import { useNavigate } from 'react-router-dom'
 import s from './style.module.scss'
 import { toast } from 'react-toastify'
-import { useDeletePackMutation } from 'features/pack/service/packsApi'
+import { useDeletePackMutation } from 'features/pack/service/packs.api'
 
 type Props = {
   packId?: string

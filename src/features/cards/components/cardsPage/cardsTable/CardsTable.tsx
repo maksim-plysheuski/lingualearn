@@ -5,6 +5,7 @@ import { CardsTableBody } from 'features/cards/components/cardsPage/cardsTable/c
 import { tableSx } from 'features/pack/components/packsList/packsTable/tableStyles'
 
 export const CardsTable = () => {
+
   return (
     <TableContainer sx={tableSx} component={Paper}>
       <Table>

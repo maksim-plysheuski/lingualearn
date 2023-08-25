@@ -1,8 +1,6 @@
 import { TableBody, TableCell, TableRow } from '@mui/material'
-import { useAppDispatch, useAppSelector } from 'common/hooks'
-import { cardsThunks } from 'features/cards/cards.slice'
+import { useAppSelector } from 'common/hooks'
 import { useNavigate } from 'react-router-dom'
-import { paths } from 'common/router'
 import * as React from 'react'
 import { tableCellHoverSx, tableCellSx } from 'features/pack/components/packsList/packsTable/tableStyles'
 import PanoramaOutlinedIcon from '@mui/icons-material/PanoramaOutlined'
@@ -14,15 +12,13 @@ import { selectUserId } from 'features/profile/selectors/selectors'
 import { useGetPacks } from 'features/pack/hook/useGetPacks'
 
 export const PacksTableBody = () => {
-  const dispatch = useAppDispatch()
   const navigate = useNavigate()
   const userId = useAppSelector(selectUserId)
-  const {data} = useGetPacks()
+  const { data } = useGetPacks()
 
   const openSelectedPack = (packId: string, packUserId: string, cardsCount: number) => {
     if (packUserId === userId || cardsCount) {
-      dispatch(cardsThunks.fetchCards({ cardsPack_id: packId }))
-      navigate(paths.CARDS)
+      navigate(`/cards/${packId}`)
       return
     }
     toast.info('This pack is empty')
@@ -50,7 +46,7 @@ export const PacksTableBody = () => {
           <TableCell sx={tableCellSx}>
             <LearnPack cardsCount={pack.cardsCount} packId={pack._id} />
             <EditPack pack={pack} />
-            <RemovePack packName={pack.name} packId={pack._id} />
+            <RemovePack packName={pack.name} packId={pack._id} packUserId={pack.user_id} />
           </TableCell>
         </TableRow>
       ))}

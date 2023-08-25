@@ -6,7 +6,7 @@ import { NameSearch } from './nameSearch/NameSearch'
 import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline'
 import { SuperButton } from 'common/components'
 import { useAppDispatch } from 'common/hooks'
-import { setPackParams } from 'features/pack/service/packsParams.slice'
+import { setPackParams } from 'features/pack/service/packs.params.slice'
 
 
 export const SearchBar = () => {

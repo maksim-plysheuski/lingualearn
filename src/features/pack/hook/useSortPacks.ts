@@ -7,7 +7,7 @@ import {
   selectUserIdParam
 } from 'features/pack/selectors'
 import { useDebounce } from 'common/hooks/useDebounce'
-import { setPackParams } from 'features/pack/service/packsParams.slice'
+import { setPackParams } from 'features/pack/service/packs.params.slice'
 import { useGetPacks } from 'features/pack/hook/useGetPacks'
 import { selectUserId } from 'features/profile/selectors/selectors'
 import { selectIsAppLoading } from 'app'

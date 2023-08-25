@@ -5,8 +5,8 @@ import DriveFileRenameOutlineIcon from '@mui/icons-material/DriveFileRenameOutli
 import { toast } from 'react-toastify'
 import { selectCardPackCover, selectPackId, selectPackName, selectPrivatePack } from 'features/cards/selectors/selectors'
 import { PackBodyModal } from 'features/pack/components/modal/common/packBodyModal/PackBodyModal'
-import { useUpdatePackMutation } from 'features/pack/service/packsApi'
-import { TPack } from 'features/pack/service/packsTypes'
+import { useUpdatePackMutation } from 'features/pack/service/packs.api'
+import { TPack } from 'features/pack/service/packs.types'
 
 type Props = {
   handleCloseMenu?: () => void
