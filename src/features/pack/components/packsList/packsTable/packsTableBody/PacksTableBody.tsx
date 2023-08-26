@@ -1,5 +1,5 @@
 import { TableBody, TableCell, TableRow } from '@mui/material'
-import { useAppSelector } from 'common/hooks'
+import { useAppDispatch, useAppSelector } from 'common/hooks'
 import { useNavigate } from 'react-router-dom'
 import * as React from 'react'
 import { tableCellHoverSx, tableCellSx } from 'features/pack/components/packsList/packsTable/tableStyles'
@@ -10,14 +10,17 @@ import { LearnPack } from './actionsButtons/learnPack/LearnPack'
 import { toast } from 'react-toastify'
 import { selectUserId } from 'features/profile/selectors/selectors'
 import { useGetPacks } from 'features/pack/hook/useGetPacks'
+import { setCardsParams } from 'features/cards/service/cards.params.slice'
 
 export const PacksTableBody = () => {
+  const dispatch = useAppDispatch()
   const navigate = useNavigate()
   const userId = useAppSelector(selectUserId)
   const { data } = useGetPacks()
 
   const openSelectedPack = (packId: string, packUserId: string, cardsCount: number) => {
     if (packUserId === userId || cardsCount) {
+      dispatch(setCardsParams({ cardsPack_id: packId }))
       navigate(`/cards/${packId}`)
       return
     }
