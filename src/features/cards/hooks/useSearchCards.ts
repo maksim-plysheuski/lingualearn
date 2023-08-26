@@ -10,7 +10,7 @@ import {
   selectPage,
   selectPageCount
 } from 'features/cards/selectors'
-import { setCardsParams } from 'features/cards/service/cards.params.slice'
+
 
 type TSearch = {
   id?: string
@@ -24,23 +24,25 @@ export const useSearchCards = () => {
   const pageCount = useAppSelector(selectPageCount)
   const cards = useAppSelector(selectCards)
   /*const cardsPack_id = useAppSelector(selectPackId)*/
-  const cardQuestion = useAppSelector(selectCardQuestion)
+  /*const cardQuestion = useAppSelector(selectCardQuestion)*/
 
   const [searchParams, setSearchParams] = useSearchParams()
   const params = Object.fromEntries(searchParams)
 
 
-  const { cardsPack_id } = useParams<{ cardsPack_id: string }>()
 
 
 
 
-  /*useEffect(() => {
+
+ /* useEffect(() => {
     const lastParams: TSearch = {}
     if (cardsPack_id) lastParams.id = cardsPack_id
-    if (cardQuestion) lastParams.cardQuestion = cardQuestion
     setSearchParams({ ...lastParams })
-  }, [cardsPack_id, cardQuestion])*/
+  }, [cardsPack_id])*/
+
+
+
 
   //searchName
   const fetchCardsName = (cardQuestion: string) => {
@@ -62,9 +64,7 @@ export const useSearchCards = () => {
     pageCount,
     cardsTotalCount,
     page,
-    cardQuestion,
     cards,
-    cardsPack_id,
     params
   }
 }

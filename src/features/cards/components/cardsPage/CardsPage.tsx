@@ -5,29 +5,24 @@ import { InputSearchCards } from 'features/cards/components/cardsPage/inputSearc
 import { CardsTable } from 'features/cards/components/cardsPage/cardsTable/CardsTable'
 import { PaginationCards } from 'features/cards/components/cardsPage/paginationCards/paginationCards'
 import { SkeletonCardsPage } from 'features/cards/components/cardsPage/skeletonCardsPage/SkeletonCardsPage'
-import { useAppSelector } from 'common/hooks'
-import { selectIsAppLoading } from 'app'
 import { useGetCards } from 'features/cards/hooks/useGetCards'
-import { EmptyCardsPack } from 'features/cards/components/cardsPage/emptyCardsPack/EmptyCardsPack'
+import { TitleBlockCards } from 'features/cards/components/cardsPage/titleBlockCards/titleBlockCards'
+
 
 export const CardsPage = () => {
-  const isAppLoading = useAppSelector(selectIsAppLoading)
-  const { data } = useGetCards()
+  const {isLoading} = useGetCards()
 
-  if (isAppLoading) return <SkeletonCardsPage />
+  if (isLoading) return <SkeletonCardsPage />
+
 
   return (
     <div className={s.packsList}>
-      {data?.cards.length
-        ? <>
-          <BackLink />
-          {/*<TitleBlockCards />*/}
-          <InputSearchCards />
-          <CardsTable />
-          <PaginationCards />
-        </>
-        : <EmptyCardsPack />
-      }
+        <BackLink />
+        <TitleBlockCards />
+        <InputSearchCards />
+        <CardsTable />
+        <PaginationCards />
+
     </div>
   )
 }

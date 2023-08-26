@@ -19,14 +19,14 @@ export const useSearchParamsPacks = () => {
   const [searchParams, setSearchParams] = useSearchParams()
   const params = Object.fromEntries(searchParams)
 
-  useEffect(() => {
+/*  useEffect(() => {
     const lastParams: PackArgs = {}
     if (userIdParams || userIdParams === '') lastParams.user_id = userIdParams
     if (packName || packName === '') lastParams.packName = packName
     if (min || min === 0) lastParams.min = min.toString()
     if (max || max === 0) lastParams.max = max.toString()
     setSearchParams({ ...lastParams })
-  }, [userIdParams, packName, min, max])
+  }, [userIdParams, packName, min, max])*/
 
   return params
 }

@@ -4,11 +4,11 @@ import s from 'features/cards/components/cardsPage/inputSearchCards/style.module
 import { InputSearch } from 'common/components/Inputs/inputSearch/inputSearch'
 
 export const InputSearchCards = () => {
-  const { fetchCardsName, cardQuestion } = useSearchCards()
+  const { fetchCardsName } = useSearchCards()
 
   return (
     <div className={s.inputContainer}>
-      <InputSearch valueName={cardQuestion} searchNameCallback={fetchCardsName} />
+      <InputSearch valueName={""} searchNameCallback={fetchCardsName} />
     </div>
   )
 }

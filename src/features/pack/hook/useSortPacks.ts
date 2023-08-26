@@ -24,7 +24,7 @@ export const useSortPacks = () => {
   const [searchPackName, setSearchPackName] = useState<string>('')
   const debounceName = useDebounce(searchPackName, 800)
   useEffect(() => {
-    if (debounceName === undefined) return
+    if (debounceName === "") return
     dispatch(setPackParams({ packName: debounceName }))
   }, [debounceName])
 
