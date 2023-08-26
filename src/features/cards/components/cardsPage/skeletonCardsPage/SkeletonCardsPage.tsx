@@ -5,15 +5,15 @@ import {
   TitleBlockSkeleton
 } from 'common/components/skeletonPreloaders'
 import { CardsTableHeader } from 'features/cards/components/cardsPage/cardsTable/cardsTableHeader/CardsTableHeader'
-import { useSelector } from 'react-redux'
-import { selectIsMyCard } from 'features/cards/selectors'
 import { searchBarSx } from 'common/components/skeletonPreloaders/style'
 import { Skeleton } from '@mui/material'
 import s from 'features/cards/components/cardsPage/skeletonCardsPage/style.module.scss'
+import { useAppSelector } from 'common/hooks'
+import { selectIsMyPack } from 'features/pack/selectors'
 
 
 export const SkeletonCardsPage = () => {
-  const isMyCard = useSelector(selectIsMyCard)
+  const isMyPack = useAppSelector(selectIsMyPack)
 
   return (
     <div className={s.packsList}>
@@ -29,7 +29,7 @@ export const SkeletonCardsPage = () => {
       <div className={s.searchBar}>
         <Skeleton sx={searchBarSx} variant='text' animation='wave' />
       </div>
-      <TableSkeleton rowsCount={4} cellsCount={isMyCard ? 5 : 4} children={<CardsTableHeader />} />
+      <TableSkeleton rowsCount={4} cellsCount={isMyPack ? 5 : 4} children={<CardsTableHeader />} />
       <div className={s.paginatorContainer}>
         <div className={s.paginator}><PaginatorSkeleton /></div>
         <div className={s.selector}><SelectorSkeleton /></div>

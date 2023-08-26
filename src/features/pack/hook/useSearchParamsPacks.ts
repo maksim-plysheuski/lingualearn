@@ -3,7 +3,7 @@ import { useEffect } from 'react'
 import { PackArgs } from 'features/pack/service/packs.types'
 import { useSelector } from 'react-redux'
 import {
-  SelectMaxPacksParam, SelectMinPacksParam,
+  selectMaxPacksParam, selectMinPacksParam,
   selectPackNameParam,
   selectUserIdParam
 } from 'features/pack/selectors'
@@ -12,8 +12,8 @@ import {
 export const useSearchParamsPacks = () => {
   const packName = useSelector(selectPackNameParam)
   const userIdParams = useSelector(selectUserIdParam)
-  const min = useSelector(SelectMinPacksParam)
-  const max = useSelector(SelectMaxPacksParam)
+  const min = useSelector(selectMinPacksParam)
+  const max = useSelector(selectMaxPacksParam)
 
 
   const [searchParams, setSearchParams] = useSearchParams()

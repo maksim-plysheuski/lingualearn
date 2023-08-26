@@ -1,6 +1,6 @@
 import React from 'react'
 import s from './style.module.scss'
-import { selectCardsTotalCount, selectIsMyCard, selectPackId } from 'features/cards/selectors'
+import { selectCardsTotalCount, selectPackId } from 'features/cards/selectors'
 import { AddCardsModal } from 'features/cards/components/modal/addCardModal/addCardModal/AddCardsModal'
 import { MenuPacks } from 'features/cards/components/cardsPage/menuCards/menuPacks'
 import { useAppSelector } from 'common/hooks'
@@ -13,10 +13,11 @@ import {
 import { useNavigate } from 'react-router-dom'
 import { SuperButton } from 'common/components'
 import PanoramaOutlinedIcon from '@mui/icons-material/PanoramaOutlined'
+import { selectIsMyPack } from 'features/pack/selectors'
 
 
 export const TitleBlockCards = () => {
-  const isMyPack = useAppSelector(selectIsMyCard)
+  const isMyPack = useAppSelector(selectIsMyPack)
   const packName = useAppSelector(selectPackName)
   const packId = useAppSelector(selectPackId)
   const cardsTotalCount = useAppSelector(selectCardsTotalCount)

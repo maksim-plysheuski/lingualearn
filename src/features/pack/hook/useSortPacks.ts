@@ -1,8 +1,8 @@
 import { useAppDispatch, useAppSelector } from 'common/hooks'
 import { useCallback, useEffect, useState } from 'react'
 import {
-  SelectMaxPacksParam,
-  SelectMinPacksParam,
+  selectMaxPacksParam,
+  selectMinPacksParam,
   selectPackNameParam,
   selectUserIdParam
 } from 'features/pack/selectors'
@@ -14,8 +14,8 @@ import { selectIsAppLoading } from 'app'
 
 export const useSortPacks = () => {
   const dispatch = useAppDispatch()
-  const minParam = useAppSelector(SelectMinPacksParam)
-  const maxParam = useAppSelector(SelectMaxPacksParam)
+  const minParam = useAppSelector(selectMinPacksParam)
+  const maxParam = useAppSelector(selectMaxPacksParam)
   const packNameParam = useAppSelector(selectPackNameParam)
 
   /**

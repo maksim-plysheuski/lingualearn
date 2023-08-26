@@ -5,7 +5,8 @@ import { TGetCardsArgs } from 'features/cards/cardsApi'
 const slice = createSlice({
   name: 'cardsParams',
   initialState: {
-    cardsParams: {} as TGetCardsArgs
+    cardsParams: {} as TGetCardsArgs,
+    isMyPack: false as boolean
   },
   reducers: {
     setCardsParams: (state, action: PayloadAction<TGetCardsArgs>) => {

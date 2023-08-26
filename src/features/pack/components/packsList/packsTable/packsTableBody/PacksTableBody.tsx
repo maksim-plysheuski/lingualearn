@@ -11,16 +11,18 @@ import { toast } from 'react-toastify'
 import { selectUserId } from 'features/profile/selectors/selectors'
 import { useGetPacks } from 'features/pack/hook/useGetPacks'
 import { setCardsParams } from 'features/cards/service/cards.params.slice'
+import { setIsMyPack } from 'features/pack/service/packs.params.slice'
 
 export const PacksTableBody = () => {
   const dispatch = useAppDispatch()
   const navigate = useNavigate()
-  const userId = useAppSelector(selectUserId)
+  const profileUserId = useAppSelector(selectUserId)
   const { data } = useGetPacks()
 
   const openSelectedPack = (packId: string, packUserId: string, cardsCount: number) => {
-    if (packUserId === userId || cardsCount) {
+    if (packUserId === profileUserId || cardsCount) {
       dispatch(setCardsParams({ cardsPack_id: packId }))
+      dispatch(setIsMyPack(packUserId === profileUserId))
       navigate(`/cards/${packId}`)
       return
     }

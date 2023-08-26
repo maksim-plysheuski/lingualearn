@@ -7,20 +7,27 @@ import { PaginationCards } from 'features/cards/components/cardsPage/paginationC
 import { SkeletonCardsPage } from 'features/cards/components/cardsPage/skeletonCardsPage/SkeletonCardsPage'
 import { useAppSelector } from 'common/hooks'
 import { selectIsAppLoading } from 'app'
+import { useGetCards } from 'features/cards/hooks/useGetCards'
+import { EmptyCardsPack } from 'features/cards/components/cardsPage/emptyCardsPack/EmptyCardsPack'
 
 export const CardsPage = () => {
   const isAppLoading = useAppSelector(selectIsAppLoading)
-
+  const { data } = useGetCards()
 
   if (isAppLoading) return <SkeletonCardsPage />
 
   return (
     <div className={s.packsList}>
-      <BackLink />
-      {/*<TitleBlockCards />*/}
-      <InputSearchCards />
-      <CardsTable />
-      <PaginationCards />
+      {data?.cards.length
+        ? <>
+          <BackLink />
+          {/*<TitleBlockCards />*/}
+          <InputSearchCards />
+          <CardsTable />
+          <PaginationCards />
+        </>
+        : <EmptyCardsPack />
+      }
     </div>
   )
 }

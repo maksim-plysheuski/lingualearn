@@ -2,17 +2,19 @@ import { TableCell, TableHead, TableRow, TableSortLabel } from '@mui/material'
 import * as React from 'react'
 import { useState } from 'react'
 import { useSearchCards } from 'features/cards/hooks/useSearchCards'
-import { useSelector } from 'react-redux'
 import { tableCellSx, tableHeaderSx } from 'features/pack/components/packsList/packsTable/tableStyles'
-import { selectIsMyCard } from 'features/cards/selectors'
+import { useAppSelector } from 'common/hooks'
+import { selectUserId } from 'features/profile/selectors/selectors'
+import { useGetCards } from 'features/cards/hooks/useGetCards'
 
 export const CardsTableHeader = () => {
   const { fetchSortCard } = useSearchCards()
-  const isMyCard = useSelector(selectIsMyCard)
+  const userId = useAppSelector(selectUserId)
+  const {data} = useGetCards()
   const [sortOrder, setSortOrder] = useState<'asc' | 'desc'>('asc')
   const [lastSortedCell, setLastSortedCell] = useState<string>('Last Updated')
   const columnTitles: string[] = ['Question', 'Answer', 'Last Updated', 'Grade']
-  if (isMyCard) columnTitles.push('Actions')
+  if (userId === data?.packUserId) columnTitles.push('Actions')
 
   const handleSort = (sortTitle: string) => () => {
     let sortArgTitle
