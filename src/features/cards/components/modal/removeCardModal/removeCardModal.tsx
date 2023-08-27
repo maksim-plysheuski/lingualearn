@@ -1,10 +1,9 @@
 import React, { useState } from 'react'
 import { BaseModal } from 'common/components'
 import s from './style.module.scss'
-import { useAppDispatch } from 'common/hooks'
 import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline'
-import { cardsThunks } from 'features/cards/cards.slice'
 import { toast } from 'react-toastify'
+import { useDeleteCardMutation } from 'features/cards/service/cards.api'
 
 type Props = {
   cardId: string
@@ -13,13 +12,14 @@ type Props = {
 
 export const RemoveCardModal = (props: Props) => {
   const { cardId, title } = props
-  const dispatch = useAppDispatch()
   const [open, setOpen] = useState(false)
   const [disable, setDisable] = useState(false)
+  const [deleteCard] = useDeleteCardMutation()
 
-  const deleteCard = async () => {
+  const deleteCardHandler = async () => {
     setDisable(true)
-    await dispatch(cardsThunks.deleteCard({ id: cardId })).unwrap()
+    deleteCard(cardId)
+      .unwrap()
       .then(() => toast.info(`Card has been removed`))
       .catch((err) => toast.error(err.e.response ? err.e.response.data.error : err.e.message))
     setOpen(false)
@@ -33,7 +33,7 @@ export const RemoveCardModal = (props: Props) => {
         title={'Delete Card'}
         open={open}
         setOpen={setOpen}
-        actionCallback={deleteCard}
+        actionCallback={deleteCardHandler}
         titleButtonAction={'Delete Card'}
         isButtonDisabled={disable}
       >

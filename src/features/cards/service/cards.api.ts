@@ -6,7 +6,7 @@ import { TCard, TCreateCardArg, TGetCardsArgs, TGetCardsResponse, TUpdateCardArg
 export const cardsApi = createApi({
   reducerPath: 'cardsApi',
   baseQuery: fetchBaseQuery({ baseUrl: baseURL, credentials: 'include' }),
-    tagTypes: ['Cards'],
+  tagTypes: ['Cards'],
   endpoints: (build) => {
     return {
       getCards: build.query<TGetCardsResponse, TGetCardsArgs>({
@@ -43,8 +43,20 @@ export const cardsApi = createApi({
         },
         invalidatesTags: ['Cards']
       }),
+      deleteCard: build.mutation<{ deletedCard: TCard }, string>({
+        query: (id) => {
+          return {
+            method: 'DELETE',
+            url: 'cards/card',
+            params: {
+              id
+            }
+          }
+        },
+        invalidatesTags: ['Cards']
+      })
     }
   }
 })
 
-export const { useGetCardsQuery, useCreateCardMutation, useUpdateCardMutation } = cardsApi
+export const { useGetCardsQuery, useCreateCardMutation, useUpdateCardMutation, useDeleteCardMutation } = cardsApi
