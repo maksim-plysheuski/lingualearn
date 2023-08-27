@@ -1,16 +1,16 @@
 import React, { useState } from 'react'
 import { BaseModal } from 'common/components'
 import { QuestionSelectType } from 'features/cards/components/modal/addCardModal/select/SelectTextImg'
-import { useAppDispatch, useAppSelector } from 'common/hooks'
-import { cardsThunks } from 'features/cards/cards.slice'
+import { useAppSelector } from 'common/hooks'
 import { toast } from 'react-toastify'
 import { selectIsAppLoading } from 'app'
 import { CardsBodyModal } from 'features/cards/components/modal/common/cardsBodyModal/CardsBodyModal'
 import { SuperButton } from 'common/components'
+import { useCreateCardMutation } from 'features/cards/service/cards.api'
+import { useGetCards } from 'features/cards/hooks/useGetCards'
 
 
 export const AddCardsModal = () => {
-  const dispatch = useAppDispatch()
   const isLoading = useAppSelector(selectIsAppLoading)
   const [isModalOpen, setIsModalOpen] = useState(false)
   const [selectValue, setSelectValue] = useState<QuestionSelectType>('Text')
@@ -18,11 +18,15 @@ export const AddCardsModal = () => {
   const [answer, setAnswer] = useState<string>('')
   const [questionImg, setQuestionImg] = useState<string>('')
   const [answerImg, setAnswerImg] = useState<string>('')
+  const { packId } = useGetCards()
+  const [createCard] = useCreateCardMutation()
 
-  const createNewCards = async () => {
+  const createNewCards = () => {
     const isTextCard = selectValue === 'Text'
     const newCard = isTextCard ? { question, answer } : { questionImg, answerImg }
-    await dispatch(cardsThunks.createCard(newCard)).unwrap()
+
+    createCard({ cardsPack_id: packId!, ...newCard })
+      .unwrap()
       .then((res) => toast.info(
         `New card ${res.newCard.question !== 'no question'
           ? res.newCard.question

@@ -22,7 +22,6 @@ export const CardsPage = () => {
         <InputSearchCards />
         <CardsTable />
         <PaginationCards />
-
     </div>
   )
 }

@@ -19,6 +19,7 @@ export const PacksTableBody = () => {
   const profileUserId = useAppSelector(selectUserId)
   const { data } = useGetPacks()
 
+
   const openSelectedPack = (packId: string, packUserId: string, cardsCount: number) => {
     if (packUserId === profileUserId || cardsCount) {
       dispatch(setCardsParams({ cardsPack_id: packId }))
@@ -34,7 +35,7 @@ export const PacksTableBody = () => {
       {data?.cardPacks.map((pack) => (
         <TableRow key={pack._id}>
           <TableCell sx={{ ...tableCellSx, width: '60px' }}>
-            {pack.deckCover
+            {(pack.deckCover && pack.deckCover.length > 100)
               ? <img style={{ height: '36px', borderRadius: '3px' }} src={pack.deckCover} alt={'cover'} />
               : <PanoramaOutlinedIcon sx={{ fontSize: '40px', color: '#4C4C4C' }} />
             }
