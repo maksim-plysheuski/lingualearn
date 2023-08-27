@@ -1,6 +1,6 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
 import { baseURL } from 'common/api/common.api'
-import { TCard, TCreateCardArg, TGetCardsArgs, TGetCardsResponse } from 'features/cards/cardsApi'
+import { TCard, TCreateCardArg, TGetCardsArgs, TGetCardsResponse, TUpdateCardArg } from 'features/cards/cardsApi'
 
 
 export const cardsApi = createApi({
@@ -31,8 +31,20 @@ export const cardsApi = createApi({
         },
         invalidatesTags: ['Cards']
       }),
+      updateCard: build.mutation<{ updatedCard: TCard }, TUpdateCardArg>({
+        query: (card) => {
+          return {
+            method: 'PUT',
+            url: 'cards/card',
+            body: {
+              card
+            }
+          }
+        },
+        invalidatesTags: ['Cards']
+      }),
     }
   }
 })
 
-export const { useGetCardsQuery, useCreateCardMutation } = cardsApi
+export const { useGetCardsQuery, useCreateCardMutation, useUpdateCardMutation } = cardsApi

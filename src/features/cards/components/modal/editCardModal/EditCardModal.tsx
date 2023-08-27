@@ -2,11 +2,9 @@ import React, { useState } from 'react'
 import { BaseModal } from 'common/components'
 import { QuestionSelectType } from 'features/cards/components/modal/addCardModal/select/SelectTextImg'
 import DriveFileRenameOutlineIcon from '@mui/icons-material/DriveFileRenameOutline'
-import { cardsThunks } from '../../../cards.slice'
-import { useAppDispatch, useAppSelector } from 'common/hooks'
 import { CardsBodyModal } from 'features/cards/components/modal/common/cardsBodyModal/CardsBodyModal'
-import { selectIsAppLoading } from 'app'
 import { toast } from 'react-toastify'
+import { useUpdateCardMutation } from 'features/cards/service/cards.api'
 
 type Props = {
   cardId: string
@@ -19,19 +17,17 @@ type Props = {
 export const EditCardsModal = (props: Props) => {
   const { questionValue, answerValue, questionImgValue, answerImgValue, cardId } = props
 
-  const dispatch = useAppDispatch()
-  const isLoading = useAppSelector(selectIsAppLoading)
   const [isModalOpen, setIsModalOpen] = useState(false)
   const [selectValue, setSelectValue] = useState<QuestionSelectType>(answerImgValue ? 'Picture' : 'Text')
   const [question, setQuestion] = useState<string>(questionValue)
   const [answer, setAnswer] = useState<string>(answerValue)
   const [questionImg, setQuestionImg] = useState<string>(questionImgValue || '')
   const [answerImg, setAnswerImg] = useState<string>(answerImgValue || '')
+  const [updateCard, { isLoading }] = useUpdateCardMutation()
 
-  //need to refactor
-  const editCards = async () => {
-    const newCard = questionImg ? { _id: cardId, question, answer } : { _id: cardId, questionImg, answerImg }
-    await dispatch(cardsThunks.updateCard(newCard)).unwrap()
+  const editCards = () => {
+    const newCard = { _id: cardId, question, answer, questionImg, answerImg  }
+    updateCard(newCard).unwrap()
       .then(() => toast.info(`Card has been updated`))
       .catch((err) => toast.error(err.e.response ? err.e.response.data.error : err.e.message))
       .finally(() => {

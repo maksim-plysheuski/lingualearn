@@ -1,9 +1,7 @@
 import React, { useState } from 'react'
 import { BaseModal } from 'common/components'
 import { QuestionSelectType } from 'features/cards/components/modal/addCardModal/select/SelectTextImg'
-import { useAppSelector } from 'common/hooks'
 import { toast } from 'react-toastify'
-import { selectIsAppLoading } from 'app'
 import { CardsBodyModal } from 'features/cards/components/modal/common/cardsBodyModal/CardsBodyModal'
 import { SuperButton } from 'common/components'
 import { useCreateCardMutation } from 'features/cards/service/cards.api'
@@ -11,7 +9,6 @@ import { useGetCards } from 'features/cards/hooks/useGetCards'
 
 
 export const AddCardsModal = () => {
-  const isLoading = useAppSelector(selectIsAppLoading)
   const [isModalOpen, setIsModalOpen] = useState(false)
   const [selectValue, setSelectValue] = useState<QuestionSelectType>('Text')
   const [question, setQuestion] = useState<string>('')
@@ -19,7 +16,7 @@ export const AddCardsModal = () => {
   const [questionImg, setQuestionImg] = useState<string>('')
   const [answerImg, setAnswerImg] = useState<string>('')
   const { packId } = useGetCards()
-  const [createCard] = useCreateCardMutation()
+  const [createCard, { isLoading }] = useCreateCardMutation()
 
   const createNewCards = () => {
     const isTextCard = selectValue === 'Text'
