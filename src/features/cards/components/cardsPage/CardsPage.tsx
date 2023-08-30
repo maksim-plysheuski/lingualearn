@@ -19,7 +19,7 @@ export const CardsPage = () => {
     <div className={s.packsList}>
         <BackLink />
         <TitleBlockCards />
-        <InputSearchCards />
+        {/*<InputSearchCards />*/}
         <CardsTable />
         <PaginationCards />
     </div>

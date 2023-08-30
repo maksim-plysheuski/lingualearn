@@ -10,6 +10,8 @@ import {
   selectPage,
   selectPageCount
 } from 'features/cards/selectors'
+import { setCardsParams } from 'features/cards/service/cards.params.slice'
+import { useGetCards } from 'features/cards/hooks/useGetCards'
 
 
 type TSearch = {
@@ -19,20 +21,19 @@ type TSearch = {
 
 export const useSearchCards = () => {
   const dispatch = useAppDispatch()
+  const {data: cards} = useGetCards()
   const page = useAppSelector(selectPage)
   const cardsTotalCount = useAppSelector(selectCardsTotalCount)
   const pageCount = useAppSelector(selectPageCount)
-  const cards = useAppSelector(selectCards)
-  /*const cardsPack_id = useAppSelector(selectPackId)*/
-  /*const cardQuestion = useAppSelector(selectCardQuestion)*/
+  const cardsPack_id = useAppSelector(selectPackId)
+
 
   const [searchParams, setSearchParams] = useSearchParams()
   const params = Object.fromEntries(searchParams)
 
 
-
-
-
+  /*const cardQuestion = useAppSelector(selectCardQuestion)*/
+  /*const cards = useAppSelector(selectCards)*/
 
 
  /* useEffect(() => {
@@ -42,15 +43,13 @@ export const useSearchCards = () => {
   }, [cardsPack_id])*/
 
 
-
-
   //searchName
   const fetchCardsName = (cardQuestion: string) => {
     /*  dispatch(cardsThunks.fetchCards({ cardsPack_id, cardQuestion }))*/
   }
   //fetchPageNewCards
-  const fetchPageNewCards = (page: number, pageCount: number) => {
-    /* dispatch(cardsThunks.fetchCards({ cardsPack_id, page, pageCount }))*/
+  const getNewPage = (page: number, pageCount: number) => {
+     dispatch(setCardsParams({ page, pageCount, cardsPack_id  }))
   }
   //fetchSortCard
   const fetchSortCard = (sortCards: string) => {
@@ -59,7 +58,7 @@ export const useSearchCards = () => {
 
   return {
     fetchSortCard,
-    fetchPageNewCards,
+    getNewPage,
     fetchCardsName,
     pageCount,
     cardsTotalCount,

@@ -3,13 +3,14 @@ import { useSearchCards } from 'features/cards/hooks/useSearchCards'
 import { Paginator } from 'common/components'
 
 export const PaginationCards = () => {
-  const { page, cardsTotalCount, pageCount, fetchPageNewCards } = useSearchCards()
+  const { getNewPage, cards } = useSearchCards()
+
   return (
       <Paginator
-        page={page}
-        pageCount={pageCount}
-        totalCount={cardsTotalCount}
-        getNewPage={fetchPageNewCards}
+        pageCount={cards?.pageCount!}
+        page={cards?.page!}
+        totalCount={cards?.cardsTotalCount!}
+        getNewPage={getNewPage}
       />
 
   )
