@@ -6,11 +6,10 @@ export const PaginationCards = () => {
   const { getNewPage, cards } = useSearchCards()
 
   return (
-      <Paginator
-        pageCount={cards?.pageCount!}
-        page={cards?.page!}
-        totalCount={cards?.cardsTotalCount!}
-        getNewPage={getNewPage}
+      <Paginator pageCount={cards?.pageCount!}
+                 page={cards?.page!}
+                 totalCount={cards?.cardsTotalCount!}
+                 getNewPage={getNewPage}
       />
 
   )

@@ -21,7 +21,7 @@ type TSearch = {
 
 export const useSearchCards = () => {
   const dispatch = useAppDispatch()
-  const {data: cards} = useGetCards()
+  const { data: cards } = useGetCards()
   const page = useAppSelector(selectPage)
   const cardsTotalCount = useAppSelector(selectCardsTotalCount)
   const pageCount = useAppSelector(selectPageCount)
@@ -36,22 +36,25 @@ export const useSearchCards = () => {
   /*const cards = useAppSelector(selectCards)*/
 
 
- /* useEffect(() => {
-    const lastParams: TSearch = {}
-    if (cardsPack_id) lastParams.id = cardsPack_id
-    setSearchParams({ ...lastParams })
-  }, [cardsPack_id])*/
+  /* useEffect(() => {
+     const lastParams: TSearch = {}
+     if (cardsPack_id) lastParams.id = cardsPack_id
+     setSearchParams({ ...lastParams })
+   }, [cardsPack_id])*/
 
 
   //searchName
   const fetchCardsName = (cardQuestion: string) => {
     /*  dispatch(cardsThunks.fetchCards({ cardsPack_id, cardQuestion }))*/
   }
-  //fetchPageNewCards
-  const getNewPage = (page: number, pageCount: number) => {
-     dispatch(setCardsParams({ page, pageCount, cardsPack_id  }))
-  }
-  //fetchSortCard
+
+
+  /**
+   * Pagination
+   */
+  const getNewPage = (page: number, pageCount: number) => dispatch(setCardsParams({ page, pageCount, cardsPack_id }))
+
+
   const fetchSortCard = (sortCards: string) => {
     /*dispatch(cardsThunks.fetchCards({ cardsPack_id, sortCards }))*/
   }
