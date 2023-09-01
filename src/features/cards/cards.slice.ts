@@ -18,11 +18,11 @@ const slice = createSlice({
     setCardsParams: (state, action: PayloadAction<TGetCardsArgs>) => {
       state.cardsParams = { ...state.cardsParams, ...action.payload }
     },
-    resetCards: (state) => {
+    /*resetCards: (state) => {
       state.cards = {} as TGetCardsResponse
       state.cardsParams = {} as TGetCardsArgs
       state.isMyCards = null
-    }
+    }*/
   },
   extraReducers: builder => {
 

@@ -12,14 +12,13 @@ const slice = createSlice({
     setCardsParams: (state, action: PayloadAction<TGetCardsArgs>) => {
       state.cardsParams = { ...state.cardsParams, ...action.payload }
     },
-    resetCards: (state) => {
-     /* state.cards = {} as TGetCardsResponse
+    resetCardsParams: (state) => {
       state.cardsParams = {} as TGetCardsArgs
-      state.isMyCards = null*/
+      state.isMyPack = false
     }
   },
 })
 
 
 export const cardsParamsReducer = slice.reducer
-export const {resetCards, setCardsParams } = slice.actions
+export const { setCardsParams, resetCardsParams } = slice.actions
