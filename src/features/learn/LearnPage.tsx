@@ -2,12 +2,13 @@ import React, { useEffect, useState } from 'react'
 import { getCard } from './getRandomCard'
 import { useAppDispatch, useAppSelector } from 'common/hooks'
 import { selectCards, selectPackName } from 'features/cards/selectors'
-import { cardsAction, cardsThunks } from 'features/cards/cards.slice'
+import { cardsThunks } from 'features/cards/cards.slice'
 import { useParams } from 'react-router-dom'
 import s from './style.module.scss'
 import { TCard } from 'features/cards/cardsApi'
 import { Answer } from './answer'
 import { SuperButton } from 'common/components'
+import { resetCardsParams } from 'features/cards/service/cards.params.slice'
 
 export const LearnPage = () => {
   const { id } = useParams<{ id: string }>()
@@ -38,7 +39,7 @@ export const LearnPage = () => {
      /* dispatch(cardsThunks.fetchCards({ cardsPack_id: id })).unwrap().then(res => setCard(getCard(res.cards.cards)))*/
     }
     return () => {
-      dispatch(cardsAction.resetCards())
+      dispatch(resetCardsParams())
     }
   }, [])
 
