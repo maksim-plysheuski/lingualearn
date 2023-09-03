@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react'
 import { getCard } from './getRandomCard'
 import { useAppDispatch, useAppSelector } from 'common/hooks'
 import { selectCards, selectPackName } from 'features/cards/selectors'
-import { cardsThunks } from 'features/cards/cards.slice'
 import { useParams } from 'react-router-dom'
 import s from './style.module.scss'
 import { TCard } from 'features/cards/cardsApi'
@@ -22,12 +21,12 @@ export const LearnPage = () => {
 
   const nextAnswer = async () => {
     const payload = { card_id: card?._id!, grade: grade!, packId: card?.cardsPack_id! }
-    await dispatch(cardsThunks.changeGrade(payload))
+   /* await dispatch(cardsThunks.changeGrade(payload))
       .unwrap()
       .then(res => {
         setShowAnswer(false)
         setCard(getCard(res))
-      })
+      })*/
   }
 
   useEffect(() => {

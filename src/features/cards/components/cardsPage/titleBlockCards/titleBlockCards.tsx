@@ -12,7 +12,7 @@ import { useGetCards } from 'features/cards/hooks/useGetCards'
 
 export const TitleBlockCards = () => {
   const isMyPack = useAppSelector(selectIsMyPack)
-  const {data, packId} = useGetCards()
+  const {data, packId } = useGetCards()
   const navigate = useNavigate()
 
   const learnPack = () => navigate(`/learn/${packId}`)

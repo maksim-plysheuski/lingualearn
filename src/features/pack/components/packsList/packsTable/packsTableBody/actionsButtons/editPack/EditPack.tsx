@@ -6,13 +6,16 @@ import Tooltip from '@mui/material/Tooltip'
 import { EditPackModal } from 'features/pack/components/modal/editPackModal/EditPackModal'
 import { tableIconSx } from 'features/pack/components/packsList/packsTable/tableStyles'
 import { selectUserId } from 'features/profile/selectors/selectors'
-import { TPack } from 'features/pack/service/packs.types'
+import { FC } from 'react'
 
-type Props = {
-  pack: TPack
+type PropsType = {
+  packId: string
+  packName: string
+  coverImage: string
+  isPrivate: boolean
 }
 
-export const EditPack = (props: Props) => {
+export const EditPack: FC<PropsType> = ({packId, packName, coverImage, isPrivate}) => {
   const userId = useAppSelector(selectUserId)
 
   return(
@@ -24,7 +27,11 @@ export const EditPack = (props: Props) => {
         <span>
           <IconButton disabled={!userId}
                       sx={tableIconSx}>
-            <EditPackModal pack={props.pack} />
+            <EditPackModal packId={packId}
+                           packName={packName}
+                           coverImage={coverImage}
+                           isPrivate={isPrivate}
+            />
         </IconButton>
         </span>
       </Tooltip>

@@ -6,7 +6,6 @@ const slice = createSlice({
   name: 'cardsParams',
   initialState: {
     cardsParams: {} as TGetCardsArgs,
-    isMyPack: false as boolean
   },
   reducers: {
     setCardsParams: (state, action: PayloadAction<TGetCardsArgs>) => {
@@ -14,7 +13,6 @@ const slice = createSlice({
     },
     resetCardsParams: (state) => {
       state.cardsParams = {} as TGetCardsArgs
-      state.isMyPack = false
     }
   },
 })

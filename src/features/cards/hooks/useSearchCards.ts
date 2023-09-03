@@ -1,7 +1,6 @@
 import { useAppDispatch, useAppSelector } from 'common/hooks'
 import { useEffect } from 'react'
 import { useParams, useSearchParams } from 'react-router-dom'
-import { cardsThunks } from 'features/cards/cards.slice'
 import {
   selectCardQuestion,
   selectCards,

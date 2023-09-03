@@ -1,5 +1,3 @@
-
-
 //Response types
 export type TPack = {
   _id: string;

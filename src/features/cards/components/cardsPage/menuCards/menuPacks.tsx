@@ -7,16 +7,15 @@ import PlayCircleOutlineIcon from '@mui/icons-material/PlayCircleOutline'
 import { EditPackModal } from 'features/pack/components/modal/editPackModal/EditPackModal'
 import { RemovePackModal } from 'features/pack/components/modal/removePackModal/removePackModal'
 import { useNavigate } from 'react-router-dom'
-import { useAppSelector } from 'common/hooks'
-import { selectPackId } from 'features/cards/selectors'
 import { menuStyle, paperStyle } from 'common/components/appHeader/avatarMenu/style'
 import IconButton from '@mui/material/IconButton'
 import { tableIconSx } from 'features/pack/components/packsList/packsTable/tableStyles'
+import { useGetCards } from 'features/cards/hooks/useGetCards'
 
 
 export const MenuPacks = () => {
+  const {data, packId} = useGetCards()
   const navigate = useNavigate()
-  const packId = useAppSelector(selectPackId)
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null)
   const open = Boolean(anchorEl)
   const handleClick = (event: React.MouseEvent<HTMLElement>) => {
@@ -42,7 +41,13 @@ export const MenuPacks = () => {
         </MenuItem>
         <Divider />
         <MenuItem>
-          <EditPackModal nameIcon={'Edit'} handleCloseMenu={handleClose} />
+          <EditPackModal packId={packId!}
+                         packName={data?.packName!}
+                         coverImage={data?.packDeckCover!}
+                         isPrivate={data?.packPrivate!}
+                         nameIcon={'Edit'}
+                         handleCloseMenu={handleClose}
+          />
         </MenuItem>
         <Divider />
         <MenuItem>
