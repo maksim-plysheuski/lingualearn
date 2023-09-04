@@ -11,7 +11,7 @@ import { selectUserId } from 'features/profile/selectors/selectors'
 
 type Props = {
   packId: string
-  packName?: string
+  packName: string
   packUserId?: string
 }
 
@@ -27,7 +27,7 @@ export const RemovePack: FC<Props> = ({packId, packName, packUserId}) => {
           <span>
         <IconButton disabled={packUserId !== profileUserId}
                     sx={tableIconSx}>
-            <RemovePackModal packName={packName} packId={packId} />
+            <RemovePackModal packName={packName!} packId={packId} />
         </IconButton>
           </span>
       </Tooltip>

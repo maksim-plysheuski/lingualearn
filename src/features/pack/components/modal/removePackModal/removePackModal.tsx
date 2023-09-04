@@ -7,8 +7,8 @@ import { toast } from 'react-toastify'
 import { useDeletePackMutation } from 'features/pack/service/packs.api'
 
 type Props = {
-  packId?: string
-  packName?: string
+  packId: string
+  packName: string
   nameIcon?: string
 }
 
@@ -21,7 +21,7 @@ export const RemovePackModal = (props: Props) => {
 
   const removePackHandler = async () => {
     setDisable(true)
-    removePack(props.packId ? props.packId : '').unwrap()
+    removePack(props.packId).unwrap()
       .then((res) => toast.info(`Pack ${res.deletedCardsPack.name} has been removed`))
       .catch((err) => toast.error(err.e.response ? err.e.response.data.error : err.e.message))
       .finally(() => {

@@ -51,7 +51,7 @@ export const MenuPacks = () => {
         </MenuItem>
         <Divider />
         <MenuItem>
-          <RemovePackModal nameIcon={'Delete'} />
+          <RemovePackModal packId={packId!} packName={data?.packName!} nameIcon={'Delete'} />
         </MenuItem>
       </Menu>
     </>
