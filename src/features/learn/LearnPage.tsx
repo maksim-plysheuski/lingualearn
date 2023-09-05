@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { getCard } from './getRandomCard'
 import { useAppDispatch, useAppSelector } from 'common/hooks'
-import { selectCards, selectPackName } from 'features/cards/selectors'
 import { useParams } from 'react-router-dom'
 import s from './style.module.scss'
 import { TCard } from 'features/cards/cardsApi'
@@ -13,8 +12,8 @@ export const LearnPage = () => {
   const { id } = useParams<{ id: string }>()
   const dispatch = useAppDispatch()
 
-  const cards = useAppSelector(selectCards)
-  const packName = useAppSelector(selectPackName)
+  /*const cards = useAppSelector(selectCards)
+  const packName = useAppSelector(selectPackName)*/
   const [card, setCard] = useState<TCard>()
   const [showAnswer, setShowAnswer] = useState<boolean>(false)
   const [grade, setGrade] = useState<number | null>(null)
@@ -30,10 +29,10 @@ export const LearnPage = () => {
   }
 
   useEffect(() => {
-    if (cards) {
+    /*if (cards) {
       setCard(getCard(cards))
       return
-    }
+    }*/
     if (id) {
      /* dispatch(cardsThunks.fetchCards({ cardsPack_id: id })).unwrap().then(res => setCard(getCard(res.cards.cards)))*/
     }
@@ -46,7 +45,7 @@ export const LearnPage = () => {
 
   return (
     <div className={s.learnContainer}>
-      <h2 className={s.title}>Learn: {packName}</h2>
+      <h2 className={s.title}>Learn: {/*{packName}*/}</h2>
       <div className={s.questionContainer}>
         <div className={s.question}>
           <span>Question:</span> {card.question}

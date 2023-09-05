@@ -1,13 +1,6 @@
 import { useAppDispatch, useAppSelector } from 'common/hooks'
-import { useEffect } from 'react'
-import { useParams, useSearchParams } from 'react-router-dom'
+import { useSearchParams } from 'react-router-dom'
 import {
-  selectCardQuestion,
-  selectCards,
-  selectPackId,
-  selectCardsTotalCount,
-  selectPage,
-  selectPageCount
 } from 'features/cards/selectors'
 import { setCardsParams } from 'features/cards/service/cards.params.slice'
 import { useGetCards } from 'features/cards/hooks/useGetCards'
@@ -20,11 +13,8 @@ type TSearch = {
 
 export const useSearchCards = () => {
   const dispatch = useAppDispatch()
-  const { data: cards } = useGetCards()
-  const page = useAppSelector(selectPage)
-  const cardsTotalCount = useAppSelector(selectCardsTotalCount)
-  const pageCount = useAppSelector(selectPageCount)
-  const cardsPack_id = useAppSelector(selectPackId)
+  const { data: cards, packId } = useGetCards()
+
 
 
   const [searchParams, setSearchParams] = useSearchParams()
@@ -51,7 +41,7 @@ export const useSearchCards = () => {
   /**
    * Pagination
    */
-  const getNewPage = (page: number, pageCount: number) => dispatch(setCardsParams({ page, pageCount, cardsPack_id }))
+  const getNewPage = (page: number, pageCount: number) => dispatch(setCardsParams({ page, pageCount, cardsPack_id: packId! }))
 
 
   const fetchSortCard = (sortCards: string) => {
@@ -62,9 +52,6 @@ export const useSearchCards = () => {
     fetchSortCard,
     getNewPage,
     fetchCardsName,
-    pageCount,
-    cardsTotalCount,
-    page,
     cards,
     params
   }

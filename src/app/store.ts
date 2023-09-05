@@ -15,7 +15,6 @@ export const store = configureStore({
     app: appReducer,
     auth: authReducer,
     profile: profileReducer,
-    cards: cardsReducer,
     packsParams: packsParamsReducer,
     cardsParams: cardsParamsReducer,
     [cardsApi.reducerPath]: cardsApi.reducer,
