@@ -6,11 +6,10 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  height: 80vh;
+  margin-top: 180px;
 
   h2 {
     @include text(700, 26px, 36px);
-    align-self: flex-start;
   }
 
   span {

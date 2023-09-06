@@ -1,4 +1,4 @@
-import { useAppDispatch, useAppSelector } from 'common/hooks'
+import { useAppDispatch } from 'common/hooks'
 import { useSearchParams } from 'react-router-dom'
 import {
 } from 'features/cards/selectors'
