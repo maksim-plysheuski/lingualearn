@@ -8,7 +8,7 @@ import { selectUserId } from 'features/profile/selectors/selectors'
 import { useGetCards } from 'features/cards/hooks/useGetCards'
 
 export const CardsTableHeader = () => {
-  const { fetchSortCard } = useSearchCards()
+  const { fetchSortCards } = useSearchCards()
   const userId = useAppSelector(selectUserId)
   const {data} = useGetCards()
   const [sortOrder, setSortOrder] = useState<'asc' | 'desc'>('asc')
@@ -16,9 +16,9 @@ export const CardsTableHeader = () => {
   const columnTitles: string[] = ['Question', 'Answer', 'Last Updated', 'Grade']
   if (userId === data?.packUserId) columnTitles.push('Actions')
 
-  const handleSort = (sortTitle: string) => () => {
+  const handleSort = (columnTitle: string) => () => {
     let sortArgTitle
-    switch (sortTitle) {
+    switch (columnTitle) {
       case 'Question':
         sortArgTitle = 'question'
         break
@@ -32,10 +32,10 @@ export const CardsTableHeader = () => {
         sortArgTitle = 'grade'
         break
     }
-    const sortCards = sortOrder === 'asc' ? `0${sortArgTitle}` : `1${sortArgTitle}`
+    const payload = sortOrder === 'asc' ? `0${sortArgTitle}` : `1${sortArgTitle}`
+    fetchSortCards(payload)
     setSortOrder(sortOrder === 'desc' ? 'asc' : 'desc')
-    setLastSortedCell(sortTitle)
-    fetchSortCard(sortCards)
+    setLastSortedCell(columnTitle)
   }
 
   return (

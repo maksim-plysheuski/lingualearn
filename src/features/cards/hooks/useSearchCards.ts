@@ -44,12 +44,13 @@ export const useSearchCards = () => {
   const getNewPage = (page: number, pageCount: number) => dispatch(setCardsParams({ page, pageCount, cardsPack_id: packId! }))
 
 
-  const fetchSortCard = (sortCards: string) => {
-    /*dispatch(cardsThunks.fetchCards({ cardsPack_id, sortCards }))*/
-  }
+  /**
+   * Sort cards by column title
+   */
+  const fetchSortCards = (columnTitle: string) => dispatch(setCardsParams({ cardsPack_id: packId!, sortCards: columnTitle }))
 
   return {
-    fetchSortCard,
+    fetchSortCards,
     getNewPage,
     fetchCardsName,
     cards,
