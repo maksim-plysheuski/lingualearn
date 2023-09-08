@@ -1,41 +1,12 @@
 import { TableCell, TableHead, TableRow, TableSortLabel } from '@mui/material'
 import * as React from 'react'
-import { useState } from 'react'
-import { useAppDispatch, useAppSelector } from 'common/hooks'
 import { tableCellSx, tableHeaderSx } from 'features/pack/components/packsList/packsTable/tableStyles'
-import { setPackParams } from 'features/pack/service/packs.params.slice'
-import { selectPageCountPacksParam } from 'features/pack/selectors'
+import { useSortPacksTable } from 'features/pack/hook/useSortPacksTable'
+
 
 export const PacksTableHeader = () => {
-  const dispatch = useAppDispatch()
-  const currentRowsCount = useAppSelector(selectPageCountPacksParam)
-  const [sortOrder, setSortOrder] = useState<'asc' | 'desc'>('asc')
-  const [lastSortedCell, setLastSortedCell] = useState<string>('Last Updated')
+  const { lastSortedCell, setLastSortedCell, sortOrder, sortHandler } = useSortPacksTable()
   const columnTitles: string[] = ['Cover', 'Name', 'Cards', 'Last Updated', 'Created by', 'Actions']
-
-  const handleSort = (sortTitle: string) => () => {
-    let sortArgTitle
-    switch (sortTitle) {
-      case 'Cards':
-        sortArgTitle = 'cardsCount'
-        break
-      case 'Last Updated':
-        sortArgTitle = 'updated'
-        break
-      default:
-        sortArgTitle = 'name'
-        break
-    }
-    const payload = {
-      sortPacks: sortOrder === 'asc'
-        ? `0${sortArgTitle}`
-        : `1${sortArgTitle}`,
-      pageCount: currentRowsCount ? currentRowsCount : 4
-    }
-    dispatch(setPackParams(payload))
-    setSortOrder(sortOrder === 'desc' ? 'asc' : 'desc')
-    setLastSortedCell(sortTitle)
-  }
 
   return (
     <TableHead sx={tableHeaderSx}>
@@ -48,7 +19,7 @@ export const PacksTableHeader = () => {
                 sx={{ '& .MuiTableSortLabel-icon': { color: 'white !important' } }}
                 active={lastSortedCell === t}
                 direction={sortOrder}
-                onClick={handleSort(t)}>
+                onClick={sortHandler(t)}>
               </TableSortLabel> : null}
           </TableCell>)}
       </TableRow>
