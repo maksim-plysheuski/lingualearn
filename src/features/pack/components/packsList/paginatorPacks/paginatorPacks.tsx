@@ -1,9 +1,9 @@
 import React from 'react'
-import { useSortPacks } from 'features/pack/hook/useSortPacks'
 import { Paginator } from 'common/components'
+import { usePaginationPacks } from 'features/pack/hook/usePaginationPacks'
 
 export const PaginatorPacks = () => {
-  const { getNewPage, packs } = useSortPacks()
+  const { packs, getNewPage } = usePaginationPacks()
 
   return <Paginator pageCount={packs?.pageCount!}
                     page={packs?.page!}

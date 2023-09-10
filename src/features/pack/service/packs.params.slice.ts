@@ -12,6 +12,9 @@ const slice = createSlice({
     setPackParams: (state, action: PayloadAction<FetchPacksArgType>) => {
       state.packParams = { ...state.packParams, ...action.payload }
     },
+    resetPackParams: (state) => {
+      state.packParams = { max: 0, min: 0, packName: '', sortPacks: '', user_id: '' }
+    },
     setIsMyPack: (state, action: PayloadAction<boolean>) => {
       state.isMyPack = action.payload
     }
@@ -19,4 +22,4 @@ const slice = createSlice({
 })
 
 export const packsParamsReducer = slice.reducer
-export const { setPackParams, setIsMyPack } = slice.actions
+export const { setPackParams, resetPackParams, setIsMyPack } = slice.actions

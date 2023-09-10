@@ -13,6 +13,7 @@ export const CardsTableBody = () => {
   const { data } = useGetCards()
   const isMyPack = useAppSelector(selectIsMyPack)
 
+
   return (
     <TableBody>
       {data?.cards.map((card) => {

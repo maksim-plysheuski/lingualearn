@@ -5,14 +5,11 @@ import s from './style.module.scss'
 import { NameSearch } from './nameSearch/NameSearch'
 import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline'
 import { SuperButton } from 'common/components'
-import { useAppDispatch } from 'common/hooks'
-import { setPackParams } from 'features/pack/service/packs.params.slice'
+import { useSearchNamePacks } from 'features/pack/hook/useSearchNamePacks'
 
 
 export const SearchBar = () => {
-  const dispatch = useAppDispatch()
-  const params = { max: 0, min: 0, packName: '', sortPacks: '', user_id: '' }
-  const clearSearchFilter = () => dispatch(setPackParams(params))
+  const { clearSearchFilter } = useSearchNamePacks()
 
   return (
     <div className={s.container}>

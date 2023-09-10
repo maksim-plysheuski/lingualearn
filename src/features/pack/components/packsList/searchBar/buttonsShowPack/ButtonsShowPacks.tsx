@@ -6,7 +6,7 @@ import { memo } from 'react'
 import { useSortPacks } from 'features/pack/hook/useSortPacks'
 
 export const ButtonsShowPacks = memo(() => {
-  const {userId, userIdParam, getPacksHandler, isAppLoading} = useSortPacks()
+  const { userId, userIdParam, getPacksHandler, isAppLoading } = useSortPacks()
 
   return (
     <div className={s.container}>

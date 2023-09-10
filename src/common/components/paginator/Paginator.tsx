@@ -1,7 +1,7 @@
 import { Pagination, Select, SelectChangeEvent } from '@mui/material'
 import MenuItem from '@mui/material/MenuItem'
 import s from './style.module.scss'
-import { ChangeEvent } from 'react'
+import { ChangeEvent, memo } from 'react'
 import { paginatorStyle, selectOptionsStyle, selectorStyle } from 'common/components/paginator/style'
 
 type Props = {
@@ -11,7 +11,7 @@ type Props = {
   getNewPage: (page: number, size: number) => void
 }
 
-export const Paginator = (props: Props) => {
+export const Paginator = memo((props: Props) => {
   const { pageCount, totalCount, page, getNewPage } = props
 
   const paginationHandler = (event: ChangeEvent<unknown>, page: number) => getNewPage(page, pageCount)
@@ -44,4 +44,4 @@ export const Paginator = (props: Props) => {
       </div>
     </div>
   )
-}
+})

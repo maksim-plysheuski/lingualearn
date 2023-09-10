@@ -1,27 +1,22 @@
-import React, { useCallback, useEffect } from 'react'
+import React, { useEffect } from 'react'
 import { InputSearch } from 'common/components'
 import s from './style.module.scss'
-import { useSortPacks } from 'features/pack/hook/useSortPacks'
+import { useSearchNamePacks } from 'features/pack/hook/useSearchNamePacks'
 
 export const NameSearch = () => {
-  const { searchPackName, setSearchPackName, packNameParam } = useSortPacks()
+  const { packName, onChangeHandler, packNameParam } = useSearchNamePacks()
 
   useEffect(() => {
-    if (!packNameParam && searchPackName) {
-      setSearchPackName('')
+    if (!packNameParam && packName) {
+      onChangeHandler('')
     }
-  }, [packNameParam])
-
-  const setParamsHandler = useCallback((packName: string) => {
-    setSearchPackName(packName)
   }, [packNameParam])
 
   return (
     <div className={s.container}>
-      <InputSearch searchNameCallback={setParamsHandler}
-                   valueName={searchPackName} />
+      <InputSearch searchNameCallback={onChangeHandler}
+                   valueName={packName} />
     </div>
-
   )
 }
 

@@ -1,24 +1,19 @@
 import { TableCell, TableHead, TableRow, TableSortLabel } from '@mui/material'
 import * as React from 'react'
-import { useState } from 'react'
-import { useSearchCards } from 'features/cards/hooks/useSearchCards'
 import { tableCellSx, tableHeaderSx } from 'features/pack/components/packsList/packsTable/tableStyles'
 import { useAppSelector } from 'common/hooks'
 import { selectUserId } from 'features/profile/selectors/selectors'
 import { useGetCards } from 'features/cards/hooks/useGetCards'
-import { useSort } from 'common/hooks/useSort'
+import { useSortCards } from 'features/cards/hooks/useSortCards'
 
 export const CardsTableHeader = () => {
-  const { fetchSortCards } = useSearchCards()
-  const {sortOrder, lastSortedCell, setLastSortedCell, sortHandler} = useSort(fetchSortCards)
+  const { data } = useGetCards()
+  const {sortOrder, sortHandler, lastSortedCell, setLastSortedCell} = useSortCards()
   const userId = useAppSelector(selectUserId)
-  const {data} = useGetCards()
   const columnTitles: string[] = ['Question', 'Answer', 'Last Updated', 'Grade']
-  if (userId === data?.packUserId) columnTitles.push('Actions')
 
-
-  const handleSort = (sortTitle: string) => () => {
-    sortHandler(sortTitle)
+  if (userId === data?.packUserId) {
+    columnTitles.push('Actions')
   }
 
   return (
@@ -31,7 +26,7 @@ export const CardsTableHeader = () => {
               sx={{ '& .MuiTableSortLabel-icon': { color: 'white !important' } }}
               active={lastSortedCell === t}
               direction={sortOrder}
-              onClick={handleSort(t)} /> : null}
+              onClick={sortHandler(t)} /> : null}
           </TableCell>)}
       </TableRow>
     </TableHead>

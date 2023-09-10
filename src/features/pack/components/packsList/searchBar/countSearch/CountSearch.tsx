@@ -2,12 +2,10 @@ import { memo } from 'react'
 import Slider from '@mui/material/Slider'
 import s from './style.module.scss'
 import { sliderStyle } from 'features/pack/components/packsList/searchBar/countSearch/style'
-import { useSortPacks } from 'features/pack/hook/useSortPacks'
+import { useSlider } from 'features/pack/hook/useSlider'
 
 export const CountSearch = memo(() => {
-  const {packs, sliderValue, setSliderValue, onChangeCommittedHandler} = useSortPacks()
-
-  const handleChange = (event: Event, newValue: number | number[]) => setSliderValue(newValue as number [])
+  const { packs, sliderValue, onChangeHandler, onChangeCommittedHandler } = useSlider()
 
   return (
     <div className={s.container}>
@@ -20,7 +18,7 @@ export const CountSearch = memo(() => {
                   min={packs?.minCardsCount!}
                   valueLabelDisplay='auto'
                   value={sliderValue}
-                  onChange={handleChange}
+                  onChange={onChangeHandler}
                   onChangeCommitted={onChangeCommittedHandler} />
         </div>
         <div className={s.count}>{packs?.maxCardsCount}</div>

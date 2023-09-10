@@ -1,81 +1,55 @@
 import { useAppDispatch, useAppSelector } from 'common/hooks'
-import { useCallback, useEffect, useState } from 'react'
-import {
-  selectMaxPacksParam,
-  selectMinPacksParam,
-  selectPackNameParam,
-  selectUserIdParam
-} from 'features/pack/selectors'
-import { useDebounce } from 'common/hooks/useDebounce'
+import { useCallback, useState } from 'react'
+import { selectPageCountPacksParam, selectUserIdParam } from 'features/pack/selectors'
 import { setPackParams } from 'features/pack/service/packs.params.slice'
-import { useGetPacks } from 'features/pack/hook/useGetPacks'
 import { selectUserId } from 'features/profile/selectors/selectors'
 import { selectIsAppLoading } from 'app'
 
 export const useSortPacks = () => {
   const dispatch = useAppDispatch()
-  const minParam = useAppSelector(selectMinPacksParam)
-  const maxParam = useAppSelector(selectMaxPacksParam)
-  const packNameParam = useAppSelector(selectPackNameParam)
-
-  /**
-   * Sort packs by inputted name / send request with delay using useDebounce hook
-   */
-  const [searchPackName, setSearchPackName] = useState<string>('')
-  const debounceName = useDebounce(searchPackName, 800)
-  useEffect(() => {
-    if (debounceName === "") return
-    dispatch(setPackParams({ packName: debounceName }))
-  }, [debounceName])
-
-
-  /**
-   * Sort packs by count of cards
-   */
-  const { data: packs } = useGetPacks()
-  const [sliderValue, setSliderValue] = useState<number[]>([packs!.minCardsCount, packs!.maxCardsCount])
-
-  useEffect(() => {
-    if (!minParam && !maxParam) {
-      setSliderValue([packs!.minCardsCount!, packs!.maxCardsCount!])
-    }
-  }, [minParam, maxParam])
-
-  const onChangeCommittedHandler = useCallback(() => {
-    dispatch(setPackParams({ min: sliderValue[0], max: sliderValue[1] }))
-  }, [sliderValue])
-
-
-  /**
-   * Toggle buttons show all or my packs
-   */
   const userIdParam = useAppSelector(selectUserIdParam)
   const userId = useAppSelector(selectUserId)
   const isAppLoading = useAppSelector(selectIsAppLoading)
+  const [sortOrder, setSortOrder] = useState<'asc' | 'desc'>('asc')
+  const [lastSortedCell, setLastSortedCell] = useState<string>('Last Updated')
+  const currentRowsCount = useAppSelector(selectPageCountPacksParam)
 
-  const getPacksHandler = (user_id: string) => dispatch(setPackParams({ user_id }))
+  const sortHandler = (sortTitle: string) => () => {
+    let sortArgTitle
+    switch (sortTitle) {
+      case 'Cards':
+        sortArgTitle = 'cardsCount'
+        break
+      case 'Last Updated':
+        sortArgTitle = 'updated'
+        break
+      default:
+        sortArgTitle = 'name'
+        break
+    }
+    const payload = {
+      sortPacks: sortOrder === 'asc'
+        ? `0${sortArgTitle}`
+        : `1${sortArgTitle}`,
+      pageCount: currentRowsCount ? currentRowsCount : 4
+    }
+    dispatch(setPackParams(payload))
+    setSortOrder(sortOrder === 'desc' ? 'asc' : 'desc')
+    setLastSortedCell(sortTitle)
+  }
 
-
-  /**
-   * Pagination
-   */
-  const getNewPage = (page: number, size: number) => dispatch(setPackParams({ page, pageCount: size }))
-
+  const getPacksHandler = useCallback((user_id: string) => dispatch(setPackParams({ user_id })), [dispatch])
 
   return {
-    getNewPage,
     userId,
     getPacksHandler,
     isAppLoading,
     userIdParam,
     dispatch,
-    packNameParam,
-    onChangeCommittedHandler,
-    searchPackName,
-    setSliderValue,
-    sliderValue,
-    packs,
-    setSearchPackName
+    lastSortedCell,
+    setLastSortedCell,
+    sortOrder,
+    sortHandler
   }
 }
 

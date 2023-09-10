@@ -1,11 +1,11 @@
 import { TableCell, TableHead, TableRow, TableSortLabel } from '@mui/material'
 import * as React from 'react'
 import { tableCellSx, tableHeaderSx } from 'features/pack/components/packsList/packsTable/tableStyles'
-import { useSortPacksTable } from 'features/pack/hook/useSortPacksTable'
+import { useSortPacks } from 'features/pack/hook/useSortPacks'
 
 
 export const PacksTableHeader = () => {
-  const { lastSortedCell, setLastSortedCell, sortOrder, sortHandler } = useSortPacksTable()
+  const { lastSortedCell, setLastSortedCell, sortOrder, sortHandler } = useSortPacks()
   const columnTitles: string[] = ['Cover', 'Name', 'Cards', 'Last Updated', 'Created by', 'Actions']
 
   return (
