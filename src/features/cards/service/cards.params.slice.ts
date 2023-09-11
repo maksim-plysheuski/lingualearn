@@ -1,5 +1,5 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
-import { TGetCardsArgs } from 'features/cards/cardsApi'
+import { TGetCardsArgs } from 'features/cards/service/cards.types'
 
 
 const slice = createSlice({

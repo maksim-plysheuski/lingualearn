@@ -38,7 +38,7 @@ export const useSortPacks = () => {
     setLastSortedCell(sortTitle)
   }
 
-  const getPacksHandler = useCallback((user_id: string) => dispatch(setPackParams({ user_id })), [dispatch])
+  const getPacksHandler = useCallback((user_id: string) => dispatch(setPackParams({ user_id })), [])
 
   return {
     userId,

@@ -8,15 +8,15 @@ import { selectPackNameParam } from 'features/pack/selectors'
 export const useSearchNamePacks = () => {
   const dispatch = useAppDispatch()
   const packNameParam = useAppSelector(selectPackNameParam)
-  const [packName, setPackName] = useState<string>('')
+  const [packName, setPackName] = useState<string | null>(null)
   const debounceName = useDebounce(packName, 800)
 
   useEffect(() => {
-    if (debounceName === '') return
+    if (debounceName === null) return
     dispatch(setPackParams({ packName: debounceName }))
   }, [debounceName])
 
-  const onChangeHandler = useCallback((packName: string) => {
+  const searchPackHandler = useCallback((packName: string) => {
     setPackName(packName)
   }, [dispatch])
 
@@ -24,5 +24,5 @@ export const useSearchNamePacks = () => {
     dispatch(resetPackParams())
   }, [dispatch])
 
-  return { packName, setPackName, packNameParam, onChangeHandler, clearSearchFilter }
+  return { packName, setPackName, packNameParam, searchPackHandler, clearSearchFilter }
 }

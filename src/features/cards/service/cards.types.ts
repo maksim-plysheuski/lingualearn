@@ -1,24 +1,3 @@
-import { instance } from 'common'
-
-
-export const cardsApi = {
-  getCards: (arg: TGetCardsArgs) => {
-    return instance.get<TGetCardsResponse>('cards/card', { params: arg }).then(res => res.data)
-  },
-  createCard: (arg: TCreateCardArg) => {
-    return instance.post<{ newCard: TCard }>('cards/card', { card: arg }).then(res => res.data)
-  },
-  deleteCard: (arg: TDeleteCardArg) => {
-    return instance.delete<{ deletedCard: TCard }>('cards/card', { params: arg }).then(res => res.data)
-  },
-  updateCard: (arg: TUpdateCardArg) => {
-    return instance.put<{ updatedCard: TCard }>('cards/card', { card: arg }).then(res => res.data)
-  },
-  changeGrade: (arg: TChangeGradeArg) => {
-    return instance.put<TChangeGradeResponse>('cards/grade', arg).then(res => res.data)
-  }
-}
-
 //Arguments types
 type TCommonArg = {
   question?: string
@@ -29,7 +8,7 @@ type TCommonArg = {
   questionImg?: string
 }
 
-export type TGetCardsArgs = {
+export type  TGetCardsArgs = {
   cardsPack_id: string
   cardAnswer?: string
   cardQuestion?: string

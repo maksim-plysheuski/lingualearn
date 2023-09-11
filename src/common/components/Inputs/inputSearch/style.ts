@@ -1,0 +1,1 @@
+export const searchIconSx = { height: '20px', width: '20px', color: '#808080', margin: '10px' }

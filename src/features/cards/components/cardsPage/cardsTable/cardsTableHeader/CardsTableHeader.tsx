@@ -8,8 +8,8 @@ import { useSortCards } from 'features/cards/hooks/useSortCards'
 
 export const CardsTableHeader = () => {
   const { data } = useGetCards()
-  const {sortOrder, sortHandler, lastSortedCell, setLastSortedCell} = useSortCards()
   const userId = useAppSelector(selectUserId)
+  const {sortOrder, sortHandler, lastSortedCell, setLastSortedCell} = useSortCards()
   const columnTitles: string[] = ['Question', 'Answer', 'Last Updated', 'Grade']
 
   if (userId === data?.packUserId) {

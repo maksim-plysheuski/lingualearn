@@ -1,4 +1,5 @@
-import { TCard } from 'features/cards/cardsApi'
+import { TCard } from 'features/cards/service/cards.types'
+
 
 export const getCard = (cards: TCard[]) => {
   const sum = cards.reduce((acc, card) => acc + (6 - card.grade) * (6 - card.grade), 0)

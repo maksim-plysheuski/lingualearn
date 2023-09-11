@@ -1,2 +1,2 @@
-export { packsApi } from 'features/pack/service/packs.api'
+export { packsApi } from './packs.api'
 

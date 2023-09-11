@@ -1,6 +1,12 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
 import { baseURL } from 'common/api/common.api'
-import { TCard, TCreateCardArg, TGetCardsArgs, TGetCardsResponse, TUpdateCardArg } from 'features/cards/cardsApi'
+import {
+  TCard,
+  TCreateCardArg,
+  TGetCardsArgs,
+  TGetCardsResponse,
+  TUpdateCardArg
+} from 'features/cards/service/cards.types'
 
 
 export const cardsApi = createApi({

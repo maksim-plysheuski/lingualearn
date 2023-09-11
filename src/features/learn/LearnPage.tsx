@@ -1,12 +1,11 @@
 import React, { useEffect, useState } from 'react'
-import { getCard } from './getRandomCard'
-import { useAppDispatch, useAppSelector } from 'common/hooks'
+import { useAppDispatch } from 'common/hooks'
 import { useParams } from 'react-router-dom'
 import s from './style.module.scss'
-import { TCard } from 'features/cards/cardsApi'
 import { Answer } from './answer'
 import { SuperButton } from 'common/components'
 import { resetCardsParams } from 'features/cards/service/cards.params.slice'
+import { TCard } from 'features/cards/service/cards.types'
 
 export const LearnPage = () => {
   const { id } = useParams<{ id: string }>()

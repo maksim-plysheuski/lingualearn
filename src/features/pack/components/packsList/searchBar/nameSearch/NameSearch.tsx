@@ -4,18 +4,18 @@ import s from './style.module.scss'
 import { useSearchNamePacks } from 'features/pack/hook/useSearchNamePacks'
 
 export const NameSearch = () => {
-  const { packName, onChangeHandler, packNameParam } = useSearchNamePacks()
+  const { packName, searchPackHandler, packNameParam } = useSearchNamePacks()
 
   useEffect(() => {
     if (!packNameParam && packName) {
-      onChangeHandler('')
+      searchPackHandler('')
     }
   }, [packNameParam])
 
   return (
     <div className={s.container}>
-      <InputSearch searchNameCallback={onChangeHandler}
-                   valueName={packName} />
+      <InputSearch searchNameCallback={searchPackHandler}
+                   valueName={packName ?? ''} />
     </div>
   )
 }

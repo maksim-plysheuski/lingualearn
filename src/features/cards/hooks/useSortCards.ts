@@ -30,7 +30,6 @@ export const useSortCards = () => {
     dispatch(setCardsParams({ cardsPack_id: packId!, sortCards }))
     setSortOrder(sortOrder === 'desc' ? 'asc' : 'desc')
     setLastSortedCell(sortTitle)
-
   }
 
   return { sortOrder, sortHandler, lastSortedCell, setLastSortedCell }

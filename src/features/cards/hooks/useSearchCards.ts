@@ -1,9 +1,9 @@
 import { useAppDispatch } from 'common/hooks'
 import { useSearchParams } from 'react-router-dom'
-import {
-} from 'features/cards/selectors'
 import { setCardsParams } from 'features/cards/service/cards.params.slice'
 import { useGetCards } from 'features/cards/hooks/useGetCards'
+import { useCallback, useEffect, useState } from 'react'
+import { useDebounce } from 'common/hooks/useDebounce'
 
 
 type TSearch = {
@@ -14,6 +14,18 @@ type TSearch = {
 export const useSearchCards = () => {
   const dispatch = useAppDispatch()
   const { data: cards, packId } = useGetCards()
+  const [searchValue, setSearchValue] = useState<string | null>(null)
+  const debounceValue = useDebounce(searchValue, 800)
+
+  useEffect(() => {
+    if (debounceValue === null) return
+    dispatch(setCardsParams({cardsPack_id: packId!, cardQuestion: debounceValue }))
+  }, [debounceValue])
+
+  const searchCardHandler = useCallback((inputValue: string) => {
+    setSearchValue(inputValue)
+  }, [dispatch])
+
 
 
 
@@ -32,16 +44,14 @@ export const useSearchCards = () => {
    }, [cardsPack_id])*/
 
 
-  //searchName
-  const fetchCardsName = (cardQuestion: string) => {
-    /*  dispatch(cardsThunks.fetchCards({ cardsPack_id, cardQuestion }))*/
-  }
 
 
   /**
    * Pagination
    */
-  const getNewPage = (page: number, pageCount: number) => dispatch(setCardsParams({ page, pageCount, cardsPack_id: packId! }))
+  const getNewPage = (page: number, pageCount: number) => {
+    dispatch(setCardsParams({ page, pageCount, cardsPack_id: packId! }))
+  }
 
 
   /**
@@ -52,7 +62,8 @@ export const useSearchCards = () => {
   return {
     fetchSortCards,
     getNewPage,
-    fetchCardsName,
+    searchCardHandler,
+    searchValue,
     cards,
     params
   }

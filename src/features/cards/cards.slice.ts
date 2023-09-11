@@ -1,11 +1,6 @@
-import { createSlice, PayloadAction } from '@reduxjs/toolkit'
-import { createAppAsyncThunk } from 'common/utils/createAppAsyncThunk'
-import {
-  cardsApi, TCard,
-  TChangeGradeArg,
-  TGetCardsArgs,
-  TGetCardsResponse,
-} from 'features/cards/cardsApi'
+import { createSlice} from '@reduxjs/toolkit'
+import { TGetCardsArgs, TGetCardsResponse } from 'features/cards/service/cards.types'
+
 
 const slice = createSlice({
   name: 'cards',

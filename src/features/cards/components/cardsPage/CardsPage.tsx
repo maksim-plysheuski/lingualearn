@@ -4,6 +4,8 @@ import * as React from 'react'
 import { CardsTable } from 'features/cards/components/cardsPage/cardsTable/CardsTable'
 import { PaginationCards } from 'features/cards/components/cardsPage/paginationCards/paginationCards'
 import { TitleBlockCards } from 'features/cards/components/cardsPage/titleBlockCards/titleBlockCards'
+import { InputSearchCards } from 'features/cards/components/cardsPage/inputSearchCards/inputSearchCards'
+
 
 
 export const CardsPage = () => {
@@ -11,12 +13,10 @@ export const CardsPage = () => {
   return (
     <div className={s.packsList}>
       <BackLink />
-      {/*<InputSearchCards />*/}
       <TitleBlockCards />
+      <InputSearchCards />
       <CardsTable />
       <PaginationCards />
-
-
     </div>
   )
 }
