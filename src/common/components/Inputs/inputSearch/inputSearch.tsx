@@ -1,22 +1,20 @@
-import React, { ChangeEvent, memo } from 'react'
+import React, { ChangeEvent, FC, memo } from 'react'
 import s from './style.module.scss'
 import { searchIconSx } from './style'
 import SearchIcon from '@mui/icons-material/Search'
 
-
 type Props = {
-  valueName: string
-  searchNameCallback: (name: string) => void
+  inputValue: string
+  searchCallback: (searchValue: string) => void
 }
 
-export const InputSearch = memo((props: Props) => {
-  const { searchNameCallback, valueName } = props
-  const onChangeHandler = (e: ChangeEvent<HTMLInputElement>) => searchNameCallback(e.currentTarget.value)
+export const InputSearch: FC<Props> = memo(({ inputValue, searchCallback }) => {
+  const onChangeHandler = (e: ChangeEvent<HTMLInputElement>) => searchCallback(e.currentTarget.value)
 
   return (
     <div className={s.container}>
       <SearchIcon sx={searchIconSx} />
-      <input className={s.input} value={valueName} onChange={onChangeHandler} placeholder={'Input search'} />
+      <input className={s.input} value={inputValue} onChange={onChangeHandler} placeholder={'Input search'} />
     </div>
   )
 })

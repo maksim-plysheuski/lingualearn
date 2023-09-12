@@ -5,18 +5,26 @@ import { CardsTable } from 'features/cards/components/cardsPage/cardsTable/Cards
 import { PaginationCards } from 'features/cards/components/cardsPage/paginationCards/paginationCards'
 import { TitleBlockCards } from 'features/cards/components/cardsPage/titleBlockCards/titleBlockCards'
 import { InputSearchCards } from 'features/cards/components/cardsPage/inputSearchCards/inputSearchCards'
-
+import { useGetCards } from 'features/cards/hooks/useGetCards'
+import { EmptyCardsPack } from 'features/cards/components/cardsPage/emptyCardsPack/EmptyCardsPack'
 
 
 export const CardsPage = () => {
+  const { data, isLoading } = useGetCards()
+  if (isLoading) return <h1>loading</h1>
 
   return (
     <div className={s.packsList}>
       <BackLink />
-      <TitleBlockCards />
-      <InputSearchCards />
-      <CardsTable />
-      <PaginationCards />
+      {data?.cards.length
+        ? <>
+          <TitleBlockCards />
+          <InputSearchCards />
+          <CardsTable />
+          <PaginationCards />
+        </>
+        : <EmptyCardsPack />
+      }
     </div>
   )
 }

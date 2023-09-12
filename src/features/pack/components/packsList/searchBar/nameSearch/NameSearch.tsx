@@ -14,8 +14,8 @@ export const NameSearch = () => {
 
   return (
     <div className={s.container}>
-      <InputSearch searchNameCallback={searchPackHandler}
-                   valueName={packName ?? ''} />
+      <InputSearch searchCallback={searchPackHandler}
+                   inputValue={packName ?? ''} />
     </div>
   )
 }

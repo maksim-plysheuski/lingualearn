@@ -18,6 +18,7 @@ function App() {
     dispatch(authThunks.authMe())
   }, [dispatch])
 
+
   return (
     <div className={s.App}>
       <AppHeader />
