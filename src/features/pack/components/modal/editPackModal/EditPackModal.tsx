@@ -1,5 +1,5 @@
 import { BaseModal } from 'common/components'
-import React, { FC, useState } from 'react'
+import React, { FC, memo, useState } from 'react'
 import DriveFileRenameOutlineIcon from '@mui/icons-material/DriveFileRenameOutline'
 import { toast } from 'react-toastify'
 import { PackBodyModal } from 'features/pack/components/modal/common/packBodyModal/PackBodyModal'
@@ -14,14 +14,14 @@ type Props = {
   handleCloseMenu?: () => void
 }
 
-export const EditPackModal: FC<Props> = ({
-                                           packId,
-                                           packName,
-                                           isPrivate,
-                                           coverImage,
-                                           nameIcon,
-                                           handleCloseMenu
-                                         }) => {
+export const EditPackModal: FC<Props> = memo(({
+                                                packId,
+                                                packName,
+                                                isPrivate,
+                                                coverImage,
+                                                nameIcon,
+                                                handleCloseMenu
+                                              }) => {
 
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false)
   const [inputValue, setInputValue] = useState<string>(packName)
@@ -67,4 +67,4 @@ export const EditPackModal: FC<Props> = ({
                      setIsPrivate={setIsPrivatePack} />
     </BaseModal>
   )
-}
+})

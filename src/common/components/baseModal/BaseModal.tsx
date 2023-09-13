@@ -3,25 +3,8 @@ import Modal from '@mui/material/Modal'
 import React, { ReactNode } from 'react'
 import CloseIcon from '@mui/icons-material/Close'
 import s from './style.module.scss'
-import { SxProps, Theme } from '@mui/material/styles'
 import { SuperButton } from 'common/components/superButton/SuperButton'
-
-
-const style: SxProps<Theme> = {
-  position: 'absolute' as 'absolute',
-  top: '50%',
-  left: '50%',
-  transform: 'translate(-50%, -50%)',
-  width: 542,
-  color: '#FFFFFF',
-  bgcolor: '#171717',
-  border: '1px solid #333333',
-  borderRadius: '2px 2px 0px 0px',
-  pt: 2,
-  px: 4,
-  pb: 3,
-  padding: '0px'
-}
+import { baseModalSx } from 'common/components/baseModal/style'
 
 type Props = {
   children: ReactNode
@@ -48,7 +31,7 @@ export const BaseModal = (props: Props) => {
              aria-labelledby='parent-modal-title'
              aria-describedby='parent-modal-description'
       >
-        <Box sx={style}>
+        <Box sx={baseModalSx}>
           <div className={s.titleContainer}>
             <span>{title}</span>
             <CloseIcon sx={{ cursor: 'pointer', '&:hover': { color: '#808080' } }} onClick={handleClose} />

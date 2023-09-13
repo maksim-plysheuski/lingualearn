@@ -4,15 +4,14 @@ import Rating from '@mui/material/Rating'
 import StarBorderIcon from '@mui/icons-material/StarBorder'
 import { FieldButtons } from './fieldButtons/FieldButtons'
 import { tableCellHoverSx, tableCellSx } from 'features/pack/components/packsList/packsTable/tableStyles'
-import { useGetCards } from 'features/cards/hooks/useGetCards'
+import { useFetchCards } from 'features/cards/hooks/useFetchCards'
 import { useAppSelector } from 'common/hooks'
 import { selectIsMyPack } from 'features/pack/selectors'
 
 
 export const CardsTableBody = () => {
-  const { data } = useGetCards()
+  const { data } = useFetchCards()
   const isMyPack = useAppSelector(selectIsMyPack)
-
 
   return (
     <TableBody>

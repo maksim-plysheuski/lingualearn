@@ -5,7 +5,7 @@ import { useAppSelector } from 'common/hooks'
 import Tooltip from '@mui/material/Tooltip'
 import { EditPackModal } from 'features/pack/components/modal/editPackModal/EditPackModal'
 import { tableIconSx } from 'features/pack/components/packsList/packsTable/tableStyles'
-import { selectUserId } from 'features/profile/selectors/selectors'
+import { selectProfileUserId } from 'features/profile/selectors/selectors'
 import { FC } from 'react'
 
 type PropsType = {
@@ -16,7 +16,7 @@ type PropsType = {
 }
 
 export const EditPack: FC<PropsType> = ({packId, packName, coverImage, isPrivate}) => {
-  const userId = useAppSelector(selectUserId)
+  const userId = useAppSelector(selectProfileUserId)
 
   return(
     <>

@@ -5,7 +5,7 @@ import { toast } from 'react-toastify'
 import { CardsBodyModal } from 'features/cards/components/modal/common/cardsBodyModal/CardsBodyModal'
 import { SuperButton } from 'common/components'
 import { useCreateCardMutation } from 'features/cards/service/cards.api'
-import { useGetCards } from 'features/cards/hooks/useGetCards'
+import { useFetchCards } from 'features/cards/hooks/useFetchCards'
 
 
 export const AddCardsModal = () => {
@@ -15,7 +15,7 @@ export const AddCardsModal = () => {
   const [answer, setAnswer] = useState<string>('')
   const [questionImg, setQuestionImg] = useState<string>('')
   const [answerImg, setAnswerImg] = useState<string>('')
-  const { packId } = useGetCards()
+  const { packId } = useFetchCards()
   const [createCard, { isLoading }] = useCreateCardMutation()
 
   const createNewCards = () => {

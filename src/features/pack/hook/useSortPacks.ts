@@ -2,13 +2,13 @@ import { useAppDispatch, useAppSelector } from 'common/hooks'
 import { useCallback, useState } from 'react'
 import { selectPageCountPacksParam, selectUserIdParam } from 'features/pack/selectors'
 import { setPackParams } from 'features/pack/service/packs.params.slice'
-import { selectUserId } from 'features/profile/selectors/selectors'
+import { selectProfileUserId } from 'features/profile/selectors/selectors'
 import { selectIsAppLoading } from 'app'
 
 export const useSortPacks = () => {
   const dispatch = useAppDispatch()
   const userIdParam = useAppSelector(selectUserIdParam)
-  const userId = useAppSelector(selectUserId)
+  const userId = useAppSelector(selectProfileUserId)
   const isAppLoading = useAppSelector(selectIsAppLoading)
   const [sortOrder, setSortOrder] = useState<'asc' | 'desc'>('asc')
   const [lastSortedCell, setLastSortedCell] = useState<string>('Last Updated')

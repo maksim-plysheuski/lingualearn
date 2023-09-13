@@ -5,12 +5,12 @@ import { CardsTable } from 'features/cards/components/cardsPage/cardsTable/Cards
 import { PaginationCards } from 'features/cards/components/cardsPage/paginationCards/paginationCards'
 import { TitleBlockCards } from 'features/cards/components/cardsPage/titleBlockCards/titleBlockCards'
 import { InputSearchCards } from 'features/cards/components/cardsPage/inputSearchCards/inputSearchCards'
-import { useGetCards } from 'features/cards/hooks/useGetCards'
+import { useFetchCards } from 'features/cards/hooks/useFetchCards'
 import { EmptyCardsPack } from 'features/cards/components/cardsPage/emptyCardsPack/EmptyCardsPack'
 
 
 export const CardsPage = () => {
-  const { data, isLoading } = useGetCards()
+  const { data, isLoading } = useFetchCards()
   if (isLoading) return <h1>loading</h1>
 
   return (

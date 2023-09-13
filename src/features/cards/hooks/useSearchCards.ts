@@ -1,7 +1,7 @@
 import { useAppDispatch } from 'common/hooks'
 import { useSearchParams } from 'react-router-dom'
 import { setCardsParams } from 'features/cards/service/cards.params.slice'
-import { useGetCards } from 'features/cards/hooks/useGetCards'
+import { useFetchCards } from 'features/cards/hooks/useFetchCards'
 import { useCallback, useEffect, useState } from 'react'
 import { useDebounce } from 'common/hooks/useDebounce'
 
@@ -13,7 +13,7 @@ type TSearch = {
 
 export const useSearchCards = () => {
   const dispatch = useAppDispatch()
-  const { data: cards, packId } = useGetCards()
+  const { data: cards, packId } = useFetchCards()
   const [searchValue, setSearchValue] = useState<string | null>(null)
   const debounceValue = useDebounce(searchValue, 800)
 

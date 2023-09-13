@@ -4,7 +4,7 @@ import { useGetCardsQuery } from 'features/cards/service/cards.api'
 import { useParams } from 'react-router-dom'
 
 
-export const useGetCards = () => {
+export const useFetchCards = () => {
   const cardsParams = useAppSelector(selectCardsParams)
   const { packId } = useParams<{ packId: string }>()
 

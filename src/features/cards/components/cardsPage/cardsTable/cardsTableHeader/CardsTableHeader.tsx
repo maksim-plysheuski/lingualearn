@@ -2,13 +2,13 @@ import { TableCell, TableHead, TableRow, TableSortLabel } from '@mui/material'
 import * as React from 'react'
 import { tableCellSx, tableHeaderSx } from 'features/pack/components/packsList/packsTable/tableStyles'
 import { useAppSelector } from 'common/hooks'
-import { selectUserId } from 'features/profile/selectors/selectors'
-import { useGetCards } from 'features/cards/hooks/useGetCards'
+import { selectProfileUserId } from 'features/profile/selectors/selectors'
+import { useFetchCards } from 'features/cards/hooks/useFetchCards'
 import { useSortCards } from 'features/cards/hooks/useSortCards'
 
 export const CardsTableHeader = () => {
-  const { data } = useGetCards()
-  const userId = useAppSelector(selectUserId)
+  const { data } = useFetchCards()
+  const userId = useAppSelector(selectProfileUserId)
   const { sortOrder, sortHandler, lastSortedCell, setLastSortedCell } = useSortCards()
   const columnTitles: string[] = ['Question', 'Answer', 'Last Updated', 'Grade']
 

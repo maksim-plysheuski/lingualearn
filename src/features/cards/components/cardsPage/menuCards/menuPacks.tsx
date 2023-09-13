@@ -10,11 +10,11 @@ import { useNavigate } from 'react-router-dom'
 import { menuStyle, paperStyle } from 'common/components/appHeader/avatarMenu/style'
 import IconButton from '@mui/material/IconButton'
 import { tableIconSx } from 'features/pack/components/packsList/packsTable/tableStyles'
-import { useGetCards } from 'features/cards/hooks/useGetCards'
+import { useFetchCards } from 'features/cards/hooks/useFetchCards'
 
 
 export const MenuPacks = () => {
-  const {data, packId} = useGetCards()
+  const {data, packId} = useFetchCards()
   const navigate = useNavigate()
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null)
   const open = Boolean(anchorEl)
