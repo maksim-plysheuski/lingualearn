@@ -2,17 +2,17 @@ import { TableCell, TableHead, TableRow, TableSortLabel } from '@mui/material'
 import * as React from 'react'
 import { tableCellSx, tableHeaderSx } from 'features/pack/components/packsList/packsTable/tableStyles'
 import { useAppSelector } from 'common/hooks'
-import { selectProfileUserId } from 'features/profile/selectors/selectors'
 import { useFetchCards } from 'features/cards/hooks/useFetchCards'
 import { useSortCards } from 'features/cards/hooks/useSortCards'
+import { selectProfileUserId } from 'features/auth/selectors'
 
 export const CardsTableHeader = () => {
   const { data } = useFetchCards()
-  const userId = useAppSelector(selectProfileUserId)
+  const profileUserId = useAppSelector(selectProfileUserId)
   const { sortOrder, sortHandler, lastSortedCell, setLastSortedCell } = useSortCards()
   const columnTitles: string[] = ['Question', 'Answer', 'Last Updated', 'Grade']
 
-  if (userId === data?.packUserId) {
+  if (profileUserId === data?.packUserId) {
     columnTitles.push('Actions')
   }
 

@@ -3,11 +3,11 @@ import { Avatar, Badge, IconButton } from '@mui/material'
 import PhotoCameraOutlinedIcon from '@mui/icons-material/PhotoCameraOutlined'
 import { useAppDispatch, useAppSelector } from 'common/hooks'
 import { convertFileToBase64 } from 'common/utils'
-import defAva from 'features/profile/components/img/defAva.png'
-import { AvatarSx, IconButtonSx, iconSx } from 'features/profile/components/profileAva/style'
-import { profileThunks } from 'features/profile/profile.slice'
+import defAva from 'features/auth/components/profile/img/defAva.png'
+import { AvatarSx, IconButtonSx, iconSx } from 'features/auth/components/profile/profileAva/style'
 import { toast } from 'react-toastify'
-import {selectUserAva} from "features/profile/selectors/selectors";
+import { selectUserAva } from 'features/auth/selectors'
+import { authThunks } from 'features/auth/index'
 
 export const ProfileAva = () => {
   const dispatch = useAppDispatch()
@@ -21,7 +21,7 @@ export const ProfileAva = () => {
       const file = e.target.files[0]
       if (file.size < 4000000) {
         convertFileToBase64(file, async (file64: string) => {
-          dispatch(profileThunks.changeUserProfile({ avatar: file64 }))
+          dispatch(authThunks.updateUserProfile({ avatar: file64 }))
             .unwrap()
             .then(res => setAva(res.updatedUser.avatar))
             .catch(() => toast.error('Image size is too large'))

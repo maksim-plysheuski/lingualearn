@@ -5,11 +5,11 @@ import { AvatarMenu } from './avatarMenu/AvatarMenu'
 import { useAppSelector } from 'common/hooks'
 import { paths } from 'common/router'
 import StyleOutlinedIcon from '@mui/icons-material/StyleOutlined'
-import { isLoggedInSelect } from 'features/auth/selectors'
+import { selectIsLoggedIn } from 'features/auth/selectors'
 import { SuperButton } from 'common/components/superButton/SuperButton'
 
 export const AppHeader = () => {
-  const isLoggedIn = useAppSelector(isLoggedInSelect)
+  const isLoggedIn = useAppSelector(selectIsLoggedIn)
   const navigate = useNavigate()
   const singUpCallback = useCallback(() => navigate(paths.LOGIN), [])
 

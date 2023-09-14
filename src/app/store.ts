@@ -1,20 +1,17 @@
 import { configureStore, ThunkAction, Action } from '@reduxjs/toolkit'
-import { authReducer } from 'features/auth'
-import { appReducer } from 'app/components/app.slice'
 import { setupListeners } from '@reduxjs/toolkit/query'
-import { cardsReducer } from 'features/cards/cards.slice'
 import { cardsParamsReducer } from 'features/cards/service/cards.params.slice'
 import { packsParamsReducer } from 'features/pack/service/packs.params.slice'
+import { authReducer } from 'features/auth'
+import { appReducer } from 'app/components/app.slice'
 import { packsApi } from 'features/pack/service'
 import { cardsApi } from 'features/cards/service/cards.api'
-import { profileReducer } from 'features/profile/profile.slice'
 
 
 export const store = configureStore({
   reducer: {
     app: appReducer,
     auth: authReducer,
-    profile: profileReducer,
     packsParams: packsParamsReducer,
     cardsParams: cardsParamsReducer,
     [cardsApi.reducerPath]: cardsApi.reducer,

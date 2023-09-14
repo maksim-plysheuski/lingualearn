@@ -2,16 +2,13 @@ import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 import { AxiosError, isAxiosError } from 'axios'
 import { authThunks } from 'features/auth'
 
-
-const appInitialState = {
-  error: null as string | null,
-  isLoading: false,
-  isAppInitialized: false,
-}
-
 const slice = createSlice({
   name: 'app',
-  initialState: appInitialState,
+  initialState: {
+    error: null as string | null,
+    isLoading: false,
+    isAppInitialized: false,
+  },
   reducers: {
     setIsLoading: (state, action: PayloadAction<{ isLoading: boolean }>) => {
       state.isLoading = action.payload.isLoading

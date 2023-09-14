@@ -2,7 +2,7 @@ import { useAppDispatch, useAppSelector } from 'common/hooks'
 import { useCallback, useState } from 'react'
 import { selectPageCountPacksParam, selectUserIdParam } from 'features/pack/selectors'
 import { setPackParams } from 'features/pack/service/packs.params.slice'
-import { selectProfileUserId } from 'features/profile/selectors/selectors'
+import { selectProfileUserId } from 'features/auth/selectors'
 import { selectIsAppLoading } from 'app'
 
 export const useSortPacks = () => {

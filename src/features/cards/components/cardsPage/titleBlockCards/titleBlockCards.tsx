@@ -8,8 +8,8 @@ import { SuperButton } from 'common/components'
 import PanoramaOutlinedIcon from '@mui/icons-material/PanoramaOutlined'
 import { selectIsMyPack } from 'features/pack/selectors'
 import { useFetchCards } from 'features/cards/hooks/useFetchCards'
-import { selectProfileUserId } from 'features/profile/selectors/selectors'
 import { setIsMyPack } from 'features/pack/service/packs.params.slice'
+import { selectProfileUserId } from 'features/auth/selectors'
 
 
 export const TitleBlockCards = () => {

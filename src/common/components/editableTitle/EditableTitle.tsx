@@ -1,15 +1,15 @@
 import { IconButton, TextField } from '@mui/material'
 import { FC, useState } from 'react'
 import BorderColorOutlinedIcon from '@mui/icons-material/BorderColorOutlined'
-import { profileThunks } from 'features/profile/profile.slice'
 import { useAppDispatch } from 'common/hooks'
 import s from './style.module.scss'
 import { SubmitHandler, useForm } from 'react-hook-form'
 import { yupResolver } from '@hookform/resolvers/yup'
 import * as yup from 'yup'
-import { userNameSchema } from 'features/profile/components/validateShema/userNameSchema'
+import { userNameSchema } from 'features/auth/components/profile/validateShema/userNameSchema'
 import { editNameIconSx, inputStyle } from 'common/components/editableTitle/style'
 import { SuperButton } from 'common/components/superButton/SuperButton'
+import { authThunks } from 'features/auth'
 
 type Props = {
   userName: string | undefined
@@ -28,7 +28,7 @@ export const EditableTitle: FC<Props> = ({ userName }) => {
   const onEditMode = () => setEditMode(true)
 
   const onFormSubmit: SubmitHandler<InputType> = (data: InputType) => {
-    dispatch(profileThunks.changeUserProfile({ name: data.userName }))
+    dispatch(authThunks.updateUserProfile({ name: data.userName }))
     setEditMode(false)
   }
 

@@ -12,10 +12,10 @@ import { useNavigate } from 'react-router-dom'
 import s from './style.module.scss'
 import PermIdentityOutlinedIcon from '@mui/icons-material/PermIdentityOutlined'
 import { menuStyle, paperStyle } from 'common/components/appHeader/avatarMenu/style'
-import { selectUserProfile, selectUserName } from 'features/profile/selectors'
 import FeaturedPlayListOutlinedIcon from '@mui/icons-material/FeaturedPlayListOutlined'
 import { paths } from 'common/router'
 import { authThunks } from 'features/auth'
+import { selectUserName, selectUserProfile } from 'features/auth/selectors'
 
 
 export const AvatarMenu = () => {

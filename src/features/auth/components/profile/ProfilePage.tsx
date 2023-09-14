@@ -1,11 +1,11 @@
 import LogoutIcon from '@mui/icons-material/Logout'
-import s from './ProfilePage.module.scss'
+import s from 'features/auth/components/profile/ProfilePage.module.scss'
 import { EditableTitle } from 'common/components'
-import { authThunks } from 'features/auth'
+import { authThunks } from 'features/auth/index'
 import { useAppDispatch, useAppSelector } from 'common/hooks'
-import { ProfileAva } from './profileAva/ProfileAva'
+import { ProfileAva } from 'features/auth/components/profile/profileAva/ProfileAva'
 import { selectIsAppLoading } from 'app'
-import { selectUserProfile } from 'features/profile/selectors'
+import { selectUserProfile } from 'features/auth/selectors'
 import { SuperButton } from 'common/components'
 
 

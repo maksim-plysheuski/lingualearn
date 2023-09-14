@@ -5,8 +5,8 @@ import { useAppSelector } from 'common/hooks'
 import Tooltip from '@mui/material/Tooltip'
 import { EditPackModal } from 'features/pack/components/modal/editPackModal/EditPackModal'
 import { tableIconSx } from 'features/pack/components/packsList/packsTable/tableStyles'
-import { selectProfileUserId } from 'features/profile/selectors/selectors'
 import { FC } from 'react'
+import { selectProfileUserId } from 'features/auth/selectors'
 
 type PropsType = {
   packId: string

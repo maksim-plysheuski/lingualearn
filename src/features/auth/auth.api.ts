@@ -1,41 +1,33 @@
 import { instance } from 'common'
-import { TProfile } from 'features/profile/profile.api'
+import {
+  ForgotPasswordArgType,
+  ForgotRespType, LoginArgType,
+  NewPasswordArgType, ProfileType,
+  RegisterArgType,
+  RegisterRespType,
+  UpdateProfileArgType, TUpdateUserResponse
+} from 'features/auth/auth.types'
 
 export const authApi = {
   authMe: () => {
-    return instance.post<TProfile>('auth/me').then(res => res.data)
+    return instance.post<ProfileType>('auth/me').then(res => res.data)
   },
-  register: (arg: TRegisterArg) => {
-    return instance.post<TRegisterResponse>('auth/register', arg)
+  register: (arg: RegisterArgType) => {
+    return instance.post<RegisterRespType>('auth/register', arg)
   },
-  login: (arg: TLoginArg) => {
-    return instance.post<TProfile>('auth/login', arg)
+  login: (arg: LoginArgType) => {
+    return instance.post<ProfileType>('auth/login', arg)
   },
   logout: () => {
     return instance.delete('auth/me')
   },
-  forgotPassword: (arg: TForgotArg) => {
-    return instance.post<TForgotResponse>('auth/forgot', arg)
+  forgotPassword: (arg: ForgotPasswordArgType) => {
+    return instance.post<ForgotRespType>('auth/forgot', arg)
   },
-  setNewPassword: (arg: TNewPasswordArg) => {
+  setNewPassword: (arg: NewPasswordArgType) => {
     return instance.post('auth/set-new-password', arg)
+  },
+  updateUserProfile: (arg: UpdateProfileArgType) => {
+    return instance.put<TUpdateUserResponse>('auth/me', arg).then(res => res.data)
   }
 }
-
-//Arguments types
-type TCommonArgs = {
-  email: string
-  password: string
-}
-
-export type TLoginArg = TCommonArgs & { rememberMe: boolean }
-export type TRegisterArg = TCommonArgs
-export type TNewPasswordArg = Pick<TCommonArgs, 'password'> & { resetPasswordToken: string }
-export type TForgotArg = Pick<TCommonArgs, 'email'> & { from?: string, message: string }
-
-//Response types
-export type TForgotResponse = { info: string, error?: string }
-export type TRegisterResponse = { addedUser: Omit<TProfile, 'token' | 'tokenDeathTime'> }
-
-
-

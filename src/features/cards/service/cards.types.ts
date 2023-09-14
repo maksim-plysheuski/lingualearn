@@ -21,7 +21,6 @@ export type  TGetCardsArgs = {
 
 export type TCreateCardArg = TCommonArg & { cardsPack_id: string }
 export type TUpdateCardArg = TCommonArg & { _id: string }
-export type TDeleteCardArg = { id: string }
 export type TChangeGradeArg = { grade: number, card_id: string }
 
 //Response types
@@ -39,6 +38,7 @@ export type TCard = {
   questionImg?: string
 }
 
+
 export type TGetCardsResponse = {
   cards: TCard[]
   packPrivate: boolean
@@ -51,6 +51,8 @@ export type TGetCardsResponse = {
   packName: string
   packDeckCover: string
   packCreated: string
+  token: string;
+  tokenDeathTime: number;
 }
 
 export type TChangeGradeResponse = {

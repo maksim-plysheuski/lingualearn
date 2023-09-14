@@ -13,7 +13,7 @@ const slice = createSlice({
       state.packParams = { ...state.packParams, ...action.payload }
     },
     resetPackParams: (state) => {
-      state.packParams = { max: 0, min: 0, packName: '', sortPacks: '', user_id: '' }
+      state.packParams = {}
     },
     setIsMyPack: (state, action: PayloadAction<boolean>) => {
       state.isMyPack = action.payload
