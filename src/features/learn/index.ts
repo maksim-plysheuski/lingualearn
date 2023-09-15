@@ -1,2 +1,2 @@
-export { LearnPage } from 'features/learn/LearnPage'
+export { LearnPage } from 'features/learn/components/LearnPage'
 

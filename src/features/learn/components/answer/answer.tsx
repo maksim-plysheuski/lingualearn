@@ -6,12 +6,12 @@ type Props = {
   answer: string | undefined
   grade: number | null
   setGrade: (grade: number) => void
-  nextAnswer: () => void
+  showNextQuestion: () => void
 }
 const arrMenu = ['Did not know', 'Forgot', 'A lot of thoughts', 'Confused', 'Knew the answer']
 
 export const Answer = (props: Props) => {
-  const { setGrade, grade, answer, nextAnswer } = props
+  const { setGrade, grade, answer, showNextQuestion } = props
 
   const radioSlice = arrMenu.map((res, index) => {
     return (
@@ -24,7 +24,6 @@ export const Answer = (props: Props) => {
                onChange={(e) => setGrade(+e.currentTarget.value)} />
         <span className={s.customRadio}></span>
         <span className={s.options}>{res}</span>
-
       </label>
     )
   })
@@ -37,7 +36,7 @@ export const Answer = (props: Props) => {
       <div className={s.formGroup}>
         <span className={s.rate}>Rate yourself:</span>{radioSlice}
       </div>
-      <SuperButton title='Next Question' marginTop={'29px'} onClick={nextAnswer} disabled={grade === null} />
+      <SuperButton title='Next Question' marginTop={'29px'} onClick={showNextQuestion} disabled={grade === null} />
     </div>
   )
 }
