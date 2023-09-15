@@ -36,7 +36,7 @@ export const MenuPacks = () => {
             transformOrigin={{ horizontal: 'right', vertical: 'top' }}
             anchorOrigin={{ horizontal: 'right', vertical: 'bottom' }}
       >
-        <MenuItem onClick={() => navigate(`/learn/${packId}`)}>
+        <MenuItem onClick={() => navigate(`/learn/${packId}/${data?.cardsTotalCount}`)}>
           <PlayCircleOutlineIcon /> Learn
         </MenuItem>
         <Divider />

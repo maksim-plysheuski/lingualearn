@@ -1,7 +1,7 @@
-import { TCard } from 'features/cards/service/cards.types'
+import { CardType } from 'features/cards/service/cards.types'
 
 
-export const getCard = (cards: TCard[]) => {
+export const getRandomCard = (cards: CardType[]) => {
   const sum = cards.reduce((acc, card) => acc + (6 - card.grade) * (6 - card.grade), 0)
   const rand = Math.random() * sum
   const res = cards.reduce((acc: { sum: number, id: number }, card, i) => {

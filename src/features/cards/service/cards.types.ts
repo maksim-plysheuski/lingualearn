@@ -21,10 +21,10 @@ export type  TGetCardsArgs = {
 
 export type TCreateCardArg = TCommonArg & { cardsPack_id: string }
 export type TUpdateCardArg = TCommonArg & { _id: string }
-export type TChangeGradeArg = { grade: number, card_id: string }
+export type TChangeGradeArg = { grade: number, card_id: string, packId: string }
 
 //Response types
-export type TCard = {
+export type CardType = {
   answer: string
   question: string
   cardsPack_id: string
@@ -40,7 +40,7 @@ export type TCard = {
 
 
 export type TGetCardsResponse = {
-  cards: TCard[]
+  cards: CardType[]
   packPrivate: boolean
   cardsTotalCount: number
   maxGrade: number
@@ -56,5 +56,5 @@ export type TGetCardsResponse = {
 }
 
 export type TChangeGradeResponse = {
-  updatedGrade: Pick<TCard, '_id' | 'cardsPack_id' | 'user_id' | 'grade' | 'shots'> & { card_id: string }
+  updatedGrade: Pick<CardType, '_id' | 'cardsPack_id' | 'user_id' | 'grade' | 'shots'> & { card_id: string }
 }

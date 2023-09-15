@@ -1,58 +1,50 @@
 import React, { useEffect, useState } from 'react'
-import { useAppDispatch } from 'common/hooks'
-import { useParams } from 'react-router-dom'
 import s from './style.module.scss'
 import { Answer } from './answer'
 import { SuperButton } from 'common/components'
-import { resetCardsParams } from 'features/cards/service/cards.params.slice'
-import { TCard } from 'features/cards/service/cards.types'
+import { CardType } from 'features/cards/service/cards.types'
+import { useChangeGradeCardMutation } from 'features/cards/service/cards.api'
+import { getRandomCard } from 'features/learn/getRandomCard'
+import { useFetchCards } from 'features/cards/hooks/useFetchCards'
+import { Skeleton } from '@mui/material'
+import { useParams } from 'react-router-dom'
 
 export const LearnPage = () => {
-  const { id } = useParams<{ id: string }>()
-  const dispatch = useAppDispatch()
-
-  /*const cards = useAppSelector(selectCards)
-  const packName = useAppSelector(selectPackName)*/
-  const [card, setCard] = useState<TCard>()
+  const { cardsCount } = useParams<{ cardsCount: string }>()
+  const { data, packId, isLoading, refetch } = useFetchCards(+cardsCount!)
+  const [card, setCard] = useState<CardType>()
   const [showAnswer, setShowAnswer] = useState<boolean>(false)
   const [grade, setGrade] = useState<number | null>(null)
-
-  const nextAnswer = async () => {
-    const payload = { card_id: card?._id!, grade: grade!, packId: card?.cardsPack_id! }
-   /* await dispatch(cardsThunks.changeGrade(payload))
-      .unwrap()
-      .then(res => {
-        setShowAnswer(false)
-        setCard(getCard(res))
-      })*/
-  }
+  const [changeCardGrade] = useChangeGradeCardMutation()
 
   useEffect(() => {
-    /*if (cards) {
-      setCard(getCard(cards))
-      return
-    }*/
-    if (id) {
-     /* dispatch(cardsThunks.fetchCards({ cardsPack_id: id })).unwrap().then(res => setCard(getCard(res.cards.cards)))*/
+    if (data) {
+      setCard(getRandomCard(data.cards))
     }
-    return () => {
-      dispatch(resetCardsParams())
-    }
-  }, [])
+  }, [data])
 
-  if (!card) return <></>
+
+  const nextAnswer = () => {
+    setShowAnswer(false)
+    changeCardGrade({ card_id: card?._id!, grade: grade!, packId: packId! })
+      .unwrap().then(() => refetch())
+  }
+
+  if (isLoading) return <Skeleton sx={{ bgcolor: 'grey.900', width: 420, height: 390 }}
+                                  variant='text'
+                                  animation='wave' />
 
   return (
     <div className={s.learnContainer}>
-      <h2 className={s.title}>Learn: {/*{packName}*/}</h2>
+      <h2 className={s.title}>Learn: {data?.packName!}</h2>
       <div className={s.questionContainer}>
         <div className={s.question}>
-          <span>Question:</span> {card.question}
+          <span>Question:</span> {card?.question}
         </div>
-        <span className={s.attemptsCount}>Count of attempts to answer that question: <b>{card.shots}</b></span>
+        <span className={s.attemptsCount}>Count of attempts to answer that question: <b>{card?.shots}</b></span>
       </div>
       {!showAnswer && <SuperButton title={'Show Answer'} marginTop={'41px'} onClick={() => setShowAnswer(true)} />}
-      {showAnswer && <Answer setGrade={setGrade} grade={grade} answer={card.answer} nextAnswer={nextAnswer} />}
+      {showAnswer && <Answer setGrade={setGrade} grade={grade} answer={card?.answer} nextAnswer={nextAnswer} />}
     </div>
   )
 }

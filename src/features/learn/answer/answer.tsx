@@ -3,7 +3,7 @@ import React from 'react'
 import s from './style.module.scss'
 
 type Props = {
-  answer: string
+  answer: string | undefined
   grade: number | null
   setGrade: (grade: number) => void
   nextAnswer: () => void

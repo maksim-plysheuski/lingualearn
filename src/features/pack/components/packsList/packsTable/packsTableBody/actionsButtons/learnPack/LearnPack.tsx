@@ -14,7 +14,7 @@ type Props = {
 
 export const LearnPack: FC<Props> = ({ cardsCount, packId }) => {
   const navigate = useNavigate()
-  const learnPack = () => navigate(`/learn/${packId}`)
+  const learnPack = () => navigate(`/learn/${packId}/${cardsCount}`)
 
   return (
     <>
