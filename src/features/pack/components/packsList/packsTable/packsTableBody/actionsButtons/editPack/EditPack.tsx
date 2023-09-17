@@ -5,7 +5,7 @@ import { useAppSelector } from 'common/hooks'
 import Tooltip from '@mui/material/Tooltip'
 import { EditPackModal } from 'features/pack/components/modal/editPackModal/EditPackModal'
 import { tableIconSx } from 'features/pack/components/packsList/packsTable/tableStyles'
-import { FC } from 'react'
+import { FC, memo } from 'react'
 import { selectProfileUserId } from 'features/auth/selectors'
 
 type PropsType = {
@@ -13,19 +13,20 @@ type PropsType = {
   packName: string
   coverImage: string
   isPrivate: boolean
+  packUserId: string
 }
 
-export const EditPack: FC<PropsType> = ({packId, packName, coverImage, isPrivate}) => {
-  const userId = useAppSelector(selectProfileUserId)
+export const EditPack: FC<PropsType> = memo(({packId, packName, coverImage, isPrivate, packUserId}) => {
+  const profileUserId = useAppSelector(selectProfileUserId)
 
   return(
     <>
-      <Tooltip title={userId ? 'Edit pack' : false}
+      <Tooltip title={profileUserId ? 'Edit pack' : false}
                arrow placement='top'
                TransitionComponent={Zoom}
                TransitionProps={{ timeout: 400 }}>
         <span>
-          <IconButton disabled={!userId}
+          <IconButton disabled={profileUserId !== packUserId}
                       sx={tableIconSx}>
             <EditPackModal packId={packId}
                            packName={packName}
@@ -37,4 +38,4 @@ export const EditPack: FC<PropsType> = ({packId, packName, coverImage, isPrivate
       </Tooltip>
     </>
   )
-}
+})

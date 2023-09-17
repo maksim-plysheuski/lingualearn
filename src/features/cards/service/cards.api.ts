@@ -1,11 +1,10 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
 import { baseURL } from 'common/api/common.api'
-import {
-  CardType, TChangeGradeArg,
-  TCreateCardArg,
-  TGetCardsArgs,
-  TGetCardsResponse,
-  TUpdateCardArg
+import { CreateCardResponseType, ArgCreateCardType, ArgUpdateCardType,
+  DeleteCardResponseType, ArgChangeGradeType,
+  ArgFetchCardsType,
+  FetchCardsResponseType,
+  UpdateCardResponseType, ChangeGradeResponseType
 } from 'features/cards/service/cards.types'
 
 
@@ -17,7 +16,7 @@ export const cardsApi = createApi({
   tagTypes: ['Cards'],
   endpoints: (build) => {
     return {
-      getCards: build.query<TGetCardsResponse, TGetCardsArgs>({
+      getCards: build.query<FetchCardsResponseType, ArgFetchCardsType>({
         query: (args) => {
           return {
             method: 'GET',
@@ -27,7 +26,7 @@ export const cardsApi = createApi({
         },
         providesTags: ['Cards']
       }),
-      createCard: build.mutation<{ newCard: CardType }, TCreateCardArg>({
+      createCard: build.mutation<CreateCardResponseType, ArgCreateCardType>({
         query: (card) => {
           return {
             method: 'POST',
@@ -39,7 +38,7 @@ export const cardsApi = createApi({
         },
         invalidatesTags: ['Cards']
       }),
-      updateCard: build.mutation<{ updatedCard: CardType }, TUpdateCardArg>({
+      updateCard: build.mutation<UpdateCardResponseType, ArgUpdateCardType>({
         query: (card) => {
           return {
             method: 'PUT',
@@ -51,7 +50,7 @@ export const cardsApi = createApi({
         },
         invalidatesTags: ['Cards']
       }),
-      deleteCard: build.mutation<{ deletedCard: CardType }, string>({
+      deleteCard: build.mutation<DeleteCardResponseType, string>({
         query: (id) => {
           return {
             method: 'DELETE',
@@ -63,7 +62,7 @@ export const cardsApi = createApi({
         },
         invalidatesTags: ['Cards']
       }),
-      changeGradeCard: build.mutation<{ updatedGrade: CardType }, TChangeGradeArg>({
+      changeGradeCard: build.mutation<ChangeGradeResponseType, ArgChangeGradeType>({
         query: (arg) => ({ method: 'PUT', url: '/cards/grade', body: arg }),
       })
     }

@@ -2,7 +2,7 @@ import s from './styles.module.scss'
 import { InputCustom } from 'common/components/Inputs/inputCastom/InputCustom'
 import { ImageBlockModal } from 'common/components'
 import { Checkbox } from '@mui/material'
-import React, { FC } from 'react'
+import React, { FC, memo } from 'react'
 
 
 type Props = {
@@ -14,7 +14,7 @@ type Props = {
   setPackCover: (newCover: string) => void
 }
 
-export const PackBodyModal: FC<Props> = (
+export const PackBodyModal: FC<Props> = memo((
   {
     packValue,
     packCover,
@@ -36,4 +36,4 @@ export const PackBodyModal: FC<Props> = (
       </div>
     </>
   )
-}
+})

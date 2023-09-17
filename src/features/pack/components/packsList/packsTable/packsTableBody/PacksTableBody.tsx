@@ -51,7 +51,7 @@ export const PacksTableBody = () => {
           <TableCell sx={tableCellSx}>{pack.user_name}</TableCell>
           <TableCell sx={tableCellSx}>
             <LearnPack cardsCount={pack.cardsCount} packId={pack._id} />
-            <EditPack packId={pack._id} packName={pack.name} coverImage={pack.deckCover} isPrivate={pack.private} />
+            <EditPack packId={pack._id} packUserId={pack.user_id} packName={pack.name} coverImage={pack.deckCover} isPrivate={pack.private} />
             <RemovePack packName={pack.name} packId={pack._id} packUserId={pack.user_id} />
           </TableCell>
         </TableRow>

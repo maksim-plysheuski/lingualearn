@@ -1,18 +1,18 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
-import { TGetCardsArgs } from 'features/cards/service/cards.types'
+import { ArgFetchCardsType } from 'features/cards/service/cards.types'
 
 
 const slice = createSlice({
   name: 'cardsParams',
   initialState: {
-    cardsParams: {} as TGetCardsArgs,
+    cardsParams: {} as ArgFetchCardsType,
   },
   reducers: {
-    setCardsParams: (state, action: PayloadAction<TGetCardsArgs>) => {
+    setCardsParams: (state, action: PayloadAction<ArgFetchCardsType>) => {
       state.cardsParams = { ...state.cardsParams, ...action.payload }
     },
     resetCardsParams: (state) => {
-      state.cardsParams = {} as TGetCardsArgs
+      state.cardsParams = {} as ArgFetchCardsType
     }
   },
 })

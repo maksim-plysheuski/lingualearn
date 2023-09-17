@@ -1,4 +1,4 @@
-import { createSlice } from '@reduxjs/toolkit'
+import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 import { createAppAsyncThunk } from 'common/utils/createAppAsyncThunk'
 import { thunkTryCatch } from 'common/utils/thunk-try-catch'
 import {
@@ -20,17 +20,17 @@ const slice = createSlice({
   reducers: {},
   extraReducers: builder => {
     builder
-      .addCase(authMe.fulfilled, (state, action) => {
+      .addCase(authMe.fulfilled, (state, action: PayloadAction<{ profile: ProfileType, isLoggedIn: boolean }>) => {
         state.isLoggedIn = action.payload.isLoggedIn
         state.userProfile = action.payload.profile
       })
-      .addCase(login.fulfilled, (state, action) => {
+      .addCase(login.fulfilled, (state, action: PayloadAction<{ isLoggedIn: boolean }>) => {
         state.isLoggedIn = action.payload.isLoggedIn
       })
-      .addCase(logout.fulfilled, (state, action) => {
+      .addCase(logout.fulfilled, (state, action: PayloadAction<{ isLoggedIn: boolean }>) => {
         state.isLoggedIn = action.payload.isLoggedIn
       })
-      .addCase(updateUserProfile.fulfilled, (state, action) => {
+      .addCase(updateUserProfile.fulfilled, (state, action: PayloadAction<{ updatedUser: ProfileType }>) => {
         state.userProfile = action.payload.updatedUser
       })
   }

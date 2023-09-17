@@ -1,6 +1,6 @@
 import Box from '@mui/material/Box'
 import Modal from '@mui/material/Modal'
-import React, { ReactNode } from 'react'
+import React, { memo, ReactNode } from 'react'
 import CloseIcon from '@mui/icons-material/Close'
 import s from './style.module.scss'
 import { SuperButton } from 'common/components/superButton/SuperButton'
@@ -17,7 +17,7 @@ type Props = {
   isButtonDisabled: boolean
 }
 
-export const BaseModal = (props: Props) => {
+export const BaseModal = memo((props: Props) => {
   const { children, buttonOpen, title, open, setOpen, actionCallback, titleButtonAction, isButtonDisabled } = props
 
   const handleOpen = () => setOpen(true)
@@ -45,5 +45,5 @@ export const BaseModal = (props: Props) => {
       </Modal>
     </>
   )
-}
+})
 

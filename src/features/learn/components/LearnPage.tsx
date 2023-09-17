@@ -3,7 +3,7 @@ import s from './style.module.scss'
 import { Answer } from 'features/learn/components/answer'
 import { SuperButton } from 'common/components'
 import { useLearnCards } from 'features/learn/hooks/useLearnCards'
-import { SkeletonLearnPage } from 'features/learn/components/skeletonLearnPage/SkeletonLearnPage'
+import { SkeletonLearnPage } from './skeletonLearnPage/SkeletonLearnPage'
 
 export const LearnPage = () => {
   const { data, grade, isLoading, randomCard, showAnswer,

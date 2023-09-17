@@ -28,7 +28,7 @@ export type ProfileType = {
   tokenDeathTime: number;
 }
 
-export type ForgotRespType = { info: string, error?: string }
+export type ForgotPasswordRespType = { info: string, error?: string }
 export type RegisterRespType = { addedUser: Omit<ProfileType, 'token' | 'tokenDeathTime'> }
-export type TUpdateUserResponse = Pick<ProfileType, 'token' | 'tokenDeathTime'> & { updatedUser: ProfileType }
+export type UpdateProfileRespType = Pick<ProfileType, 'token' | 'tokenDeathTime'> & { updatedUser: ProfileType }
 

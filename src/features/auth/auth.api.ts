@@ -1,11 +1,11 @@
 import { instance } from 'common'
 import {
   ForgotPasswordArgType,
-  ForgotRespType, LoginArgType,
+  ForgotPasswordRespType, LoginArgType,
   NewPasswordArgType, ProfileType,
   RegisterArgType,
   RegisterRespType,
-  UpdateProfileArgType, TUpdateUserResponse
+  UpdateProfileArgType, UpdateProfileRespType
 } from 'features/auth/auth.types'
 
 export const authApi = {
@@ -22,12 +22,12 @@ export const authApi = {
     return instance.delete('auth/me')
   },
   forgotPassword: (arg: ForgotPasswordArgType) => {
-    return instance.post<ForgotRespType>('auth/forgot', arg)
+    return instance.post<ForgotPasswordRespType>('auth/forgot', arg)
   },
   setNewPassword: (arg: NewPasswordArgType) => {
     return instance.post('auth/set-new-password', arg)
   },
   updateUserProfile: (arg: UpdateProfileArgType) => {
-    return instance.put<TUpdateUserResponse>('auth/me', arg).then(res => res.data)
+    return instance.put<UpdateProfileRespType>('auth/me', arg).then(res => res.data)
   }
 }
