@@ -1,6 +1,6 @@
 import { useSearchParams } from 'react-router-dom'
 import { useEffect } from 'react'
-import { PackArgs } from 'features/pack/service/packs.types'
+import { ArgsPacksType } from 'features/pack/service/packs.types'
 import { useSelector } from 'react-redux'
 import {
   selectMaxPacksParam, selectMinPacksParam,

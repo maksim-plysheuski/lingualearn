@@ -77,6 +77,6 @@ export type FetchCardsResponseType = {
   packName: string
   packDeckCover: string
   packCreated: string
-  token: string;
-  tokenDeathTime: number;
+  token: string
+  tokenDeathTime: number
 }

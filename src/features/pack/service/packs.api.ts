@@ -1,6 +1,12 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
 import { baseURL } from 'common/api/common.api'
-import { TCreatePackArg, FetchPacksArgType, TPack, TPacksResponse, TUpdatePackArg } from 'features/pack/service/packs.types'
+import {
+  ArgCreatePackType,
+  ArgFetchPacksType,
+  FetchPacksResponseType,
+  ArgUpdatePackType,
+  DeletePackResponseType, CreateUpdatePackResponseType
+} from 'features/pack/service/packs.types'
 
 
 export const packsApi = createApi({
@@ -9,7 +15,7 @@ export const packsApi = createApi({
   tagTypes: ['Packs'],
   endpoints: (build) => {
     return {
-      getPacks: build.query<TPacksResponse, FetchPacksArgType>({
+      getPacks: build.query<FetchPacksResponseType, ArgFetchPacksType>({
         query: (args) => {
           return {
             method: 'GET',
@@ -20,7 +26,7 @@ export const packsApi = createApi({
         providesTags: ['Packs'],
         
       }),
-      createPack: build.mutation<{ newCardsPack: TPack }, TCreatePackArg>({
+      createPack: build.mutation<CreateUpdatePackResponseType, ArgCreatePackType>({
         query: (cardsPack) => {
           return {
             method: 'POST',
@@ -32,7 +38,7 @@ export const packsApi = createApi({
         },
         invalidatesTags: ['Packs']
       }),
-      updatePack: build.mutation<{ newCardsPack: TPack }, TUpdatePackArg>({
+      updatePack: build.mutation<CreateUpdatePackResponseType, ArgUpdatePackType>({
         query: (cardsPack) => {
           return {
             method: 'PUT',
@@ -44,7 +50,7 @@ export const packsApi = createApi({
         },
         invalidatesTags: ['Packs']
       }),
-      deletePack: build.mutation<{ deletedCardsPack: TPack }, string>({
+      deletePack: build.mutation<DeletePackResponseType, string>({
         query: (packId) => {
           return {
             method: 'DELETE',

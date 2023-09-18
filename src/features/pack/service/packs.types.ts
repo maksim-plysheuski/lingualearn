@@ -1,5 +1,29 @@
+//Arguments types
+export type ArgFetchPacksType = {
+  packName?: string;
+  min?: number;
+  max?: number;
+  sortPacks?: string;
+  page?: number;
+  pageCount?: number;
+  user_id?: string;
+  block?: boolean;
+}
+
+export type ArgsPacksType = Pick<ArgFetchPacksType, 'packName' | 'user_id' | 'min' | 'max'>
+
+export type ArgUpdatePackType = {
+  _id: string;
+  name: string;
+  deckCover?: string;
+  private?: boolean;
+}
+
+export type ArgCreatePackType = Omit<ArgUpdatePackType, '_id'>
+
+
 //Response types
-export type TPack = {
+export type PackType = {
   _id: string;
   user_id: string;
   user_name: string;
@@ -18,8 +42,8 @@ export type TPack = {
   __v: number;
 };
 
-export type TPacksResponse = {
-  cardPacks: TPack[];
+export type FetchPacksResponseType = {
+  cardPacks: PackType[];
   cardPacksTotalCount: number;
   maxCardsCount: number;
   minCardsCount: number;
@@ -29,27 +53,10 @@ export type TPacksResponse = {
   tokenDeathTime: number;
 }
 
-//Arguments types
-export type FetchPacksArgType = {
-  packName?: string;
-  min?: number;
-  max?: number;
-  sortPacks?: string;
-  page?: number;
-  pageCount?: number;
-  user_id?: string;
-  block?: boolean;
+type CommonCardResponseType = Pick<FetchPacksResponseType, 'token' | 'tokenDeathTime'> & {
+  newCardsPack: PackType;
+  deletedCardsPack: PackType;
 }
 
-export type PackArgs = Pick<FetchPacksArgType, 'packName' | 'user_id'> & {
-  min?: string;
-  max?: string;
-}
-
-export type TCreatePackArg = {
-  name: string;
-  deckCover?: string;
-  private?: boolean;
-}
-
-export type TUpdatePackArg = Pick<TCreatePackArg, 'name' | 'deckCover' | 'private'> & { _id: string }
+export type CreateUpdatePackResponseType = Omit<CommonCardResponseType, 'deletedCardsPack'>;
+export type DeletePackResponseType = Omit<CommonCardResponseType, 'newCardsPack'>;
