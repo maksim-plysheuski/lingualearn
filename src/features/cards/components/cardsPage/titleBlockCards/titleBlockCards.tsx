@@ -25,7 +25,7 @@ export const TitleBlockCards = () => {
     }
   }, [])
 
-  const learnPack = () => navigate(`/learn/${packId}`)
+  const learnPack = () => navigate(`/learn/${packId}/${data?.cardsTotalCount}`)
 
   return (
     <div className={s.container}>
