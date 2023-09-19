@@ -3,7 +3,7 @@ import { Link, useNavigate } from 'react-router-dom'
 import React, { useCallback } from 'react'
 import { AvatarMenu } from './avatarMenu/AvatarMenu'
 import { useAppSelector } from 'common/hooks'
-import { paths } from 'common/router'
+import { routePaths } from 'common/router'
 import StyleOutlinedIcon from '@mui/icons-material/StyleOutlined'
 import { selectIsLoggedIn } from 'features/auth/selectors'
 import { SuperButton } from 'common/components/superButton/SuperButton'
@@ -11,12 +11,12 @@ import { SuperButton } from 'common/components/superButton/SuperButton'
 export const AppHeader = () => {
   const isLoggedIn = useAppSelector(selectIsLoggedIn)
   const navigate = useNavigate()
-  const singUpCallback = useCallback(() => navigate(paths.LOGIN), [])
+  const singUpCallback = useCallback(() => navigate(routePaths.LOGIN), [])
 
   return (
     <header className={s.header}>
       <div className={s.headerContainer}>
-        <Link to={isLoggedIn ? paths.PACKS : paths.LOGIN} className={s.logoBlock}>
+        <Link to={isLoggedIn ? routePaths.PACKS : routePaths.LOGIN} className={s.logoBlock}>
           <StyleOutlinedIcon sx={{ color: '#e66300' }} fontSize={'large'} />
           <span>LinguaLearn</span>
         </Link>

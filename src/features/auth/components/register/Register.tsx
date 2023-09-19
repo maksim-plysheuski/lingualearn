@@ -6,7 +6,7 @@ import { Link, useNavigate } from 'react-router-dom'
 import { InputEmail, InputPassword, SuperButton } from 'common/components'
 import { registerSchema } from './registerSchema'
 import { useAppDispatch, useAppSelector } from 'common/hooks'
-import { paths } from 'common/router'
+import { routePaths } from 'common/router'
 import { selectIsAppLoading } from 'app'
 import { authThunks } from 'features/auth/index'
 
@@ -26,7 +26,7 @@ export const Register = () => {
   const onSubmit: SubmitHandler<Type> = ({ email, password }) => {
     dispatch(authThunks.register({ email, password })).then((res) => {
       if (res.payload) {
-        navigate(paths.LOGIN)
+        navigate(routePaths.LOGIN)
       }
     })
   }
@@ -44,7 +44,7 @@ export const Register = () => {
           <SuperButton title={'Sign Up'} isLoading={isLoading} disabled={isButtonDisabled} marginTop={'78px'} />
         </form>
         <span className={s.helpText}>Already have an account?</span>
-        <Link className={s.link} to={paths.LOGIN}>Sign In</Link>
+        <Link className={s.link} to={routePaths.LOGIN}>Sign In</Link>
       </div>
     </div>
   )

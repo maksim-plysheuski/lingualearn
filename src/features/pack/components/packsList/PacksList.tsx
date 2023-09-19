@@ -3,12 +3,12 @@ import s from './style.module.scss'
 import { PaginatorPacks } from './paginatorPacks/paginatorPacks'
 import { TitleBlockPacks } from 'common/components'
 import { PacksTable } from './packsTable/PacksTable'
-import { useGetPacks } from 'features/pack/hook/useGetPacks'
+import { useFetchPacks } from 'features/pack/hook/useFetchPacks'
 import { SkeletonPacksList } from 'features/pack/components/packsList/skeletonPacksList/SkeletonPacksList'
 
 
 export const PacksList = () => {
-  const { isLoading } = useGetPacks()
+  const { isLoading } = useFetchPacks()
 
   if (isLoading) return <SkeletonPacksList />
 

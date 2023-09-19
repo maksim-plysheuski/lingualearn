@@ -24,8 +24,8 @@ function App() {
       <AppHeader />
       <div className={s.Content}>
         <GlobalError />
-        {isAppInitialized && <Outlet />}
         <LinearProgressColors />
+        {isAppInitialized && <Outlet />}
       </div>
     </div>
   )

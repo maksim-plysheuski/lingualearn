@@ -1,12 +1,12 @@
 import { useAppDispatch } from 'common/hooks'
-import { useGetPacks } from 'features/pack/hook/useGetPacks'
+import { useFetchPacks } from 'features/pack/hook/useFetchPacks'
 import { useCallback } from 'react'
 import { setPackParams } from 'features/pack/service/packs.params.slice'
 
 
 export const usePaginationPacks = () => {
   const dispatch = useAppDispatch()
-  const { data: packs } = useGetPacks()
+  const { data: packs } = useFetchPacks()
 
   const getNewPage = useCallback((page: number, size: number) => {
     dispatch(setPackParams({ page, pageCount: size }))

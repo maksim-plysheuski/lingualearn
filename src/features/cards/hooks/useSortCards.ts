@@ -1,11 +1,13 @@
-import { useState } from 'react'
+import { useCallback, useState } from 'react'
 import { setCardsParams } from 'features/cards/service/cards.params.slice'
 import { useAppDispatch } from 'common/hooks'
 import { useParams } from 'react-router-dom'
+import { useFetchCards } from 'features/cards/hooks/useFetchCards'
 
 
 export const useSortCards = () => {
   const dispatch = useAppDispatch()
+  const { data: cards } = useFetchCards()
   const { packId } = useParams<{ packId: string }>()
   const [sortOrder, setSortOrder] = useState<'asc' | 'desc'>('asc')
   const [lastSortedCell, setLastSortedCell] = useState<string>('Last Updated')
@@ -32,5 +34,19 @@ export const useSortCards = () => {
     setLastSortedCell(sortTitle)
   }
 
-  return { sortOrder, sortHandler, lastSortedCell, setLastSortedCell }
+  /**
+   * Sort cards by column title
+   */
+  const fetchSortCards = (columnTitle: string) => dispatch(setCardsParams({ cardsPack_id: packId!, sortCards: columnTitle }))
+
+  /**
+   * Pagination
+   */
+  const getNewPage = useCallback((page: number, pageCount: number) => {
+    dispatch(setCardsParams({ page, pageCount, cardsPack_id: packId! }))
+  }, [dispatch])
+
+
+
+  return { sortOrder, sortHandler, lastSortedCell, setLastSortedCell, fetchSortCards, getNewPage, cards }
 }

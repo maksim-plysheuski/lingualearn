@@ -5,7 +5,7 @@ import { useAppDispatch, useAppSelector } from 'common/hooks'
 import { selectPackNameParam } from 'features/pack/selectors'
 
 
-export const useSearchNamePacks = () => {
+export const useSearchPacks = () => {
   const dispatch = useAppDispatch()
   const packNameParam = useAppSelector(selectPackNameParam)
   const [packName, setPackName] = useState<string | null>(null)

@@ -8,7 +8,7 @@ import { EditPack } from './actionsButtons/editPack/EditPack'
 import { RemovePack } from './actionsButtons/removePack/RemovePack'
 import { LearnPack } from './actionsButtons/learnPack/LearnPack'
 import { toast } from 'react-toastify'
-import { useGetPacks } from 'features/pack/hook/useGetPacks'
+import { useFetchPacks } from 'features/pack/hook/useFetchPacks'
 import { setCardsParams } from 'features/cards/service/cards.params.slice'
 import { setIsMyPack } from 'features/pack/service/packs.params.slice'
 import { selectProfileUserId } from 'features/auth/selectors'
@@ -17,7 +17,7 @@ export const PacksTableBody = () => {
   const dispatch = useAppDispatch()
   const navigate = useNavigate()
   const profileUserId = useAppSelector(selectProfileUserId)
-  const { data } = useGetPacks()
+  const { data } = useFetchPacks()
 
 
   const openSelectedPack = (packId: string, packUserId: string, cardsCount: number) => {

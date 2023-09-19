@@ -7,7 +7,7 @@ import { useNavigate, useParams } from 'react-router-dom'
 import { InputPassword, SuperButton } from 'common/components'
 import { passwordSchema } from './passwordSchema'
 import { useAppDispatch, useAppSelector } from 'common/hooks'
-import { paths } from 'common/router'
+import { routePaths } from 'common/router'
 import { selectIsAppLoading } from 'app'
 import { authThunks } from 'features/auth/auth.slice'
 import { toast } from 'react-toastify'
@@ -35,7 +35,7 @@ export const ChangePasswordPage = () => {
     if (token) dispatch(authThunks.setNewPassword({ password, resetPasswordToken: token }))
       .unwrap()
       .then(() => {
-        navigate(paths.LOGIN)
+        navigate(routePaths.LOGIN)
         toast.success('Password has been changed')
       })
   }

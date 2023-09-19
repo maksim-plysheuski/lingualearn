@@ -1,4 +1,4 @@
-export { paths } from 'common/router/path'
+export { routePaths } from 'common/router/routePaths'
 export { router } from 'common/router/router'
 
 

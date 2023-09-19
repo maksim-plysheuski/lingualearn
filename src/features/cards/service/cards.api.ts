@@ -1,5 +1,5 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
-import { baseURL } from 'common/api/common.api'
+import { base_URL } from 'common/api/common.api'
 import { CreateCardResponseType, ArgCreateCardType, ArgUpdateCardType,
   DeleteCardResponseType, ArgChangeGradeType,
   ArgFetchCardsType,
@@ -12,7 +12,7 @@ const baseEndpoint = '/cards/card'
 
 export const cardsApi = createApi({
   reducerPath: 'cardsApi',
-  baseQuery: fetchBaseQuery({ baseUrl: baseURL, credentials: 'include' }),
+  baseQuery: fetchBaseQuery({ baseUrl: base_URL, credentials: 'include' }),
   tagTypes: ['Cards'],
   endpoints: (build) => {
     return {

@@ -1,7 +1,7 @@
 import s from './style.module.scss'
 import ForwardToInboxIcon from '@mui/icons-material/ForwardToInbox'
 import { useNavigate } from 'react-router-dom'
-import { paths } from 'common/router'
+import { routePaths } from 'common/router'
 import { SuperButton } from 'common/components'
 
 type Props = {
@@ -21,7 +21,7 @@ export const CheckEmailPage = (props: Props) => {
         </div>
         <span>{`We’ve sent an Email with instructions to ${props.email}`}</span>
         <SuperButton title={'Back to login'}
-                     onClick={() => navigate(paths.LOGIN)}
+                     onClick={() => navigate(routePaths.LOGIN)}
                      width={'347'}
                      marginTop={'70px'}
         />

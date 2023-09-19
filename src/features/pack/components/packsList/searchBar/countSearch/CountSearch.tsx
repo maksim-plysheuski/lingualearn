@@ -4,6 +4,7 @@ import s from './style.module.scss'
 import { sliderStyle } from 'features/pack/components/packsList/searchBar/countSearch/style'
 import { useSlider } from 'features/pack/hook/useSlider'
 
+
 export const CountSearch = memo(() => {
   const { packs, sliderValue, onChangeHandler, onChangeCommittedHandler } = useSlider()
 

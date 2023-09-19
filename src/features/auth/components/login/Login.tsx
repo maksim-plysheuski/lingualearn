@@ -7,7 +7,7 @@ import * as yup from 'yup'
 import { InputEmail, InputPassword, SuperButton } from 'common/components'
 import { loginSchema } from './loginSchema'
 import { useAppDispatch, useAppSelector } from 'common/hooks'
-import { paths } from 'common/router'
+import { routePaths } from 'common/router'
 import { toast } from 'react-toastify'
 import { selectIsAppLoading } from 'app'
 import { authThunks } from 'features/auth/auth.slice'
@@ -45,7 +45,7 @@ export const Login = () => {
               <Checkbox sx={{ color: '#4C4C4C' }}{...register('rememberMe')} />
               <span>Remember me</span>
             </div>
-            <Link className={s.forgotPasswordLink} to={paths.FORGOT_PASSWORD}>Forgot Password?</Link>
+            <Link className={s.forgotPasswordLink} to={routePaths.FORGOT_PASSWORD}>Forgot Password?</Link>
             <SuperButton title={'Sign In'}
                          disabled={isButtonDisabled}
                          isLoading={isLoading}
@@ -53,7 +53,7 @@ export const Login = () => {
           </FormControl>
         </form>
         <span className={s.dontHaveAccount}>Don't have an account?</span>
-        <Link className={s.registrationLink} to={paths.REGISTER}>Sign Up</Link>
+        <Link className={s.registrationLink} to={routePaths.REGISTER}>Sign Up</Link>
       </div>
     </div>
   )

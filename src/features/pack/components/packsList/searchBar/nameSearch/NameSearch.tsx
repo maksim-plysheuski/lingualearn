@@ -1,10 +1,10 @@
 import React, { useEffect } from 'react'
 import { InputSearch } from 'common/components'
 import s from './style.module.scss'
-import { useSearchNamePacks } from 'features/pack/hook/useSearchNamePacks'
+import { useSearchPacks } from 'features/pack/hook/useSearchPacks'
 
 export const NameSearch = () => {
-  const { packName, searchPackHandler, packNameParam } = useSearchNamePacks()
+  const { packName, searchPackHandler, packNameParam } = useSearchPacks()
 
   useEffect(() => {
     if (!packNameParam && packName) {

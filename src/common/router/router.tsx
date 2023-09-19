@@ -1,12 +1,12 @@
 import { createHashRouter } from 'react-router-dom'
 import App from 'app/components/App'
 import { ProfilePage } from 'common/components'
-import { paths } from 'common/router/path'
+import { routePaths } from 'common/router/routePaths'
 import { PacksList } from 'features/pack/components/packsList/PacksList'
 import { CardsPage } from 'features/cards/components/cardsPage/CardsPage'
 import { LearnPage } from 'features/learn'
-import { NotPrivateLayout } from './NotPrivateRoute'
-import { PrivateLayout } from './PrivateRoute'
+import { NotPrivateLayout } from 'common/router/NotPrivateLayout'
+import { PrivateLayout } from 'common/router/PrivateLayout'
 import { Login } from 'features/auth/components'
 import { Register } from 'features/auth/components'
 import { ForgotPasswordPage } from 'features/auth/components'
@@ -16,57 +16,27 @@ import { PageNotFound } from 'common/components'
 
 export const router = createHashRouter([
   {
-    path: paths.MAIN,
+    path: routePaths.MAIN,
     element: <App />,
     errorElement: <PageNotFound />,
     children: [
       {
-        path: paths.MAIN,
         element: <PrivateLayout />,
         children: [
-          {
-            path: paths.PACKS,
-            element: <PacksList />
-          },
-          {
-            path: paths.CARDS,
-            element: <CardsPage />
-          },
-          {
-            path: paths.PROFILE,
-            element: <ProfilePage />
-          },
-          {
-            path: paths.LEARN,
-            element: <LearnPage />
-          }
+          { index: true, path: routePaths.PROFILE, element: <ProfilePage /> },
+          { path: routePaths.PACKS, element: <PacksList /> },
+          { path: routePaths.CARDS, element: <CardsPage /> },
+          { path: routePaths.LEARN, element: <LearnPage /> }
         ]
       },
       {
-        path: paths.AUTH,
         element: <NotPrivateLayout />,
         children: [
-          {
-            path: paths.LOGIN,
-            element: <Login />
-          },
-          {
-            path: paths.REGISTER,
-            element: <Register />
-          },
-
-          {
-            path: paths.FORGOT_PASSWORD,
-            element: <ForgotPasswordPage />
-          },
-          {
-            path: paths.CHECK_EMAIL,
-            element: <CheckEmailPage />
-          },
-          {
-            path: paths.SET_NEW_PASSWORD,
-            element: <ChangePasswordPage />
-          }
+          { path: routePaths.LOGIN, element: <Login /> },
+          { path: routePaths.REGISTER, element: <Register /> },
+          { path: routePaths.FORGOT_PASSWORD, element: <ForgotPasswordPage /> },
+          { path: routePaths.CHECK_EMAIL, element: <CheckEmailPage /> },
+          { path: routePaths.SET_NEW_PASSWORD, element: <ChangePasswordPage /> }
         ]
       }
     ]

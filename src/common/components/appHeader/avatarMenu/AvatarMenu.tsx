@@ -13,7 +13,7 @@ import s from './style.module.scss'
 import PermIdentityOutlinedIcon from '@mui/icons-material/PermIdentityOutlined'
 import { menuStyle, paperStyle } from 'common/components/appHeader/avatarMenu/style'
 import FeaturedPlayListOutlinedIcon from '@mui/icons-material/FeaturedPlayListOutlined'
-import { paths } from 'common/router'
+import { routePaths } from 'common/router'
 import { authThunks } from 'features/auth'
 import { selectUserName, selectUserProfile } from 'features/auth/selectors'
 
@@ -28,8 +28,8 @@ export const AvatarMenu = () => {
 
   const handleClickMenu = (event: React.MouseEvent<HTMLElement>) => setAnchorEl(event.currentTarget)
   const handleCloseMenu = () => setAnchorEl(null)
-  const openProfilePage = () => navigate(paths.PROFILE)
-  const openPacksPage = () => navigate(paths.PACKS)
+  const openProfilePage = () => navigate(routePaths.PROFILE)
+  const openPacksPage = () => navigate(routePaths.PACKS)
   const logout = () => dispatch(authThunks.logout())
 
   return (

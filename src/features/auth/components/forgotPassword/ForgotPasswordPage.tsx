@@ -6,7 +6,7 @@ import { SubmitHandler, useForm } from 'react-hook-form'
 import * as yup from 'yup'
 import { yupResolver } from '@hookform/resolvers/yup'
 import { emailSchema } from './emailSchema'
-import { paths } from 'common/router'
+import { routePaths } from 'common/router'
 import { useState } from 'react'
 import { emailMessage } from './emailMessage'
 import { useAppDispatch, useAppSelector } from 'common/hooks'
@@ -54,7 +54,7 @@ export const ForgotPasswordPage = () => {
           </FormControl>
         </form>
         <p className={s.descriptionText}>Did you remember your password?</p>
-        <Link className={s.link} to={paths.LOGIN}>Try logging in</Link>
+        <Link className={s.link} to={routePaths.LOGIN}>Try logging in</Link>
       </div>
     </div>
   )

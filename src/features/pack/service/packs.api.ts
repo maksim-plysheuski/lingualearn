@@ -1,5 +1,5 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
-import { baseURL } from 'common/api/common.api'
+import { base_URL } from 'common/api/common.api'
 import {
   ArgCreatePackType,
   ArgFetchPacksType,
@@ -11,7 +11,7 @@ import {
 
 export const packsApi = createApi({
   reducerPath: 'packsApi',
-  baseQuery: fetchBaseQuery({ baseUrl: baseURL, credentials: 'include' }),
+  baseQuery: fetchBaseQuery({ baseUrl: base_URL, credentials: 'include' }),
   tagTypes: ['Packs'],
   endpoints: (build) => {
     return {

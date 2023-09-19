@@ -10,8 +10,6 @@ export type ArgFetchPacksType = {
   block?: boolean;
 }
 
-export type ArgsPacksType = Pick<ArgFetchPacksType, 'packName' | 'user_id' | 'min' | 'max'>
-
 export type ArgUpdatePackType = {
   _id: string;
   name: string;
