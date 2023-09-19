@@ -9,10 +9,11 @@ type Props = {
   page: number
   totalCount: number
   getNewPage: (page: number, size: number) => void
+  isFetching?: boolean
 }
 
 export const Paginator = memo((props: Props) => {
-  const { pageCount, totalCount, page, getNewPage } = props
+  const { pageCount, totalCount, page, getNewPage, isFetching } = props
 
   const paginationHandler = (event: ChangeEvent<unknown>, page: number) => getNewPage(page, pageCount)
   const selectHandler = (event: SelectChangeEvent) => getNewPage(page, +event.target.value)
@@ -20,6 +21,7 @@ export const Paginator = memo((props: Props) => {
   return (
     <div className={s.container}>
       <Pagination
+        disabled={isFetching}
         shape='rounded'
         variant={'text'}
         sx={paginatorStyle}
@@ -39,6 +41,7 @@ export const Paginator = memo((props: Props) => {
           <MenuItem value={'4'}>4</MenuItem>
           <MenuItem value={'8'}>8</MenuItem>
           <MenuItem value={'12'}>12</MenuItem>
+          <MenuItem value={'25'}>25</MenuItem>
         </Select>
         <span>packs per page</span>
       </div>

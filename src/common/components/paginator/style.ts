@@ -11,6 +11,10 @@ export const paginatorStyle = {
       '&: hover': {
         bgcolor: '#333333',
         color: '#ffffff'
+      },
+      '&.Mui-disabled': {
+        bgcolor: '#333333',
+        color: '#808080',
       }
     }
   }

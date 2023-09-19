@@ -7,7 +7,7 @@ import { useFetchCards } from 'features/cards/hooks/useFetchCards'
 
 export const useSortCards = () => {
   const dispatch = useAppDispatch()
-  const { data: cards } = useFetchCards()
+  const { data: cards, isFetching } = useFetchCards()
   const { packId } = useParams<{ packId: string }>()
   const [sortOrder, setSortOrder] = useState<'asc' | 'desc'>('asc')
   const [lastSortedCell, setLastSortedCell] = useState<string>('Last Updated')
@@ -46,7 +46,5 @@ export const useSortCards = () => {
     dispatch(setCardsParams({ page, pageCount, cardsPack_id: packId! }))
   }, [dispatch])
 
-
-
-  return { sortOrder, sortHandler, lastSortedCell, setLastSortedCell, fetchSortCards, getNewPage, cards }
+  return { sortOrder, sortHandler, lastSortedCell, setLastSortedCell, fetchSortCards, getNewPage, cards, isFetching }
 }

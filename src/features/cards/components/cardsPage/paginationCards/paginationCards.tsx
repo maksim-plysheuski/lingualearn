@@ -3,15 +3,12 @@ import { Paginator } from 'common/components'
 import { useSortCards } from 'features/cards/hooks/useSortCards'
 
 export const PaginationCards = () => {
-  const { getNewPage, cards } = useSortCards()
+  const { getNewPage, cards, isFetching } = useSortCards()
 
-  return (
-      <Paginator pageCount={cards?.pageCount!}
-                 page={cards?.page!}
-                 totalCount={cards?.cardsTotalCount!}
-                 getNewPage={getNewPage}
-      />
-
-  )
+  return <Paginator pageCount={cards?.pageCount!}
+                    page={cards?.page!}
+                    isFetching={isFetching}
+                    totalCount={cards?.cardsTotalCount!}
+                    getNewPage={getNewPage} />
 }
 
