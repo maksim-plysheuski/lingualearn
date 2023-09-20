@@ -14,7 +14,7 @@ export const InputSearch: FC<Props> = memo(({ inputValue, searchCallback }) => {
   return (
     <div className={s.container}>
       <SearchIcon sx={searchIconSx} />
-      <input className={s.input} value={inputValue} onChange={onChangeHandler} placeholder={'Input search'} />
+      <input className={s.input} value={inputValue} onChange={onChangeHandler} placeholder={'Input search'} id='search-pack' />
     </div>
   )
 })

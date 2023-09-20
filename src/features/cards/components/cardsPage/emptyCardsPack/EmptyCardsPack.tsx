@@ -6,7 +6,7 @@ import s from './style.module.scss'
 export const EmptyCardsPack = () => {
   return(
     <div className={s.container}>
-      <span>This pack is empty. Click add new card to fill this pack.</span>
+      <span>No cards were found. Click add new card to fill this pack.</span>
       <AddCardsModal />
     </div>
   )

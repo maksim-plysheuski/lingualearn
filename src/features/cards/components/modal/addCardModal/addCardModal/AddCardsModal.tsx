@@ -5,17 +5,18 @@ import { toast } from 'react-toastify'
 import { CardsBodyModal } from 'features/cards/components/modal/common/cardsBodyModal/CardsBodyModal'
 import { SuperButton } from 'common/components'
 import { useCreateCardMutation } from 'features/cards/service/cards.api'
-import { useFetchCards } from 'features/cards/hooks/useFetchCards'
+import { useNavigate, useParams } from 'react-router-dom'
 
 
 export const AddCardsModal = () => {
+  const navigate = useNavigate()
   const [isModalOpen, setIsModalOpen] = useState(false)
   const [selectValue, setSelectValue] = useState<QuestionSelectType>('Text')
   const [question, setQuestion] = useState<string>('')
   const [answer, setAnswer] = useState<string>('')
   const [questionImg, setQuestionImg] = useState<string>('')
   const [answerImg, setAnswerImg] = useState<string>('')
-  const { packId } = useFetchCards()
+  const { packId } = useParams<{ packId: string }>()
   const [createCard, { isLoading }] = useCreateCardMutation()
 
   const createNewCards = () => {
@@ -29,6 +30,7 @@ export const AddCardsModal = () => {
       ))
       .catch((err) => toast.error(err.data.error ? err.data.error : err.data.info))
       .finally(() => {
+        navigate(`/cards/${packId}`)
         setIsModalOpen(false)
         if (isTextCard) {
           setQuestion('')
