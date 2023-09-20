@@ -29,7 +29,7 @@ export const packsApi = createApi({
       }),
       updatePack: build.mutation<CreateUpdatePackResponseType, ArgUpdatePackType>({
         query: (cardsPack) => ({ method: 'PUT', url: packsEndpoint, body: { cardsPack } }),
-        invalidatesTags: (result, error, arg) => [{ type: 'Packs', id: arg._id }]
+        invalidatesTags: ['Packs']
       }),
       deletePack: build.mutation<DeletePackResponseType, string>({
         query: (packId) => ({ method: 'DELETE', url: packsEndpoint, params: { id: packId } }),

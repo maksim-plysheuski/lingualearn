@@ -1,4 +1,4 @@
-import React, { useCallback, useState } from 'react'
+import React, { useState } from 'react'
 import { BaseModal } from 'common/components'
 import { QuestionSelectType } from 'features/cards/components/modal/addCardModal/select/SelectTextImg'
 import { toast } from 'react-toastify'
@@ -18,10 +18,9 @@ export const AddCardsModal = () => {
   const { packId } = useFetchCards()
   const [createCard, { isLoading }] = useCreateCardMutation()
 
-  const createNewCards = useCallback(() => {
+  const createNewCards = () => {
     const isTextCard = selectValue === 'Text'
     const newCard = isTextCard ? { question, answer } : { questionImg, answerImg }
-
     createCard({ cardsPack_id: packId!, ...newCard }).unwrap()
       .then((res) => toast.info(
         `New card ${res.newCard.question !== 'no question'
@@ -39,7 +38,7 @@ export const AddCardsModal = () => {
           setAnswerImg('')
         }
       })
-  }, [isModalOpen])
+  }
 
   return (
     <>

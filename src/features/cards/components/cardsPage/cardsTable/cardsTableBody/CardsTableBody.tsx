@@ -3,7 +3,7 @@ import React from 'react'
 import Rating from '@mui/material/Rating'
 import StarBorderIcon from '@mui/icons-material/StarBorder'
 import { FieldButtons } from './fieldButtons/FieldButtons'
-import { tableCellHoverSx, tableCellSx } from 'features/pack/components/packsList/packsTable/tableStyles'
+import { tableCellSx } from 'features/pack/components/packsList/packsTable/tableStyles'
 import { useFetchCards } from 'features/cards/hooks/useFetchCards'
 import { useAppSelector } from 'common/hooks'
 import { selectIsMyPack } from 'features/pack/selectors'
@@ -19,13 +19,13 @@ export const CardsTableBody = () => {
         const dataUpdate = card.updated.slice(0, 10).split('-').reverse().join('.')
         return (
           <TableRow key={card._id}>
-            <TableCell sx={tableCellHoverSx}>
-              {card.questionImg
+            <TableCell sx={tableCellSx}>
+              {card.questionImg?.length! > 50
                 ? <img style={{ height: '36px' }} src={card.questionImg} alt={'cover'} />
                 : card.question}
             </TableCell>
-            <TableCell sx={tableCellHoverSx}>
-              {card.answerImg
+            <TableCell sx={tableCellSx}>
+              {card.answerImg?.length! > 50
                 ? <img style={{ height: '36px' }} src={card.answerImg} alt={'cover'} />
                 : card.answer}
             </TableCell>

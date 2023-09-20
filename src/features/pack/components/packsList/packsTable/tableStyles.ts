@@ -5,7 +5,7 @@ export const tableHeaderSx = {
 }
 
 export const tableSx: SxProps<Theme> = {
-  marginTop: '36px',
+  marginTop: '20px',
   maxWidth: 1008,
   backgroundColor: 'black',
   borderColor: '#333333',

@@ -1,9 +1,8 @@
 import { BaseModal } from 'common/components'
-import React, { FC, memo, useState } from 'react'
+import React, { FC, memo } from 'react'
 import DriveFileRenameOutlineIcon from '@mui/icons-material/DriveFileRenameOutline'
-import { toast } from 'react-toastify'
 import { PackBodyModal } from 'features/pack/components/modal/common/packBodyModal/PackBodyModal'
-import { useUpdatePackMutation } from 'features/pack/service/packs.api'
+import { useEditPacks } from 'features/pack/hook/useEditPacks'
 
 type Props = {
   packId: string
@@ -21,41 +20,34 @@ export const EditPackModal: FC<Props> = memo(({
                                                 isPrivate,
                                                 coverImage,
                                                 nameIcon,
-                                                handleCloseMenu,
+                                                handleCloseMenu
                                               }) => {
-  const [isModalOpen, setIsModalOpen] = useState<boolean>(false)
-  const [inputValue, setInputValue] = useState<string>(packName)
-  const [isPrivatePack, setIsPrivatePack] = useState<boolean>(isPrivate)
-  const [isButtonDisabled, setIsButtonDisabled] = useState<boolean>(false)
-  const [packCover, setPackCover] = useState<string>(coverImage)
-  const [updatePack] = useUpdatePackMutation()
 
-  const updatePackHandler = () => {
-    setIsButtonDisabled(true)
-    updatePack({_id: packId, name: inputValue, private: isPrivate, deckCover: packCover}).unwrap()
-      .then(() => toast.info(`Pack has been successfully updated`))
-      .catch((err) => toast.error(err.data.error ? err.data.error : err.data.info))
-      .finally(() => {
-        setIsModalOpen(false)
-        setIsButtonDisabled(false)
-      })
+  const {
+    isPrivateHandler, openCloseHandler, updatePackHandler, inputValueHandler, coverHandler,
+    isButtonDisabled, isPrivatePack, packCover, inputValue, isModalOpen
+  } = useEditPacks(packId, packName, coverImage, isPrivate)
+
+  const updatePack = () => {
+    updatePackHandler()
     if (handleCloseMenu) handleCloseMenu()
   }
+
 
   return (
     <BaseModal title={'Edit Pack'}
                titleButtonAction={'Save Changes'}
                open={isModalOpen}
                isButtonDisabled={isButtonDisabled}
-               setOpen={setIsModalOpen}
-               actionCallback={updatePackHandler}
+               setOpen={openCloseHandler}
+               actionCallback={updatePack}
                buttonOpen={<><DriveFileRenameOutlineIcon />{nameIcon}</>}>
       <PackBodyModal packValue={inputValue}
                      packCover={packCover}
                      isPrivatePack={isPrivatePack}
-                     setPackValue={setInputValue}
-                     setPackCover={setPackCover}
-                     setIsPrivate={setIsPrivatePack} />
+                     setPackValue={inputValueHandler}
+                     setPackCover={coverHandler}
+                     setIsPrivate={isPrivateHandler} />
     </BaseModal>
   )
 })

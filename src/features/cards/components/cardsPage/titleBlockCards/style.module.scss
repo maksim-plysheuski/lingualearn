@@ -3,7 +3,7 @@
 
 .container {
   width: 100%;
-  margin-top: 34px;
+  margin-top: 15px;
   display: flex;
   flex-direction: column;
 
@@ -12,7 +12,7 @@
     align-items: self-end;
     justify-content: space-between;
     color: #fff;
-    gap: 6px;
+    gap: 5px;
 
     .titleMenu {
       display: flex;
@@ -24,7 +24,7 @@
   h3 {
     @include text(600, 22px, 35px);
     color: $orangeColor;
-    margin-top: 20px;
+    margin-top: 5px;
   }
   .info {
     background-color: $dark700;
@@ -35,12 +35,12 @@
     align-items: center;
     border-radius: 5px;
     padding: 5px;
-
     img {
       align-self: center;
       border-radius: 5px;
       max-width: 150px;
       padding-bottom: 5px;
+      cursor: pointer;
     }
 
     span {
