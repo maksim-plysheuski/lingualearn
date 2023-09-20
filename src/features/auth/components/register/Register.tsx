@@ -9,6 +9,7 @@ import { useAppDispatch, useAppSelector } from 'common/hooks'
 import { routePaths } from 'common/router'
 import { selectIsAppLoading } from 'app'
 import { authThunks } from 'features/auth/index'
+import { toast } from 'react-toastify'
 
 
 type Type = yup.InferType<typeof registerSchema>
@@ -26,6 +27,7 @@ export const Register = () => {
   const onSubmit: SubmitHandler<Type> = ({ email, password }) => {
     dispatch(authThunks.register({ email, password })).then((res) => {
       if (res.payload) {
+        toast.info(`Account has been successfully created`)
         navigate(routePaths.LOGIN)
       }
     })

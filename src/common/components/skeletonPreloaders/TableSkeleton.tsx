@@ -29,7 +29,7 @@ export const TableSkeleton: FC<Props> = ({ rowsCount, cellsCount, children }) =>
   ))
 
   return (
-    <TableContainer sx={{ ...tableSx, mt: '28px' }} component={Paper}>
+    <TableContainer sx={{ ...tableSx, mt: '20px' }} component={Paper}>
       <Table>
         {children}
         <TableBody>

@@ -10,7 +10,7 @@ import { SkeletonPacksList } from './skeletonPacksList/SkeletonPacksList'
 export const PacksList = () => {
   const { isLoading } = useFetchPacks()
 
-  if (isLoading) return <SkeletonPacksList />
+  if (!isLoading) return <SkeletonPacksList />
 
   return (
     <div className={s.packsList}>
