@@ -9,7 +9,7 @@ import {
 } from 'features/cards/service/cards.api.types'
 
 
-const baseEndpoint = '/cards/card'
+const cardsEndpoint = '/cards/card'
 
 export const cardsApi = createApi({
   reducerPath: 'cardsApi',
@@ -20,49 +20,22 @@ export const cardsApi = createApi({
   endpoints: (build) => {
     return {
       getCards: build.query<FetchCardsResponseType, ArgFetchCardsType>({
-        query: (args) => {
-          return {
-            method: 'GET',
-            url: baseEndpoint,
-            params: args
-          }
-        },
-        providesTags: ['Cards']
+        query: (args) => ({ method: 'GET', url: cardsEndpoint, params: args }),
+        providesTags: (result) => result ? [...result.cards.map(card => ({
+          type: 'Cards' as const,
+          id: card._id
+        })), 'Cards'] : ['Cards']
       }),
       createCard: build.mutation<CreateCardResponseType, ArgCreateCardType>({
-        query: (card) => {
-          return {
-            method: 'POST',
-            url: baseEndpoint,
-            body: {
-              card
-            }
-          }
-        },
+        query: (card) => ({ method: 'POST', url: cardsEndpoint, body: { card } }),
         invalidatesTags: ['Cards']
       }),
       updateCard: build.mutation<UpdateCardResponseType, ArgUpdateCardType>({
-        query: (card) => {
-          return {
-            method: 'PUT',
-            url: baseEndpoint,
-            body: {
-              card
-            }
-          }
-        },
-        invalidatesTags: (result, error, arg, meta) => [{type: 'Cards', id: arg._id}]
+        query: (card) => ({ method: 'PUT', url: cardsEndpoint, body: { card } }),
+        invalidatesTags: (result, error, arg) => [{ type: 'Cards', id: arg._id }]
       }),
       deleteCard: build.mutation<DeleteCardResponseType, string>({
-        query: (id) => {
-          return {
-            method: 'DELETE',
-            url: baseEndpoint,
-            params: {
-              id
-            }
-          }
-        },
+        query: (cardId) => ({ method: 'DELETE', url: cardsEndpoint, params: { id: cardId } }),
         invalidatesTags: ['Cards']
       }),
       changeGradeCard: build.mutation<ChangeGradeResponseType, ArgChangeGradeType>({
@@ -72,10 +45,4 @@ export const cardsApi = createApi({
   }
 })
 
-export const {
-  useGetCardsQuery,
-  useCreateCardMutation,
-  useUpdateCardMutation,
-  useDeleteCardMutation,
-  useChangeGradeCardMutation
-} = cardsApi
+export const { useGetCardsQuery, useCreateCardMutation, useUpdateCardMutation, useDeleteCardMutation, useChangeGradeCardMutation } = cardsApi
