@@ -14,15 +14,14 @@ type Props = {
   setPackCover: (newCover: string) => void
 }
 
-export const PackBodyModal: FC<Props> = memo((
-  {
-    packValue,
-    packCover,
-    isPrivatePack,
-    setIsPrivate,
-    setPackValue,
-    setPackCover
-  }) => {
+export const PackBodyModal: FC<Props> = memo(({
+                                                packValue,
+                                                packCover,
+                                                isPrivatePack,
+                                                setIsPrivate,
+                                                setPackValue,
+                                                setPackCover
+                                              }) => {
 
   return (
     <>

@@ -7,7 +7,7 @@ import {
   NewPasswordArgType,
   ProfileType,
   RegisterArgType, UpdateProfileArgType
-} from 'features/auth/auth.types'
+} from 'features/auth/auth.api.types'
 import { authApi } from 'features/auth/auth.api'
 
 
@@ -49,7 +49,7 @@ const login = createAppAsyncThunk<{ isLoggedIn: boolean }, LoginArgType>
     await authApi.login(arg)
     await thunkAPI.dispatch(authMe())
     return { isLoggedIn: true }
-  }, false)
+  })
 })
 
 const logout = createAppAsyncThunk<{ isLoggedIn: boolean }>

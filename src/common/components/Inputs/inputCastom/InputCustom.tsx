@@ -10,9 +10,7 @@ type Props = {
 export const InputCustom = (props: Props) => {
   const { label, value, setValue } = props
 
-  const setValueHandler = (e: ChangeEvent<HTMLInputElement>) => {
-    setValue(e.currentTarget.value)
-  }
+  const setValueHandler = (e: ChangeEvent<HTMLInputElement>) => setValue(e.currentTarget.value)
 
   return (
     <div className={s.inputContainer}>

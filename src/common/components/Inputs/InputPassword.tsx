@@ -39,7 +39,6 @@ export const InputPassword: FC<Props> = ({ errorMessage, register, idAttribute, 
                      </InputAdornment>
                    )
                  }}
-
       />
     </>
 

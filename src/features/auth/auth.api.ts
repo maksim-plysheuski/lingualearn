@@ -6,7 +6,7 @@ import {
   RegisterArgType,
   RegisterRespType,
   UpdateProfileArgType, UpdateProfileRespType
-} from 'features/auth/auth.types'
+} from 'features/auth/auth.api.types'
 
 export const authApi = {
   authMe: () => {

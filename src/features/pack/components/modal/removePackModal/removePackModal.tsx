@@ -1,10 +1,11 @@
-import React, { useState } from 'react'
+import React, { FC, memo, useState } from 'react'
 import { BaseModal } from 'common/components'
 import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline'
 import { useNavigate } from 'react-router-dom'
 import s from './style.module.scss'
 import { toast } from 'react-toastify'
 import { useDeletePackMutation } from 'features/pack/service/packs.api'
+import { routePaths } from 'common/router'
 
 type Props = {
   packId: string
@@ -12,20 +13,19 @@ type Props = {
   nameIcon?: string
 }
 
-export const RemovePackModal = (props: Props) => {
+export const RemovePackModal: FC<Props> = memo(({ packId, packName, nameIcon }) => {
   const navigate = useNavigate()
   const [open, setOpen] = useState<boolean>(false)
   const [disable, setDisable] = useState<boolean>(false)
   const [removePack] = useDeletePackMutation()
 
-
-  const removePackHandler = async () => {
+  const removePackHandler = () => {
     setDisable(true)
-    removePack(props.packId).unwrap()
+    removePack(packId).unwrap()
       .then((res) => toast.info(`Pack ${res.deletedCardsPack.name} has been removed`))
-      .catch((err) => toast.error(err.e.response ? err.e.response.data.error : err.e.message))
+      .catch((err) => toast.error(err.data.error ? err.data.error : err.data.info))
       .finally(() => {
-        navigate('/packs')
+        navigate(routePaths.PACKS)
         setOpen(false)
         setDisable(false)
       })
@@ -35,20 +35,16 @@ export const RemovePackModal = (props: Props) => {
     <BaseModal title={'Delete Pack'}
                open={open}
                setOpen={setOpen}
-               buttonOpen={<><DeleteOutlineIcon />{props.nameIcon}</>}
+               buttonOpen={<><DeleteOutlineIcon />{nameIcon}</>}
                actionCallback={removePackHandler}
                titleButtonAction={'Delete Pack'}
-               isButtonDisabled={disable}
-    >
+               isButtonDisabled={disable}>
       <div className={s.textContainer}>
-        <span>
-          {`Do you really want to remove `}
-          <b>{`${props.packName}?`}</b>
-        </span>
+        <span>{`Do you really want to remove `}<b>{`${packName}?`}</b></span>
         <p>All cards will be deleted.</p>
       </div>
     </BaseModal>
 
   )
-}
+})
 

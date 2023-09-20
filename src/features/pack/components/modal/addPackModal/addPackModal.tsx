@@ -16,10 +16,10 @@ export const AddPackModal = () => {
   const [isPrivatePack, setIsPrivatePack] = useState<boolean>(false)
   const [createPack] = useCreatePackMutation()
 
-  const addPackHandler = async () => {
+  const addPackHandler = () => {
     createPack({ name: packName, private: isPrivatePack, deckCover: packCover }).unwrap()
       .then((res) => toast.info(`New pack ${res.newCardsPack.name} has been created`))
-      .catch((err) => toast.error(err.data.error))
+      .catch((err) => toast.error(err.data.error ? err.data.error : err.data.info))
       .finally(() => {
         setIsModalOpen(false)
         setPackName('')
@@ -33,9 +33,7 @@ export const AddPackModal = () => {
                isButtonDisabled={isLoading}
                setOpen={setIsModalOpen}
                actionCallback={addPackHandler}
-               buttonOpen={<SuperButton title={'Add New Pack'} width={'175'} />}
-
-    >
+               buttonOpen={<SuperButton title={'Add New Pack'} width={'175'} />}>
       <PackBodyModal packValue={packName}
                      packCover={packCover}
                      isPrivatePack={isPrivatePack}

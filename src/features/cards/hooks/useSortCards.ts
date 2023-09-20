@@ -34,14 +34,10 @@ export const useSortCards = () => {
     setLastSortedCell(sortTitle)
   }
 
-  /**
-   * Sort cards by column title
-   */
+
   const fetchSortCards = (columnTitle: string) => dispatch(setCardsParams({ cardsPack_id: packId!, sortCards: columnTitle }))
 
-  /**
-   * Pagination
-   */
+
   const getNewPage = useCallback((page: number, pageCount: number) => {
     dispatch(setCardsParams({ page, pageCount, cardsPack_id: packId! }))
   }, [dispatch])

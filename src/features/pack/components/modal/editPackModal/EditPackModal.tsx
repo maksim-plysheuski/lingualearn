@@ -14,15 +14,15 @@ type Props = {
   handleCloseMenu?: () => void
 }
 
+
 export const EditPackModal: FC<Props> = memo(({
                                                 packId,
                                                 packName,
                                                 isPrivate,
                                                 coverImage,
                                                 nameIcon,
-                                                handleCloseMenu
+                                                handleCloseMenu,
                                               }) => {
-
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false)
   const [inputValue, setInputValue] = useState<string>(packName)
   const [isPrivatePack, setIsPrivatePack] = useState<boolean>(isPrivate)
@@ -30,25 +30,18 @@ export const EditPackModal: FC<Props> = memo(({
   const [packCover, setPackCover] = useState<string>(coverImage)
   const [updatePack] = useUpdatePackMutation()
 
-  const updatePackHandler = async () => {
-    let newPack = {
-      _id: packId,
-      name: inputValue,
-      private: isPrivatePack,
-      deckCover: packCover
-    }
+  const updatePackHandler = () => {
     setIsButtonDisabled(true)
-    updatePack(newPack).unwrap()
+    updatePack({_id: packId, name: inputValue, private: isPrivate, deckCover: packCover}).unwrap()
       .then(() => toast.info(`Pack has been successfully updated`))
-      .catch((err) => toast.error(err.e.response ? err.e.response.statusText : err.e.message))
+      .catch((err) => toast.error(err.data.error ? err.data.error : err.data.info))
       .finally(() => {
         setIsModalOpen(false)
         setIsButtonDisabled(false)
       })
-    if (handleCloseMenu) {
-      handleCloseMenu()
-    }
+    if (handleCloseMenu) handleCloseMenu()
   }
+
   return (
     <BaseModal title={'Edit Pack'}
                titleButtonAction={'Save Changes'}
@@ -56,9 +49,7 @@ export const EditPackModal: FC<Props> = memo(({
                isButtonDisabled={isButtonDisabled}
                setOpen={setIsModalOpen}
                actionCallback={updatePackHandler}
-               buttonOpen={<><DriveFileRenameOutlineIcon />{nameIcon}</>}
-
-    >
+               buttonOpen={<><DriveFileRenameOutlineIcon />{nameIcon}</>}>
       <PackBodyModal packValue={inputValue}
                      packCover={packCover}
                      isPrivatePack={isPrivatePack}

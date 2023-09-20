@@ -1,7 +1,7 @@
 import { useParams } from 'react-router-dom'
 import { useFetchCards } from 'features/cards/hooks/useFetchCards'
 import { useEffect, useState } from 'react'
-import { CardType } from 'features/cards/service/cards.types'
+import { CardType } from 'features/cards/service/cards.api.types'
 import { useChangeGradeCardMutation } from 'features/cards/service/cards.api'
 import { getRandomCard } from 'features/learn/utils/getRandomCard'
 

@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useCallback, useState } from 'react'
 import { BaseModal } from 'common/components'
 import { QuestionSelectType } from 'features/cards/components/modal/addCardModal/select/SelectTextImg'
 import { toast } from 'react-toastify'
@@ -18,18 +18,17 @@ export const AddCardsModal = () => {
   const { packId } = useFetchCards()
   const [createCard, { isLoading }] = useCreateCardMutation()
 
-  const createNewCards = () => {
+  const createNewCards = useCallback(() => {
     const isTextCard = selectValue === 'Text'
     const newCard = isTextCard ? { question, answer } : { questionImg, answerImg }
 
-    createCard({ cardsPack_id: packId!, ...newCard })
-      .unwrap()
+    createCard({ cardsPack_id: packId!, ...newCard }).unwrap()
       .then((res) => toast.info(
         `New card ${res.newCard.question !== 'no question'
           ? res.newCard.question
           : ''} has been created`
       ))
-      .catch((err) => toast.error(err.e.response ? err.e.response.data.error : err.e.message))
+      .catch((err) => toast.error(err.data.error ? err.data.error : err.data.info))
       .finally(() => {
         setIsModalOpen(false)
         if (isTextCard) {
@@ -40,7 +39,7 @@ export const AddCardsModal = () => {
           setAnswerImg('')
         }
       })
-  }
+  }, [isModalOpen])
 
   return (
     <>

@@ -20,8 +20,8 @@ type InputType = yup.InferType<typeof userNameSchema>
 export const EditableTitle: FC<Props> = ({ userName }) => {
   const dispatch = useAppDispatch()
   const [editMode, setEditMode] = useState<boolean>(false)
-  const { register, handleSubmit, formState: { errors } } = useForm<InputType>({
-    mode: 'onBlur',
+  const { register, handleSubmit, formState: { errors }, getFieldState } = useForm<InputType>({
+    mode: 'onTouched',
     resolver: yupResolver(userNameSchema)
   })
 
@@ -31,6 +31,8 @@ export const EditableTitle: FC<Props> = ({ userName }) => {
     dispatch(authThunks.updateUserProfile({ name: data.userName }))
     setEditMode(false)
   }
+
+  const isButtonDisabled = getFieldState('userName').invalid
 
   return (
     <>
@@ -54,7 +56,7 @@ export const EditableTitle: FC<Props> = ({ userName }) => {
                          <SuperButton title={'SAVE'}
                                       width={'52px'}
                                       fontSize={'12px'}
-                                      disabled={!!errors.userName?.message}
+                                      disabled={isButtonDisabled}
                          />)
                      }} />
         </form>

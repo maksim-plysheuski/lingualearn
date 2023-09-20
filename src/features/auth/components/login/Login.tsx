@@ -8,7 +8,6 @@ import { InputEmail, InputPassword, SuperButton } from 'common/components'
 import { loginSchema } from './loginSchema'
 import { useAppDispatch, useAppSelector } from 'common/hooks'
 import { routePaths } from 'common/router'
-import { toast } from 'react-toastify'
 import { selectIsAppLoading } from 'app'
 import { authThunks } from 'features/auth/auth.slice'
 
@@ -24,12 +23,7 @@ export const Login = () => {
     resolver: yupResolver(loginSchema)
   })
 
-  const onSubmit: SubmitHandler<InputsType> = (data: InputsType) => {
-    dispatch(authThunks.login(data))
-      .unwrap()
-      .then(() => toast.success('You have successfully logged in'))
-      .catch((err) => toast.error(err.e.response ? err.e.response.data.error : err.e.message))
-  }
+  const onSubmit: SubmitHandler<InputsType> = (data: InputsType) => dispatch(authThunks.login(data))
 
   const isButtonDisabled = getFieldState('password').invalid || getFieldState('email').invalid
 

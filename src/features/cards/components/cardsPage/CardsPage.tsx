@@ -7,11 +7,13 @@ import { TitleBlockCards } from 'features/cards/components/cardsPage/titleBlockC
 import { InputSearchCards } from 'features/cards/components/cardsPage/inputSearchCards/inputSearchCards'
 import { useFetchCards } from 'features/cards/hooks/useFetchCards'
 import { EmptyCardsPack } from 'features/cards/components/cardsPage/emptyCardsPack/EmptyCardsPack'
+import { Preloader } from 'features/cards/components/cardsPage/preloader/Preloader'
 
 
 export const CardsPage = () => {
   const { data, isLoading } = useFetchCards()
-  if (isLoading) return <h1>loading</h1>
+
+  if (isLoading) return <Preloader/>
 
   return (
     <div className={s.packsList}>

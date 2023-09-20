@@ -14,7 +14,7 @@ import { useFetchCards } from 'features/cards/hooks/useFetchCards'
 
 
 export const MenuPacks = () => {
-  const {data, packId} = useFetchCards()
+  const { data, packId } = useFetchCards()
   const navigate = useNavigate()
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null)
   const open = Boolean(anchorEl)

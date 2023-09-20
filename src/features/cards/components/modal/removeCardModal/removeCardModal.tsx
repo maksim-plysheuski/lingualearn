@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { memo, useState } from 'react'
 import { BaseModal } from 'common/components'
 import s from './style.module.scss'
 import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline'
@@ -10,7 +10,7 @@ type Props = {
   title: string
 }
 
-export const RemoveCardModal = (props: Props) => {
+export const RemoveCardModal = memo((props: Props) => {
   const { cardId, title } = props
   const [open, setOpen] = useState(false)
   const [disable, setDisable] = useState(false)
@@ -18,10 +18,9 @@ export const RemoveCardModal = (props: Props) => {
 
   const deleteCardHandler = async () => {
     setDisable(true)
-    deleteCard(cardId)
-      .unwrap()
+    deleteCard(cardId).unwrap()
       .then(() => toast.info(`Card has been removed`))
-      .catch((err) => toast.error(err.e.response ? err.e.response.data.error : err.e.message))
+      .catch((err) => toast.error(err.data.error ? err.data.error : err.data.info))
     setOpen(false)
     setDisable(false)
   }
@@ -35,17 +34,13 @@ export const RemoveCardModal = (props: Props) => {
         setOpen={setOpen}
         actionCallback={deleteCardHandler}
         titleButtonAction={'Delete Card'}
-        isButtonDisabled={disable}
-      >
+        isButtonDisabled={disable}>
         <div className={s.textContainer}>
-          <span>
-            {`Do you really want to remove `}
-            {title !== 'no question' ? <b>{title}?</b> : 'this card?'}
-          </span>
+          <span>{`Do you really want to remove `}{title !== 'no question' ? <b>{title}?</b> : 'this card?'}</span>
           <p>Card will be deleted.</p>
         </div>
       </BaseModal>
     </>
   )
-}
+})
 

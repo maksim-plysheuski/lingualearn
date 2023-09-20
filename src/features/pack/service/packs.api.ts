@@ -1,4 +1,4 @@
-import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
+import { createApi, fetchBaseQuery, retry } from '@reduxjs/toolkit/query/react'
 import { base_URL } from 'common/api/common.api'
 import {
   ArgCreatePackType,
@@ -6,13 +6,15 @@ import {
   FetchPacksResponseType,
   ArgUpdatePackType,
   DeletePackResponseType, CreateUpdatePackResponseType
-} from 'features/pack/service/packs.types'
+} from 'features/pack/service/packs.api.types'
 
 
 export const packsApi = createApi({
   reducerPath: 'packsApi',
-  baseQuery: fetchBaseQuery({ baseUrl: base_URL, credentials: 'include' }),
+  baseQuery: retry(fetchBaseQuery({ baseUrl: base_URL, credentials: 'include' }), { maxRetries: 1 }),
   tagTypes: ['Packs'],
+  refetchOnReconnect: true,
+  keepUnusedDataFor: 180,
   endpoints: (build) => {
     return {
       getPacks: build.query<FetchPacksResponseType, ArgFetchPacksType>({
@@ -23,8 +25,8 @@ export const packsApi = createApi({
             params: args
           }
         },
-        providesTags: ['Packs'],
-        
+        providesTags: ['Packs']
+
       }),
       createPack: build.mutation<CreateUpdatePackResponseType, ArgCreatePackType>({
         query: (cardsPack) => {
@@ -66,4 +68,9 @@ export const packsApi = createApi({
   }
 })
 
-export const { useGetPacksQuery, useCreatePackMutation, useUpdatePackMutation, useDeletePackMutation } = packsApi
+export const {
+  useGetPacksQuery,
+  useCreatePackMutation,
+  useUpdatePackMutation,
+  useDeletePackMutation,
+} = packsApi

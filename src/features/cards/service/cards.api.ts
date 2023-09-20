@@ -1,19 +1,22 @@
-import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
+import { createApi, fetchBaseQuery, retry } from '@reduxjs/toolkit/query/react'
 import { base_URL } from 'common/api/common.api'
-import { CreateCardResponseType, ArgCreateCardType, ArgUpdateCardType,
+import {
+  CreateCardResponseType, ArgCreateCardType, ArgUpdateCardType,
   DeleteCardResponseType, ArgChangeGradeType,
   ArgFetchCardsType,
   FetchCardsResponseType,
   UpdateCardResponseType, ChangeGradeResponseType
-} from 'features/cards/service/cards.types'
+} from 'features/cards/service/cards.api.types'
 
 
 const baseEndpoint = '/cards/card'
 
 export const cardsApi = createApi({
   reducerPath: 'cardsApi',
-  baseQuery: fetchBaseQuery({ baseUrl: base_URL, credentials: 'include' }),
+  baseQuery: retry(fetchBaseQuery({ baseUrl: base_URL, credentials: 'include' }), { maxRetries: 1 }),
   tagTypes: ['Cards'],
+  refetchOnReconnect: true,
+  keepUnusedDataFor: 180,
   endpoints: (build) => {
     return {
       getCards: build.query<FetchCardsResponseType, ArgFetchCardsType>({
@@ -48,7 +51,7 @@ export const cardsApi = createApi({
             }
           }
         },
-        invalidatesTags: ['Cards']
+        invalidatesTags: (result, error, arg, meta) => [{type: 'Cards', id: arg._id}]
       }),
       deleteCard: build.mutation<DeleteCardResponseType, string>({
         query: (id) => {
@@ -63,7 +66,7 @@ export const cardsApi = createApi({
         invalidatesTags: ['Cards']
       }),
       changeGradeCard: build.mutation<ChangeGradeResponseType, ArgChangeGradeType>({
-        query: (arg) => ({ method: 'PUT', url: '/cards/grade', body: arg }),
+        query: (arg) => ({ method: 'PUT', url: '/cards/grade', body: arg })
       })
     }
   }

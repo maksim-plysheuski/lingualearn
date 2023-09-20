@@ -1,29 +1,29 @@
-import { useAppDispatch, useAppSelector } from "common/hooks";
-import { useEffect } from "react";
+import { useAppDispatch, useAppSelector } from 'common/hooks'
+import { useEffect } from 'react'
 import { appActions } from 'app/components/app.slice'
 import { toast, ToastContainer } from 'react-toastify'
 import { selectAppError } from 'app'
 
 
 export const GlobalError = () => {
-  const error = useAppSelector(selectAppError);
-  const dispatch = useAppDispatch();
+  const error = useAppSelector(selectAppError)
+  const dispatch = useAppDispatch()
 
   if (error !== null) {
-    toast.error(error);
+    toast.error(error)
   }
 
   useEffect(() => {
     if (error !== null) {
       setTimeout(() => {
-        dispatch(appActions.setError({error:null}));
-      }, 3000);
+        dispatch(appActions.setError({ error: null }))
+      }, 3000)
     }
-  }, [error]);
+  }, [error])
 
   return (
     <ToastContainer
-      position="bottom-right"
+      position='bottom-right'
       autoClose={3000}
       hideProgressBar={false}
       newestOnTop={false}
@@ -32,7 +32,7 @@ export const GlobalError = () => {
       pauseOnFocusLoss
       draggable
       pauseOnHover
-      theme="colored"
+      theme='colored'
     />
-  );
-};
+  )
+}

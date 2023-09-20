@@ -9,7 +9,7 @@ export const emailMessage = () => {
                     <span style="margin-top: 30px; font-size: 15px; font-family: 'Arial', sans-serif;">Hello,</span>
                     <p style="font-size: 15px; font-family: 'Arial', sans-serif">We've received a request to reset the
                         password for your account. Click the button below to change your password.</p>
-                    <a href='http://localhost:3000/#/auth/set-new-password/$token$' style='height: 100%; width: 100%;'>
+                    <a href='http://localhost:3000/#/set-new-password/$token$' style='height: 100%; width: 100%;'>
                         <button style=' cursor: pointer; border: 0; font-size: 16px; height: 35px; width: 100%; border-radius: 10px; background-color: rgba(54,110,255); color: white'>
                             Set New Password
                         </button>

@@ -1,10 +1,10 @@
 import { SearchBar } from './searchBar/SearchBar'
 import s from './style.module.scss'
 import { PaginatorPacks } from './paginatorPacks/paginatorPacks'
-import { TitleBlockPacks } from 'common/components'
+import { TitleBlock } from 'common/components'
 import { PacksTable } from './packsTable/PacksTable'
 import { useFetchPacks } from 'features/pack/hook/useFetchPacks'
-import { SkeletonPacksList } from 'features/pack/components/packsList/skeletonPacksList/SkeletonPacksList'
+import { SkeletonPacksList } from './skeletonPacksList/SkeletonPacksList'
 
 
 export const PacksList = () => {
@@ -14,7 +14,7 @@ export const PacksList = () => {
 
   return (
     <div className={s.packsList}>
-      <TitleBlockPacks />
+      <TitleBlock />
       <SearchBar />
       <PacksTable />
       <PaginatorPacks />

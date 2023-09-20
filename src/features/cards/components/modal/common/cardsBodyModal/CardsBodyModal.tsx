@@ -2,7 +2,7 @@ import { QuestionSelectType, SelectTextImg } from 'features/cards/components/mod
 import s from './style.module.scss'
 import { InputCustom } from 'common/components/Inputs/inputCastom/InputCustom'
 import { ImageBlockModal } from 'common/components'
-import React from 'react'
+import React, { memo } from 'react'
 
 type Type = {
   selectValue: QuestionSelectType
@@ -16,7 +16,7 @@ type Type = {
   setQuestionImg: (newImg: string) => void
   setAnswerImg: (newImg: string) => void
 }
-export const CardsBodyModal = (props: Type) => {
+export const CardsBodyModal = memo((props: Type) => {
   const {
     selectValue, answer, question, questionImg, answerImg, setAnswer,
     setQuestion, setAnswerImg, setQuestionImg, setSelectValue
@@ -38,4 +38,4 @@ export const CardsBodyModal = (props: Type) => {
       }
     </div>
   )
-}
+})

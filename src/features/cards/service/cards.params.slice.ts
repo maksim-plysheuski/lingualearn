@@ -1,5 +1,5 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
-import { ArgFetchCardsType } from 'features/cards/service/cards.types'
+import { ArgFetchCardsType } from 'features/cards/service/cards.api.types'
 
 
 const slice = createSlice({

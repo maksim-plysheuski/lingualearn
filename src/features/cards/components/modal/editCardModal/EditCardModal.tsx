@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { memo, useState } from 'react'
 import { BaseModal } from 'common/components'
 import { QuestionSelectType } from 'features/cards/components/modal/addCardModal/select/SelectTextImg'
 import DriveFileRenameOutlineIcon from '@mui/icons-material/DriveFileRenameOutline'
@@ -14,9 +14,8 @@ type Props = {
   answerImgValue?: string
 }
 
-export const EditCardsModal = (props: Props) => {
+export const EditCardsModal = memo((props: Props) => {
   const { questionValue, answerValue, questionImgValue, answerImgValue, cardId } = props
-
   const [isModalOpen, setIsModalOpen] = useState(false)
   const [selectValue, setSelectValue] = useState<QuestionSelectType>(answerImgValue ? 'Picture' : 'Text')
   const [question, setQuestion] = useState<string>(questionValue)
@@ -29,7 +28,7 @@ export const EditCardsModal = (props: Props) => {
     const newCard = { _id: cardId, question, answer, questionImg, answerImg  }
     updateCard(newCard).unwrap()
       .then(() => toast.info(`Card has been updated`))
-      .catch((err) => toast.error(err.e.response ? err.e.response.data.error : err.e.message))
+      .catch((err) => toast.error(err.data.error ? err.data.error : err.data.info))
       .finally(() => {
         setIsModalOpen(false)
         setQuestionImg('')
@@ -64,4 +63,4 @@ export const EditCardsModal = (props: Props) => {
       </BaseModal>
     </>
   )
-}
+})

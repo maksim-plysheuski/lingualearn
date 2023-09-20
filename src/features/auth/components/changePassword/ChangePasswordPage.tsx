@@ -32,8 +32,7 @@ export const ChangePasswordPage = () => {
   const { token } = useParams<{ token: string }>()
 
   const onSubmit: SubmitHandler<Type> = ({ password }) => {
-    if (token) dispatch(authThunks.setNewPassword({ password, resetPasswordToken: token }))
-      .unwrap()
+    if (token) dispatch(authThunks.setNewPassword({ password, resetPasswordToken: token })).unwrap()
       .then(() => {
         navigate(routePaths.LOGIN)
         toast.success('Password has been changed')
