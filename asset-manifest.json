@@ -1,16 +1,16 @@
 {
   "files": {
-    "main.css": "/maksim-plysheuski/lingualearn/static/css/main.2b8eb316.css",
-    "main.js": "/maksim-plysheuski/lingualearn/static/js/main.5ae36acf.js",
-    "static/js/787.4381e521.chunk.js": "/maksim-plysheuski/lingualearn/static/js/787.4381e521.chunk.js",
-    "static/media/errorImage.svg": "/maksim-plysheuski/lingualearn/static/media/errorImage.4e46e304dcfdcae89fcfb902d8863816.svg",
-    "index.html": "/maksim-plysheuski/lingualearn/index.html",
-    "main.2b8eb316.css.map": "/maksim-plysheuski/lingualearn/static/css/main.2b8eb316.css.map",
-    "main.5ae36acf.js.map": "/maksim-plysheuski/lingualearn/static/js/main.5ae36acf.js.map",
-    "787.4381e521.chunk.js.map": "/maksim-plysheuski/lingualearn/static/js/787.4381e521.chunk.js.map"
+    "main.css": "/lingualearn/static/css/main.2b8eb316.css",
+    "main.js": "/lingualearn/static/js/main.9b63b10d.js",
+    "static/js/787.4381e521.chunk.js": "/lingualearn/static/js/787.4381e521.chunk.js",
+    "static/media/errorImage.svg": "/lingualearn/static/media/errorImage.4e46e304dcfdcae89fcfb902d8863816.svg",
+    "index.html": "/lingualearn/index.html",
+    "main.2b8eb316.css.map": "/lingualearn/static/css/main.2b8eb316.css.map",
+    "main.9b63b10d.js.map": "/lingualearn/static/js/main.9b63b10d.js.map",
+    "787.4381e521.chunk.js.map": "/lingualearn/static/js/787.4381e521.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.2b8eb316.css",
-    "static/js/main.5ae36acf.js"
+    "static/js/main.9b63b10d.js"
   ]
 }
