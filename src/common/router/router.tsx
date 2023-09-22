@@ -20,7 +20,7 @@ export const router = createHashRouter([
     element: <App />,
     errorElement: <PageNotFound />,
     children: [
-      {
+      { path: routePaths.MAIN,
         element: <PrivateLayout />,
         children: [
           { index: true, path: routePaths.PROFILE, element: <ProfilePage /> },
@@ -29,7 +29,7 @@ export const router = createHashRouter([
           { path: routePaths.LEARN, element: <LearnPage /> }
         ]
       },
-      {
+      { path: routePaths.MAIN,
         element: <NotPrivateLayout />,
         children: [
           { path: routePaths.LOGIN, element: <Login /> },
